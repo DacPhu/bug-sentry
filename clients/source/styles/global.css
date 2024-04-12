@@ -1,0 +1,17 @@
+.btn-main-color {
+  background-color: #034f75;
+}
+
+.btn-main-color:hover {
+  border-color: #034f75;
+  color: #034f75;
+}
+
+.btn-outline-main-color {
+  border-color: #034f75;
+}
+
+.bg-main-color{
+    background-color: #034f75;
+}
+

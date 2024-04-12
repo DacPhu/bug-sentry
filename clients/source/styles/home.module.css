@@ -1,0 +1,95 @@
+.dropdown-menu ul {
+  list-style: none;
+  padding: 0;
+}
+
+.dropdown-menu.show {
+  visibility: hidden;
+}
+
+.dropdown-menu li:first-child a {
+  font-weight: bold;
+  color: #034f75;
+}
+
+.nav-item:hover .dropdown-menu {
+  display: flex;
+  left: 10%;
+  width: 80%;
+}
+
+.navbar-brand a {
+  text-decoration: none;
+  font-size: 25px;
+  color: #034f75;
+  font-weight: bold;
+  padding-left: 30px;
+}
+
+footer {
+  margin-top: 200px;
+  padding: 80px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, auto));
+  gap: 3.5rem;
+  background-color: #034f75;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.footer-content-box {
+  color: #fff;
+  margin-bottom: 1.5rem;
+}
+
+.footer-content-box li a {
+  display: block;
+  color: #d6d6d6;
+  text-decoration: none;
+  font-size: 15px;
+}
+.footer-content-box li a:hover {
+  transform: translateX(-5px) translateY(-3px);
+  color: white;
+}
+
+.footer-content-box li {
+  list-style: none;
+  margin-bottom: 16px;
+}
+
+.icon-box a {
+  display: inline-block;
+  font-size: 22px;
+  color: #d6d6d6;
+  margin-right: 17px;
+  transition: all 0.4s ease;
+}
+
+.icon-box a:hover {
+  color: #fff;
+  transform: translateY(-5px);
+}
+
+@media (max-width: 1690px) {
+  footer {
+    padding: 50px 5% 40px;
+  }
+}
+
+@media (max-width: 1120px) {
+  footer {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, auto));
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 700px) {
+  footer {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, auto));
+    gap: 2.5rem;
+  }
+}
