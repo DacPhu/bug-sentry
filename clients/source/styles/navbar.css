@@ -1,0 +1,16 @@
+.bg-grey {
+    background-color: aliceblue;
+}
+
+.text-small {
+    font-size: 0.8rem;
+}
+
+#collapsibleNavId li {
+    border-right: 1px #909090 solid;
+    padding: 0 1rem;
+}
+
+#collapsibleNavId li:last-child {
+    border-right: none;
+}
