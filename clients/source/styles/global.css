@@ -1,5 +1,5 @@
 .btn-main-color {
-  background-color: #034f75;
+  background-color: #034f75 !important;
 }
 
 .btn-main-color:hover {
@@ -11,7 +11,13 @@
   border-color: #034f75;
 }
 
-.bg-main-color{
-    background-color: #034f75;
+.bg-main-color {
+  background-color: #034f75;
 }
 
+.bg-grey {
+  background-color: #edf1f4;
+}
+.text-small {
+  font-size: 0.6rem !important;
+}
