@@ -21,3 +21,11 @@
 .text-small {
   font-size: 0.6rem !important;
 }
+
+.navbar-brand a {
+  text-decoration: none;
+  font-size: 25px;
+  color: #034f75;
+  font-weight: bold;
+  padding-left: 30px;
+}
