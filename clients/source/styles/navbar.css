@@ -14,3 +14,11 @@
 #collapsibleNavId li:last-child {
     border-right: none;
 }
+
+.nav-link {
+    padding: 0.5rem 0.2rem;
+}
+
+.nav-pills li a:hover {
+    background-color: #034f75;
+}

@@ -80,50 +80,45 @@
     <main>
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-1 col-lg-1 col-xl-1">
-                    <div id="nav-side-bar" class="container-fluid bg-grey d-flex justify-content-center">
-                        <div class="flex-nowrap">
-                            <div class="min-vh-100">
-                                <div class="text-small text-center">
-                                    <ul class="nav nav-pills flex-column mt-5">
-                                        <li class="nav-item py-2">
-                                            <a href="#" class="nav-link text-dark" aria-current="page">
-                                                <img src="../../../public/icons/dash-board.svg" /> <br />
-                                                Dashboard</a>
-                                        </li>
-                                        <li class="nav-item py-2">
-                                            <a href="#" class="nav-link text-dark">
-                                                <img src="../../../public/icons/team-report.svg" /> <br />
-                                                Team Reports</a>
-                                        </li>
-                                        <li class="nav-item py-2">
-                                            <a href="#" class="nav-link text-dark">
-                                                <img src="../../../public/icons/project-list.svg" /> <br />
-                                                Project List</a>
-                                        </li>
-                                        <li class="nav-item py-2">
-                                            <a href="#" class="nav-link text-dark">
-                                                <img src="../../../public/icons/administration.svg" /> <br />
-                                                Administration</a>
-                                        </li>
-                                        <li class="nav-item py-2">
-                                            <a href="#" class="nav-link text-dark">
-                                                <img src="../../../public/icons/performance.svg" /> <br />
-                                                Performance</a>
-                                        </li>
-                                        <li class="nav-item py-3">
-                                            <a href="#" class="nav-link text-dark">
-                                                <img src="../../../public/icons/board.svg" /> <br />
-                                                Board</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
+                <!-- Side bar -->
+                <div class="bg-white col-auto col-md-1 min-vh-100">
+                    <div class="text-small text-center">
+                        <ul class="nav nav-pills flex-column mt-5">
+                            <li class="nav-item py-2">
+                                <a href="#" class="nav-link text-dark" aria-current="page">
+                                    <img src="../../../public/icons/dash-board.svg" /> <br />
+                                    Dashboard</a>
+                            </li>
+                            <li class="nav-item py-2">
+                                <a href="#" class="nav-link text-dark">
+                                    <img src="../../../public/icons/team-report.svg" /> <br />
+                                    Team Reports</a>
+                            </li>
+                            <li class="nav-item py-2">
+                                <a href="#" class="nav-link text-dark">
+                                    <img src="../../../public/icons/project-list.svg" /> <br />
+                                    Project List</a>
+                            </li>
+                            <li class="nav-item py-2">
+                                <a href="#" class="nav-link text-dark">
+                                    <img src="../../../public/icons/administration.svg" />
+                                    <br />
+                                    Administration</a>
+                            </li>
+                            <li class="nav-item py-2">
+                                <a href="#" class="nav-link text-dark">
+                                    <img src="../../../public/icons/performance.svg" /> <br />
+                                    Performance</a>
+                            </li>
+                            <li class="nav-item py-3">
+                                <a href="#" class="nav-link text-dark">
+                                    <img src="../../../public/icons/board.svg" /> <br />
+                                    Board</a>
+                            </li>
+                        </ul>
                     </div>
-
-
                 </div>
+                <!-- Main content -->
                 <div class="col-md-11 col-lg-11 col-xl-11 bg-gray px-4">
                     <div class="nav-bar-page mt-3 mx-5">
                         <div class="row d-flex flex-nowrap justify-content-between">
@@ -218,7 +213,7 @@
                                                         <i class="bi bi-circle-fill text-danger d-inline-block"></i>
                                                         <p class="text-muted"> Failed </p>
                                                     </div>
-                                                    
+
                                                 </div>
                                             </div>
                                         </div>
@@ -226,7 +221,8 @@
                                 </div>
                                 <div class="row mt-4 justify-content-between">
                                     <div class="col bg-light h-100">
-                                        <div class="mt-3 mx-auto bg-release rounded-circle d-flex justify-content-center align-items-center" style="width: 75px; height: 75px;">
+                                        <div class="mt-3 mx-auto bg-release rounded-circle d-flex justify-content-center align-items-center"
+                                            style="width: 75px; height: 75px;">
                                             <h1 class="mb-0 fw-bold"> 5</h1>
                                         </div>
                                         <h5 class="mt-1 fw-bold text-center"> Releases</h5>
@@ -255,13 +251,14 @@
                                                 <i class="bi bi-eye d-inline-block ms-auto"></i>
                                             </div>
 
-                                            
+
                                         </div>
                                         <h4 class="text-center text-info "> View more</h4>
                                     </div>
 
                                     <div class="col bg-light ms-5">
-                                        <div class="mt-3 mx-auto bg-test-case rounded-circle d-flex justify-content-center align-items-center" style="width: 75px; height: 75px;">
+                                        <div class="mt-3 mx-auto bg-test-case rounded-circle d-flex justify-content-center align-items-center"
+                                            style="width: 75px; height: 75px;">
                                             <h1 class="mb-0 fw-bold"> 3</h1>
                                         </div>
                                         <h5 class="mt-1 fw-bold text-center"> Test cases</h5>
@@ -277,12 +274,13 @@
                                                 <h5 class="d-inline"> Test case 2</h5>
                                                 <i class="bi bi-eye d-inline-block ms-auto"></i>
                                             </div>
-                                            
+
                                         </div>
                                         <h4 class="text-center text-info "> View more</h4>
                                     </div>
-                                    <div class="col bg-light ms-5"> 
-                                        <div class="mt-3 mx-auto bg-test-run rounded-circle d-flex justify-content-center align-items-center" style="width: 75px; height: 75px;">
+                                    <div class="col bg-light ms-5">
+                                        <div class="mt-3 mx-auto bg-test-run rounded-circle d-flex justify-content-center align-items-center"
+                                            style="width: 75px; height: 75px;">
                                             <h1 class="mb-0 fw-bold"> 1</h1>
                                         </div>
                                         <h5 class="mt-1 fw-bold text-center"> Test runs</h5>
@@ -297,8 +295,9 @@
                                         </div>
                                         <h4 class="text-center text-info "> View more</h4>
                                     </div>
-                                    <div class="col bg-light ms-5 me-3"> 
-                                        <div class="mt-3 mx-auto bg-issue rounded-circle d-flex justify-content-center align-items-center" style="width: 75px; height: 75px;">
+                                    <div class="col bg-light ms-5 me-3">
+                                        <div class="mt-3 mx-auto bg-issue rounded-circle d-flex justify-content-center align-items-center"
+                                            style="width: 75px; height: 75px;">
                                             <h1 class="mb-0 fw-bold"> 4</h1>
                                         </div>
                                         <h5 class="mt-1 fw-bold text-center"> Issues</h5>
@@ -335,34 +334,46 @@
                                 </div>
                                 <div class="container mt-3 px-0">
                                     <h5> 4/1/2024</h5>
-                                    <div id="release" class=" bg-release d-flex align-items-center justify-content-center my-3 px-3" style="filter: saturate(50%);">
+                                    <div id="release"
+                                        class=" bg-release d-flex align-items-center justify-content-center my-3 px-3"
+                                        style="filter: saturate(50%);">
                                         <p class="d-inline my-3"> Release 2 - Create </p>
                                         <p class="ms-auto d-inline my-3">Nguyen An</p>
                                     </div>
-                                    <div id="test-run" class=" bg-test-run d-flex align-items-center justify-content-center my-3 px-3" style="filter: saturate(50%);">
+                                    <div id="test-run"
+                                        class=" bg-test-run d-flex align-items-center justify-content-center my-3 px-3"
+                                        style="filter: saturate(50%);">
                                         <p class="d-inline my-3"> Test run 2 - Create </p>
                                         <p class="ms-auto d-inline my-3">Nguyen An</p>
                                     </div>
-                                    <div id="test-case" class=" bg-test-case d-flex align-items-center justify-content-center my-3 px-3" style="filter: saturate(50%);">
+                                    <div id="test-case"
+                                        class=" bg-test-case d-flex align-items-center justify-content-center my-3 px-3"
+                                        style="filter: saturate(50%);">
                                         <p class="d-inline my-3"> Test case 1 - Create </p>
                                         <p class="ms-auto d-inline my-3">Nguyen An</p>
                                     </div>
-                                    <div id="issue" class=" bg-issue d-flex align-items-center justify-content-center my-3 px-3" style="filter: saturate(50%);">
+                                    <div id="issue"
+                                        class=" bg-issue d-flex align-items-center justify-content-center my-3 px-3"
+                                        style="filter: saturate(50%);">
                                         <p class="d-inline my-3"> issue 1 - Create </p>
                                         <p class="ms-auto d-inline my-3">Nguyen An</p>
                                     </div>
                                 </div>
                                 <div class="container mt-3 px-0">
                                     <h5> 3/1/2024</h5>
-                                    <div id="release" class=" bg-release d-flex align-items-center justify-content-center my-3 px-3" style="filter: saturate(50%);">
+                                    <div id="release"
+                                        class=" bg-release d-flex align-items-center justify-content-center my-3 px-3"
+                                        style="filter: saturate(50%);">
                                         <p class="d-inline my-3"> Release 1 - Create </p>
                                         <p class="ms-auto d-inline my-3">Dac Phu</p>
                                     </div>
-                                    <div id="test-run" class=" bg-test-run d-flex align-items-center justify-content-center my-3 px-3" style="filter: saturate(50%);">
+                                    <div id="test-run"
+                                        class=" bg-test-run d-flex align-items-center justify-content-center my-3 px-3"
+                                        style="filter: saturate(50%);">
                                         <p class="d-inline my-3"> Test run 1 - Create </p>
                                         <p class="ms-auto d-inline my-3">Khai Hung</p>
                                     </div>
-                                
+
                                 </div>
 
                             </div>
