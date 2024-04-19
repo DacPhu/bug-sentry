@@ -32,6 +32,9 @@
       #collapsibleNavId li:last-child {
         border-right: none;
       }
+      #navbar-in-project .nav-link{
+        padding-right: 2rem;
+      }
       .nav-link {
         padding: 0.5rem 0.2rem;
       }
@@ -201,11 +204,9 @@
 
           <div class="bg-light col-md-11">
             <nav class="navbar navbar-expand navbar-light bg-light">
-              <ul class="nav navbar-nav">
+              <ul class="nav navbar-nav" id="navbar-in-project">
                 <li class="nav-item">
-                  <a class="nav-link active" href="#" aria-current="page"
-                    >Overview</a
-                  >
+                  <a class="nav-link" href="#">Overview</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="#">Requirements</a>
@@ -214,7 +215,7 @@
                   <a class="nav-link" href="#">Attachments</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Releases</a>
+                  <a class="nav-link active" href="#">Releases</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="#">Modules</a>
