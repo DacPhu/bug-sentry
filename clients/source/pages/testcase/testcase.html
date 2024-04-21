@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <!-- Bootstrap CSS v5.2.1 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <style>
+        :root {
+            --primary-color: #034f75;
+            --bold-green-color: #01273a;
+            --tertiary-color: #f3f3f3;
+            --semi-grey-color: rgba(204, 204, 204, 0.3);
+            --blur-color: #909090;
+        }
+
+        #collapsibleNavId li {
+            border-right: 1px #909090 solid;
+            padding: 0 1rem;
+        }
+
+        #collapsibleNavId li:last-child {
+            border-right: none;
+        }
+
+        .nav-link {
+            padding: 0.5rem 0.2rem;
+        }
+
+        .nav-pills li a:hover {
+            background-color: #034f75;
+        }
+
+        .fs-8rem {
+            font-size: 0.8rem;
+        }
+
+        .sidebar {
+            max-width: 6rem;
+        }
+
+        .green-dark-theme {
+            background-color: #034F75;
+            color: #fff;
+        }
+
+        .custom-btn {
+            background-color: #034F75;
+            color: #fff;
+        }
+
+        .blur-green-theme,
+        .blur-green-theme td,
+        .blur-green-theme th {
+            background-color: rgba(47, 140, 153, 0.5);
+            color: white;
+        }
+
+        .custom-btn:hover {
+            background-color: #01273a;
+            color: #fff;
+        }
+
+        .bg-grey {
+            background-color: #EDF1F4;
+        }
+
+        .bg-semi-grey {
+            background-color: #F3F3F3;
+        }
+
+        .semi-rounded {
+            border-radius: 5px;
+        }
+
+        .ml-2 {
+            margin-left: 2rem;
+        }
+
+        input {
+            outline: none;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .font-weight-semibold {
+            font-weight: 500;
+        }
+
+        .pointer-cursor {
+            cursor: pointer;
+        }
+
+        .min-h-50 {
+            min-height: 50vh;
+        }
+
+        .font-color-blur {
+            color: var(--blur-color);
+
+        }
+
+        .checkbox-lg {
+            width: 1.2rem;
+            height: 1.2rem;
+            top: 0.2rem
+        }
+        .eclipsis-overflow {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    </style>
+    <link href="../styles/global.css" rel="stylesheet" />
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-light bg-white">
+            <div class="container-fluid">
+                <img src="../../../public/images/BugSentryLogo.png" alt="Logo" height="50px" class="ps-5" />
+                <a class="navbar-brand px-2" href="#">
+                    <h2>Bug Sentry</h2>
+                </a>
+                <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="collapsibleNavId">
+                    <ul class="navbar-nav ms-auto mt-lg-0">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="dropdownLanguageId"
+                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="bi bi-globe-americas fs-4 align-middle"></i>
+                                Language</a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownLanguageId">
+                                <a class="dropdown-item" href="#">VIE</a>
+                                <a class="dropdown-item" href="#">ENG</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="dropdownContactId"
+                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="bi bi-envelope fs-4 align-middle"></i>
+                                Contact</a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownContactId">
+                                <a class="dropdown-item" href="#">Email</a>
+                                <a class="dropdown-item" href="#">ABC</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="dropdownHelpCenterId"
+                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="bi bi-question-circle fs-4 align-middle"></i>
+                                Help Center
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownHelpCenterId">
+                                <a class="dropdown-item" href="#">About</a>
+                                <a class="dropdown-item" href="#">Privacy</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="dropdownAccountId"
+                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="bi bi-person-circle fs-4 align-middle"></i>
+                                Account</a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownAccountId">
+                                <a class="dropdown-item" href="#">Profile</a>
+                                <a class="dropdown-item" href="#">Log out</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main class="bg-grey">
+        <div class="container-fluid">
+            <div class="row">
+                <!-- sidebar -->
+                <div class="bg-white sidebar d-flex justify-content-center fs-8rem col-auto col-md-1 ">
+                    <div class="text-small text-center">
+                        <ul class="nav nav-pills flex-column mt-5">
+                            <li class="nav-item py-2">
+                                <a href="#" class="nav-link text-dark" aria-current="page">
+                                    <img src="../../../public/icons/dash-board.svg" /> <br />
+                                    Dashboard</a>
+                            </li>
+                            <li class="nav-item py-2">
+                                <a href="#" class="nav-link text-dark">
+                                    <img src="../../../public/icons/team-report.svg" /> <br />
+                                    Team Reports</a>
+                            </li>
+                            <li class="nav-item py-2">
+                                <a href="#" class="nav-link text-dark">
+                                    <img src="../../../public/icons/project-list.svg" /> <br />
+                                    Project List</a>
+                            </li>
+                            <li class="nav-item py-2">
+                                <a href="#" class="nav-link text-dark">
+                                    <img src="../../../public/icons/administration.svg" />
+                                    <br />
+                                    Administration</a>
+                            </li>
+                            <li class="nav-item py-2">
+                                <a href="#" class="nav-link text-dark">
+                                    <img src="../../../public/icons/performance.svg" /> <br />
+                                    Performance</a>
+                            </li>
+                            <li class="nav-item py-3">
+                                <a href="#" class="nav-link text-dark">
+                                    <img src="../../../public/icons/board.svg" /> <br />
+                                    Board</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- main content -->
+                <div class=" bg-grey col-md-11">
+                    <div class="  m-4 mt-5 bg-white semi-rounded">
+                        <div class="container p-4">
+                            <div class="d-flex flex-row  justify-content-between">
+
+                                <!-- header of main  -->
+                                <h6 class="text-left fs-4">Test Cases</h6>
+                                <div class="d-flex align-items-center">
+                                    <img class="me-2 ms-4 pointer-cursor" src="../../../public/icons/import.svg" alt=""> Import
+                                        <img class="me-2 ms-4  pointer-cursor "  src="../../../public/icons/export.svg" alt=""> Export
+                                    <div class="ms-4 d-flex btn custom-btn">
+                                        
+                                        <div class="me-2">Add Test Case </div>
+                                        <img src="../../../public/icons/add.svg" alt="">
+                                    </div>
+                                </div>
+                               
+                            </div>
+                            <hr>
+
+
+                            <div class="min-h-50 row gx-3  d-flex justify-content-between">
+                                <!-- left side of main -->
+                                <div class="col-4 ">
+
+                                    <div class="h-100  d-flex flex-column p-3 bg-semi-grey semi-rounded">
+                                        <div class="d-flex">
+                                            <div class=" flex-fill">Module</div>
+                                            <div class="d-flex flex-fill ml-2 justify-content-end">
+                                                <img src="../../../public/icons/add-green.svg" alt="">
+                                            </div>
+                                        </div>
+
+                                        <hr>
+                                        <div class="p-3 ">
+                                            <input class="w-100 p-3 pt-1 pb-1" type="text"
+                                                placeholder="Search requirement type by name">
+                                        </div>
+                                        <div id="modulesContainer" class="d-flex flex-column">
+                                            <div id="module1"
+                                                class="d-flex pointer-cursor align-items-center col m-4 mt-4 mb-0 font-weight-semibold">
+                                                <img class="me-2" src="../../../public/icons/ic_round-folder.svg"
+                                                    alt="">
+                                                Module 1
+                                            </div>
+                                            <div id="module2"
+                                                class="d-flex pointer-cursor align-items-center col m-4 mt-4 mb-0 font-color-blur">
+                                                <img class="me-2" src="../../../public/icons/ic_round-folder.svg"
+                                                    alt="">
+                                                Module 2
+                                            </div>
+                                            <div id="module3"
+                                                class="d-flex pointer-cursor align-items-center col m-4 mt-4 mb-0 font-color-blur">
+                                                <img class="me-2" src="../../../public/icons/ic_round-folder.svg"
+                                                    alt="">
+                                                Module 3
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- right side of main -->
+                                <div class=" col-8 ">
+                                    <div class="h-100 flex bg-semi-grey semi-rounded p-3   ">
+
+                                        <!-- action bar -->
+                                        <div class="d-flex align-items-center">
+                                            <div class="d-flex flex-fill ms-4 align-items-center">Show
+                                                <div
+                                                    class="rounded m-1 p-3 pt-0 pb-0 cursor-pointer border-secondary border-1 border">
+                                                    5
+                                                    <img class="m-3" src="../../../public/icons/down-arrow.svg" alt="">
+                                                </div>
+                                                entries
+                                            </div>
+                                            <div class="d-flex align-items-center flex-fill ">
+                                                <span>Sort</span>
+                                                <div class=" d-flex rounded-1 p-2 ms-2 bg-white">
+                                                    <span class="me-4 font-weight-semibold">
+                                                        Position
+                                                        <img src="../../../public/icons/sort-icon.svg" alt="">
+                                                    </span>
+
+                                                    <span class="font-weight-semibold d-flex align-items-center">
+                                                        Asc
+                                                        <img src="../../../public/icons/lucide_sort-asc.svg" alt="">
+                                                    </span>
+                                                </div>
+                                            </div>
+
+                                            <div class="d-flex  me-3">
+                                                <img width="35px" src="../../../public/icons/add-green.svg" alt="">
+                                            </div>
+                                        </div>
+
+                                        <!-- table -->
+                                        <table class="table mt-4 me-2">
+                                            <thead>
+                                              <tr class="semi-rounded blur-green-theme">
+                                                <th scope="col">Case Code</th>
+                                                <th scope="col">Title </th>
+                                                <th scope="col">Steps</th>
+                                                <th scope="col">Created By</th>
+                        
+                                                <th scope="col" style="max-width: 100px; overflow: hidden;
+                                                text-overflow: ellipsis;">Created At</th>
+                                                <th scope="col"></th>
+                        
+                                              </tr>
+                                            </thead>
+                                            <tbody>
+                                              <tr>
+                                                <th scope="row">TC001</th>
+                                                <td>TC Number 01</td>
+                                                <td>4</td>
+                        
+                                                <td>Lokissdo</td>
+                        
+                                                <td style="max-width: 100px;" class="eclipsis-overflow">7h28m 33 7h28m 33 7h28m 337h28m 337h28m
+                                                  337h28m 337h28m 337h28m 33</td>
+                        
+                                                <td class="ps-0">
+                                                  <div class="d-flex pointer-cursor  p-2 pt-0 pb-0 justify-content-end">
+                        
+                                                    <img src="../../../public/icons/bin-black.svg" alt="">
+                                                  </div>
+                                                </td>
+                                              </tr>   
+                                              <tr>
+                                                <th scope="row">TC001</th>
+                                                <td>TC Number 01</td>
+                                                <td>4</td>
+                        
+                                                <td>Lokissdo</td>
+                        
+                                                <td style="max-width: 100px;" class="eclipsis-overflow">7h28m 33 7h28m 33 7h28m 337h28m 337h28m
+                                                  337h28m 337h28m 337h28m 33</td>
+                        
+                                                <td class="ps-0">
+                                                  <div class="d-flex pointer-cursor  p-2 pt-0 pb-0 justify-content-end">
+                        
+                                                    <img src="../../../public/icons/bin-black.svg" alt="">
+                                                  </div>
+                                                </td>
+                                              </tr>
+                                              <tr>
+                                                <th scope="row">TC001</th>
+                                                <td>TC Number 01</td>
+                                                <td>4</td>
+                        
+                                                <td>Lokissdo</td>
+                        
+                                                <td style="max-width: 100px;" class="eclipsis-overflow">7h28m 33 7h28m 33 7h28m 337h28m 337h28m
+                                                  337h28m 337h28m 337h28m 33</td>
+                        
+                                                <td class="ps-0">
+                                                  <div class="d-flex pointer-cursor  p-2 pt-0 pb-0 justify-content-end">
+                        
+                                                    <img src="../../../public/icons/bin-black.svg" alt="">
+                                                  </div>
+                                                </td>
+                                              </tr>
+                                            </tbody>
+                                          </table>
+
+                                        <!-- pagination -->
+                                        <div class="d-flex justify-content-between p-3">
+                                            <span> Showing 1 of 3 entries </span>
+                                            <div>
+                                                <img width="20px" src="../../../public/icons/arrow-left.svg" alt=""
+                                                    srcset="">
+                                                <span class="p-1 ps-2 pe-2 rounded-circle green-dark-theme ">1</span>
+                                                <img width="20px" src="../../../public/icons/arrow-right.svg" alt=""
+                                                    srcset="">
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <!-- place footer here -->
+    </footer>
+    <!-- Bootstrap JavaScript Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+        crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script>
+        (function (fn) {
+            "use strict";
+            fn(window.jQuery, window, document);
+        })(function ($, window, document) {
+            "use strict";
+
+            $(function () {
+                $(".sort-btn").on("click", "[data-sort]", function (event) {
+                    event.preventDefault();
+
+                    var $this = $(this),
+                        sortDir = "desc";
+
+                    if ($this.data("sort") !== "asc") {
+                        sortDir = "asc";
+                    }
+
+                    $this
+                        .data("sort", sortDir)
+                        .find(".fa")
+                        .attr("class", "fa fa-sort-" + sortDir);
+
+                    // call sortDesc() or sortAsc() or whathaveyou...
+                });
+
+
+
+                $('#modulesContainer .col').click(function () {
+                    var clickedModuleId = $(this).attr('id'); // Get clicked module's ID
+
+                    // Loop through all other modules within the container
+                    $('#modulesContainer .col').each(function () {
+                        var currentModuleId = $(this).attr('id');
+
+                        // Apply styles based on clicked module
+                        if (currentModuleId !== clickedModuleId) {
+                            $(this).removeClass('font-weight-semibold').addClass('font-color-blur');
+                        } else {
+                            $(this).removeClass('font-color-blur').addClass('font-weight-semibold');
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
