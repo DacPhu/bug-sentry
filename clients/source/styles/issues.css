@@ -1,0 +1,44 @@
+.bg-gray {
+    background-color: #EDF1F4;
+}
+
+.bg-light {
+    background-color: #FFFFFF;
+}
+
+.bg-color1 {
+    background-color: #CFE2EB;
+}
+
+.text-color-1 {
+    color: #024F75;
+}
+.bg-save-btn {
+    background-color: #139CC6;
+}
+.bg-cancel-btn {
+    background-color: #FF7878;
+}
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Màu đen với độ mờ 50% */
+    z-index: 999; /* Đảm bảo lớp overlay hiển thị trên cùng */
+    display: none; /* Ẩn ban đầu */
+}
+.add-issue-table {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    z-index: 9999;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 75%;
+    display: none; /* Ẩn ban đầu */ 
+}
