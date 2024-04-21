@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dynamic Column Creation</title>
+    <style>
+      .column {
+        width: 200px;
+        height: 300px;
+        background-color: lightblue;
+        margin: 10px;
+        display: inline-block;
+        text-align: center;
+        vertical-align: top;
+        position: relative;
+      }
+      #container {
+        white-space: nowrap;
+        overflow-x: auto;
+      }
+      .add-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 24px;
+        line-height: 40px;
+        text-align: center;
+        background-color: lightgreen;
+        border: none;
+        cursor: pointer;
+        margin: 10px;
+      }
+      .close-btn {
+        width: 20px;
+        height: 20px;
+        font-size: 14px;
+        line-height: 20px;
+        text-align: center;
+        background-color: lightcoral;
+        border: none;
+        cursor: pointer;
+        position: absolute;
+        top: 5px;
+        right: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <div class="column" id="column1">
+        Column 1
+        <button class="close-btn" onclick="removeColumn('column1')">X</button>
+      </div>
+    </div>
+    <button class="add-btn" onclick="addColumn()">+</button>
+
+    <script>
+      let columnCount = 1;
+
+      function addColumn() {
+        columnCount++;
+        const container = document.getElementById("container");
+        const newColumn = document.createElement("div");
+        newColumn.className = "column";
+        newColumn.id = "column" + columnCount;
+        newColumn.textContent = "Column " + columnCount;
+        const closeButton = document.createElement("button");
+        closeButton.className = "close-btn";
+        closeButton.textContent = "X";
+        closeButton.onclick = function () {
+          const columnId = newColumn.id;
+          removeColumnsAfter(columnId);
+        };
+        newColumn.appendChild(closeButton);
+        container.appendChild(newColumn);
+      }
+
+      function removeColumnsAfter(columnId) {
+        const columns = document.querySelectorAll(".column");
+        let remove = false;
+        columns.forEach((column) => {
+          if (remove || column.id === columnId) {
+            column.parentNode.removeChild(column);
+          }
+          if (column.id === columnId) {
+            remove = true;
+          }
+        });
+        columnCount = parseInt(columnId.replace("column", ""));
+      }
+    </script>
+  </body>
+</html>
