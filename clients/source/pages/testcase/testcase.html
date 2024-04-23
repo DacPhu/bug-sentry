@@ -12,116 +12,13 @@
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-    <style>
-        :root {
-            --primary-color: #034f75;
-            --bold-green-color: #01273a;
-            --tertiary-color: #f3f3f3;
-            --semi-grey-color: rgba(204, 204, 204, 0.3);
-            --blur-color: #909090;
-        }
 
-        #collapsibleNavId li {
-            border-right: 1px #909090 solid;
-            padding: 0 1rem;
-        }
+    <link href="../../styles/global.css" rel="stylesheet" />
+    <link href="../../styles/topbar.module.css" rel="stylesheet" />
 
-        #collapsibleNavId li:last-child {
-            border-right: none;
-        }
-
-        .nav-link {
-            padding: 0.5rem 0.2rem;
-        }
-
-        .nav-pills li a:hover {
-            background-color: #034f75;
-        }
-
-        .fs-8rem {
-            font-size: 0.8rem;
-        }
-
-        .sidebar {
-            max-width: 6rem;
-        }
-
-        .green-dark-theme {
-            background-color: #034F75;
-            color: #fff;
-        }
-
-        .custom-btn {
-            background-color: #034F75;
-            color: #fff;
-        }
-
-        .blur-green-theme,
-        .blur-green-theme td,
-        .blur-green-theme th {
-            background-color: rgba(47, 140, 153, 0.5);
-            color: white;
-        }
-
-        .custom-btn:hover {
-            background-color: #01273a;
-            color: #fff;
-        }
-
-        .bg-grey {
-            background-color: #EDF1F4;
-        }
-
-        .bg-semi-grey {
-            background-color: #F3F3F3;
-        }
-
-        .semi-rounded {
-            border-radius: 5px;
-        }
-
-        .ml-2 {
-            margin-left: 2rem;
-        }
-
-        input {
-            outline: none;
-            border: none;
-            border-radius: 5px;
-        }
-
-        .font-weight-semibold {
-            font-weight: 500;
-        }
-
-        .pointer-cursor {
-            cursor: pointer;
-        }
-
-        .min-h-50 {
-            min-height: 50vh;
-        }
-
-        .font-color-blur {
-            color: var(--blur-color);
-
-        }
-
-        .checkbox-lg {
-            width: 1.2rem;
-            height: 1.2rem;
-            top: 0.2rem
-        }
-        .eclipsis-overflow {
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-    </style>
-    <link href="../styles/global.css" rel="stylesheet" />
 </head>
 
-<body>
+<body class="position-relative">
     <header>
         <nav class="navbar navbar-expand-sm navbar-light bg-white">
             <div class="container-fluid">
@@ -187,18 +84,14 @@
             <div class="row">
                 <!-- sidebar -->
                 <div class="bg-white sidebar d-flex justify-content-center fs-8rem col-auto col-md-1 ">
-                    <div class="text-small text-center">
+                    <div class="text-center">
                         <ul class="nav nav-pills flex-column mt-5">
                             <li class="nav-item py-2">
                                 <a href="#" class="nav-link text-dark" aria-current="page">
                                     <img src="../../../public/icons/dash-board.svg" /> <br />
                                     Dashboard</a>
                             </li>
-                            <li class="nav-item py-2">
-                                <a href="#" class="nav-link text-dark">
-                                    <img src="../../../public/icons/team-report.svg" /> <br />
-                                    Team Reports</a>
-                            </li>
+                           
                             <li class="nav-item py-2">
                                 <a href="#" class="nav-link text-dark">
                                     <img src="../../../public/icons/project-list.svg" /> <br />
@@ -210,11 +103,7 @@
                                     <br />
                                     Administration</a>
                             </li>
-                            <li class="nav-item py-2">
-                                <a href="#" class="nav-link text-dark">
-                                    <img src="../../../public/icons/performance.svg" /> <br />
-                                    Performance</a>
-                            </li>
+                           
                             <li class="nav-item py-3">
                                 <a href="#" class="nav-link text-dark">
                                     <img src="../../../public/icons/board.svg" /> <br />
@@ -235,7 +124,7 @@
                                 <div class="d-flex align-items-center">
                                     <img class="me-2 ms-4 pointer-cursor" src="../../../public/icons/import.svg" alt=""> Import
                                         <img class="me-2 ms-4  pointer-cursor "  src="../../../public/icons/export.svg" alt=""> Export
-                                    <div class="ms-4 d-flex btn custom-btn">
+                                    <div id="add-testcase" class="ms-4 d-flex btn custom-bold-btn">
                                         
                                         <div class="me-2">Add Test Case </div>
                                         <img src="../../../public/icons/add.svg" alt="">
@@ -416,6 +305,100 @@
         <!-- place footer here -->
     </footer>
     <!-- Bootstrap JavaScript Libraries -->
+
+    <div id="testCasePopup" class="vh-100 overlay position-absolute top-0
+    bottom-0 start-0 end-0">
+        <div class=" d-flex justify-content-center align-items-center w-100  position-absolute top-0
+            bottom-0 start-0 end-0">
+
+
+            <!-- main content -->
+            <div class=" w-75 shadow bg-white">
+                <div class="  m-4 mt-2 bg-white semi-rounded">
+                    <div class="container p-4 position-relative">
+                        <img class="closePopup position-absolute top-0 end-0 pointer-cursor" width="30px"
+                            src="../../../public/icons/clarity_remove-line.svg" alt="">
+                        <h6 class="text-left fs-4">Add Test Case</h6>
+                        <div class="d-flex mb-3 justify-content-center">
+                            <div class=" ps-3 pe-3 ms-4 d-flex btn  save-btn">
+                                Save
+                            </div>
+                            <div class="closePopup btn  text-center ps-3 pe-3 ms-4 cancel-btn">
+                                Cancel
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-between gap-5 ">
+
+
+
+
+                            <div class="flex-fill">
+                                <span class="fs-6 font-weight-semibold">Select Module <span
+                                        class="text-danger">*</span></span>
+                                <select class="form-select w-100 mb-3" aria-label="Default select example">
+                                    <option selected>Open this select menu</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                </select>
+
+
+                                <span class="fs-6 font-weight-semibold">Requirement Name <span
+                                        class="text-danger">*</span></span>
+                                <div class="input-group mb-3 w-100">
+
+                                    <input type="text" class="form-control " placeholder="Requirement name"
+                                        aria-label="Requirement name">
+                                </div>
+
+
+                                <span class="fs-6 font-weight-semibold">Description<span
+                                        class="text-danger">*</span></span>
+                                <div class="input-group w-100 ">
+
+                                    <textarea class="form-control" aria-label="With textarea"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="flex-fill flex-column">
+                                <div class="d-flex justify-content-between w-67 gap-2">
+                                    <span>Step Description <span class="text-danger">*</span></span>
+                                    <span>Expected Result</span>
+                                </div>
+
+                                <div class="d-flex justify-content-around gap-3">
+                                    <div class="input-group w-50">
+                                        <textarea class="form-control" aria-label="With textarea"></textarea>
+                                    </div>
+                                    <div class="input-group w-50">
+                                        <textarea class="form-control" aria-label="With textarea"></textarea>
+                                    </div>
+
+                                    <div class="d-flex gap-2">
+                                        <img class="pointer-cursor  delete-teststep-btn "
+                                            src="../../../public/icons/bin-black.svg" alt="">
+                                        <img class="pointer-cursor add-teststep-btn"
+                                            src="../../../public/icons/add-black.svg" alt="">
+
+                                    </div>
+
+                                    <!-- // add more steps -->
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <hr>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
         crossorigin="anonymous"></script>
@@ -467,9 +450,14 @@
                         }
                     });
                 });
+                $('#testCasePopup').hide();
+                $('#add-testcase').click(function () {
+                    $('#testCasePopup').fadeIn(200);
+                });
             });
         });
     </script>
+    <script src="../../scripts/add-testcase.js"></script>
 </body>
 
 </html>
