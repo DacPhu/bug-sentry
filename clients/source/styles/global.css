@@ -1,13 +1,5 @@
 :root {
   --primary-color: #034f75;
-  --bold-green-color: #01273a;
-  --tertiary-color: #f3f3f3;
-  --semi-grey-color: rgba(204, 204, 204, 0.3);
-  --blur-color: #909090;
-}
-
-.btn-main-color {
-  background-color: --primary-color !important;
   --blur-green-color: rgba(47, 140, 153, 0.5);
   --bold-green-color: #01273a;
   --tertiary-color: #f3f3f3;
@@ -19,6 +11,10 @@
   --active-red-btn-color: #ff7878;
   --blur-color: #909090;
   --overlay-color: rgba(76, 78, 79, 0.284);
+}
+
+.btn-main-color {
+  background-color: var(--primary-color) !important;
 }
 
 .nav-pills li a:hover {
@@ -128,10 +124,6 @@ input {
   background-color: var(--primary-color);
 }
 
-.bg-grey {
-  background-color: #edf1f4;
-}
-
 .text-small {
   font-size: 0.6rem !important;
 }
@@ -148,17 +140,8 @@ input {
   padding: 0.5rem 0.2rem;
 }
 
-.nav-pills li a:hover {
-  background-color: var(--primary-color);
-}
-
 .fs-8rem {
   font-size: 0.8rem;
-}
-
-.custom-btn {
-  background-color: #034f75;
-  color: #fff;
 }
 
 .sidebar {
@@ -170,10 +153,6 @@ input {
   color: #fff;
 }
 
-.custom-btn:hover {
-  background-color: #01273a;
-  color: #fff;
-}
 .overlay {
   background-color: var(--overlay-color);
 }

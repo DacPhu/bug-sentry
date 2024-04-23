@@ -10,17 +10,26 @@
     />
 
     <!-- Bootstrap CSS v5.2.1 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
 
     <link href="../../styles/global.css" rel="stylesheet" />
     <link href="../../styles/topbar.module.css" rel="stylesheet" />
+  </head>
 
-</head>
-
-<body class="position-relative">
+  <body class="position-relative">
     <header>
       <nav class="navbar navbar-expand-sm navbar-light bg-white">
         <div class="container-fluid">
@@ -123,36 +132,71 @@
       </nav>
     </header>
     <main class="bg-grey">
-        <div class="container-fluid">
-            <div class="row">
-                <!-- sidebar -->
-                <div class="bg-white sidebar d-flex justify-content-center fs-8rem col-auto col-md-1 ">
-                    <div class="text-center">
-                        <ul class="nav nav-pills flex-column mt-5">
-                            <li class="nav-item py-2">
-                                <a href="#" class="nav-link text-dark" aria-current="page">
-                                    <img src="../../../public/icons/dash-board.svg" /> <br />
-                                    Dashboard</a>
-                            </li>
-                           
-                            <li class="nav-item py-2">
-                                <a href="#" class="nav-link text-dark">
-                                    <img src="../../../public/icons/project-list.svg" /> <br />
-                                    Project List</a>
-                            </li>
-                            <li class="nav-item py-2">
-                                <a href="#" class="nav-link text-dark">
-                                    <img src="../../../public/icons/administration.svg" />
-                                    <br />
-                                    Administration</a>
-                            </li>
-                           
-                            <li class="nav-item py-3">
-                                <a href="#" class="nav-link text-dark">
-                                    <img src="../../../public/icons/board.svg" /> <br />
-                                    Board</a>
-                            </li>
-                        </ul>
+      <div class="container-fluid">
+        <div class="row">
+          <!-- sidebar -->
+          <div
+            class="bg-white sidebar d-flex justify-content-center fs-8rem col-auto col-md-1"
+          >
+            <div class="text-center">
+              <ul class="nav nav-pills flex-column mt-5">
+                <li class="nav-item py-2">
+                  <a href="#" class="nav-link text-dark" aria-current="page">
+                    <img src="../../../public/icons/dash-board.svg" /> <br />
+                    Dashboard</a
+                  >
+                </li>
+
+                <li class="nav-item py-2">
+                  <a href="#" class="nav-link text-dark">
+                    <img src="../../../public/icons/project-list.svg" /> <br />
+                    Project List</a
+                  >
+                </li>
+                <li class="nav-item py-2">
+                  <a href="#" class="nav-link text-dark">
+                    <img src="../../../public/icons/administration.svg" />
+                    <br />
+                    Administration</a
+                  >
+                </li>
+
+                <li class="nav-item py-3">
+                  <a href="#" class="nav-link text-dark">
+                    <img src="../../../public/icons/board.svg" /> <br />
+                    Board</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- main content -->
+          <div class="bg-grey col-md-11">
+            <div class="m-4 mt-5 bg-white semi-rounded">
+              <div class="container p-4">
+                <div class="d-flex flex-row justify-content-between">
+                  <!-- header of main  -->
+                  <h6 class="text-left fs-4">Test Cases</h6>
+                  <div class="d-flex align-items-center">
+                    <img
+                      class="me-2 ms-4 pointer-cursor"
+                      src="../../../public/icons/import.svg"
+                      alt=""
+                    />
+                    Import
+                    <img
+                      class="me-2 ms-4 pointer-cursor"
+                      src="../../../public/icons/export.svg"
+                      alt=""
+                    />
+                    Export
+                    <div
+                      id="add-testcase"
+                      class="ms-4 d-flex btn custom-bold-btn"
+                    >
+                      <div class="me-2">Add Test Case</div>
+                      <img src="../../../public/icons/add.svg" alt="" />
                     </div>
                   </div>
                 </div>
@@ -262,188 +306,139 @@
                           </div>
                         </div>
 
-                <!-- main content -->
-                <div class=" bg-grey col-md-11">
-                    <div class="  m-4 mt-5 bg-white semi-rounded">
-                        <div class="container p-4">
-                            <div class="d-flex flex-row  justify-content-between">
+                        <div class="d-flex me-3">
+                          <img
+                            width="35px"
+                            src="../../../public/icons/add-green.svg"
+                            alt=""
+                          />
+                        </div>
+                      </div>
 
-                                <!-- header of main  -->
-                                <h6 class="text-left fs-4">Test Cases</h6>
-                                <div class="d-flex align-items-center">
-                                    <img class="me-2 ms-4 pointer-cursor" src="../../../public/icons/import.svg" alt=""> Import
-                                        <img class="me-2 ms-4  pointer-cursor "  src="../../../public/icons/export.svg" alt=""> Export
-                                    <div id="add-testcase" class="ms-4 d-flex btn custom-bold-btn">
-                                        
-                                        <div class="me-2">Add Test Case </div>
-                                        <img src="../../../public/icons/add.svg" alt="">
-                                    </div>
-                                </div>
-                               
-                            </div>
-                            <hr>
+                      <!-- table -->
+                      <table class="table mt-4 me-2">
+                        <thead>
+                          <tr class="semi-rounded blur-green-theme">
+                            <th scope="col">Case Code</th>
+                            <th scope="col">Title</th>
+                            <th scope="col">Steps</th>
+                            <th scope="col">Created By</th>
 
+                            <th
+                              scope="col"
+                              style="
+                                max-width: 100px;
+                                overflow: hidden;
+                                text-overflow: ellipsis;
+                              "
+                            >
+                              Created At
+                            </th>
+                            <th scope="col"></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th scope="row">TC001</th>
+                            <td>TC Number 01</td>
+                            <td>4</td>
 
-                            <div class="min-h-50 row gx-3  d-flex justify-content-between">
-                                <!-- left side of main -->
-                                <div class="col-4 ">
+                            <td>Lokissdo</td>
 
-                                    <div class="h-100  d-flex flex-column p-3 bg-semi-grey semi-rounded">
-                                        <div class="d-flex">
-                                            <div class=" flex-fill">Module</div>
-                                            <div class="d-flex flex-fill ml-2 justify-content-end">
-                                                <img src="../../../public/icons/add-green.svg" alt="">
-                                            </div>
-                                        </div>
+                            <td
+                              style="max-width: 100px"
+                              class="eclipsis-overflow"
+                            >
+                              7h28m 33 7h28m 33 7h28m 337h28m 337h28m 337h28m
+                              337h28m 337h28m 33
+                            </td>
 
-                                        <hr>
-                                        <div class="p-3 ">
-                                            <input class="w-100 p-3 pt-1 pb-1" type="text"
-                                                placeholder="Search requirement type by name">
-                                        </div>
-                                        <div id="modulesContainer" class="d-flex flex-column">
-                                            <div id="module1"
-                                                class="d-flex pointer-cursor align-items-center col m-4 mt-4 mb-0 font-weight-semibold">
-                                                <img class="me-2" src="../../../public/icons/ic_round-folder.svg"
-                                                    alt="">
-                                                Module 1
-                                            </div>
-                                            <div id="module2"
-                                                class="d-flex pointer-cursor align-items-center col m-4 mt-4 mb-0 font-color-blur">
-                                                <img class="me-2" src="../../../public/icons/ic_round-folder.svg"
-                                                    alt="">
-                                                Module 2
-                                            </div>
-                                            <div id="module3"
-                                                class="d-flex pointer-cursor align-items-center col m-4 mt-4 mb-0 font-color-blur">
-                                                <img class="me-2" src="../../../public/icons/ic_round-folder.svg"
-                                                    alt="">
-                                                Module 3
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                            <td class="ps-0">
+                              <div
+                                class="d-flex pointer-cursor p-2 pt-0 pb-0 justify-content-end"
+                              >
+                                <img
+                                  src="../../../public/icons/bin-black.svg"
+                                  alt=""
+                                />
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th scope="row">TC001</th>
+                            <td>TC Number 01</td>
+                            <td>4</td>
 
-                                <!-- right side of main -->
-                                <div class=" col-8 ">
-                                    <div class="h-100 flex bg-semi-grey semi-rounded p-3   ">
+                            <td>Lokissdo</td>
 
-                                        <!-- action bar -->
-                                        <div class="d-flex align-items-center">
-                                            <div class="d-flex flex-fill ms-4 align-items-center">Show
-                                                <div
-                                                    class="rounded m-1 p-3 pt-0 pb-0 cursor-pointer border-secondary border-1 border">
-                                                    5
-                                                    <img class="m-3" src="../../../public/icons/down-arrow.svg" alt="">
-                                                </div>
-                                                entries
-                                            </div>
-                                            <div class="d-flex align-items-center flex-fill ">
-                                                <span>Sort</span>
-                                                <div class=" d-flex rounded-1 p-2 ms-2 bg-white">
-                                                    <span class="me-4 font-weight-semibold">
-                                                        Position
-                                                        <img src="../../../public/icons/sort-icon.svg" alt="">
-                                                    </span>
+                            <td
+                              style="max-width: 100px"
+                              class="eclipsis-overflow"
+                            >
+                              7h28m 33 7h28m 33 7h28m 337h28m 337h28m 337h28m
+                              337h28m 337h28m 33
+                            </td>
 
-                                                    <span class="font-weight-semibold d-flex align-items-center">
-                                                        Asc
-                                                        <img src="../../../public/icons/lucide_sort-asc.svg" alt="">
-                                                    </span>
-                                                </div>
-                                            </div>
+                            <td class="ps-0">
+                              <div
+                                class="d-flex pointer-cursor p-2 pt-0 pb-0 justify-content-end"
+                              >
+                                <img
+                                  src="../../../public/icons/bin-black.svg"
+                                  alt=""
+                                />
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th scope="row">TC001</th>
+                            <td>TC Number 01</td>
+                            <td>4</td>
 
-                                            <div class="d-flex  me-3">
-                                                <img width="35px" src="../../../public/icons/add-green.svg" alt="">
-                                            </div>
-                                        </div>
+                            <td>Lokissdo</td>
 
-                                        <!-- table -->
-                                        <table class="table mt-4 me-2">
-                                            <thead>
-                                              <tr class="semi-rounded blur-green-theme">
-                                                <th scope="col">Case Code</th>
-                                                <th scope="col">Title </th>
-                                                <th scope="col">Steps</th>
-                                                <th scope="col">Created By</th>
-                        
-                                                <th scope="col" style="max-width: 100px; overflow: hidden;
-                                                text-overflow: ellipsis;">Created At</th>
-                                                <th scope="col"></th>
-                        
-                                              </tr>
-                                            </thead>
-                                            <tbody>
-                                              <tr>
-                                                <th scope="row">TC001</th>
-                                                <td>TC Number 01</td>
-                                                <td>4</td>
-                        
-                                                <td>Lokissdo</td>
-                        
-                                                <td style="max-width: 100px;" class="eclipsis-overflow">7h28m 33 7h28m 33 7h28m 337h28m 337h28m
-                                                  337h28m 337h28m 337h28m 33</td>
-                        
-                                                <td class="ps-0">
-                                                  <div class="d-flex pointer-cursor  p-2 pt-0 pb-0 justify-content-end">
-                        
-                                                    <img src="../../../public/icons/bin-black.svg" alt="">
-                                                  </div>
-                                                </td>
-                                              </tr>   
-                                              <tr>
-                                                <th scope="row">TC001</th>
-                                                <td>TC Number 01</td>
-                                                <td>4</td>
-                        
-                                                <td>Lokissdo</td>
-                        
-                                                <td style="max-width: 100px;" class="eclipsis-overflow">7h28m 33 7h28m 33 7h28m 337h28m 337h28m
-                                                  337h28m 337h28m 337h28m 33</td>
-                        
-                                                <td class="ps-0">
-                                                  <div class="d-flex pointer-cursor  p-2 pt-0 pb-0 justify-content-end">
-                        
-                                                    <img src="../../../public/icons/bin-black.svg" alt="">
-                                                  </div>
-                                                </td>
-                                              </tr>
-                                              <tr>
-                                                <th scope="row">TC001</th>
-                                                <td>TC Number 01</td>
-                                                <td>4</td>
-                        
-                                                <td>Lokissdo</td>
-                        
-                                                <td style="max-width: 100px;" class="eclipsis-overflow">7h28m 33 7h28m 33 7h28m 337h28m 337h28m
-                                                  337h28m 337h28m 337h28m 33</td>
-                        
-                                                <td class="ps-0">
-                                                  <div class="d-flex pointer-cursor  p-2 pt-0 pb-0 justify-content-end">
-                        
-                                                    <img src="../../../public/icons/bin-black.svg" alt="">
-                                                  </div>
-                                                </td>
-                                              </tr>
-                                            </tbody>
-                                          </table>
+                            <td
+                              style="max-width: 100px"
+                              class="eclipsis-overflow"
+                            >
+                              7h28m 33 7h28m 33 7h28m 337h28m 337h28m 337h28m
+                              337h28m 337h28m 33
+                            </td>
 
-                                        <!-- pagination -->
-                                        <div class="d-flex justify-content-between p-3">
-                                            <span> Showing 1 of 3 entries </span>
-                                            <div>
-                                                <img width="20px" src="../../../public/icons/arrow-left.svg" alt=""
-                                                    srcset="">
-                                                <span class="p-1 ps-2 pe-2 rounded-circle green-dark-theme ">1</span>
-                                                <img width="20px" src="../../../public/icons/arrow-right.svg" alt=""
-                                                    srcset="">
+                            <td class="ps-0">
+                              <div
+                                class="d-flex pointer-cursor p-2 pt-0 pb-0 justify-content-end"
+                              >
+                                <img
+                                  src="../../../public/icons/bin-black.svg"
+                                  alt=""
+                                />
+                              </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
 
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
+                      <!-- pagination -->
+                      <div class="d-flex justify-content-between p-3">
+                        <span> Showing 1 of 3 entries </span>
+                        <div>
+                          <img
+                            width="20px"
+                            src="../../../public/icons/arrow-left.svg"
+                            alt=""
+                            srcset=""
+                          />
+                          <span
+                            class="p-1 ps-2 pe-2 rounded-circle green-dark-theme"
+                            >1</span
+                          >
+                          <img
+                            width="20px"
+                            src="../../../public/icons/arrow-right.svg"
+                            alt=""
+                            srcset=""
+                          />
                         </div>
                       </div>
                     </div>
@@ -460,158 +455,179 @@
     </footer>
     <!-- Bootstrap JavaScript Libraries -->
 
-    <div id="testCasePopup" class="vh-100 overlay position-absolute top-0
-    bottom-0 start-0 end-0">
-        <div class=" d-flex justify-content-center align-items-center w-100  position-absolute top-0
-            bottom-0 start-0 end-0">
-
-
-            <!-- main content -->
-            <div class=" w-75 shadow bg-white">
-                <div class="  m-4 mt-2 bg-white semi-rounded">
-                    <div class="container p-4 position-relative">
-                        <img class="closePopup position-absolute top-0 end-0 pointer-cursor" width="30px"
-                            src="../../../public/icons/clarity_remove-line.svg" alt="">
-                        <h6 class="text-left fs-4">Add Test Case</h6>
-                        <div class="d-flex mb-3 justify-content-center">
-                            <div class=" ps-3 pe-3 ms-4 d-flex btn  save-btn">
-                                Save
-                            </div>
-                            <div class="closePopup btn  text-center ps-3 pe-3 ms-4 cancel-btn">
-                                Cancel
-                            </div>
-                        </div>
-                        <div class="d-flex justify-content-between gap-5 ">
-
-
-
-
-                            <div class="flex-fill">
-                                <span class="fs-6 font-weight-semibold">Select Module <span
-                                        class="text-danger">*</span></span>
-                                <select class="form-select w-100 mb-3" aria-label="Default select example">
-                                    <option selected>Open this select menu</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
-                                </select>
-
-
-                                <span class="fs-6 font-weight-semibold">Requirement Name <span
-                                        class="text-danger">*</span></span>
-                                <div class="input-group mb-3 w-100">
-
-                                    <input type="text" class="form-control " placeholder="Requirement name"
-                                        aria-label="Requirement name">
-                                </div>
-
-
-                                <span class="fs-6 font-weight-semibold">Description<span
-                                        class="text-danger">*</span></span>
-                                <div class="input-group w-100 ">
-
-                                    <textarea class="form-control" aria-label="With textarea"></textarea>
-                                </div>
-                            </div>
-
-                            <div class="flex-fill flex-column">
-                                <div class="d-flex justify-content-between w-67 gap-2">
-                                    <span>Step Description <span class="text-danger">*</span></span>
-                                    <span>Expected Result</span>
-                                </div>
-
-                                <div class="d-flex justify-content-around gap-3">
-                                    <div class="input-group w-50">
-                                        <textarea class="form-control" aria-label="With textarea"></textarea>
-                                    </div>
-                                    <div class="input-group w-50">
-                                        <textarea class="form-control" aria-label="With textarea"></textarea>
-                                    </div>
-
-                                    <div class="d-flex gap-2">
-                                        <img class="pointer-cursor  delete-teststep-btn "
-                                            src="../../../public/icons/bin-black.svg" alt="">
-                                        <img class="pointer-cursor add-teststep-btn"
-                                            src="../../../public/icons/add-black.svg" alt="">
-
-                                    </div>
-
-                                    <!-- // add more steps -->
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-                    <hr>
-
-
-
+    <div
+      id="testCasePopup"
+      class="vh-100 overlay position-absolute top-0 bottom-0 start-0 end-0"
+    >
+      <div
+        class="d-flex justify-content-center align-items-center w-100 position-absolute top-0 bottom-0 start-0 end-0"
+      >
+        <!-- main content -->
+        <div class="w-75 shadow bg-white">
+          <div class="m-4 mt-2 bg-white semi-rounded">
+            <div class="container p-4 position-relative">
+              <img
+                class="closePopup position-absolute top-0 end-0 pointer-cursor"
+                width="30px"
+                src="../../../public/icons/clarity_remove-line.svg"
+                alt=""
+              />
+              <h6 class="text-left fs-4">Add Test Case</h6>
+              <div class="d-flex mb-3 justify-content-center">
+                <div class="ps-3 pe-3 ms-4 d-flex btn save-btn">Save</div>
+                <div
+                  class="closePopup btn text-center ps-3 pe-3 ms-4 cancel-btn"
+                >
+                  Cancel
                 </div>
-            </div>
-        </div>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-        crossorigin="anonymous"></script>
+              </div>
+              <div class="d-flex justify-content-between gap-5">
+                <div class="flex-fill">
+                  <span class="fs-6 font-weight-semibold"
+                    >Select Module <span class="text-danger">*</span></span
+                  >
+                  <select
+                    class="form-select w-100 mb-3"
+                    aria-label="Default select example"
+                  >
+                    <option selected>Open this select menu</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                  </select>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
-        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
-        crossorigin="anonymous"></script>
+                  <span class="fs-6 font-weight-semibold"
+                    >Requirement Name <span class="text-danger">*</span></span
+                  >
+                  <div class="input-group mb-3 w-100">
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Requirement name"
+                      aria-label="Requirement name"
+                    />
+                  </div>
+
+                  <span class="fs-6 font-weight-semibold"
+                    >Description<span class="text-danger">*</span></span
+                  >
+                  <div class="input-group w-100">
+                    <textarea
+                      class="form-control"
+                      aria-label="With textarea"
+                    ></textarea>
+                  </div>
+                </div>
+
+                <div class="flex-fill flex-column">
+                  <div class="d-flex justify-content-between w-67 gap-2">
+                    <span
+                      >Step Description <span class="text-danger">*</span></span
+                    >
+                    <span>Expected Result</span>
+                  </div>
+
+                  <div class="d-flex justify-content-around gap-3">
+                    <div class="input-group w-50">
+                      <textarea
+                        class="form-control"
+                        aria-label="With textarea"
+                      ></textarea>
+                    </div>
+                    <div class="input-group w-50">
+                      <textarea
+                        class="form-control"
+                        aria-label="With textarea"
+                      ></textarea>
+                    </div>
+
+                    <div class="d-flex gap-2">
+                      <img
+                        class="pointer-cursor delete-teststep-btn"
+                        src="../../../public/icons/bin-black.svg"
+                        alt=""
+                      />
+                      <img
+                        class="pointer-cursor add-teststep-btn"
+                        src="../../../public/icons/add-black.svg"
+                        alt=""
+                      />
+                    </div>
+
+                    <!-- // add more steps -->
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr />
+          </div>
+        </div>
+      </div>
+    </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+      integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+      crossorigin="anonymous"
+    ></script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+      integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+      crossorigin="anonymous"
+    ></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script>
-        (function (fn) {
-            "use strict";
-            fn(window.jQuery, window, document);
-        })(function ($, window, document) {
-            "use strict";
+      (function (fn) {
+        "use strict";
+        fn(window.jQuery, window, document);
+      })(function ($, window, document) {
+        "use strict";
 
-            $(function () {
-                $(".sort-btn").on("click", "[data-sort]", function (event) {
-                    event.preventDefault();
+        $(function () {
+          $(".sort-btn").on("click", "[data-sort]", function (event) {
+            event.preventDefault();
 
-                    var $this = $(this),
-                        sortDir = "desc";
+            var $this = $(this),
+              sortDir = "desc";
 
-                    if ($this.data("sort") !== "asc") {
-                        sortDir = "asc";
-                    }
+            if ($this.data("sort") !== "asc") {
+              sortDir = "asc";
+            }
 
-                    $this
-                        .data("sort", sortDir)
-                        .find(".fa")
-                        .attr("class", "fa fa-sort-" + sortDir);
+            $this
+              .data("sort", sortDir)
+              .find(".fa")
+              .attr("class", "fa fa-sort-" + sortDir);
 
-                    // call sortDesc() or sortAsc() or whathaveyou...
-                });
+            // call sortDesc() or sortAsc() or whathaveyou...
+          });
 
+          $("#modulesContainer .col").click(function () {
+            var clickedModuleId = $(this).attr("id"); // Get clicked module's ID
 
+            // Loop through all other modules within the container
+            $("#modulesContainer .col").each(function () {
+              var currentModuleId = $(this).attr("id");
 
-                $('#modulesContainer .col').click(function () {
-                    var clickedModuleId = $(this).attr('id'); // Get clicked module's ID
-
-                    // Loop through all other modules within the container
-                    $('#modulesContainer .col').each(function () {
-                        var currentModuleId = $(this).attr('id');
-
-                        // Apply styles based on clicked module
-                        if (currentModuleId !== clickedModuleId) {
-                            $(this).removeClass('font-weight-semibold').addClass('font-color-blur');
-                        } else {
-                            $(this).removeClass('font-color-blur').addClass('font-weight-semibold');
-                        }
-                    });
-                });
-                $('#testCasePopup').hide();
-                $('#add-testcase').click(function () {
-                    $('#testCasePopup').fadeIn(200);
-                });
+              // Apply styles based on clicked module
+              if (currentModuleId !== clickedModuleId) {
+                $(this)
+                  .removeClass("font-weight-semibold")
+                  .addClass("font-color-blur");
+              } else {
+                $(this)
+                  .removeClass("font-color-blur")
+                  .addClass("font-weight-semibold");
+              }
             });
           });
+          $("#testCasePopup").hide();
+          $("#add-testcase").click(function () {
+            $("#testCasePopup").fadeIn(200);
+          });
+        });
+      });
     </script>
     <script src="../../scripts/add-testcase.js"></script>
-</body>
-
+  </body>
 </html>
