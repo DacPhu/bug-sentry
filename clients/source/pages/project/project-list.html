@@ -24,22 +24,8 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
-    <style>
-      #collapsibleNavId li {
-        border-right: 1px #909090 solid;
-        padding: 0 1rem;
-      }
-      #collapsibleNavId li:last-child {
-        border-right: none;
-      }
-      .nav-link {
-        padding: 0.5rem 0.2rem;
-      }
-      .nav-pills li a:hover {
-        background-color: #034f75;
-      }
-    </style>
-    <link href="../styles/global.css" rel="stylesheet" />
+    <link href="../../styles/global.css" rel="stylesheet" />
+    <link href="../../styles/navbar.css" rel="stylesheet" />
   </head>
 
   <body>
@@ -145,8 +131,10 @@
     <main class="bg-grey">
       <div class="container-fluid">
         <div class="row">
-          <div class="bg-white col-auto col-md-1 min-vh-100">
-            <div class="text-small text-center">
+          <div
+            class="bg-white sidebar d-flex justify-content-center fs-8rem col-auto col-md-1"
+          >
+            <div class="text-center">
               <ul class="nav nav-pills flex-column mt-5">
                 <li class="nav-item py-2">
                   <a href="#" class="nav-link text-dark" aria-current="page">
@@ -154,32 +142,15 @@
                     Dashboard</a
                   >
                 </li>
-                <!-- <li class="nav-item py-2">
-                  <a href="#" class="nav-link text-dark">
-                    <img src="../../../public/icons/team-report.svg" /> <br />
-                    Team Reports</a
-                  >
-                </li> -->
+
                 <li class="nav-item py-2">
                   <a href="#" class="nav-link text-dark">
                     <img src="../../../public/icons/project-list.svg" /> <br />
                     Project List</a
                   >
                 </li>
-                <li class="nav-item py-2">
-                  <a href="#" class="nav-link text-dark">
-                    <img src="../../../public/icons/administration.svg" />
-                    <br />
-                    Administration</a
-                  >
-                </li>
-                <!-- <li class="nav-item py-2">
-                  <a href="#" class="nav-link text-dark">
-                    <img src="../../../public/icons/performance.svg" /> <br />
-                    Performance</a
-                  >
-                </li> -->
-                <li class="nav-item py-2">
+
+                <li class="nav-item py-3">
                   <a href="#" class="nav-link text-dark">
                     <img src="../../../public/icons/board.svg" /> <br />
                     Board</a
@@ -188,7 +159,7 @@
               </ul>
             </div>
           </div>
-          <div class="bg-light col-md-11">
+          <div class="bg-grey col-md-11">
             <div class="row">
               <div class="col-md-6">
                 <nav class="nav justify-content-start m-3">
@@ -199,13 +170,14 @@
                 </nav>
               </div>
               <div class="col-md-6 d-flex justify-content-end">
-                <button
-                  type="button"
-                  class="btn btn-primary m-4"
-                  style="background-color: #034f75"
+                <div
+                  id="add-project"
+                  class="mx-4 my-3 d-flex btn custom-bold-btn"
+                  onclick="showDialog()"
                 >
-                  <i class="bi bi-plus"></i> Add project
-                </button>
+                  <div class="me-2">Add project</div>
+                  <img src="../../../public/icons/add.svg" alt="" />
+                </div>
               </div>
             </div>
             <div class="row">

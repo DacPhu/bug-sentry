@@ -25,22 +25,6 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
     <style>
-      #collapsibleNavId li {
-        border-right: 1px #909090 solid;
-        padding: 0 1rem;
-      }
-      #collapsibleNavId li:last-child {
-        border-right: none;
-      }
-      #navbar-in-project .nav-link {
-        padding-right: 2rem;
-      }
-      .nav-link {
-        padding: 0.5rem 0.2rem;
-      }
-      .nav-pills li a:hover {
-        background-color: #034f75;
-      }
       .page-number {
         border-radius: 50%;
         width: 40px;
@@ -53,41 +37,8 @@
       }
     </style>
 
-    <style>
-      .column {
-        width: 200px;
-        height: 300px;
-        background-color: lightblue;
-        margin: 10px;
-        text-align: center;
-        position: relative;
-      }
-      .add-btn {
-        width: 40px;
-        height: 40px;
-        font-size: 24px;
-        line-height: 40px;
-        text-align: center;
-        background-color: lightgreen;
-        border: none;
-        cursor: pointer;
-        margin: 10px;
-      }
-      .close-btn {
-        width: 20px;
-        height: 20px;
-        font-size: 14px;
-        line-height: 20px;
-        text-align: center;
-        background-color: lightcoral;
-        border: none;
-        cursor: pointer;
-        position: absolute;
-        top: 5px;
-        right: 5px;
-      }
-    </style>
-    <link href="../styles/global.css" rel="stylesheet" />
+    <link href="../../styles/global.css" rel="stylesheet" />
+    <link href="../../styles/navbar.css" rel="stylesheet" />
   </head>
 
   <body>
@@ -193,8 +144,10 @@
     <main class="bg-grey">
       <div class="container-fluid">
         <div class="row">
-          <div class="bg-white col-auto col-md-1 min-vh-100">
-            <div class="text-small text-center">
+          <div
+            class="bg-white sidebar d-flex justify-content-center fs-8rem col-auto col-md-1"
+          >
+            <div class="text-center">
               <ul class="nav nav-pills flex-column mt-5">
                 <li class="nav-item py-2">
                   <a href="#" class="nav-link text-dark" aria-current="page">
@@ -202,32 +155,15 @@
                     Dashboard</a
                   >
                 </li>
-                <!-- <li class="nav-item py-2">
-                  <a href="#" class="nav-link text-dark">
-                    <img src="../../../public/icons/team-report.svg" /> <br />
-                    Team Reports</a
-                  >
-                </li> -->
+
                 <li class="nav-item py-2">
                   <a href="#" class="nav-link text-dark">
                     <img src="../../../public/icons/project-list.svg" /> <br />
                     Project List</a
                   >
                 </li>
-                <li class="nav-item py-2">
-                  <a href="#" class="nav-link text-dark">
-                    <img src="../../../public/icons/administration.svg" />
-                    <br />
-                    Administration</a
-                  >
-                </li>
-                <!-- <li class="nav-item py-2">
-                  <a href="#" class="nav-link text-dark">
-                    <img src="../../../public/icons/performance.svg" /> <br />
-                    Performance</a
-                  >
-                </li> -->
-                <li class="nav-item py-2">
+
+                <li class="nav-item py-3">
                   <a href="#" class="nav-link text-dark">
                     <img src="../../../public/icons/board.svg" /> <br />
                     Board</a
@@ -237,8 +173,8 @@
             </div>
           </div>
 
-          <div class="bg-light col-md-11">
-            <nav class="navbar navbar-expand navbar-light bg-light">
+          <div class="bg-grey col-md-11">
+            <nav class="navbar navbar-expand navbar-light">
               <ul class="nav navbar-nav" id="navbar-in-project">
                 <li class="nav-item">
                   <a class="nav-link" href="#">Overview</a>
@@ -276,14 +212,14 @@
             <div class="row">
               <div class="col-md-6"></div>
               <div class="col-md-6 d-flex justify-content-end">
-                <button
-                  type="button"
-                  class="btn btn-primary m-4"
-                  style="background-color: #034f75"
+                <div
+                  id="add-module"
+                  class="mx-4 my-3 d-flex btn custom-bold-btn"
                   onclick="showDialog()"
                 >
-                  <i class="bi bi-plus"></i> Add module
-                </button>
+                  <div class="me-2">Add Module</div>
+                  <img src="../../../public/icons/add.svg" alt="" />
+                </div>
               </div>
             </div>
 
