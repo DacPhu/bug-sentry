@@ -1,64 +1,156 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Title</title>
-    <!-- Required meta tags -->
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
 
-    <!-- Bootstrap CSS v5.2.1 -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-      crossorigin="anonymous"
-    />
-  </head>
+<head>
+  <title>Title</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
-  <body>
-    <header>
-      <!-- place navbar here -->
-    </header>
-    <main>
+  <!-- Bootstrap CSS v5.2.1 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="../styles/topbar.module.css">
+  <link rel="stylesheet" href="../styles/global.css">
+
+</head>
+
+<body>
+  <header>
+    <nav class="navbar navbar-expand-sm navbar-light bg-white">
       <div class="container-fluid">
-        <div class="flex-nowrap">
-          <div class="bg-dark col-auto col-md-2 min-vh-100">
-            <div class="text-white p-2">
-              <ul class="nav nav-pills flex-column">
-                <li class="nav-item">
-                  <a href="#" class="nav-link active" aria-current="page"
-                    >Dashboard</a
-                  >
-                </li>
-                <li class="nav-item">
-                  <a href="#" class="nav-link">Team Report</a>
-                </li>
-                <li class="nav-item disabled">
-                  <a href="#" class="nav-link">Disabled</a>
-                </li>
-              </ul>
-            </div>
-          </div>
+        <img src="../../public/images/BugSentryLogo.png" alt="Logo" height="50px" class="ps-5" />
+        <a class="navbar-brand px-2" href="#">
+          <h2>Bug Sentry</h2>
+        </a>
+        <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse"
+          data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false"
+          aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavId">
+          <ul class="navbar-nav ms-auto mt-lg-0">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="dropdownLanguageId" data-bs-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                <i class="bi bi-globe-americas fs-4 align-middle"></i>
+                Language</a>
+              <div class="dropdown-menu" aria-labelledby="dropdownLanguageId">
+                <a class="dropdown-item" href="#">VIE</a>
+                <a class="dropdown-item" href="#">ENG</a>
+              </div>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="dropdownContactId" data-bs-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                <i class="bi bi-envelope fs-4 align-middle"></i>
+                Contact</a>
+              <div class="dropdown-menu" aria-labelledby="dropdownContactId">
+                <a class="dropdown-item" href="#">Email</a>
+                <a class="dropdown-item" href="#">ABC</a>
+              </div>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="dropdownHelpCenterId" data-bs-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                <i class="bi bi-question-circle fs-4 align-middle"></i>
+                Help Center
+              </a>
+              <div class="dropdown-menu" aria-labelledby="dropdownHelpCenterId">
+                <a class="dropdown-item" href="#">About</a>
+                <a class="dropdown-item" href="#">Privacy</a>
+              </div>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="dropdownAccountId" data-bs-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                <i class="bi bi-person-circle fs-4 align-middle"></i>
+                Account</a>
+              <div class="dropdown-menu" aria-labelledby="dropdownAccountId">
+                <a class="dropdown-item" href="#">Profile</a>
+                <a class="dropdown-item" href="#">Log out</a>
+              </div>
+            </li>
+          </ul>
         </div>
       </div>
-    </main>
-    <footer>
-      <!-- place footer here -->
-    </footer>
-    <!-- Bootstrap JavaScript Libraries -->
-    <script
-      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-      integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-      crossorigin="anonymous"
-    ></script>
+    </nav>
+  </header>
+  <main class="bg-grey">
+    <div class="container-fluid">
+      <div class="row">
+        <!-- sidebar -->
+        <div class="bg-white sidebar d-flex justify-content-center fs-8rem col-auto col-md-1 ">
+          <div class=" text-center">
+            <ul class="nav nav-pills flex-column mt-5">
+              <li class="nav-item py-2">
+                <a href="#" class="nav-link text-dark text-hover-light " aria-current="page">
+                  <img src="../../public/icons/dash-board.svg" /> <br />
+                  Dashboard</a>
+              </li>
+    
+              <li class="nav-item py-2">
+                <a href="#" class="nav-link text-dark text-hover-light">
+                  <img src="../../public/icons/project-list.svg" /> <br />
+                  Project List</a>
+              </li>
+              
+              <li class="nav-item py-3">
+                <a href="#" class="nav-link text-dark text-hover-light">
+                  <img src="../../public/icons/board.svg" /> <br />
+                  Board</a>
+              </li>
+            </ul>
+          </div>
+        </div>
 
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
-      integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
-      crossorigin="anonymous"
-    ></script>
-  </body>
+        <!-- main content -->
+       
+      </div>
+    </div>
+  </main>
+  <footer>
+    <!-- place footer here -->
+  </footer>
+  <!-- Bootstrap JavaScript Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+    crossorigin="anonymous"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+    integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+    crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script>
+    (function (fn) {
+      "use strict";
+      fn(window.jQuery, window, document);
+    })(function ($, window, document) {
+      "use strict";
+
+      $(function () {
+        $(".sort-btn").on("click", "[data-sort]", function (event) {
+          event.preventDefault();
+
+          var $this = $(this),
+            sortDir = "desc";
+
+          if ($this.data("sort") !== "asc") {
+            sortDir = "asc";
+          }
+
+          $this
+            .data("sort", sortDir)
+            .find(".fa")
+            .attr("class", "fa fa-sort-" + sortDir);
+
+          // call sortDesc() or sortAsc() or whathaveyou...
+        });
+      });
+    });
+  </script>
+</body>
+
 </html>

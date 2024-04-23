@@ -12,146 +12,13 @@
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-    <style>
-        :root {
-            --primary-color: #034f75;
-            --bold-green-color: #01273a;
-            --tertiary-color: #f3f3f3;
-            --semi-grey-color: rgba(204, 204, 204, 0.3);
-            --blur-color: #909090;
-        }
-
-        #collapsibleNavId li {
-            border-right: 1px #909090 solid;
-            padding: 0 1rem;
-        }
-
-        #collapsibleNavId li:last-child {
-            border-right: none;
-        }
-
-        .nav-link {
-            padding: 0.5rem 0.2rem;
-        }
-
-        .nav-pills li a:hover {
-            background-color: #034f75;
-        }
-
-        .fs-8rem {
-            font-size: 0.8rem;
-        }
-
-        .sidebar {
-            max-width: 6rem;
-        }
-
-        .green-dark-theme {
-            background-color: #034F75;
-            color: #fff;
-        }
-
-        .custom-btn {
-            background-color: #034F75;
-            color: #fff;
-        }
-
-        .blur-green-theme,
-        .blur-green-theme td,
-        .blur-green-theme th {
-            background-color: rgba(47, 140, 153, 0.5);
-            color: white;
-        }
-
-        .custom-btn:hover {
-            background-color: #01273a;
-            color: #fff;
-        }
-
-        .save-btn:hover {
-            background-color: #08566e;
-            color: #fff;
-        }
-
-        .cancel-btn:hover {
-            background-color: #c94c4c;
-            color: #fff;
-        }
-
-        .bg-grey {
-            background-color: #EDF1F4;
-        }
-
-        .bg-grey-blur {
-            background-color: #e4e4e429;
-        }
-
-        .bg-semi-grey {
-            background-color: #F3F3F3;
-        }
-
-        .semi-rounded {
-            border-radius: 5px;
-        }
-
-        .ml-2 {
-            margin-left: 2rem;
-        }
-
-        input {
-            outline: none;
-            border: none;
-            border-radius: 5px;
-        }
-
-        .font-weight-semibold {
-            font-weight: 500;
-        }
-
-        .pointer-cursor {
-            cursor: pointer;
-        }
-
-        .min-h-50 {
-            min-height: 50vh;
-        }
-
-        .font-color-blur {
-            color: var(--blur-color);
-
-        }
-
-        .checkbox-lg {
-            width: 1.2rem;
-            height: 1.2rem;
-            top: 0.2rem
-        }
-
-        .eclipsis-overflow {
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .save-btn {
-            background-color: #139CC6;
-            color: #fff;
-        }
-
-        .cancel-btn {
-            background-color: #FF7878;
-            color: #fff;
-        }
-        .form-control {
-         background-color: var(--body-bg-color);
-        }
-    </style>
-    <link href="../styles/global.css" rel="stylesheet" />
+   
+    <link href="../../styles/global.css" rel="stylesheet" />
 </head>
 
 <body>
 
-    <div id="addReqPopup" class="vh-100 position-relative bg-grey-blur">
+    <div id="addReqPopup" class="vh-100 position-relative overlay">
         <div class=" d-flex justify-content-center align-items-center w-100  position-absolute top-0
             bottom-0 start-0 end-0">
 
@@ -167,10 +34,10 @@
                            
                             
                             <div class="d-flex mb-3">
-                                <div class=" ps-3 pe-3 ms-4 d-flex btn custom-btn save-btn">
+                                <div class=" ps-3 pe-3 ms-4 d-flex btn  save-btn">
                                     Save
                                 </div>
-                                <div  class="closePopup btn custom-btn text-center ps-3 pe-3 ms-4 cancel-btn">
+                                <div  class="closePopup btn  text-center ps-3 pe-3 ms-4 cancel-btn">
                                     Cancel
                                 </div>
                             </div>

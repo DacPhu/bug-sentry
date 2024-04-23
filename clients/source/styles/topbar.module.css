@@ -1,0 +1,8 @@
+#collapsibleNavId li {
+    border-right: 1px #909090 solid;
+    padding: 0 1rem;
+  }
+  
+  #collapsibleNavId li:last-child {
+    border-right: none;
+  }
