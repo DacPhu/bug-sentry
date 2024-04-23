@@ -16,3 +16,58 @@ ul li {
   font-weight: bold;
   padding-left: 30px;
 }
+
+.bg-gray {
+  background-color: #edf1f4;
+}
+
+.bg-light {
+  background-color: #ffffff;
+}
+
+.bg-color1 {
+  background-color: #cfe2eb;
+}
+
+.text-color-1 {
+  color: #024f75;
+}
+
+#collapsibleNavId li {
+  border-right: 1px #909090 solid;
+  padding: 0 1rem;
+}
+
+#collapsibleNavId li:last-child {
+  border-right: none;
+}
+
+.nav-link {
+  padding: 0.5rem 0.2rem;
+}
+
+.nav-pills li a:hover {
+  background-color: #034f75;
+}
+#navbar-in-project .nav-link {
+  padding-right: 0.8rem;
+}
+
+.round-background {
+  width: 60px;
+  height: 60px;
+  position: relative;
+  background-color: #ffffff;
+  border-radius: 50%;
+}
+
+.icon-user {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transform: translate(20%, 20%);
+}
+
+.mr-1rem{
+  margin-right: 1rem;
+}

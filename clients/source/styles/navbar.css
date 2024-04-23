@@ -1,24 +1,28 @@
 .bg-grey {
-    background-color: aliceblue;
+  background-color: aliceblue;
 }
 
 .text-small {
-    font-size: 0.8rem;
+  font-size: 0.8rem;
 }
 
 #collapsibleNavId li {
-    border-right: 1px #909090 solid;
-    padding: 0 1rem;
+  border-right: 1px #909090 solid;
+  padding: 0 1rem;
 }
 
 #collapsibleNavId li:last-child {
-    border-right: none;
+  border-right: none;
 }
 
 .nav-link {
-    padding: 0.5rem 0.2rem;
+  padding: 0.5rem 0.2rem;
 }
 
 .nav-pills li a:hover {
-    background-color: #034f75;
+  background-color: #034f75;
+}
+
+.sidebar {
+  max-width: 6rem;
 }

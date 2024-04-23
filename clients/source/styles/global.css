@@ -1,18 +1,26 @@
+:root {
+  --primary-color: #034f75;
+  --bold-green-color: #01273a;
+  --tertiary-color: #f3f3f3;
+  --semi-grey-color: rgba(204, 204, 204, 0.3);
+  --blur-color: #909090;
+}
+
 .btn-main-color {
-  background-color: #034f75 !important;
+  background-color: --primary-color !important;
 }
 
 .btn-main-color:hover {
-  border-color: #034f75;
-  color: #034f75;
+  border-color: var(--primary-color);
+  color: var(--primary-color);
 }
 
 .btn-outline-main-color {
-  border-color: #034f75;
+  border-color: var(--primary-color);
 }
 
 .bg-main-color {
-  background-color: #034f75;
+  background-color: var(--primary-color);
 }
 
 .bg-grey {
@@ -26,7 +34,21 @@
 .navbar-brand a {
   text-decoration: none;
   font-size: 25px;
-  color: #034f75;
+  color: var(--primary-color);
   font-weight: bold;
   padding-left: 30px;
+}
+
+.fs-8rem {
+  font-size: 0.8rem;
+}
+
+.custom-btn {
+  background-color: var(--primary-color);
+  color: #fff;
+}
+
+.custom-btn:hover {
+  background-color: #01273a;
+  color: #fff;
 }
