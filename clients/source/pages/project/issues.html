@@ -213,8 +213,9 @@
 
                 <div class="d-inline-block me-3">
                   <button
-                    onclick="showAddIssue()"
+                    
                     class="btn btn-primary bg-main-color rounded-pill"
+                    id = "add-issue-btn"
                   >
                     <p class="p-2 mb-0 text-white">Add Issue</p>
                   </button>
@@ -420,14 +421,16 @@
           <div class="d-flex align-item-center p-3">
             <h1 class="mb-0">Add issue</h1>
             <button
-              onclick="saveIssue()"
+              
               class="btn bg-save-btn btn-primary rounded-3 ms-auto btn-lg"
+              id = "save-issue-btn"
             >
               Save
             </button>
             <button
-              onclick="cancelAddIssue()"
+           
               class="btn bg-cancel-btn btn-warning bg-main-color rounded-3 mx-3 btn-lg"
+              id = "cancel-issue-btn"
             >
               Cancel
             </button>
@@ -479,24 +482,7 @@
       integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
       crossorigin="anonymous"
     ></script>
-    <script>
-      // Function để hiển thị form add issue
-      function showAddIssue() {
-        document.querySelector(".overlay").style.display = "block"; // bật overlay
-        document.querySelector(".add-issue-table").style.display = "block"; // bật add issue table
-      }
-
-      // Function để save issue
-      function saveIssue() {
-        document.querySelector(".overlay").style.display = "none"; // tắt overlay
-        document.querySelector(".add-issue-table").style.display = "none"; // tắt add issue table
-      }
-
-      // Function để cancel add issue
-      function cancelAddIssue() {
-        document.querySelector(".overlay").style.display = "none"; // tắt overlay
-        document.querySelector(".add-issue-table").style.display = "none"; // tắt add issue table
-      }
-    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="../../scripts/add-issue.js"></script>
   </body>
 </html>
