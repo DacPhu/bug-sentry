@@ -36,6 +36,7 @@ function createModule() {
   $("#moduleNameModal").modal("hide");
   document.getElementById("moduleNameInput").value = "";
 }
+
 function confirmDelete(icon) {
   var module = icon.closest(".col-lg-3");
   $("#deleteConfirmationModal").modal("show");
