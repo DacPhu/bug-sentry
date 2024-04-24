@@ -18,10 +18,11 @@
 
 <body>
 
-    <div
-    id="addReqPopup"
-    class="vh-100 position-absolute overlay top-0 bottom-0 start-0 end-0"
-  >
+
+        <div
+        id="addAttachPopup"
+        class="vh-100 position-absolute overlay top-0 bottom-0 start-0 end-0"
+      >
         <div class=" d-flex justify-content-center align-items-center w-100  position-absolute top-0
             bottom-0 start-0 end-0">
 
@@ -31,11 +32,8 @@
                 <div class="  m-4 mt-2 bg-white semi-rounded">
                     <div class="container p-4 position-relative">
                         <img  class="closePopup position-absolute top-0 end-0 pointer-cursor" width="30px" src="../../../public/icons/clarity_remove-line.svg" alt="">
-                        <h6 class="text-left fs-4">Add Requirement</h6>
+                        <h6 class="text-left fs-4">Upload Attachment</h6>
                         <div class="d-flex flex-column justify-content-between align-items-center  ">
-
-                           
-                            
                             <div class="d-flex mb-3">
                                 <div class=" ps-3 pe-3 ms-4 d-flex btn  save-btn">
                                     Save
@@ -45,27 +43,22 @@
                                 </div>
                             </div>
 
-                            <span class="fs-6 font-weight-semibold">Select Module <span class="text-danger">*</span></span>
-                            <select  class="form-select w-50 mb-3" aria-label="Default select example">
-                                <option selected>Open this select menu</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
-                              </select>
+                            
 
-
-                              <span class="fs-6 font-weight-semibold">Requirement Name <span class="text-danger">*</span></span>
+                              <span class="fs-6 font-weight-semibold">
+                                Attachment Name <span class="text-danger">*</span></span>
                               <div class="input-group mb-3 w-50">
                                 
                                 <input type="text" class="form-control " placeholder="Requirement name" aria-label="Requirement name" >
                               </div>
-
-
-                              <span class="fs-6 font-weight-semibold">Description<span class="text-danger">*</span></span>
-                              <div class="input-group w-50 ">
-                             
-                                <textarea class="form-control" aria-label="With textarea"></textarea>
+                              <span class="fs-6 font-weight-semibold">
+                                File <span class="text-danger">*</span></span>
+                              <div class="input-group mb-3 w-50">
+                                
+                                <input type="file" class="form-control " placeholder="Requirement name" aria-label="Requirement name" >
                               </div>
+
+
                         </div>
 
                     </div>
@@ -121,7 +114,7 @@
                 // all element 
 
                 $(".closePopup").click(function () {
-                    $("#addReqPopup").hide();
+                    $("#addAttachPopup").hide();
                 });
             });
         });

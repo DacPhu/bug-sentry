@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="icon" href="../../../public/images/BugSentryLogo.png" type="image/.jpg">
+</head>
+<!-- Bootstrap JavaScript Libraries -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+crossorigin="anonymous"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<link rel="stylesheet" href="../../styles/global.css">
+<style>
+     body {
+            background-image: linear-gradient(135deg, #b2ffb8 10%, #0413e5 100%);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            font-family: "Open Sans", sans-serif;
+            color: #333333;
+        }
+    .box-form {
+        margin: 0 auto;
+        width: 80%;
+        background: #FFFFFF;
+        border-radius: 10px;
+        overflow: hidden;
+        display: flex;
+        flex: 1 1 100%;
+        align-items: stretch;
+        justify-content: space-between;
+        box-shadow: 0 0 20px 6px #090b6f85;
+        height: 97vh;
+    }
+
+    .loginform_container {
+        margin: 30px;
+    }
+
+    .loginform {
+        flex: 40%;
+
+    }
+
+    .loginform_title {
+        text-align: center;
+        font-size: 3rem;
+        font-weight: 400;
+    }
+
+    .loginform_instruct {
+        margin-top: 10vh;
+        font-size: 0.9rem;
+        color: rgb(110, 117, 124);
+    }
+
+    .mainform {
+        margin-top: 0px;
+        overflow: hidden;
+    }
+
+    .mainform input,.mainform select  {
+        width: 90%;
+        padding: 7px;
+        font-size: 16px;
+        border: none;
+        outline: none;
+        border-bottom: 2px solid #B0B3B9;
+        margin-bottom: 22px;
+        display: block;
+        border-radius: 0px;
+    }
+
+    .container_gender {
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .container_gender_wrap {
+        display: flex;
+        margin-left: -10%;
+    }
+
+    .container_gender_wrap input {
+        width: 20px;
+        margin-top: 5px;
+        margin-bottom: 10px;
+    }
+
+    .buttonlogin {
+        cursor: pointer;
+        margin: 0px auto;
+        color: #fff;
+        font-size: 16px;
+        padding: 12px 45px;
+        border-radius: 50px;
+        display: flex;
+        flex: 1 1 100%;
+        border: 0;
+        outline: 0;
+        box-shadow: 0px 4px 20px 0px var(--blur-green-color);
+            background-image: linear-gradient(135deg, var(--active-blue-btn-color) 10%, var(--primary-color) 100%);
+    }
+
+
+
+
+    .signup_instruct {
+        text-align: center;
+        margin-top: 10px;
+        font-size: 1.2rem;
+        color: #0066ff;
+        display: none;
+
+    }
+
+    .required {
+        color: red;
+    }
+
+    .required span {
+        color: #000000;
+    }
+
+    .warning_signup {
+        margin-top: 20px;
+        height: 30px;
+        color: rgb(255, 0, 0);
+        font-family: 'Times New Roman', Times, serif;
+        font-weight: 700;
+        font-size: 1.2rem;
+    }
+
+    .bottomform {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .bottomform a {
+        text-decoration: none;
+        font-size: 0.9rem;
+        margin-right: 9%;
+        padding: 5px;
+        padding-right: 10px;
+        padding-left: 10px;
+        box-shadow: 0px 2px 5px 0px #464444;
+        border-radius: 3px;
+    }
+
+    .successSignup {
+        color: #49C628;
+    }
+
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+    @media screen and (min-width: 600px) {
+        .box-form {
+            width: 70%;
+            height: 90%;
+        }
+
+        .signup_instruct {
+            display: block;
+        }
+ 
+    }
+    @media screen and (min-width: 870px) {
+        .box-form {
+            width: 40%;
+            height: 90%;
+        }
+
+        .signup_instruct {
+            display: block;
+        }
+        
+    }
+
+    @media screen and (max-width: 870px) {
+        .loginform_container {
+            margin: 10px;
+        }
+
+        .box-form {
+            height: unset;
+        }
+    }
+
+    #signup_password {
+        margin-bottom: 10px;
+    }
+
+    .loader {
+        border: 5px solid #f3f3f3;
+        /* Light grey */
+        border-top: 5px solid #3498db;
+        /* Blue */
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        animation: spin 2s linear infinite;
+        margin: 0px auto;
+    }
+
+    @keyframes spin {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+    .hidden {
+        display: none;
+    }
+</style>
+
+<body>
+    <div class="box-form">
+        <div class="loginform">
+            <div class="loginform_container">
+                <div class="loginform_title">Đăng ký
+                    <img width="30px" src="../../../public/images/BugSentryLogo.png" alt="">
+                </div>
+                <div id="warning_signup" class="warning_signup">
+
+                </div>
+                <form action="#" method="POST">
+                    <div class="mainform">
+                        <label for="signup_email"> Tên tài khoản(email) (*)</label>
+                        <input id="signup_email" placeholder="email" type="email" name="email">
+                        <label for="signup_password"> Mật khẩu (*)</label>
+                        <input id="signup_password" placeholder="password" type="password" name="password">
+                        <input id="signup_password_again" placeholder="password again" type="password">
+                        <label for="signup_fullname"> Họ và Tên (*)</label>
+                        <input id="signup_fullname" placeholder="full name" type="text" name="fullname">
+                        
+                        <label> Giới tính (*)</label>
+                        <div class="container_gender">
+                            <div class="container_gender_wrap">
+                                <input id="signup_gender_male" type="checkbox" name="male" value="male">
+                                <label for="signup_gender_male"> Nam</label>
+                            </div>
+                            <div class="container_gender_wrap">
+                                <input id="signup_gender_female" type="checkbox" name="female" value="female">
+                                <label for="signup_gender_female"> Nữ</label>
+                            </div>
+                        </div>
+                        <label> Vai trò (*)</label>
+                        <select name="" id="" class="form-select"> 
+                            <option value="role">Project Manager</option>
+                            <option value="role">Tester</option>
+                            <option value="role">Developer</option>
+
+
+                        </select>
+                    </div>
+                    <button id="button_signup" class="buttonlogin">Đăng ký</button>
+                </form>
+                <div class="loader hidden"></div>
+                <div class="bottomform">
+                    <div class="required"><span>*</span>: Bắt buộc</div>
+                    <a href="./new-login.html">Đăng nhập</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const $ = document.querySelector.bind(document);
+        const $$ = document.querySelectorAll.bind(document);
+
+        let button = $("#button_signup");
+        var warning = $("#warning_signup");
+        //let input=document.querySelectorAll("input")
+        function buttonclick(e) {
+            let check = 1;
+            let countGender = 0;
+            let input = $$("input")
+            console.log(input)
+            for (let i = 0; i < input.length; i++) {
+                if (input[i].name == "male" || input[i].name == "female") {
+                    if (!input[i].checked) {
+                        if (countGender == 0) countGender++;
+                        else {
+                            console.log(countGender)
+                            check = 0;
+                            break;
+                        }
+                    }
+                }
+                if (!input[i].value && input[i].name != "birthday") {
+                    check = 0;
+                    break;
+                }
+
+
+                // console.log(input[i])
+                // console.log("hi")
+                //else  if(!input[i].value && input[i].name!="gender" &&input[i].name!="birthday")
+            }
+            if (check && $("#signup_password").value != $("#signup_password_again").value) {
+                e.preventDefault();
+                warning.classList.remove("successSignup");
+                warning.textContent = "Mật khẩu không trùng khớp!";
+                countGender = 0;
+                setTimeout(() => {
+                    warning.textContent = "";
+                }, 3000);
+                return;
+            }
+
+            if (!check || countGender == 0) {
+                e.preventDefault();
+                warning.classList.remove("successSignup");
+                warning.textContent = "Vui lòng điền đủ thông tin!"
+                countGender = 0;
+                setTimeout(() => {
+                    warning.textContent = "";
+                }, 3000);
+                return;
+            }
+            if (!$("#signup_email").validity.valid) return;
+            $(".loader").classList.remove("hidden");
+            e.target.classList.add("hidden");
+        }
+        button.addEventListener('click', buttonclick)
+        function success() {
+            warning.classList.add("successSignup");
+            warning.innerHTML = "Đăng ký thành công !  <a href=./login.html>Đăng nhập</a> ";
+        }
+        function error(mess) {
+            warning.textContent = mess;
+            setTimeout(() => {
+                warning.textContent = "";
+            }, 3000);
+        }
+    </script>
+
+
+</body>
+
+</html>
