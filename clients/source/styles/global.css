@@ -13,6 +13,10 @@
   --overlay-color: rgba(76, 78, 79, 0.284);
 }
 
+.bg-active-blue-color {
+  background-color: var(--active-blue-btn-color) !important;
+}
+
 .btn-main-color {
   background-color: var(--primary-color) !important;
 }
@@ -68,7 +72,6 @@
 .ml-2 {
   margin-left: 2rem;
 }
-
 
 .font-weight-semibold {
   font-weight: 500;

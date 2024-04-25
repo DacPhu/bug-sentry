@@ -22,3 +22,7 @@
 .bg-issue{
     background-color: #FFEEFC;
 }
+
+.release-list-container{
+    height: 100%;
+}

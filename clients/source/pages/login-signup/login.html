@@ -1,196 +1,138 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Title</title>
-    <!-- Required meta tags -->
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-
-    <!-- Bootstrap CSS v5.2.1 -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-      crossorigin="anonymous"
-    />
-    <link href="../../styles/global.css" rel="stylesheet" />
-    <link href="../../styles/login.module.css" rel="stylesheet" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
     <link
       rel="icon"
-      type="image/svg+xml"
-      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 384 512'%3E%3Cpath d='M0 32l34.9 395.8L191.5 480l157.6-52.2L384 32H0zm308.2 127.9H124.4l4.1 49.4h175.6l-13.6 148.4-97.9 27v.3h-1.1l-98.7-27.3-6-75.8h47.7L138 320l53.5 14.5 53.7-14.5 6-62.2H84.3L71.5 112.2h241.1l-4.4 47.7z'/%3E%3C/svg%3E"
+      href="../../../public/images/BugSentryLogo.png"
+      type="image/.jpg"
     />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-    />
-    
+    <link rel="stylesheet" href="../../styles/global.css" />
+    <link rel="stylesheet" href="../../styles/login.module.css" />
   </head>
 
   <body>
-    <header>
-        <nav
-        class="navbar navbar-expand-lg navbar-light bg-light justify-content-between"
-        style="width: 100%; z-index: 1; top: 0;"
-      >
-          <div class="navbar-brand"> 
-            <a href="#">
+    <div class="box-form">
+      <div class="intro">
+        <div class="intro_overlay">
+          <div class="intro_container">
+            <div class="intro_title linked">
               <img
-                src="../../public/images/BugSentryLogo.png"
-                alt=""
-                width="50"
-                height="auto"
+                src="../../../public/images/BugSentryLogo.png"
+                width="100px"
+                srcset=""
               />
-              BUG SENTRY</a
-            >
-          </div>
-        </div>
-      </nav>
-    </header>
-    <main>
-<!-- Section: Design Block -->
-<section class="background-radial-gradient overflow-hidden">
-    <style>
-      .background-radial-gradient {
-        background-color: hsl(218, 41%, 15%);
-        background-image: radial-gradient(650px circle at 0% 0%,
-            hsl(218, 41%, 35%) 15%,
-            hsl(218, 41%, 30%) 35%,
-            hsl(218, 41%, 20%) 75%,
-            hsl(218, 41%, 19%) 80%,
-            transparent 100%),
-          radial-gradient(1250px circle at 100% 100%,
-            hsl(218, 41%, 45%) 15%,
-            hsl(218, 41%, 30%) 35%,
-            hsl(218, 41%, 20%) 75%,
-            hsl(218, 41%, 19%) 80%,
-            transparent 100%);
-      }
-  
-      #radius-shape-1 {
-        height: 220px;
-        width: 220px;
-        top: -60px;
-        left: -130px;
-        background: radial-gradient(#44006b, #ad1fff);
-        overflow: hidden;
-      }
-  
-      #radius-shape-2 {
-        border-radius: 38% 62% 63% 37% / 70% 33% 67% 30%;
-        bottom: -60px;
-        right: -110px;
-        width: 300px;
-        height: 300px;
-        background: radial-gradient(#44006b, #ad1fff);
-        overflow: hidden;
-      }
-  
-      .bg-glass {
-        background-color: hsla(0, 0%, 100%, 0.9) !important;
-        backdrop-filter: saturate(200%) blur(25px);
-      }
-    </style>
-  
-    <div class="container px-4 py-5 px-md-5 text-center text-lg-start my-5">
-      <div class="row gx-lg-5 align-items-center mb-5">
-        <div class="col-lg-6 mb-5 mb-lg-0" style="z-index: 10">
-          <h1 class="my-5 display-5 fw-bold ls-tight" style="color: hsl(218, 81%, 95%)">
-            The best offer <br />
-            <span style="color: hsl(218, 81%, 75%)">for your business</span>
-          </h1>
-          <p class="mb-4 opacity-70" style="color: hsl(218, 81%, 85%)">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-            Temporibus, expedita iusto veniam atque, magni tempora mollitia
-            dolorum consequatur nulla, neque debitis eos reprehenderit quasi
-            ab ipsum nisi dolorem modi. Quos?
-          </p>
-        </div>
-  
-        <div class="col-lg-6 mb-5 mb-lg-0 position-relative">
-          <div id="radius-shape-1" class="position-absolute rounded-circle shadow-5-strong"></div>
-          <div id="radius-shape-2" class="position-absolute shadow-5-strong"></div>
-  
-          <div class="card bg-glass">
-            <div class="card-body px-4 py-5 px-md-5">
-              <div class="text-center"><h1> Sign In </h1></div> 
-              <form>
-                <!-- 2 column grid layout with text inputs for the first and last names -->
-  
-                <!-- Email input -->
-                <div data-mdb-input-init class="form-outline mb-4">
-                  <label class="form-label" for="form3Example3">Email or Username</label>
-                  <input type="email" id="form3Example3" class="form-control" placeholder="Email or Username"/>
-                </div>
-  
-                <!-- Password input -->
-                <div data-mdb-input-init class="form-outline mb-4">
-                  <label class="form-label" for="form3Example4">Password</label>
-                  <input type="password" id="form3Example4" class="form-control" placeholder="Password" />
-                </div>
-  
-                <!-- Checkbox -->
-                <div class="form-check d-flex justify-content-center mb-4">
-                  <input class="form-check-input me-2" type="checkbox" value="" id="form2Example33" checked />
-                  <label class="form-check-label" for="form2Example33">
-                    Remember password
-                  </label>
-                </div>
-                
-                <div class="row">
-                  <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-block mb-4">
-                    Sign in
-                  </button>
-                </div>
-                <!-- Submit button -->
-                
-  
-                <!-- Register buttons -->
-                <div class="text-center">
-                  <p>or sign up with:</p>
-                  <button type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-link btn-floating mx-1">
-                    <i class="fa-brands fa-facebook"></i>
-                  </button>
-  
-                  <button type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-link btn-floating mx-1">
-                    <i class="fa-brands fa-google"></i>
-                  </button>
-  
-                  <button type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-link btn-floating mx-1">
-                    <i class="fa-brands fa-twitter"></i>
-                  </button>
-  
-                  <button type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-link btn-floating mx-1">
-                    <i class="fa-brands fa-github"></i>
-                  </button>
-                </div>
-              </form>
+              BUG SENTRY
+              <a href="../project/project-list.html"></a>
+            </div>
+            <div class="intro_description"></div>
+            <div class="intro_text_sociallogin">Login with social media</div>
+            <div class="intro_sociallogin">
+              <a href="https://www.facebook.com"
+                ><img
+                  class="sociallogin-icon"
+                  src="https://img.icons8.com/fluency/40/000000/facebook-new.png"
+              /></a>
+              <a href="https://www.facebook.com"
+                ><img
+                  class="sociallogin-icon"
+                  src="https://img.icons8.com/color/40/000000/gmail-new.png"
+              /></a>
+              <a href="https://www.facebook.com"
+                ><img
+                  class="sociallogin-icon"
+                  src="https://img.icons8.com/fluency/40/000000/twitter.png"
+              /></a>
             </div>
           </div>
         </div>
       </div>
+      <div class="loginform">
+        <div class="loginform_container">
+          <div class="loginform_title">Login</div>
+          <div class="loginform_instruct">
+            Don't have an account?
+            <a href="./register.html" class="signup">Create Your Account</a> it
+            takes less than a minute
+          </div>
+          <div id="warning_signin"></div>
+          <form action="#" method="POST">
+            <div class="mainform">
+              <input
+                id="login_username"
+                placeholder="username"
+                type="text"
+                name="email"
+              />
+              <input
+                id="login_password"
+                placeholder="password"
+                type="password"
+                name="password"
+              />
+            </div>
+            <div class="loginform_saved_forgotpassword">
+              <div class="savedpassword">
+                <input type="checkbox" name="remembered" id="checkbox" />
+                <label for="checkbox">Remember</label>
+              </div>
+              <a href="#" class="forgotpassword" style="text-decoration: none"
+                >Forgot password</a
+              >
+            </div>
+            <button id="button_login" class="buttonlogin">Login</button>
+          </form>
+        </div>
+      </div>
     </div>
-  </section>
-  <!-- Section: Design Block -->
-    </main>
-    <footer>
-      <!-- place footer here -->
-    </footer>
-    <!-- Bootstrap JavaScript Libraries -->
-    <script
-      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-      integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-      crossorigin="anonymous"
-    ></script>
 
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
-      integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
-      crossorigin="anonymous"
-    ></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script>
+      let button = document.querySelector("#button_login");
+      var warning = document.querySelector("#warning_signin");
+      function buttonclick(e) {
+        let input = document.querySelectorAll("input");
+        if (!input[0].value || !input[1].value) {
+          e.preventDefault();
+          warning.textContent = "Please fill all field!";
+          setTimeout(() => {
+            warning.textContent = "";
+          }, 3000);
+          return;
+        }
+        // e.preventDefault();
+        // console.log(countGender," ",check)
+      }
+      button.addEventListener("click", buttonclick);
+      function error(mess) {
+        warning.textContent = mess;
+        console.log(mess);
+        setTimeout(() => {
+          warning.textContent = "";
+        }, 3000);
+        //console.log(mess);
+      }
+      var string =
+        "Welcome to our website! Please login to have the best experience..."; /* type your text here */
+      var array = string.split("");
+      var loopTimer;
+      function frameLooper() {
+        if (array.length > 0) {
+          var text = document.querySelector(".intro_description").textContent;
+          text = text.slice(0, -1);
+          console.log(text);
+          document.querySelector(".intro_description").textContent =
+            text + array.shift() + "|";
+          loopTimer = setTimeout(frameLooper, 70);
+        } else {
+          document.querySelector(".intro_description").textContent = document
+            .querySelector(".intro_description")
+            .textContent.slice(0, -1);
+          clearTimeout(loopTimer);
+        }
+      }
+      frameLooper();
+    </script>
   </body>
 </html>
