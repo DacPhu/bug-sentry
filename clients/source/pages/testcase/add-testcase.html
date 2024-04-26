@@ -124,77 +124,8 @@
         integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
         crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script>
-        (function (fn) {
-            "use strict";
-            fn(window.jQuery, window, document);
-        })(function ($, window, document) {
-            "use strict";
-
-            $(function () {
-                $(".sort-btn").on("click", "[data-sort]", function (event) {
-                    event.preventDefault();
-
-                    var $this = $(this),
-                        sortDir = "desc";
-
-                    if ($this.data("sort") !== "asc") {
-                        sortDir = "asc";
-                    }
-
-                    $this
-                        .data("sort", sortDir)
-                        .find(".fa")
-                        .attr("class", "fa fa-sort-" + sortDir);
-
-                    // call sortDesc() or sortAsc() or whathaveyou...
-                });
-
-
-                // all element 
-
-                $(".closePopup").click(function () {
-                    $("#addReqPopup").hide();
-                });
-
-
-                
-
-                // Click event handler for the "Add" button
-
-
-                function attachEventHandlers() {
-                   
-                    $(".add-teststep-btn").off('click').click(function () {
-                        var stepCount = 2;
-                        // Clone the existing step container
-                        console.log($(this).parent())
-                        var newStep = $(this).parent().parent().clone();
-
-                        // Update step number within the cloned element
-
-
-                        // Append the cloned step container after the current one
-                        $(this).parent().parent().after(newStep);
-
-                        // Clear the values of the newly added textareas
-                        newStep.find("textarea").val("");
-                        attachEventHandlers();
-                    });
-
-                    // Click event handler for the "Delete" button
-                    $(".delete-teststep-btn").off('click').click(function () {
-                        if ($(".delete-teststep-btn").length > 1) {
-                            $(this).parent().parent().remove();
-                        } else {
-                            alert("You cannot delete the only step!"); // Inform the user
-                        }
-                    });
-                }
-                attachEventHandlers()
-
-            });
-        });
+    <script src="../../scripts/add-testcase.js">
+    
     </script>
 </body>
 
