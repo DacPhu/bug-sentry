@@ -15,11 +15,19 @@
 
   <link href="../../styles/global.css" rel="stylesheet" />
   <link href="../../styles/topbar.module.css" rel="stylesheet" />
-  
+
 
 </head>
 
 <body class="position-relative">
+  <div class="toast">
+    <div class="toast-header">
+      Toast Header
+    </div>
+    <div class="toast-body">
+      Some text inside the toast body
+    </div>
+  </div>
   <header>
     <nav class="navbar navbar-expand-sm navbar-light bg-white">
       <div class="container-fluid">
@@ -138,7 +146,7 @@
                 <div style="background-color: var(--semi-grey-color); width: fit-content;"
                   class="p-2 semi-rounded pointer-cursor">
 
-                  <span id="detailReqNav" class="font-weight-semibold p-2">Detail Requirement</span>
+                  <span id="detailReqNav" class="font-weight-semibold p-2 ">Detail Requirement</span>
                   <span id="linkedTCNav" class="font-color-blur p-2">Linked Test Cases</span>
 
 
@@ -161,7 +169,7 @@
 
 
                 <!-- Table Linked Test Cases -->
-                <div id="linkedTestCases">
+                <div id="linkedTestCases" style="display: none;">
                   <table class="table mt-4 me-2">
                     <thead>
                       <tr class="semi-rounded blur-green-theme">
@@ -261,7 +269,7 @@
   
        <!-- add linked-popup -->
        <div id="linked-popup" class="vh-100 position-absolute overlay  top-0
-       bottom-0 start-0 end-0">
+       bottom-0 start-0 end-0" style="display: none;">
          <div class=" d-flex justify-content-center align-items-center w-100  position-absolute top-0
            bottom-0 start-0 end-0 ">
  
@@ -275,7 +283,7 @@
                    <!-- header of main  -->
                    <h6 class="text-left fs-4">Test Cases</h6>
                    <div class="d-flex">
-                     <div class=" ps-3 pe-3 ms-4 d-flex btn custom-btn save-btn">
+                     <div id="saveLinkedTC" class=" ps-3 pe-3 ms-4 d-flex btn custom-btn save-btn">
                        Save
                      </div>
                      <div class="closePopup  btn custom-btn text-center ps-3 pe-3 ms-4 cancel-btn">
@@ -368,7 +376,7 @@
                        </thead>
                        <tbody>
                          <tr>
-                           <td> <input class="ms-2 mt-1 checkbox-lg" size="" type="checkbox" name="" id="md1"></td>
+                           <td> <input class="ms-2 mt-1 checkbox-lg" size="" type="checkbox" name="chosen-tc" value="1" id="md1"></td>
                            <th scope="row">
  
                              <label for="md1">TC001</label>
@@ -387,7 +395,7 @@
                            </td>
                          </tr>
                          <tr>
-                           <td> <input class="ms-2 mt-1 checkbox-lg" size="" type="checkbox" name="" id="md3"></td>
+                           <td> <input class="ms-2 mt-1 checkbox-lg" size="" type="checkbox" name="chosen-tc" value="2" id="md3"></td>
                            <th scope="row">
  
                              <label for="md3">TC003</label>
@@ -406,7 +414,7 @@
                            </td>
                          </tr>
                          <tr>
-                           <td> <input class="ms-2 mt-1 checkbox-lg" size="" type="checkbox" name="" id="md2"></td>
+                           <td> <input class="ms-2 mt-1 checkbox-lg" size="" type="checkbox" name="chosen-tc" value="4" id="md2"></td>
                            <th scope="row">
  
                              <label for="md2">TC002</label>
@@ -462,23 +470,7 @@
       "use strict";
 
       $(function () {
-        $(".sort-btn").on("click", "[data-sort]", function (event) {
-          event.preventDefault();
-
-          var $this = $(this),
-            sortDir = "desc";
-
-          if ($this.data("sort") !== "asc") {
-            sortDir = "asc";
-          }
-
-          $this
-            .data("sort", sortDir)
-            .find(".fa")
-            .attr("class", "fa fa-sort-" + sortDir);
-
-          // call sortDesc() or sortAsc() or whathaveyou...
-        });
+  
         $("#linkedTestCases").hide();
 
         $("#detailReqNav").click(function () {
@@ -501,6 +493,7 @@
       });
     });
   </script>
+    <script src="../../scripts/notify.min.js"></script>
   <script src="../../scripts/add-linked-tc.js"></script>
 </body>
 

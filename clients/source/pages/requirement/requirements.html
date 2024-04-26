@@ -234,7 +234,7 @@
                   <!-- header of main  -->
                   <h6 class="text-left fs-4">Requirements</h6>
                   <div id="add-req" class="d-flex btn custom-bold-btn">
-                    <div class="me-2 p-1">Add Requirement Type</div>
+                    <div class="me-2 p-1">Add Requirement</div>
                     <img src="../../../public/icons/add.svg" alt="" />
                   </div>
                 </div>
@@ -247,15 +247,15 @@
                       class="h-100 d-flex flex-column p-3 bg-semi-grey semi-rounded"
                     >
                       <div class="d-flex">
-                        <div class="flex-fill">Requriement Types</div>
+                        <div class="flex-fill">Modules</div>
                         <div
                           class="d-flex flex-fill ml-2 justify-content-around"
                         >
-                          <img src="../../../public/icons/bin-red.svg" alt="" />
+                          <!-- <img src="../../../public/icons/bin-red.svg" alt="" />
                           <img
                             src="../../../public/icons/add-green.svg"
                             alt=""
-                          />
+                          /> -->
                         </div>
                       </div>
 
@@ -264,45 +264,24 @@
                         <input
                           class="w-100 p-3 pt-1 pb-1"
                           type="text"
-                          placeholder="Search requirement type by name"
+                          placeholder="Search module by name"
                         />
                       </div>
-                      <div class="d-flex flex-column">
-                        <div
-                          class="d-flex align-items-center col m-4 mt-4 mb-0"
-                        >
-                          <input
-                            class="checkbox-lg"
-                            size=""
-                            type="checkbox"
-                            name=""
-                            id="md1"
-                          />
-                          <label class="m-2" for="md1">Requriement 1</label>
+                      <div id="modulesContainer" class="d-flex flex-column">
+                        <div id="module1"
+                          class="d-flex pointer-cursor align-items-center col m-4 mt-4 mb-0 font-weight-semibold">
+                          <img class="me-2" src="../../../public/icons/ic_round-folder.svg" alt="">
+                          Module 1
                         </div>
-                        <div
-                          class="d-flex align-items-center col m-4 mt-4 mb-0"
-                        >
-                          <input
-                            class="checkbox-lg"
-                            size=""
-                            type="checkbox"
-                            name=""
-                            id="md1"
-                          />
-                          <label class="m-2" for="md1">Module 1</label>
+                        <div id="module2"
+                          class="d-flex pointer-cursor align-items-center col m-4 mt-4 mb-0 font-color-blur">
+                          <img class="me-2" src="../../../public/icons/ic_round-folder.svg" alt="">
+                          Module 2
                         </div>
-                        <div
-                          class="d-flex align-items-center col m-4 mt-4 mb-0"
-                        >
-                          <input
-                            class="checkbox-lg"
-                            size=""
-                            type="checkbox"
-                            name=""
-                            id="md2"
-                          />
-                          <label class="m-2" for="md2">Module 2</label>
+                        <div id="module3"
+                          class="d-flex pointer-cursor align-items-center col m-4 mt-4 mb-0 font-color-blur">
+                          <img class="me-2" src="../../../public/icons/ic_round-folder.svg" alt="">
+                          Module 3
                         </div>
                       </div>
                     </div>
@@ -367,7 +346,7 @@
                             <th scope="col">Actions</th>
                           </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="requirementsContainer">
                           <tr>
                             <th scope="row">1</th>
                             <td>Mark Requirement Code Requirement</td>
@@ -479,6 +458,7 @@
     <div
       id="addReqPopup"
       class="vh-100 position-absolute overlay top-0 bottom-0 start-0 end-0"
+      style="display: none;"
     >
       <div
         class="d-flex justify-content-center align-items-center w-100 position-absolute top-0 bottom-0 start-0 end-0"
@@ -498,7 +478,7 @@
                 class="d-flex flex-column justify-content-between align-items-center"
               >
                 <div class="d-flex mb-3">
-                  <div class="ps-3 pe-3 ms-4 d-flex btn custom-btn save-btn">
+                  <div id="saveRequirement" class="ps-3 pe-3 ms-4 d-flex btn custom-btn save-btn">
                     Save
                   </div>
                   <div
@@ -508,14 +488,15 @@
                   </div>
                 </div>
 
-                <span class="fs-6 font-weight-semibold"
+                <span class="fs-6 font-weight-semibold" 
                   >Select Module <span class="text-danger">*</span></span
                 >
                 <select
                   class="form-select w-50 mb-3"
                   aria-label="Default select example"
+                  name="module"
                 >
-                  <option selected>Open this select menu</option>
+                  <option value="" selected>Open this select menu</option>
                   <option value="1">One</option>
                   <option value="2">Two</option>
                   <option value="3">Three</option>
@@ -530,16 +511,18 @@
                     class="form-control"
                     placeholder="Requirement name"
                     aria-label="Requirement name"
+                    name="requirementName"
                   />
                 </div>
 
                 <span class="fs-6 font-weight-semibold"
-                  >Description<span class="text-danger">*</span></span
+                  >Description<span class="text-danger"></span></span
                 >
                 <div class="input-group w-50">
                   <textarea
                     class="form-control"
                     aria-label="With textarea"
+                    name="description"
                   ></textarea>
                 </div>
               </div>
@@ -595,6 +578,9 @@
         });
       });
     </script>
+    <script src="../../scripts/notify.min.js"></script>
     <script src="../../scripts/add-requirement.js"></script>
+    <script src="../../scripts/requirement.js"></script>
+
   </body>
 </html>

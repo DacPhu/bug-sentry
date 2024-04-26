@@ -195,3 +195,14 @@ input {
   height: 1.2rem;
   top: 0.2rem;
 }
+
+.semi-border-grey {
+  border: 1px solid var(--grey-color);
+}
+
+.min-h-50 {
+  min-height: 50vh;
+}
+.min-w-100px{
+  min-width: 100px;
+}
