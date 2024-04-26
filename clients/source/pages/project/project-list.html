@@ -132,6 +132,7 @@
     <main class="bg-grey">
       <div class="container-fluid">
         <div class="row">
+          <!-- Side bar -->
           <div
             class="bg-white sidebar d-flex justify-content-center fs-8rem col-auto col-md-1"
           >
@@ -160,19 +161,11 @@
               </ul>
             </div>
           </div>
+
           <div class="bg-grey col-md-11">
             <div class="row">
-              <div class="col-md-6"><h1>Project</h1></div>
-              <div class="col-md-6 d-flex justify-content-end">
-                <div
-                  id="add-project"
-                  class="mx-4 my-3 d-flex btn custom-bold-btn"
-                  onclick="showDialog()"
-                >
-                  <div class="me-2 p-1">Add project</div>
-                  <img src="../../../public/icons/add.svg" alt="" />
-                </div>
-              </div>
+              <div class="col-md-6 p-5"><h1>Project</h1></div>
+              <div class="col-md-6 d-flex justify-content-end"></div>
             </div>
             <div class="row">
               <div class="col-md-6">
@@ -187,7 +180,7 @@
                   />
                 </div>
               </div>
-              <div class="col-md-6 d-flex justify-content-end pe-5">
+              <div class="col-md-6 d-flex justify-content-end">
                 <div>
                   <div class="btn-group sort-btn">
                     <button
@@ -234,6 +227,14 @@
                       </li>
                     </ul>
                   </div>
+                </div>
+                <div
+                  id="add-project"
+                  class="mx-4 my-3 d-flex btn custom-bold-btn"
+                  onclick="showDialog()"
+                >
+                  <div class="me-2 p-1">Add project</div>
+                  <img src="../../../public/icons/add.svg" alt="" />
                 </div>
               </div>
             </div>

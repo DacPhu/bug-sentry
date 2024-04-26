@@ -221,35 +221,6 @@
         integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
         crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script>
-        (function (fn) {
-            "use strict";
-            fn(window.jQuery, window, document);
-        })(function ($, window, document) {
-            "use strict";
-
-            $(function () {
-                $(".sort-btn").on("click", "[data-sort]", function (event) {
-                    event.preventDefault();
-
-                    var $this = $(this),
-                        sortDir = "desc";
-
-                    if ($this.data("sort") !== "asc") {
-                        sortDir = "asc";
-                    }
-
-                    $this
-                        .data("sort", sortDir)
-                        .find(".fa")
-                        .attr("class", "fa fa-sort-" + sortDir);
-
-                    // call sortDesc() or sortAsc() or whathaveyou...
-                });
-
-            });
-        });
-    </script>
 </body>
 
 </html>
