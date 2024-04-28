@@ -212,7 +212,7 @@
                   <form class="row g-3">
                     <div class="col-md-6">
                       <label for="first-name" class="form-label"
-                        >First name:</label
+                        ><span class="text-danger">*</span> First name:</label
                       >
                       <input
                         type="text"
@@ -242,7 +242,9 @@
                       />
                     </div>
                     <div class="col-md-6">
-                      <label for="email" class="form-label">Email:</label>
+                      <label for="email" class="form-label">
+                        <span class="text-danger">*</span> Email:</label
+                      >
                       <input
                         type="email"
                         class="form-control"
@@ -259,7 +261,9 @@
                       <input type="text" class="form-control" id="address" />
                     </div>
                     <div class="col-md-6">
-                      <label for="role" class="form-label">Role:</label>
+                      <label for="role" class="form-label">
+                        <span class="text-danger">*</span> Role:</label
+                      >
                       <input
                         type="text"
                         class="form-control"
@@ -296,7 +300,7 @@
                     <div class="col-md-6 d-flex justify-content-center pt-5">
                       <div
                         class="ps-3 pe-3 ms-4 d-flex btn save-btn"
-                        id="createProject"
+                        id="save-profile"
                       >
                         Save
                       </div>
