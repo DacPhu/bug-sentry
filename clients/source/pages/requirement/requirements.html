@@ -34,13 +34,15 @@
     <header>
       <nav class="navbar navbar-expand-sm navbar-light bg-white">
         <div class="container-fluid">
-          <img
-            src="../../../public/images/BugSentryLogo.png"
-            alt="Logo"
-            height="50px"
-            class="ps-5"
-          />
-          <a class="navbar-brand px-2" href="#">
+          <a href="../home/home.html">
+            <img
+              src="../../../public/images/BugSentryLogo.png"
+              alt="Logo"
+              height="50px"
+              class="ps-5"
+            />
+          </a>
+          <a class="navbar-brand px-2" href="../home/home.html">
             <h2>Bug Sentry</h2>
           </a>
           <button
@@ -268,19 +270,37 @@
                         />
                       </div>
                       <div id="modulesContainer" class="d-flex flex-column">
-                        <div id="module1"
-                          class="d-flex pointer-cursor align-items-center col m-4 mt-4 mb-0 font-weight-semibold">
-                          <img class="me-2" src="../../../public/icons/ic_round-folder.svg" alt="">
+                        <div
+                          id="module1"
+                          class="d-flex pointer-cursor align-items-center col m-4 mt-4 mb-0 font-weight-semibold"
+                        >
+                          <img
+                            class="me-2"
+                            src="../../../public/icons/ic_round-folder.svg"
+                            alt=""
+                          />
                           Module 1
                         </div>
-                        <div id="module2"
-                          class="d-flex pointer-cursor align-items-center col m-4 mt-4 mb-0 font-color-blur">
-                          <img class="me-2" src="../../../public/icons/ic_round-folder.svg" alt="">
+                        <div
+                          id="module2"
+                          class="d-flex pointer-cursor align-items-center col m-4 mt-4 mb-0 font-color-blur"
+                        >
+                          <img
+                            class="me-2"
+                            src="../../../public/icons/ic_round-folder.svg"
+                            alt=""
+                          />
                           Module 2
                         </div>
-                        <div id="module3"
-                          class="d-flex pointer-cursor align-items-center col m-4 mt-4 mb-0 font-color-blur">
-                          <img class="me-2" src="../../../public/icons/ic_round-folder.svg" alt="">
+                        <div
+                          id="module3"
+                          class="d-flex pointer-cursor align-items-center col m-4 mt-4 mb-0 font-color-blur"
+                        >
+                          <img
+                            class="me-2"
+                            src="../../../public/icons/ic_round-folder.svg"
+                            alt=""
+                          />
                           Module 3
                         </div>
                       </div>
@@ -458,7 +478,7 @@
     <div
       id="addReqPopup"
       class="vh-100 position-absolute overlay top-0 bottom-0 start-0 end-0"
-      style="display: none;"
+      style="display: none"
     >
       <div
         class="d-flex justify-content-center align-items-center w-100 position-absolute top-0 bottom-0 start-0 end-0"
@@ -478,7 +498,10 @@
                 class="d-flex flex-column justify-content-between align-items-center"
               >
                 <div class="d-flex mb-3">
-                  <div id="saveRequirement" class="ps-3 pe-3 ms-4 d-flex btn custom-btn save-btn">
+                  <div
+                    id="saveRequirement"
+                    class="ps-3 pe-3 ms-4 d-flex btn custom-btn save-btn"
+                  >
                     Save
                   </div>
                   <div
@@ -488,7 +511,7 @@
                   </div>
                 </div>
 
-                <span class="fs-6 font-weight-semibold" 
+                <span class="fs-6 font-weight-semibold"
                   >Select Module <span class="text-danger">*</span></span
                 >
                 <select
@@ -516,8 +539,8 @@
                 </div>
 
                 <span class="fs-6 font-weight-semibold"
-                  >Description<span class="text-danger"></span></span
-                >
+                  >Description<span class="text-danger"></span
+                ></span>
                 <div class="input-group w-50">
                   <textarea
                     class="form-control"
@@ -581,6 +604,5 @@
     <script src="../../scripts/notify.min.js"></script>
     <script src="../../scripts/add-requirement.js"></script>
     <script src="../../scripts/requirement.js"></script>
-
   </body>
 </html>
