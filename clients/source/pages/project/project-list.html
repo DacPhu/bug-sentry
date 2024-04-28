@@ -583,10 +583,9 @@
       <!-- place footer here -->
     </footer>
     <!-- Bootstrap JavaScript Libraries -->
-
     <div
       id="projectPopup"
-      class="vh-100 position-absolute overlay position-absolute top-0 bottom-0 start-0 end-0"
+      class="position-absolute overlay top-0 bottom-0 start-0 end-0"
     >
       <div
         class="d-flex justify-content-center align-items-center w-100 position-absolute top-0 bottom-0 start-0 end-0"
@@ -607,15 +606,24 @@
                   <span class="fs-6 font-weight-semibold"
                     >Name<span class="text-danger">*</span></span
                   >
-                  <textarea
-                    class="form-control"
-                    aria-label="With textarea"
-                    name="project-name"
-                  ></textarea>
+                  <div class="input-group w-100 mb-4 mt-2">
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Project Name"
+                      aria-label="Project name"
+                      name="project-name"
+                    />
+                  </div>
                 </div>
               </div>
-              <div class="d-flex justify-content-center" id="createProject">
-                <div class="ps-3 pe-3 ms-4 d-flex btn save-btn">Create</div>
+              <div class="d-flex justify-content-center">
+                <div
+                  class="ps-3 pe-3 ms-4 d-flex btn save-btn"
+                  id="createProject"
+                >
+                  Create
+                </div>
                 <div
                   class="closePopup btn text-center ps-3 pe-3 ms-4 cancel-btn"
                 >

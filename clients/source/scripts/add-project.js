@@ -8,8 +8,8 @@
     $("#projectPopup").hide();
     $("#add-project").click(function () {
       $("#projectPopup").show();
-      $("body").css("overflow", "hidden"); // Disable scrolling
-      $("#projectPopup textarea[name='project-name']").focus(); // Focus on the textarea
+      // $("body").css("overflow", "hidden"); // Disable scrolling
+      $("#projectPopup input[name='project-name']").focus(); // Focus on the textarea
     });
 
     // Click event handler for the close button
@@ -20,7 +20,7 @@
 
     // Click event handler for creating the project
     $("#createProject").click(function () {
-      var projectName = $("#projectPopup textarea[name='project-name']").val();
+      var projectName = $("#projectPopup input[name='project-name']").val();
       var createdBy = account.username;
       var createdAt = new Date().toISOString();
 

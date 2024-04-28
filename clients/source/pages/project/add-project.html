@@ -28,12 +28,9 @@
   </head>
 
   <body>
-    <div
-      id="projectPopup"
-      class="vh-100 position-absolute overlay position-absolute top-0 bottom-0 start-0 end-0"
-    >
+    <div id="projectPopup" class="fixed vh-100 position-absolute overlay">
       <div
-        class="d-flex justify-content-center align-items-center w-100 position-absolute top-0 bottom-0 start-0 end-0"
+        class="d-flex justify-content-center align-items-center w-100 top-0 bottom-0 start-0 end-0"
       >
         <!-- main content -->
         <div class="w-25 shadow bg-white rounded-4">
@@ -51,10 +48,14 @@
                   <span class="fs-6 font-weight-semibold"
                     >Name<span class="text-danger">*</span></span
                   >
-                  <textarea
-                    class="form-control"
-                    aria-label="With textarea"
-                  ></textarea>
+                  <div class="input-group w-100 mb-4 mt-2">
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Project Name"
+                      aria-label="Project name"
+                    />
+                  </div>
                 </div>
               </div>
               <div class="d-flex justify-content-center" id="createProject">
