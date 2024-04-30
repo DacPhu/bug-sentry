@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Issues</title>
+    <title>Test-run</title>
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta
@@ -20,14 +20,19 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
     />
-    <link href="../../styles/global.css" rel="stylesheet" />
+
+    <script
+      src="https://kit.fontawesome.com/c77185b29d.js"
+      crossorigin="anonymous"
+    ></script>
     <link rel="stylesheet" href="../../styles/navbar.module.css" />
-    <link rel="stylesheet" href="../../styles/issues.module.css" />
+    <link rel="stylesheet" href="../../styles/administration.module.css" />
+    <link rel="stylesheet" href="../../styles/global.css" />
   </head>
 
   <body>
     <header>
-      <nav class="navbar navbar-expand-sm navbar-light bg-light">
+      <nav class="navbar navbar-expand-sm navbar-light bg-white">
         <div class="container-fluid">
           <a href="../home/home.html">
             <img
@@ -135,7 +140,6 @@
       </nav>
     </header>
     <main>
-      <!-- Page hiện tại -->
       <div class="container-fluid">
         <div class="row">
           <!-- Side bar -->
@@ -145,7 +149,11 @@
             <div class="text-center">
               <ul class="nav nav-pills flex-column mt-5">
                 <li class="nav-item py-2">
-                  <a href="#" class="nav-link text-dark" aria-current="page">
+                  <a
+                    href="#"
+                    class="nav-link text-dark text-hover-light"
+                    aria-current="page"
+                  >
                     <img src="../../../public/icons/dash-board.svg" /> <br />
                     Dashboard</a
                   >
@@ -154,7 +162,7 @@
                 <li class="nav-item py-2">
                   <a
                     href="../project/project-list.html"
-                    class="nav-link text-dark"
+                    class="nav-link text-dark text-hover-light"
                   >
                     <img src="../../../public/icons/project-list.svg" /> <br />
                     Project List</a
@@ -162,7 +170,10 @@
                 </li>
 
                 <li class="nav-item py-3">
-                  <a href="../board/board.html" class="nav-link text-dark">
+                  <a
+                    href="../board/board.html"
+                    class="nav-link text-dark text-hover-light"
+                  >
                     <img src="../../../public/icons/board.svg" /> <br />
                     Board</a
                   >
@@ -171,7 +182,7 @@
             </div>
           </div>
           <!-- Main content -->
-          <div class="col-md-11 col-lg-11 col-xl-11 bg-grey px-4">
+          <div class="col-md-11 col-lg-11 col-xl-11 bg-gray px-4">
             <nav class="navbar navbar-expand navbar-light">
               <ul class="nav navbar-nav" id="navbar-in-project">
                 <li class="nav-item">
@@ -179,13 +190,15 @@
                     >Overview</a
                   >
                 </li>
-<<<<<<< HEAD:developer/source/pages/issues/issues.html
-=======
-                
                 <li class="nav-item">
-                  <a class="nav-link" href="../requirement/requirements.html"
-                    >Requirements</a
+                  <a
+                    class="nav-link"
+                    href="../administration/administration.html"
+                    >Administration</a
                   >
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" href="#">Requirements</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="../attachment/attachment.html"
@@ -210,11 +223,8 @@
                     >Test run</a
                   >
                 </li>
->>>>>>> gk-test:tester/source/pages/issues/issues.html
                 <li class="nav-item">
-                  <a class="nav-link active" href="../issues/issues.html"
-                    >Issues</a
-                  >
+                  <a class="nav-link" href="../issues/issues.html">Issues</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="../project/activity-log.html"
@@ -226,34 +236,123 @@
             <div class="container-fluid bg-light py-2">
               <div class="align-items-center d-flex">
                 <div class="d-inline-block">
-                  <h5 class="ms-4 my-3">Issues</h5>
+                  <h5 class="ms-4 my-3">Manage Users</h5>
                 </div>
-
-                <div class="d-inline-block ms-auto fw-bold">
-                  <i class="bi bi-cloud-download ms-auto"></i>
-                  Export
+                <div class="d-inline-block ms-auto me-3">
+                  <div class="dropdown">
+                    <button
+                      class="btn btn-secondary dropdown-toggle p-2"
+                      type="button"
+                      id="dropdownMenu1"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      Select User Type
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                      <li>
+                        <button class="dropdown-item" type="button">
+                          Project Manager
+                        </button>
+                      </li>
+                      <li>
+                        <button class="dropdown-item" type="button">
+                          Tester
+                        </button>
+                      </li>
+                      <li>
+                        <button class="dropdown-item" type="button">
+                          Developer
+                        </button>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
-                <div class="d-inline-block mx-3 fw-bold">
-                  <i class="bi bi-cloud-upload"></i>
-                  Import
+                <div class="d-inline-block me-3">
+                  <div class="dropdown">
+                    <button
+                      class="btn btn-secondary dropdown-toggle p-2"
+                      type="button"
+                      id="dropdownMenu2"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      All users
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                      <li>
+                        <button class="dropdown-item" type="button">
+                          All users
+                        </button>
+                      </li>
+                      <li>
+                        <button class="dropdown-item" type="button">
+                          Active users
+                        </button>
+                      </li>
+                      <li>
+                        <button class="dropdown-item" type="button">
+                          Inactive users
+                        </button>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
-
                 <div class="d-inline-block me-3">
                   <div
-                    id="add-issue-btn"
+                    id="add-user"
                     class="mx-4 my-3 d-flex btn custom-bold-btn"
                   >
-                    <div class="me-2 p-1">Add Issue</div>
+                    <div class="me-2 p-1">Add User</div>
                     <img src="../../../public/icons/add.svg" alt="" />
                   </div>
                 </div>
               </div>
             </div>
+            <div class="container-fluid mt-4">
+              <div class="col-md-5">
+                <div class="d-flex flex-row justify-content-between">
+                  <div class="total-user d-flex align-items-center">
+                    <div class="round-background mr-1rem">
+                      <i class="fas fa-users fa-2x text-warning icon-user"></i>
+                    </div>
+                    <div class="total-user-text">
+                      <p>Total Users</p>
+                      <p>3</p>
+                    </div>
+                  </div>
+                  <div class="active-user d-flex align-items-center">
+                    <div class="round-background mr-1rem">
+                      <i
+                        class="fas fa-user-check fa-2x text-success icon-user"
+                      ></i>
+                    </div>
+                    <div class="active-user-text">
+                      <p>Active Users</p>
+                      <p>3</p>
+                    </div>
+                  </div>
 
+                  <div class="unactive-user d-flex align-items-center">
+                    <div class="round-background mr-1rem">
+                      <i
+                        class="fas fa-user-xmark fa-2x text-danger icon-user"
+                      ></i>
+                    </div>
+                    <div class="unactive-user-text">
+                      <p>Unactive Users</p>
+                      <p>0</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
             <div class="container-fluid bg-light mt-4 py-2">
               <div class="align-items-center d-flex">
-                <h5 class="ms-4 my-3">Show</h5>
-                <div class="ms-2">
+                <div class="d-inline-block">
+                  <h5 class="ms-4 my-3">Show</h5>
+                </div>
+                <div class="d-inline-block ms-2">
                   <div class="dropdown">
                     <button
                       class="btn btn-secondary dropdown-toggle p-1"
@@ -263,7 +362,7 @@
                       aria-expanded="false"
                       style="min-width: 100px"
                     >
-                      5
+                      3
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                       <li>
@@ -278,8 +377,10 @@
                     </ul>
                   </div>
                 </div>
-                <h5 class="ms-4 my-3">Issues</h5>
-                <div class="ms-auto" style="min-width: 50%">
+                <div class="d-inline-block">
+                  <h5 class="ms-4 my-3">Entries</h5>
+                </div>
+                <div class="d-inline-block ms-auto" style="min-width: 500px">
                   <div class="input-group rounded">
                     <input
                       type="search"
@@ -293,133 +394,63 @@
                     </span>
                   </div>
                 </div>
-                <h5 class="ms-4 my-3">Sort</h5>
-                <div class="dropdown ms-3">
-                  <button
-                    class="btn btn-secondary dropdown-toggle py-1 px-3"
-                    type="button"
-                    id="dropdownMenu1"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
-                    style="min-width: 10%"
-                  >
-                    Created Date
-                  </button>
-                  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                    <li>
-                      <button class="dropdown-item" type="button">
-                        Priority
-                      </button>
-                    </li>
-                    <li>
-                      <button class="dropdown-item" type="button">Code</button>
-                    </li>
-                  </ul>
-                </div>
-                <div class="dropdown ms-3 me-3">
-                  <button
-                    class="btn btn-secondary dropdown-toggle py-1 px-3"
-                    type="button"
-                    id="dropdownMenu1"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
-                    style="min-width: 10%"
-                  >
-                    Desc
-                  </button>
-                  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                    <li>
-                      <button class="dropdown-item" type="button">Asc</button>
-                    </li>
-                  </ul>
-                </div>
               </div>
             </div>
-            <div class="container-fluid bg-color1 py-3">
+            <div class="container-fluid bg-grey py-3">
               <div class="row">
-                <div class="col fs-5 text-color-1">Code</div>
-                <div class="col fs-5 text-color-1">Title</div>
-                <div class="col fs-5 text-color-1">Created By</div>
+                <div class="col fs-5 text-color-1">Name</div>
+                <div class="col fs-5 text-color-1">Email</div>
+                <div class="col fs-5 text-color-1">User Type</div>
                 <div class="col fs-5 text-color-1">Status</div>
-                <div class="col fs-5 text-color-1">Priority</div>
-                <div class="col fs-5 text-color-1">Created date</div>
                 <div class="col fs-5 text-color-1">Action</div>
               </div>
             </div>
             <div class="container-fluid bg-light py-3">
               <div class="row">
-                <div class="col text-color-1">IS001</div>
-                <div class="col text-color-1">Issue1</div>
-                <div class="col text-color-1">Thien An</div>
-                <div class="col text-color-1">Open</div>
-                <div class="col text-color-1">High</div>
-                <div class="col text-color-1">1/1/2024</div>
+                <div class="col text-color-1">Phan Le Dac Phu</div>
+                <div class="col text-color-1">
+                  21120111@student.hcmus.edu.vn
+                </div>
+                <div class="col text-color-1">Project Manager</div>
+                <div class="col text-color-1">Active</div>
                 <div class="col text-color-1 d-flex">
-                  <i class="bi bi-eye"></i>
-                  <i class="bi bi-pencil mx-3"></i>
-                  <i class="bi bi-trash"></i>
+                  <i class="bi bi-lock pe-4"></i>
+                  <i class="bi bi-pencil pe-4"></i>
+                  <i class="bi bi-trash pe-4"></i>
                 </div>
               </div>
               <hr />
               <div class="row">
-                <div class="col text-color-1">IS001</div>
-                <div class="col text-color-1">Issue1</div>
-                <div class="col text-color-1">Thien An</div>
-                <div class="col text-color-1">Open</div>
-                <div class="col text-color-1">High</div>
-                <div class="col text-color-1">1/1/2024</div>
+                <div class="col text-color-1">Nguyen Ngoc Thien An</div>
+                <div class="col text-color-1">
+                  21120001@student.hcmus.edu.vn
+                </div>
+                <div class="col text-color-1">Developer</div>
+                <div class="col text-color-1">Active</div>
                 <div class="col text-color-1 d-flex">
-                  <i class="bi bi-eye"></i>
-                  <i class="bi bi-pencil mx-3"></i>
-                  <i class="bi bi-trash"></i>
+                  <i class="bi bi-lock pe-4"></i>
+                  <i class="bi bi-pencil pe-4"></i>
+                  <i class="bi bi-trash pe-4"></i>
                 </div>
               </div>
               <hr />
               <div class="row">
-                <div class="col text-color-1">IS001</div>
-                <div class="col text-color-1">Issue1</div>
-                <div class="col text-color-1">Thien An</div>
-                <div class="col text-color-1">Open</div>
-                <div class="col text-color-1">High</div>
-                <div class="col text-color-1">1/1/2024</div>
-                <div class="col text-color-1 d-flex">
-                  <i class="bi bi-eye"></i>
-                  <i class="bi bi-pencil mx-3"></i>
-                  <i class="bi bi-trash"></i>
+                <div class="col text-color-1">Do Khai Hung</div>
+                <div class="col text-color-1">
+                  21120462@student.hcmus.edu.vn
                 </div>
-              </div>
-              <hr />
-              <div class="row">
-                <div class="col text-color-1">IS001</div>
-                <div class="col text-color-1">Issue1</div>
-                <div class="col text-color-1">Thien An</div>
-                <div class="col text-color-1">Open</div>
-                <div class="col text-color-1">High</div>
-                <div class="col text-color-1">1/1/2024</div>
+                <div class="col text-color-1">Tester</div>
+                <div class="col text-color-1">Active</div>
                 <div class="col text-color-1 d-flex">
-                  <i class="bi bi-eye"></i>
-                  <i class="bi bi-pencil mx-3"></i>
-                  <i class="bi bi-trash"></i>
-                </div>
-              </div>
-              <hr />
-              <div class="row">
-                <div class="col text-color-1">IS001</div>
-                <div class="col text-color-1">Issue1</div>
-                <div class="col text-color-1">Thien An</div>
-                <div class="col text-color-1">Open</div>
-                <div class="col text-color-1">High</div>
-                <div class="col text-color-1">1/1/2024</div>
-                <div class="col text-color-1 d-flex">
-                  <i class="bi bi-eye"></i>
-                  <i class="bi bi-pencil mx-3"></i>
-                  <i class="bi bi-trash"></i>
+                  <i class="bi bi-lock pe-4"></i>
+                  <i class="bi bi-pencil pe-4"></i>
+                  <i class="bi bi-trash pe-4"></i>
                 </div>
               </div>
 
-              <div class="row mt-5 align-content-center px-3">
+              <div class="row mt-5 align-content-center">
                 <div class="col">
-                  <h4>Showing 1 to 5 of 5 entries</h4>
+                  <h4>Showing 1 to 3 of 3 entries</h4>
                 </div>
                 <div class="col d-flex align-items-center">
                   <button class="border-0 rounded-3 p-2 text-muted ms-auto">
@@ -429,64 +460,13 @@
                     class="bg-main-color rounded-circle d-flex justify-content-center align-items-center mx-3"
                     style="width: 40px; height: 40px"
                   >
-                    <h1 class="mb-0 text-light" style="font-size: 1.5rem">1</h1>
+                    <h1 class="mb-0 text-light" style="font-size: 1.5rem">3</h1>
                   </div>
                   <button class="border-0 rounded-3 p-2 text-muted me-3">
                     <i class="bi bi-chevron-double-right"></i>
                   </button>
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- Overlay -->
-      <div class="overlay"></div>
-      <!-- Bảng add Issues-->
-      <div class="add-issue-table">
-        <div class="container">
-          <div class="d-flex align-item-center p-3">
-            <h1 class="mb-0">Add issue</h1>
-            <button
-              class="btn bg-save-btn btn-primary rounded-3 ms-auto btn-lg"
-              id="save-issue-btn"
-            >
-              Save
-            </button>
-            <button
-              class="btn bg-cancel-btn btn-warning bg-main-color rounded-3 mx-3 btn-lg"
-              id="cancel-issue-btn"
-            >
-              Cancel
-            </button>
-          </div>
-          <div class="row p-3">
-            <div class="col">
-              <p>Issue title <span class="text-danger">*</span></p>
-              <input
-                type="text"
-                class="form-control"
-                placeholder=""
-                aria-label="title"
-              />
-              <p>Status <span class="text-danger">*</span></p>
-              <input
-                type="text"
-                class="form-control"
-                placeholder=""
-                aria-label="status"
-              />
-              <p>Priority <span class="text-danger">*</span></p>
-              <input
-                type="text"
-                class="form-control"
-                placeholder=""
-                aria-label="priority"
-              />
-            </div>
-            <div class="col d-flex flex-column">
-              <p>Description</p>
-              <textarea class="form-control flex-grow-1"></textarea>
             </div>
           </div>
         </div>
@@ -507,7 +487,5 @@
       integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
       crossorigin="anonymous"
     ></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script src="../../scripts/add-issue.js"></script>
   </body>
 </html>

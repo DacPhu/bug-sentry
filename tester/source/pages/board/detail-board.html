@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dynamic Column Creation</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link href="../../styles/detail-board.module.css" rel="stylesheet" />
+    <link href="../../styles/global.css" rel="stylesheet" />
+    <link href="../../styles/navbar.module.css" rel="stylesheet" />
+  </head>
+  <body>
+    <header>
+      <nav class="navbar navbar-expand-sm navbar-light bg-white">
+        <div class="container-fluid">
+          <a href="../home/home.html">
+            <img
+              src="../../../public/images/BugSentryLogo.png"
+              alt="Logo"
+              height="50px"
+              class="ps-5"
+            />
+          </a>
+          <a class="navbar-brand px-2" href="../home/home.html">
+            <h2>Bug Sentry</h2></a
+          >
+          <button
+            class="navbar-toggler d-lg-none"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapsibleNavId"
+            aria-controls="collapsibleNavId"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="collapsibleNavId">
+            <ul class="navbar-nav ms-auto mt-lg-0">
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  id="dropdownLanguageId"
+                  data-bs-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  <i class="bi bi-globe-americas fs-4 align-middle"></i>
+                  Language</a
+                >
+                <div class="dropdown-menu" aria-labelledby="dropdownLanguageId">
+                  <a class="dropdown-item" href="#">VIE</a>
+                  <a class="dropdown-item" href="#">ENG</a>
+                </div>
+              </li>
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  id="dropdownContactId"
+                  data-bs-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  <i class="bi bi-envelope fs-4 align-middle"></i>
+                  Contact</a
+                >
+                <div class="dropdown-menu" aria-labelledby="dropdownContactId">
+                  <a class="dropdown-item" href="#">Email</a>
+                  <a class="dropdown-item" href="#">ABC</a>
+                </div>
+              </li>
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  id="dropdownHelpCenterId"
+                  data-bs-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  <i class="bi bi-question-circle fs-4 align-middle"></i>
+                  Help Center
+                </a>
+                <div
+                  class="dropdown-menu"
+                  aria-labelledby="dropdownHelpCenterId"
+                >
+                  <a class="dropdown-item" href="#">About</a>
+                  <a class="dropdown-item" href="#">Privacy</a>
+                </div>
+              </li>
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  id="dropdownAccountId"
+                  data-bs-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  <i class="bi bi-person-circle fs-4 align-middle"></i>
+                  Account</a
+                >
+                <div class="dropdown-menu" aria-labelledby="dropdownAccountId">
+                  <a class="dropdown-item" href="../profile/edit-profile.html"
+                    >Edit Profile</a
+                  >
+                  <a class="dropdown-item" href="../profile/edit-password.html"
+                    >Change Password</a
+                  >
+                  <a class="dropdown-item" href="#">Log out</a>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main class="bg-grey">
+      <div class="container-fluid">
+        <div class="row">
+          <!-- Side bar -->
+          <div
+            class="bg-white sidebar d-flex justify-content-center fs-8rem col-auto col-md-1"
+          >
+            <div class="text-center">
+              <ul class="nav nav-pills flex-column mt-5">
+                <li class="nav-item py-2">
+                  <a href="#" class="nav-link text-dark" aria-current="page">
+                    <img src="../../../public/icons/dash-board.svg" /> <br />
+                    Dashboard</a
+                  >
+                </li>
+
+                <li class="nav-item py-2">
+                  <a
+                    href="../project/project-list.html"
+                    class="nav-link text-dark"
+                  >
+                    <img src="../../../public/icons/project-list.svg" /> <br />
+                    Project List</a
+                  >
+                </li>
+
+                <li class="nav-item py-3">
+                  <a href="#" class="nav-link text-dark">
+                    <img src="../../../public/icons/board.svg" /> <br />
+                    Board</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="bg-grey col-md-11" style="height: 100vh">
+            <div class="row" id="container-list">
+              <div class="column col-md-3">
+                <h3>Column 1</h3>
+                <ul id="column1">
+                  <li><input type="text" class="text-box" /></li>
+                </ul>
+                <button class="add-btn" onclick="addTaskBox('column1')">
+                  +
+                </button>
+              </div>
+              <!-- <div class="column col-md-3 text-center" onclick="addColumn()">+</div> -->
+              <button class="add-btn col-md-3" onclick="addColumn()">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Bootstrap JS and jQuery (required for Bootstrap) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="../../scripts/add-list-in-board.js"></script>
+  </body>
+</html>

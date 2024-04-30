@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Test-run</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS v5.2.1 -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <link href="../../styles/global.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../../styles/navbar.module.css" />
+    <link rel="stylesheet" href="../../styles/test-run.module.css" />
+  </head>
+
+  <body>
+    <header>
+      <nav class="navbar navbar-expand-sm navbar-light bg-light">
+        <div class="container-fluid">
+          <a href="../home/home.html">
+            <img
+              src="../../../public/images/BugSentryLogo.png"
+              alt="Logo"
+              height="50px"
+              class="ps-5"
+            />
+          </a>
+          <a class="navbar-brand px-2" href="../home/home.html">
+            <h2>Bug Sentry</h2>
+          </a>
+          <button
+            class="navbar-toggler d-lg-none"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapsibleNavId"
+            aria-controls="collapsibleNavId"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="collapsibleNavId">
+            <ul class="navbar-nav ms-auto mt-lg-0">
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  id="dropdownLanguageId"
+                  data-bs-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  <i class="bi bi-globe-americas fs-4 align-middle"></i>
+                  Language</a
+                >
+                <div class="dropdown-menu" aria-labelledby="dropdownLanguageId">
+                  <a class="dropdown-item" href="#">VIE</a>
+                  <a class="dropdown-item" href="#">ENG</a>
+                </div>
+              </li>
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  id="dropdownContactId"
+                  data-bs-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  <i class="bi bi-envelope fs-4 align-middle"></i>
+                  Contact</a
+                >
+                <div class="dropdown-menu" aria-labelledby="dropdownContactId">
+                  <a class="dropdown-item" href="#">Email</a>
+                  <a class="dropdown-item" href="#">ABC</a>
+                </div>
+              </li>
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  id="dropdownHelpCenterId"
+                  data-bs-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  <i class="bi bi-question-circle fs-4 align-middle"></i>
+                  Help Center
+                </a>
+                <div
+                  class="dropdown-menu"
+                  aria-labelledby="dropdownHelpCenterId"
+                >
+                  <a class="dropdown-item" href="#">About</a>
+                  <a class="dropdown-item" href="#">Privacy</a>
+                </div>
+              </li>
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  id="dropdownAccountId"
+                  data-bs-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  <i class="bi bi-person-circle fs-4 align-middle"></i>
+                  Account</a
+                >
+                <div class="dropdown-menu" aria-labelledby="dropdownAccountId">
+                  <a class="dropdown-item" href="../profile/edit-profile.html"
+                    >Edit Profile</a
+                  >
+                  <a class="dropdown-item" href="../profile/edit-password.html"
+                    >Change Password</a
+                  >
+                  <a class="dropdown-item" href="#">Log out</a>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main>
+      <div class="container-fluid">
+        <div class="row">
+          <!-- Side bar -->
+          <div
+            class="bg-white sidebar d-flex justify-content-center fs-8rem col-auto col-md-1"
+          >
+            <div class="text-center">
+              <ul class="nav nav-pills flex-column mt-5">
+                <li class="nav-item py-2">
+                  <a
+                    href="#"
+                    class="nav-link text-dark text-hover-light"
+                    aria-current="page"
+                  >
+                    <img src="../../../public/icons/dash-board.svg" /> <br />
+                    Dashboard</a
+                  >
+                </li>
+
+                <li class="nav-item py-2">
+                  <a
+                    href="../project/project-list.html"
+                    class="nav-link text-dark text-hover-light"
+                  >
+                    <img src="../../../public/icons/project-list.svg" /> <br />
+                    Project List</a
+                  >
+                </li>
+
+                <li class="nav-item py-3">
+                  <a
+                    href="../board/board.html"
+                    class="nav-link text-dark text-hover-light"
+                  >
+                    <img src="../../../public/icons/board.svg" /> <br />
+                    Board</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+          <!-- Main content -->
+          <div class="col-md-11 col-lg-11 col-xl-11 bg-gray px-4">
+            <nav class="navbar navbar-expand navbar-light">
+              <ul class="nav navbar-nav" id="navbar-in-project">
+                <li class="nav-item">
+                  <a class="nav-link" href="../project/over-view.html"
+                    >Overview</a
+                  >
+                </li>
+               
+                <li class="nav-item">
+                  <a class="nav-link" href="../requirement/requirements.html"
+                    >Requirements</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../attachment/attachment.html"
+                    >Attachments</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../release/release.html"
+                    >Releases</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../module/module.html">Modules</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../testcase/testcase.html"
+                    >Test Cases</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" href="#">Test run</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../issues/issues.html">Issues</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../project/activity-log.html"
+                    >Activity log</a
+                  >
+                </li>
+              </ul>
+            </nav>
+            <div class="container-fluid bg-light py-2">
+              <div class="align-items-center d-flex">
+                <div class="d-inline-block">
+                  <h5 class="ms-4 my-3">Test run and Results</h5>
+                </div>
+                <div class="d-inline-block ms-auto me-3">
+                  <div class="dropdown">
+                    <button
+                      class="btn btn-secondary dropdown-toggle p-2"
+                      type="button"
+                      id="dropdownMenu1"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      Open
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                      <li>
+                        <button class="dropdown-item" type="button">
+                          option 1
+                        </button>
+                      </li>
+                      <li>
+                        <button class="dropdown-item" type="button">
+                          option 2
+                        </button>
+                      </li>
+                      <li>
+                        <button class="dropdown-item" type="button">
+                          option 3
+                        </button>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="d-inline-block me-3">
+                  <div class="dropdown">
+                    <button
+                      class="btn btn-secondary dropdown-toggle p-2"
+                      type="button"
+                      id="dropdownMenu2"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      Select a release
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                      <li>
+                        <button class="dropdown-item" type="button">
+                          option 1
+                        </button>
+                      </li>
+                      <li>
+                        <button class="dropdown-item" type="button">
+                          option 2
+                        </button>
+                      </li>
+                      <li>
+                        <button class="dropdown-item" type="button">
+                          option 3
+                        </button>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="d-inline-block me-3">
+                  <div
+                    id="add-project"
+                    class="mx-4 my-3 d-flex btn custom-bold-btn"
+                    onclick="showDialog()"
+                  >
+                    <div class="me-2 p-1">Add  Test Run</div>
+                    <img src="../../../public/icons/add.svg" alt="" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="container-fluid bg-light mt-4 py-2">
+              <div class="align-items-center d-flex">
+                <div class="d-inline-block">
+                  <h5 class="ms-4 my-3">Show</h5>
+                </div>
+                <div class="d-inline-block ms-2">
+                  <div class="dropdown">
+                    <button
+                      class="btn btn-secondary dropdown-toggle p-1"
+                      type="button"
+                      id="dropdownMenu1"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                      style="min-width: 100px"
+                    >
+                      3
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                      <li>
+                        <button class="dropdown-item" type="button">5</button>
+                      </li>
+                      <li>
+                        <button class="dropdown-item" type="button">15</button>
+                      </li>
+                      <li>
+                        <button class="dropdown-item" type="button">20</button>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="d-inline-block">
+                  <h5 class="ms-4 my-3">Entries</h5>
+                </div>
+                <div class="d-inline-block ms-auto" style="min-width: 500px">
+                  <div class="input-group rounded">
+                    <input
+                      type="search"
+                      class="form-control rounded"
+                      placeholder="Search"
+                      aria-label="Search"
+                      aria-describedby="search-addon"
+                    />
+                    <span class="input-group-text border-0" id="search-addon">
+                      <i class="fas fa-search"></i>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="container-fluid bg-color1 py-3">
+              <div class="row">
+                <div class="col fs-5 text-color-1">Created By</div>
+                <div class="col fs-5 text-color-1">Title</div>
+                <div class="col fs-5 text-color-1">Type</div>
+                <div class="col fs-5 text-color-1">Assigned to</div>
+                <div class="col fs-5 text-color-1">Created date</div>
+                <div class="col fs-5 text-color-1">Test case</div>
+                <div class="col fs-5 text-color-1">Status</div>
+                <div class="col fs-5 text-color-1">Action</div>
+              </div>
+            </div>
+            <div class="container-fluid bg-light py-3">
+              <div class="row">
+                <div class="col text-color-1">Phan Le Dac Phu</div>
+                <div class="col text-color-1">Test run dang nhap 1</div>
+                <div class="col text-color-1">Supter Admin</div>
+                <div class="col text-color-1">Hung</div>
+                <div class="col text-color-1">Mar 16, 2024 09:03:47</div>
+                <div class="col text-color-1">1</div>
+                <div class="col text-color-1">fail</div>
+                <div class="col text-color-1 d-flex justify-content-between">
+                  <i class="bi bi-play-circle-fill text-success"></i>
+                  <i class="bi bi-copy"></i>
+                  <i class="bi bi-pencil"></i>
+                  <i class="bi bi-trash"></i>
+                </div>
+              </div>
+              <hr />
+              <div class="row">
+                <div class="col text-color-1">Phan Le Dac Phu</div>
+                <div class="col text-color-1">Test run dang nhap 1</div>
+                <div class="col text-color-1">Supter Admin</div>
+                <div class="col text-color-1">Hung</div>
+                <div class="col text-color-1">Mar 16, 2024 09:03:47</div>
+                <div class="col text-color-1">1</div>
+                <div class="col text-color-1">fail</div>
+                <div class="col text-color-1 d-flex justify-content-between">
+                  <i class="bi bi-play-circle-fill text-success"></i>
+                  <i class="bi bi-copy"></i>
+                  <i class="bi bi-pencil"></i>
+                  <i class="bi bi-trash"></i>
+                </div>
+              </div>
+              <hr />
+              <div class="row">
+                <div class="col text-color-1">Phan Le Dac Phu</div>
+                <div class="col text-color-1">Test run dang nhap 1</div>
+                <div class="col text-color-1">Supter Admin</div>
+                <div class="col text-color-1">Hung</div>
+                <div class="col text-color-1">Mar 16, 2024 09:03:47</div>
+                <div class="col text-color-1">1</div>
+                <div class="col text-color-1">fail</div>
+                <div class="col text-color-1 d-flex justify-content-between">
+                  <i class="bi bi-play-circle-fill text-success"></i>
+                  <i class="bi bi-copy"></i>
+                  <i class="bi bi-pencil"></i>
+                  <i class="bi bi-trash"></i>
+                </div>
+              </div>
+
+              <div class="row mt-5 align-content-center px-3">
+                <div class="col">
+                  <h4>Showing 1 to 3 of 5 entries</h4>
+                </div>
+                <div class="col d-flex align-items-center">
+                  <button class="border-0 rounded-3 p-2 text-muted ms-auto">
+                    <i class="bi bi-chevron-double-left"></i>
+                  </button>
+                  <div
+                    class="bg-main-color rounded-circle d-flex justify-content-center align-items-center mx-3"
+                    style="width: 40px; height: 40px"
+                  >
+                    <h1 class="mb-0 text-light" style="font-size: 1.5rem">1</h1>
+                  </div>
+                  <button class="border-0 rounded-3 p-2 text-muted me-3">
+                    <i class="bi bi-chevron-double-right"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        id="linked-popup"
+        class="vh-100 position-absolute overlay top-0 bottom-0 start-0 end-0"
+        style="display: none"
+      >
+        <div
+          class="d-flex justify-content-center align-items-center w-100 position-absolute top-0 bottom-0 start-0 end-0"
+        >
+          <!-- main content -->
+          <div class="w-75 shadow bg-white">
+            <div class="m-4 mt-2 bg-white semi-rounded">
+              <div class="container p-4">
+                <div class="d-flex flex-row justify-content-between">
+                  <!-- header of main  -->
+                  <h6 class="text-left fs-4">Test Runs</h6>
+                  <div class="d-flex">
+                    <div class="ps-3 pe-3 ms-4 d-flex btn custom-btn save-btn">
+                      Save
+                    </div>
+                    <div
+                      class="btn custom-btn text-center ps-3 pe-3 ms-4 cancel-btn"
+                    >
+                      Cancel
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <p>Name <span class="text-danger">*</span></p>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder=""
+                    aria-label="title"
+                  />
+                </div>
+                <div class="col">
+                  <p>Release <span class="text-danger">*</span></p>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder=""
+                    aria-label="title"
+                  />
+                </div>
+                <div class="col">
+                  <p>Assign to <span class="text-danger">*</span></p>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder=""
+                    aria-label="title"
+                  />
+                </div>
+              </div>
+              <hr />
+
+              <div class="min-h-50 row gx-3 d-flex justify-content-between">
+                <!-- left side of main -->
+                <div class="col-4">
+                  <div
+                    class="h-100 d-flex flex-column p-3 bg-semi-grey semi-rounded"
+                  >
+                    <div class="d-flex">
+                      <div class="flex-fill">Module</div>
+                    </div>
+
+                    <hr />
+                    <div class="p-3">
+                      <input
+                        class="w-100 p-3 pt-1 pb-1"
+                        type="text"
+                        placeholder="Search requirement type by name"
+                      />
+                    </div>
+                    <div id="modulesContainer" class="d-flex flex-column">
+                      <div
+                        id="module1"
+                        class="d-flex pointer-cursor align-items-center col m-4 mt-4 mb-0 font-weight-semibold"
+                      >
+                        <img
+                          class="me-2"
+                          src="../../../public/icons/ic_round-folder.svg"
+                          alt=""
+                        />
+                        Module 1
+                      </div>
+                      <div
+                        id="module2"
+                        class="d-flex pointer-cursor align-items-center col m-4 mt-4 mb-0 font-color-blur"
+                      >
+                        <img
+                          class="me-2"
+                          src="../../../public/icons/ic_round-folder.svg"
+                          alt=""
+                        />
+                        Module 2
+                      </div>
+                      <div
+                        id="module3"
+                        class="d-flex pointer-cursor align-items-center col m-4 mt-4 mb-0 font-color-blur"
+                      >
+                        <img
+                          class="me-2"
+                          src="../../../public/icons/ic_round-folder.svg"
+                          alt=""
+                        />
+                        Module 3
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- right side of main -->
+                <div class="col-8">
+                  <div class="h-100 flex bg-semi-grey semi-rounded p-3">
+                    <!-- action bar -->
+                    <div class="d-flex align-items-center">
+                      <div class="d-flex flex-fill ms-4 align-items-center">
+                        Show
+                        <div
+                          class="rounded m-1 p-3 pt-0 pb-0 cursor-pointer border-secondary border-1 border"
+                        >
+                          5
+                          <img
+                            class="m-3"
+                            src="../../../public/icons/down-arrow.svg"
+                            alt=""
+                          />
+                        </div>
+                        entries
+                      </div>
+                      <div class="d-flex align-items-center flex-fill">
+                        <span>Sort</span>
+                        <div class="d-flex rounded-1 p-2 ms-2 bg-white">
+                          <span class="me-4 font-weight-semibold">
+                            Position
+                            <img
+                              src="../../../public/icons/sort-icon.svg"
+                              alt=""
+                            />
+                          </span>
+
+                          <span
+                            class="font-weight-semibold d-flex align-items-center"
+                          >
+                            Asc
+                            <img
+                              src="../../../public/icons/lucide_sort-asc.svg"
+                              alt=""
+                            />
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- table -->
+                    <table class="table mt-4 me-2">
+                      <thead>
+                        <tr class="semi-rounded blur-green-theme">
+                          <th scope="col"></th>
+                          <th scope="col">Case Code</th>
+                          <th scope="col">Title</th>
+                          <th scope="col">Steps</th>
+
+                          <th scope="col"></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>
+                            <input
+                              class="ms-2 mt-1 checkbox-lg"
+                              size=""
+                              type="checkbox"
+                              name=""
+                              id="md1"
+                            />
+                          </td>
+                          <th scope="row">
+                            <label for="md1">TC001</label>
+                          </th>
+                          <td>TC Number 01</td>
+                          <td>4</td>
+
+                          <td class="ps-0">
+                            <div
+                              class="d-flex pointer-cursor p-2 pt-0 pb-0 justify-content-end"
+                            >
+                              <img
+                                src="../../../public/icons/mdi_eye-outline.svg"
+                                alt=""
+                              />
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <input
+                              class="ms-2 mt-1 checkbox-lg"
+                              size=""
+                              type="checkbox"
+                              name=""
+                              id="md3"
+                            />
+                          </td>
+                          <th scope="row">
+                            <label for="md3">TC003</label>
+                          </th>
+                          <td>TC Number 01</td>
+                          <td>4</td>
+
+                          <td class="ps-0">
+                            <div
+                              class="d-flex pointer-cursor p-2 pt-0 pb-0 justify-content-end"
+                            >
+                              <img
+                                src="../../../public/icons/mdi_eye-outline.svg"
+                                alt=""
+                              />
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <input
+                              class="ms-2 mt-1 checkbox-lg"
+                              size=""
+                              type="checkbox"
+                              name=""
+                              id="md2"
+                            />
+                          </td>
+                          <th scope="row">
+                            <label for="md2">TC002</label>
+                          </th>
+                          <td>TC Number 02</td>
+                          <td>4</td>
+
+                          <td class="ps-0">
+                            <div
+                              class="d-flex pointer-cursor p-2 pt-0 pb-0 justify-content-end"
+                            >
+                              <img
+                                src="../../../public/icons/mdi_eye-outline.svg"
+                                alt=""
+                              />
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+
+                    <!-- pagination -->
+                    <div class="d-flex justify-content-between p-3">
+                      <span> Showing 1 of 3 entries </span>
+                      <div>
+                        <img
+                          width="20px"
+                          src="../../../public/icons/arrow-left.svg"
+                          alt=""
+                          srcset=""
+                        />
+                        <span
+                          class="p-1 ps-2 pe-2 rounded-circle green-dark-theme"
+                          >1</span
+                        >
+                        <img
+                          width="20px"
+                          src="../../../public/icons/arrow-right.svg"
+                          alt=""
+                          srcset=""
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer>
+      <!-- place footer here -->
+    </footer>
+    <!-- Bootstrap JavaScript Libraries -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+      integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+      crossorigin="anonymous"
+    ></script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+      integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <script src="../../scripts/add-testrun.js"></script>
+  </body>
+</html>
