@@ -59,7 +59,6 @@ footer {
   transition: all 0.4s ease;
 }
 
-
 .icon-box a:hover {
   color: #fff;
   transform: translateY(-5px);
@@ -84,5 +83,17 @@ footer {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, auto));
     gap: 2.5rem;
+  }
+}
+
+/* Default height for small devices */
+#intro-example {
+  height: 400px;
+}
+
+/* Height for devices larger than 992px */
+@media (min-width: 992px) {
+  #intro-example {
+    height: 600px;
   }
 }
