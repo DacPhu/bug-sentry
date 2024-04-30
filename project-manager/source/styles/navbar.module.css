@@ -1,0 +1,24 @@
+.text-small {
+  font-size: 0.8rem;
+}
+
+#collapsibleNavId li {
+  border-right: 1px #909090 solid;
+  padding: 0 1rem;
+}
+
+#collapsibleNavId li:last-child {
+  border-right: none;
+}
+
+.nav-link {
+  padding: 0.5rem 0.2rem;
+}
+
+.nav-pills li a:hover {
+  background-color: #034f75;
+}
+
+#navbar-in-project .nav-link {
+  padding-right: 2rem;
+}
