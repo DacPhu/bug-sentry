@@ -1,0 +1,25 @@
+.bg-gray{
+    background-color: #EDF1F4;
+}
+.bg-light{
+    background-color: #FFFFFF;
+}
+#nav-side-bar img {
+    width: 30%;
+    /* Đặt chiều rộng của hình ảnh là 100% của phần tử cha */
+    height: auto;
+    /* Tự động tính toán chiều cao để duy trì tỉ lệ khung hình */
+}
+.bg-release{
+    background-color: #FFE7E7;
+}
+.bg-test-case{
+    background-color: #F0FFBD;
+}
+.bg-test-run{
+    background-color: #DDFBFF;
+}
+.bg-issue{
+    background-color: #FFEEFC;
+}
+

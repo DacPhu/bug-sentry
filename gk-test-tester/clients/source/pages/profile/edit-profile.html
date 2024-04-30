@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS v5.2.1 -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" href="../../styles/profile.module.css" />
+    <link rel="stylesheet" href="../../styles/navbar.module.css" />
+    <link rel="stylesheet" href="../../styles/global.css" />
+  </head>
+
+  <body>
+    <header>
+      <nav class="navbar navbar-expand-sm navbar-light bg-white">
+        <div class="container-fluid">
+          <a href="../home/home.html">
+            <img
+              src="../../../public/images/BugSentryLogo.png"
+              alt="Logo"
+              height="50px"
+              class="ps-5"
+            />
+          </a>
+          <a class="navbar-brand px-2" href="../home/home.html">
+            <h2>Bug Sentry</h2></a
+          >
+          <button
+            class="navbar-toggler d-lg-none"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapsibleNavId"
+            aria-controls="collapsibleNavId"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="collapsibleNavId">
+            <ul class="navbar-nav ms-auto mt-lg-0">
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  id="dropdownLanguageId"
+                  data-bs-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  <i class="bi bi-globe-americas fs-4 align-middle"></i>
+                  Language</a
+                >
+                <div class="dropdown-menu" aria-labelledby="dropdownLanguageId">
+                  <a class="dropdown-item" href="#">VIE</a>
+                  <a class="dropdown-item" href="#">ENG</a>
+                </div>
+              </li>
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  id="dropdownContactId"
+                  data-bs-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  <i class="bi bi-envelope fs-4 align-middle"></i>
+                  Contact</a
+                >
+                <div class="dropdown-menu" aria-labelledby="dropdownContactId">
+                  <a class="dropdown-item" href="#">Email</a>
+                  <a class="dropdown-item" href="#">ABC</a>
+                </div>
+              </li>
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  id="dropdownHelpCenterId"
+                  data-bs-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  <i class="bi bi-question-circle fs-4 align-middle"></i>
+                  Help Center
+                </a>
+                <div
+                  class="dropdown-menu"
+                  aria-labelledby="dropdownHelpCenterId"
+                >
+                  <a class="dropdown-item" href="#">About</a>
+                  <a class="dropdown-item" href="#">Privacy</a>
+                </div>
+              </li>
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  id="dropdownAccountId"
+                  data-bs-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  <i class="bi bi-person-circle fs-4 align-middle"></i>
+                  Account</a
+                >
+                <div class="dropdown-menu" aria-labelledby="dropdownAccountId">
+                  <a class="dropdown-item" href="../profile/edit-profile.html"
+                    >Edit Profile</a
+                  >
+                  <a class="dropdown-item" href="../profile/edit-password.html"
+                    >Change Password</a
+                  >
+                  <a class="dropdown-item" href="#">Log out</a>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main class="bg-grey">
+      <div class="container-fluid">
+        <div class="row">
+          <!-- Side bar -->
+          <div
+            class="bg-white sidebar fs-8rem col-auto col-md-1"
+          >
+            <div class="text-center">
+              <ul class="nav nav-pills flex-column mt-5">
+                <li class="nav-item py-2">
+                  <a href="#" class="nav-link text-dark" aria-current="page">
+                    <img src="../../../public/icons/dash-board.svg" /> <br />
+                    Dashboard</a
+                  >
+                </li>
+
+                <li class="nav-item py-2">
+                  <a
+                    href="../project/project-list.html"
+                    class="nav-link text-dark"
+                  >
+                    <img src="../../../public/icons/project-list.svg" /> <br />
+                    Project List</a
+                  >
+                </li>
+
+                <li class="nav-item py-2">
+                  <a href="../board/board.html" class="nav-link text-dark">
+                    <img src="../../../public/icons/board.svg" /> <br />
+                    Board</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="bg-grey col-md-11 pt-4">
+            <div class="container bootstrap snippets bootdey">
+              <h1 class="text-primary-color">Edit Profile</h1>
+              <hr />
+              <div class="bg-white row p-5">
+                <!-- left column -->
+                <div class="col-md-3">
+                  <div class="text-center">
+                    <img
+                      src="https://bootdey.com/img/Content/avatar/avatar7.png"
+                      class="avatar img-circle img-thumbnail"
+                      alt="avatar"
+                    />
+                    <h6>Upload a different photo...</h6>
+                    <input type="file" class="form-control" />
+                  </div>
+                </div>
+
+                <!-- edit form column -->
+                <div class="col-md-9 personal-info">
+                  <div
+                    class="alert alert-info alert-dismissible fade show"
+                    role="alert"
+                  >
+                    This is an <strong>.alert</strong>. Use this to show
+                    important messages to the user.
+                    <button
+                      type="button"
+                      class="btn-close"
+                      data-bs-dismiss="alert"
+                      aria-label="Close"
+                    ></button>
+                  </div>
+                  <h3>Personal info</h3>
+                  <form class="row g-3">
+                    <div class="col-md-6">
+                      <label for="first-name" class="form-label"
+                        ><span class="text-danger">*</span> First name:</label
+                      >
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="first-name"
+                        value="dey-dey"
+                      />
+                    </div>
+                    <div class="col-md-6">
+                      <label for="last-name" class="form-label"
+                        >Last name:</label
+                      >
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="last-name"
+                        value="bootdey"
+                      />
+                    </div>
+                    <div class="col-md-6">
+                      <label for="company" class="form-label">Company:</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="company"
+                        value=""
+                      />
+                    </div>
+                    <div class="col-md-6">
+                      <label for="email" class="form-label">
+                        <span class="text-danger">*</span> Email:</label
+                      >
+                      <input
+                        type="email"
+                        class="form-control"
+                        id="email"
+                        value="janesemail@gmail.com"
+                      />
+                    </div>
+                    <div class="col-md-6">
+                      <label for="birthday" class="form-label">Birthday:</label>
+                      <input type="date" class="form-control" id="birthday" />
+                    </div>
+                    <div class="col-md-6">
+                      <label for="address" class="form-label">Address:</label>
+                      <input type="text" class="form-control" id="address" />
+                    </div>
+                    <div class="col-md-6">
+                      <label for="role" class="form-label">
+                        <span class="text-danger">*</span> Role:</label
+                      >
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="role"
+                        value="Project Manager"
+                        disabled
+                      />
+                    </div>
+                    <div class="col-md-6">
+                      <label for="time-zone" class="form-label"
+                        >Time Zone:</label
+                      >
+                      <select class="form-select" id="time-zone">
+                        <option value="Hawaii">(GMT-10:00) Hawaii</option>
+                        <option value="Alaska">(GMT-09:00) Alaska</option>
+                        <option value="Pacific Time (US & Canada)">
+                          (GMT-08:00) Pacific Time (US & Canada)
+                        </option>
+                        <option value="Arizona">(GMT-07:00) Arizona</option>
+                        <option value="Mountain Time (US & Canada)">
+                          (GMT-07:00) Mountain Time (US & Canada)
+                        </option>
+                        <option value="Central Time (US & Canada)" selected>
+                          (GMT-06:00) Central Time (US & Canada)
+                        </option>
+                        <option value="Eastern Time (US & Canada)">
+                          (GMT-05:00) Eastern Time (US & Canada)
+                        </option>
+                        <option value="Indiana (East)">
+                          (GMT-05:00) Indiana (East)
+                        </option>
+                      </select>
+                    </div>
+                    <div class="col-md-6 d-flex justify-content-center pt-5">
+                      <div
+                        class="ps-3 pe-3 ms-4 d-flex btn save-btn"
+                        id="save-profile"
+                      >
+                        Save
+                      </div>
+                      <div
+                        class="closePopup btn text-center ps-3 pe-3 ms-4 cancel-btn"
+                      >
+                        Cancel
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <hr />
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer>
+      <!-- place footer here -->
+    </footer>
+    <!-- Bootstrap JavaScript Libraries -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+      integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+      crossorigin="anonymous"
+    ></script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+      integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

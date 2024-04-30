@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up</title>
+    <link
+      rel="icon"
+      href="../../../public/images/BugSentryLogo.png"
+      type="image/.jpg"
+    />
+  </head>
+  <!-- Bootstrap JavaScript Libraries -->
+  <script
+    src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+    crossorigin="anonymous"
+  ></script>
+
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+    integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+    crossorigin="anonymous"
+  ></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <link rel="stylesheet" href="../../styles/global.css" />
+  <link rel="stylesheet" href="../../styles/register.module.css" />
+
+  <body>
+    <div class="box-form">
+      <div class="loginform">
+        <div class="loginform_container">
+          <div class="loginform_title">
+            Register
+            <img
+              width="30px"
+              src="../../../public/images/BugSentryLogo.png"
+              alt=""
+            />
+          </div>
+          <div id="warning_signup" class="warning_signup"></div>
+          <form action="#" method="POST">
+            <div class="mainform">
+              <label for="signup_email"> User Name(email) (*)</label>
+              <input
+                id="signup_email"
+                placeholder="email"
+                type="email"
+                name="email"
+              />
+              <label for="signup_password"> Password (*)</label>
+              <input
+                id="signup_password"
+                placeholder="password"
+                type="password"
+                name="password"
+              />
+              <input
+                id="signup_password_again"
+                placeholder="password again"
+                type="password"
+              />
+              <label for="signup_fullname"> Full name (*)</label>
+              <input
+                id="signup_fullname"
+                placeholder="full name"
+                type="text"
+                name="fullname"
+              />
+
+              <label> Gender (*)</label>
+              <div class="container_gender">
+                <div class="container_gender_wrap">
+                  <input
+                    id="signup_gender_male"
+                    type="checkbox"
+                    name="male"
+                    value="male"
+                  />
+                  <label for="signup_gender_male"> Male</label>
+                </div>
+                <div class="container_gender_wrap">
+                  <input
+                    id="signup_gender_female"
+                    type="checkbox"
+                    name="female"
+                    value="female"
+                  />
+                  <label for="signup_gender_female"> Female</label>
+                </div>
+              </div>
+              <label> Role (*)</label>
+              <select name="" id="" class="form-select">
+                <option value="role">Project Manager</option>
+                <option value="role">Tester</option>
+                <option value="role">Developer</option>
+              </select>
+            </div>
+            <button id="button_signup" class="buttonlogin">Sign Up</button>
+          </form>
+          <div class="loader hidden"></div>
+          <div class="bottomform">
+            <div class="required"><span>*</span>: Required</div>
+            <a href="./new-login.html">Login</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="../../scripts/register.js"></script>
+  </body>
+</html>
