@@ -138,11 +138,17 @@
       <div class="container-fluid">
         <div class="row">
           <!-- Side bar -->
-          <div class="bg-white col-auto col-md-1 min-vh-100">
-            <div class="text-small text-center">
+          <div
+            class="bg-white sidebar d-flex justify-content-center fs-8rem col-auto col-md-1"
+          >
+            <div class="text-center">
               <ul class="nav nav-pills flex-column mt-5">
                 <li class="nav-item py-2">
-                  <a href="#" class="nav-link text-dark" aria-current="page">
+                  <a
+                    href="#"
+                    class="nav-link text-dark text-hover-light"
+                    aria-current="page"
+                  >
                     <img src="../../../public/icons/dash-board.svg" /> <br />
                     Dashboard</a
                   >
@@ -151,7 +157,7 @@
                 <li class="nav-item py-2">
                   <a
                     href="../project/project-list.html"
-                    class="nav-link text-dark"
+                    class="nav-link text-dark text-hover-light"
                   >
                     <img src="../../../public/icons/project-list.svg" /> <br />
                     Project List</a
@@ -159,28 +165,12 @@
                 </li>
 
                 <li class="nav-item py-3">
-                  <a href="../board/board.html" class="nav-link text-dark">
+                  <a
+                    href="../board/board.html"
+                    class="nav-link text-dark text-hover-light"
+                  >
                     <img src="../../../public/icons/board.svg" /> <br />
                     Board</a
-                  >
-                </li>
-                <li class="nav-item py-2">
-                  <a href="#" class="nav-link text-dark">
-                    <img src="../../../public/icons/administration.svg" />
-                    <br />
-                    Administration</a
-                  >
-                </li>
-                <li class="nav-item py-2">
-                  <a href="#" class="nav-link text-dark">
-                    <img src="../../../public/icons/performance.svg" /> <br />
-                    Performance</a
-                  >
-                </li>
-                <li class="nav-item py-2">
-                  <a href="#" class="nav-link text-dark">
-                    <img src="../../../public/icons/team-report.svg" /> <br />
-                    Team Reports</a
                   >
                 </li>
               </ul>
@@ -193,6 +183,13 @@
                 <li class="nav-item">
                   <a class="nav-link" href="../project/over-view.html"
                     >Overview</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a
+                    class="nav-link"
+                    href="../administration/administration.html"
+                    >Administration</a
                   >
                 </li>
                 <li class="nav-item">
@@ -219,15 +216,10 @@
                   >
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Test plans</a>
+                  <a class="nav-link active" href="#">Test run</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link active" href="../issues/issues.html"
-                    >Issues</a
-                  >
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">Reports</a>
+                  <a class="nav-link" href="../issues/issues.html">Issues</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="../project/activity-log.html"
@@ -302,12 +294,14 @@
                   </div>
                 </div>
                 <div class="d-inline-block me-3">
-                  <button
-                    class="btn btn-primary bg-main-color rounded-pill"
-                    id="add-testrun-btn"
+                  <div
+                    id="add-project"
+                    class="mx-4 my-3 d-flex btn custom-bold-btn"
+                    onclick="showDialog()"
                   >
-                    <p class="p-2 mb-0 text-white">Add test run</p>
-                  </button>
+                    <div class="me-2 p-1">Add project</div>
+                    <img src="../../../public/icons/add.svg" alt="" />
+                  </div>
                 </div>
               </div>
             </div>

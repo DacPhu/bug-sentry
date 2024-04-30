@@ -25,14 +25,14 @@
       src="https://kit.fontawesome.com/c77185b29d.js"
       crossorigin="anonymous"
     ></script>
-    <link href="../../styles/global.css" rel="stylesheet" />
     <link rel="stylesheet" href="../../styles/navbar.module.css" />
     <link rel="stylesheet" href="../../styles/administration.module.css" />
+    <link rel="stylesheet" href="../../styles/global.css" />
   </head>
 
   <body>
     <header>
-      <nav class="navbar navbar-expand-sm navbar-light bg-light">
+      <nav class="navbar navbar-expand-sm navbar-light bg-white">
         <div class="container-fluid">
           <a href="../home/home.html">
             <img
@@ -146,29 +146,34 @@
           <div
             class="bg-white sidebar d-flex justify-content-center fs-8rem col-auto col-md-1"
           >
-            <div class="text-small text-center">
+            <div class="text-center">
               <ul class="nav nav-pills flex-column mt-5">
                 <li class="nav-item py-2">
                   <a
                     href="#"
-                    class="nav-link text-dark px-3"
+                    class="nav-link text-dark text-hover-light"
                     aria-current="page"
                   >
                     <img src="../../../public/icons/dash-board.svg" /> <br />
                     Dashboard</a
                   >
                 </li>
+
                 <li class="nav-item py-2">
                   <a
                     href="../project/project-list.html"
-                    class="nav-link text-dark"
+                    class="nav-link text-dark text-hover-light"
                   >
                     <img src="../../../public/icons/project-list.svg" /> <br />
                     Project List</a
                   >
                 </li>
-                <li class="nav-item py-2">
-                  <a href="../board/board.html" class="nav-link text-dark">
+
+                <li class="nav-item py-3">
+                  <a
+                    href="../board/board.html"
+                    class="nav-link text-dark text-hover-light"
+                  >
                     <img src="../../../public/icons/board.svg" /> <br />
                     Board</a
                   >
@@ -186,12 +191,14 @@
                   >
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link active" href="#">Administration</a>
+                  <a
+                    class="nav-link"
+                    href="../administration/administration.html"
+                    >Administration</a
+                  >
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="../requirement/requirements.html"
-                    >Requirements</a
-                  >
+                  <a class="nav-link active" href="#">Requirements</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="../attachment/attachment.html"
@@ -207,18 +214,17 @@
                   <a class="nav-link" href="../module/module.html">Modules</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Test plan</a>
-                </li>
-                <li class="nav-item">
                   <a class="nav-link" href="../testcase/testcase.html"
                     >Test Cases</a
                   >
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="../issues/issues.html">Issues</a>
+                  <a class="nav-link" href="../test-run/test-run.html"
+                    >Test run</a
+                  >
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Reports</a>
+                  <a class="nav-link" href="../issues/issues.html">Issues</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="../project/activity-log.html"
@@ -390,7 +396,7 @@
                 </div>
               </div>
             </div>
-            <div class="container-fluid bg-color1 py-3">
+            <div class="container-fluid bg-grey py-3">
               <div class="row">
                 <div class="col fs-5 text-color-1">Name</div>
                 <div class="col fs-5 text-color-1">Email</div>
@@ -454,12 +460,7 @@
                     class="bg-main-color rounded-circle d-flex justify-content-center align-items-center mx-3"
                     style="width: 40px; height: 40px"
                   >
-                    <h1
-                      class="mb-0 text-light"
-                      style="font-size: 1.5rem"
-                    >
-                      3
-                    </h1>
+                    <h1 class="mb-0 text-light" style="font-size: 1.5rem">3</h1>
                   </div>
                   <button class="border-0 rounded-3 p-2 text-muted me-3">
                     <i class="bi bi-chevron-double-right"></i>
