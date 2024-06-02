@@ -3,8 +3,7 @@
 const controller = {};
 
 controller.showAll = (req, res) => {
-  // res.send("Issue");
-  res.render("issue");
+  res.render("activity_log");
 };
 
 module.exports = controller;

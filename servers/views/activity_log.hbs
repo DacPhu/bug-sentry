@@ -1,0 +1,199 @@
+<!-- Page hiện tại -->
+<div class="container-fluid">
+    <div class="row vh-100">
+        <!-- Side bar -->
+        {{> sidebar_main}}
+        <!-- Main content -->
+        <div class="col-md-11 col-lg-11 col-xl-11 bg-grey px-4">
+            {{> nav_main}}
+            <div class="container-fluid bg-light mt-4 py-2">
+                <div class="row">
+                    <div class="col d-flex align-items-center">
+                        <h5 class="ms-4 my-3">User</h5>
+                        <div class="ms-2 flex-grow-1">
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle p-1 mx-3 w-75" type="button"
+                                    id="dropdownMenu1" data-bs-toggle="dropdown" aria-expanded="false"
+                                    style="min-width: 100px">
+                                    All user
+                                </button>
+                                <ul class="dropdown-menu w-75" aria-labelledby="dropdownMenu1"
+                                    style="position: absolute">
+                                    <li>
+                                        <button class="dropdown-item" type="button">
+                                            Phan Le Dac Phu
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <button class="dropdown-item" type="button">
+                                            Nguyen Ngoc Thien An
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <button class="dropdown-item" type="button">
+                                            Do Khai Hung
+                                        </button>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col d-flex align-items-center">
+                        <h5 class="ms-4 my-3">Activity</h5>
+                        <div class="ms-2 flex-grow-1">
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle p-1 mx-3 w-75" type="button"
+                                    id="dropdownMenu1" data-bs-toggle="dropdown" aria-expanded="false"
+                                    style="min-width: 100px">
+                                    All activity
+                                </button>
+                                <ul class="dropdown-menu w-75" aria-labelledby="dropdownMenu1"
+                                    style="position: absolute">
+                                    <li>
+                                        <button class="dropdown-item" type="button"></button>
+                                    </li>
+                                    <li>
+                                        <button class="dropdown-item" type="button">
+                                            Create
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <button class="dropdown-item" type="button">
+                                            Delete
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <button class="dropdown-item" type="button">
+                                            Update
+                                        </button>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col d-flex align-items-center">
+                        <h5 class="ms-4 my-3">Role</h5>
+                        <div class="ms-2 flex-grow-1">
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle p-1 mx-3 w-75" type="button"
+                                    id="dropdownMenu1" data-bs-toggle="dropdown" aria-expanded="false"
+                                    style="min-width: 100px">
+                                    All role
+                                </button>
+                                <ul class="dropdown-menu w-75" aria-labelledby="dropdownMenu1"
+                                    style="position: absolute">
+                                    <li>
+                                        <button class="dropdown-item" type="button">
+                                            Tester
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <button class="dropdown-item" type="button">
+                                            Developer
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <button class="dropdown-item" type="button">
+                                            Project manager
+                                        </button>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid bg-light py-2">
+                <div class="align-items-center d-flex">
+                    <h5 class="ms-4 my-3">Show</h5>
+                    <div class="ms-2">
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle p-1" type="button" id="dropdownMenu1"
+                                data-bs-toggle="dropdown" aria-expanded="false" style="min-width: 100px">
+                                5
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                <li>
+                                    <button class="dropdown-item" type="button">5</button>
+                                </li>
+                                <li>
+                                    <button class="dropdown-item" type="button">15</button>
+                                </li>
+                                <li>
+                                    <button class="dropdown-item" type="button">20</button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <h5 class="ms-4 my-3">entries</h5>
+                    <div class="ms-auto" style="min-width: 50%">
+                        <div class="input-group rounded">
+                            <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
+                                aria-describedby="search-addon" />
+                            <span class="input-group-text border-0" id="search-addon">
+                                <i class="fas fa-search"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid bg-color1 py-3">
+                <div class="row">
+                    <div class="col fs-5 text-color-1">User name</div>
+                    <div class="col fs-5 text-color-1">title</div>
+                    <div class="col fs-5 text-color-1">Activity</div>
+                    <div class="col fs-5 text-color-1">Action</div>
+                    <div class="col fs-5 text-color-1">Role</div>
+                    <div class="col fs-5 text-color-1">Date</div>
+                </div>
+            </div>
+            <div class="container-fluid bg-light py-3">
+                <div class="row flex-wrap">
+                    <div class="col text-color-1">Nguyen Ngoc Thien An</div>
+                    <div class="col text-color-1">TC1</div>
+                    <div class="col text-color-1">test-case</div>
+                    <div class="col text-color-1">Create</div>
+                    <div class="col text-color-1">Tester</div>
+                    <div class="col text-color-1">1/1/2024</div>
+                </div>
+                <hr />
+                <div class="row flex-wrap">
+                    <div class="col text-color-1">Do Khai Hung</div>
+                    <div class="col text-color-1">TR1</div>
+                    <div class="col text-color-1">test-run</div>
+                    <div class="col text-color-1">Create</div>
+                    <div class="col text-color-1">Developer</div>
+                    <div class="col text-color-1">1/1/2024</div>
+                </div>
+                <hr />
+                <div class="row flex-wrap">
+                    <div class="col text-color-1">Phan Le Dac Phu</div>
+                    <div class="col text-color-1">IS1</div>
+                    <div class="col text-color-1">issue</div>
+                    <div class="col text-color-1">Create</div>
+                    <div class="col text-color-1">Project manager</div>
+                    <div class="col text-color-1">1/1/2024</div>
+                </div>
+                <hr />
+
+                <div class="row mt-5 align-content-center px-3">
+                    <div class="col">
+                        <h4>Showing 1 to 3 of 3 entries</h4>
+                    </div>
+                    <div class="col d-flex align-items-center">
+                        <button class="border-0 rounded-3 p-2 text-muted ms-auto">
+                            <i class="bi bi-chevron-double-left"></i>
+                        </button>
+                        <div class="bg-main-color rounded-circle d-flex justify-content-center align-items-center mx-3"
+                            style="width: 40px; height: 40px">
+                            <h1 class="mb-0 text-light" style="font-size: 1.5rem">1</h1>
+                        </div>
+                        <button class="border-0 rounded-3 p-2 text-muted me-3">
+                            <i class="bi bi-chevron-double-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
