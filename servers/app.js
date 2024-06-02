@@ -25,9 +25,9 @@ app.engine(
 
 app.set("view engine", "hbs");
 
-app.use("/", require("./routes/home_route"));
-app.use("/dashboard", require("./routes/dashboard_route"));
-// app.use("/details", require("./routes/detailRoute"));
+app.use("/", require("./routes/home"));
+app.use("/dashboard", require("./routes/dashboard"));
+app.use("/project", require("./routes/project"));
 
 app.use((req, res) => {
   res.send("Request not found");
