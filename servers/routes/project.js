@@ -12,6 +12,7 @@ const project_controller = require("../controllers/project");
 const release_controller = require("../controllers/release");
 const administration_controller = require("../controllers/administration");
 const attachment_controller = require("../controllers/attachment");
+const activity_controller = require("../controllers/activity");
 router.get("/", project_controller.showAll);
 
 router.get("/add-user", administration_controller.showAddUserForm);
@@ -31,5 +32,6 @@ router.get("/:id/requirement", requirement_controller.showAll);
 router.get("/:id/issue", issue_controller.showAll);
 router.get("/:id/release", release_controller.showAll);
 router.get("/:id/attachment", attachment_controller.showAll);
+router.get("/:id/activity-log", activity_controller.showAll);
 
 module.exports = router;

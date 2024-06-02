@@ -1,18 +1,11 @@
 {
 
   "development": {
-    "username": "bugsentry_db_user",
-    "password": "ep4EqAAJIExJS31OioLZC4MD5x7BGRiR",
-    "database": "bugsentry_db",
-    "host": "dpg-cpe0r57109ks73enupm0-a.oregon-postgres.render.com",
-    "dialect": "postgres",
-    "ssl": true,
-    "dialectOptions": {
-      "ssl": {
-        "require": true,
-        "rejectUnauthorized": false
-      }
-    }
+    "username": "postgres",
+    "password": "postgres",
+    "database": "bugsentry",
+    "host": "localhost",
+    "dialect": "postgres"
   },
   "test": {
     "username": "bugsentry_db_user",

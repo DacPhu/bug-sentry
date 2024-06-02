@@ -1,17 +1,27 @@
-$(document).ready(function () {
-    // Function để hiển thị form add issue
-    $("#add-issue-btn").click(function () {
-        $(".overlay").show(); // hiển thị overlay
-        $(".add-issue-table").show(); // hiển thị add issue table
+$(document).ready(function() {
+    // Ẩn bảng thêm vấn đề khi trang được tải
+    $('.add-issue-table').fadeOut();
+  
+    // Xử lý sự kiện khi nhấp vào nút "Add Issue"
+    $('#add-issue-btn').click(function() {
+      $('.content').fadeIn();
+      $('.overlay').fadeIn();
+      $('.add-issue-table').fadeIn();
     });
-
-    // Function để save issue
-    $("#save-issue-btn").click(function () {
-        $(".overlay, .add-issue-table").hide(); // ẩn overlay và add issue table
+  
+    // Xử lý sự kiện khi nhấp vào nút "Cancel"
+    $('#cancel-issue-btn').click(function() {
+      // Ẩn bảng thêm vấn đề
+      $('.add-issue-table').fadeOut();
+      $('.overlay').fadeOut();
+      // Hiện lại trang hiện tại
+      $('.content').fadeIn();
     });
-
-    // Function để cancel add issue
-    $("#cancel-issue-btn").click(function () {
-        $(".overlay, .add-issue-table").hide(); // ẩn overlay và add issue table
+    $('#save-issue-btn').click(function() {
+      // Ẩn bảng thêm vấn đề
+      $('.add-issue-table').fadeOut();
+      $('.overlay').fadeOut();
+      // Hiện lại trang hiện tại
+      $('.content').fadeIn();
     });
-});
+  });
