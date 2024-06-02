@@ -6,10 +6,14 @@ const formatDate = require("./helpers/time");
 const session = require("express-session");
 const csrf = require("csurf");
 const cookieParser = require("cookie-parser");
-const {errorHandler, authMiddleware, logMiddleware} = require("./middlewares");
+const {
+  errorHandler,
+  authMiddleware,
+  logMiddleware,
+} = require("./middlewares");
 const helpers = require("./helpers");
 const middlewares = require("./middlewares");
-require('dotenv').config();
+require("dotenv").config();
 
 app.use(express.static(__dirname + "/static/"));
 
@@ -26,24 +30,24 @@ app.engine(
     },
     helpers: {
       formatDate: helpers.formatDate,
-      section: helpers.section
+      section: helpers.section,
     },
   })
 );
 
-app.use(session({
-  secret: process.env.SECRET_KEY,
-  resave: false,
-  saveUninitialized: true,
-  cookie: { secure: false } // Set to true if using HTTPS
-}));
+app.use(
+  session({
+    secret: process.env.local.SECRET_KEY,
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false }, // Set to true if using HTTPS
+  })
+);
 
 const csrfProtection = csrf({ cookie: true });
 
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
-
-
 
 app.use(middlewares.logMiddleware);
 app.use(csrfProtection);
@@ -68,4 +72,6 @@ app.use("/role", require("./routes/role"));
 app.use(errorHandler.notFoundHandler);
 app.use(errorHandler.csrfErrorHandler);
 app.use(errorHandler.generalErrorHandler);
-  app.listen(port, () => console.log(`Example app listening on port ${port}! http://localhost:${port}`));
+app.listen(port, () =>
+  console.log(`Example app listening on port ${port}! http://localhost:${port}`)
+);
