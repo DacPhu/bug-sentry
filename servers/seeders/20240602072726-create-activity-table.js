@@ -4,8 +4,7 @@ const { Member, Activity, Project } = require('../models'); // Adjust the path t
 module.exports = {
   async up(queryInterface, Sequelize) {
     // Fetch all members and projects from the database
-    const members = await Member.findAll();
-    const projects = await Project.findAll();
+    const members = await Member.findAll({ limit: 100 });
 
     // Generate activities for each member
     const activities = [];
@@ -17,7 +16,7 @@ module.exports = {
       for (let i = 0; i < activityCount; i++) {
         activities.push({
           member_id: memberId,
-          project_id: projects[Math.floor(Math.random() * projects.length)].id,
+          project_id: member.project_id,
           title_name: `Activity ${i + 1} for Member ${memberId}`,
           action: ['edit', 'add', 'create', 'delete'][Math.floor(Math.random() * 4)],
           time: Sequelize.literal('NOW()'),

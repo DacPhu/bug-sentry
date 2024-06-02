@@ -3,8 +3,11 @@ const { User, Board } = require('../models'); // Adjust the path to your models
 
 module.exports = {
   async up(queryInterface, Sequelize) {
-    // Fetch all users from the database
-    const users = await User.findAll();
+    // Fetch 100 random users from the database
+    const users = await User.findAll({
+      limit: 100,
+      order: Sequelize.literal('random()')
+    });
 
     // Generate boards for each user
     const boards = [];
