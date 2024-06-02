@@ -29,7 +29,7 @@
                             </div>
                         </div>
                         <div class="col-2">
-                            <div class="mb-4 mt-2 d-flex btn check-btn text-center align-center" onclick="checkUserRole()">Check</div>
+                            <div class="mb-4 mt-2 d-flex btn check-btn text-center align-center" onclick="checkUserInfo()">Check</div>
                         </div>
                     </div>
                     
@@ -41,6 +41,7 @@
                             <input
                             type="text"
                             class="form-control"
+                            id="first-name"
                             placeholder="First Name"
                             aria-label="First name"
                             disabled="true"
@@ -53,6 +54,7 @@
                             <input
                             type="text"
                             class="form-control"
+                            id="last-name"
                             placeholder="Last Name"
                             aria-label="Last name"
                             disabled="true"
@@ -62,14 +64,44 @@
                 </div>
                 
                  <span class="fs-6 font-weight-semibold">Username</span>
-
                 <div class="input-group w-100 mb-4 mt-2">
                     <input
                     type="text"
                     class="form-control"
+                    id="username"
                     placeholder="Username"
                     aria-label="Username"
                     disabled="true"
+                    />
+                </div>
+
+                <div class="input-group w-100">
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="projectId"
+                        hidden="true"
+                        value="{{projectId}}"
+                    />
+                </div>
+
+                <div class="input-group w-100">
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="userId"
+                        hidden="true"
+                        value=""
+                    />
+                </div>
+
+                <div class="input-group w-100">
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="roleId"
+                        hidden="true"
+                        value=""
                     />
                 </div>
 
@@ -92,11 +124,12 @@
 
                 <div class="d-flex justify-content-around flex-column p-3">
                     <input
-                    type="text"
-                    class="form-control"
-                    placeholder="Role"
-                    aria-label="Role"
-                    disabled="true"
+                        type="text"
+                        id="role-info"
+                        class="form-control"
+                        placeholder="Role"
+                        aria-label="Role"
+                        disabled="true"
                     />
                     <p style="margin-top:0.5rem">
                     <b>Tester</b>
@@ -129,7 +162,7 @@
                 </div>
             </div>
             <div class="d-flex m-3 justify-content-center">
-                <div class="ps-3 pe-3 ms-4 d-flex btn save-btn">Save</div>
+                <div class="ps-3 pe-3 ms-4 d-flex btn save-btn" onclick="submitAssignUserForm()">Save</div>
                 <div
                 class="closePopup btn text-center ps-3 pe-3 ms-4 cancel-btn"
                 >
@@ -143,50 +176,6 @@
     </div>
 </main>
 
-<div
-    id="projectPopup"
-    class="vh-100 position-absolute overlay position-absolute top-0 bottom-0 start-0 end-0"
->
-    <div
-    class="d-flex justify-content-center align-items-center w-100 position-absolute top-0 bottom-0 start-0 end-0"
-    >
-    <!-- main content -->
-    <div class="w-25 shadow bg-white rounded-4">
-        <div class="m-2 mt-2 bg-white semi-rounded">
-        <div class="container p-4 position-relative">
-            <img
-            class="closePopup position-absolute top-0 end-0 pointer-cursor"
-            width="30px"
-            src="../../../public/icons/clarity_remove-line.svg"
-            alt=""
-            />
-            <h6 class="text-left fs-4">Create Project</h6>
-            <div class="d-flex justify-content-between gap-5 mb-4">
-            <div class="flex-fill">
-                <span class="fs-6 font-weight-semibold">Name<span
-                    class="text-danger"
-                >*</span></span>
-                <textarea
-                class="form-control"
-                aria-label="With textarea"
-                name="project-name"
-                ></textarea>
-            </div>
-            </div>
-            <div class="d-flex justify-content-center" id="createProject">
-            <div class="ps-3 pe-3 ms-4 d-flex btn save-btn">Create</div>
-            <div
-                class="closePopup btn text-center ps-3 pe-3 ms-4 cancel-btn"
-            >
-                Cancel
-            </div>
-            </div>
-        </div>
-        <hr />
-        </div>
-    </div>
-    </div>
-</div>
 <script
     src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
     integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
@@ -205,37 +194,80 @@
 <script src="/scripts/sort.js"></script>
 <script src="/scripts/add-user.js"></script>
 <script>
-    async function checkUserRole() {
-      const emailInput = document.getElementById('email-input');
-      const email = emailInput.value.trim();
+    async function checkUserInfo() {
+        const emailInput = document.getElementById('email-input');
+        const email = emailInput.value.trim();
 
-      if (!email) {
-        alert("Email is required");
-        return;
-      }
-
-      try {
-        const response = await fetch('/getUserRole', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ email })
-        });
-
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
+        if (!email) {
+            alert("Email is required");
+            return;
         }
 
-        const data = await response.json();
+        try {
+            const response = await fetch('/user?email=' + encodeURIComponent(email), {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
 
-        if (data.message) {
-          alert(data.message);
-        } else {
-          document.getElementById('role-info').innerText = `Role: ${data.role}`;
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+
+            const data = await response.json();
+
+            if (data.message) {
+                alert(data.message);
+            } else {
+                document.getElementById('role-info').value = `${data.user.role_name}`;
+                document.getElementById('first-name').value = `${data.user.first_name}`;
+                document.getElementById('last-name').value = `${data.user.last_name}`;
+                document.getElementById('username').value = `${data.user.username}`;
+                document.getElementById('userId').value = `${data.user.id}`;
+                document.getElementById('roleId').value = `${data.user.role_id}`;
+            }
+        } catch (error) {
+            console.error('There has been a problem with your fetch operation:', error);
         }
-      } catch (error) {
-        console.error('There has been a problem with your fetch operation:', error);
-      }
     }
-  </script>
+</script>
+
+<script>
+    async function postUserData() {
+        const user_id = document.getElementById('userId').value;
+        const project_id = document.getElementById('projectId').value;
+        const role_id = document.getElementById('roleId').value;
+        const status = (document.getElementById('status').value === "1") ? 1 : 0;
+
+        try {
+            const response = await fetch('/administration', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                    user_id,
+                    project_id,
+                    role_id,
+                    status
+                })
+            });
+
+            if (!response.ok) {
+            throw new Error('Network response was not ok');
+            }
+
+            const data = await response.json();
+
+            if (data.message) {
+            alert(data.message);
+            } else {
+            alert('User data posted successfully');
+            }
+        } catch (error) {
+            console.error('There has been a problem with your fetch operation:', error);
+        }
+    }
+
+</script>

@@ -29,6 +29,7 @@ app.use("/", require("./routes/home"));
 app.use("/dashboard", require("./routes/dashboard"));
 app.use("/project", require("./routes/project"));
 app.use("/user", require("./routes/user"));
+app.use("/role", require("./routes/role"));
 
 app.use((req, res) => {
   res.send("Request not found");

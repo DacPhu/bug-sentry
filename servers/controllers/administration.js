@@ -9,7 +9,8 @@ controller.showAll = (req, res) => {
 };
 
 controller.showAddUserForm = (req, res) => {
-  res.render("addUser");
+  const projectId = req.query.id;
+  res.render("addUser", { projectId });
 };
 
 controller.getUserRole = async (req, res) => {
@@ -47,21 +48,13 @@ controller.getUserRole = async (req, res) => {
 };
 
 controller.addUserToProject = async (req, res) => {
-  const { username, roleId, projectId } = req.body;
+  const { userId, projectId, roleId } = req.body;
 
-  if (!username || !roleId || !projectId) {
-    return res.render("/project/addUser", {
-      errorMessage: "Username, roleId, projectId are required.",
-    });
-  }
+  //   if (!userId || !roleId || !projectId) {
+  //     return res.status(400).
+  //   }
 
   try {
-    whereClause = {
-      [models.Sequelize.Op.or]: [
-        { username: { [models.Sequelize.Op.like]: `%${searchQuery}%` } },
-      ],
-    };
-
     const users = await models.User.findAll({
       where: whereClause,
       attributes: ["id", "username", "role_id"],
@@ -70,7 +63,7 @@ controller.addUserToProject = async (req, res) => {
       offset: offset,
     });
 
-    await models.User.create({
+    await models.Member.create({
       firstName,
       lastName,
       username,
