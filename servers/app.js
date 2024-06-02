@@ -37,7 +37,7 @@ app.engine(
 
 app.use(
   session({
-    secret: process.env.local.SECRET_KEY,
+    secret: process.env.SECRET_KEY,
     resave: false,
     saveUninitialized: true,
     cookie: { secure: false }, // Set to true if using HTTPS
