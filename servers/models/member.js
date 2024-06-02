@@ -8,13 +8,14 @@ module.exports = (sequelize, DataTypes) => {
       Member.belongsTo(models.Project, { foreignKey: "project_id" });
 
       Member.hasMany(models.Activity, { foreignKey: "member_id" });
-      Member.hasMany(models.TestCase, { foreignKey: "member_id" });
-      Member.hasMany(models.TestRun, { foreignKey: "member_id" });
-      Member.hasMany(models.Release, { foreignKey: "member_id" });
-      Member.hasMany(models.Requirement, { foreignKey: "member_id" });
-      Member.hasMany(models.Comment, { foreignKey: "created_by" });
-      Member.hasMany(models.Board, { foreignKey: "created_by" });
-      Member.hasMany(models.NoteBoard, { foreignKey: "created_by" });
+      Member.hasMany(models.TestCase, { foreignKey: "tester_id" });
+      Member.hasMany(models.TestRun, { foreignKey: "tester_id" });
+      Member.hasMany(models.Release, { foreignKey: "created_by" });
+      Member.hasMany(models.Module, { foreignKey: "created_by" });
+
+      Member.hasMany(models.Requirement, { foreignKey: "created_by" });
+      Member.hasMany(models.Comment, { foreignKey: "member_id" });
+      Member.hasMany(models.Board, { foreignKey: "user_id" });
       Member.hasMany(models.Notification, { foreignKey: "user_id" });
     }
   }
@@ -49,6 +50,10 @@ module.exports = (sequelize, DataTypes) => {
           model: "Role",
           key: "id",
         },
+      },
+      status: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: true
       },
     },
     {

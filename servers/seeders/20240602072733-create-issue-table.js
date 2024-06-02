@@ -1,5 +1,5 @@
 'use strict';
-const { Project, Member, Issue } = require('../models'); // Adjust the path to your models
+const { Project, Member, Issue } = require('../models'); 
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {

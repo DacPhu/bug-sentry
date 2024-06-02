@@ -1,12 +1,12 @@
 'use strict';
-const { Board, NoteBoard } = require('../models'); // Adjust the path to your models
+const { Board, NoteBoard } = require('../models'); 
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
     // Fetch all boards from the database
     const boards = await Board.findAll();
-
+    console.log(boards)
     // Generate note boards for each board
     const noteBoards = [];
     for (const board of boards) {
@@ -23,6 +23,8 @@ module.exports = {
         });
       }
     }
+
+    console.log(noteBoards)
     await queryInterface.bulkInsert('note_boards', noteBoards, {});
   },
 

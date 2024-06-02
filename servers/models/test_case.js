@@ -29,6 +29,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       sequelize,
       modelName: "TestCase",
+      tableName: "test_cases",
       timestamps: false,
       indexes: [
         {
