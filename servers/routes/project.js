@@ -10,10 +10,12 @@ const module_controller = require("../controllers/module");
 const issue_controller = require("../controllers/issue");
 const project_controller = require("../controllers/project");
 const release_controller = require("../controllers/release");
+const administration_controller = require("../controllers/administration");
 
 router.get("/", project_controller.showAll);
-router.get("/:id", project_controller.showOverview);
+router.get("/:id/", project_controller.showOverview);
 
+router.get("/:id/administration", administration_controller.showAll);
 router.get("/:id/testrun", testrun_controller.showAll);
 router.get("/:id/testcase", testcase_controller.showAll);
 router.get("/:id/module", module_controller.showAll);
