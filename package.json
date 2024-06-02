@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "express-handlebars-paginate": "^1.0.3",
+    "pg": "^8.11.5",
+    "pg-hstore": "^2.3.4"
+  }
+}

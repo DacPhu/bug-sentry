@@ -48,6 +48,11 @@
   color: #fff;
 }
 
+.check-btn:hover {
+  background-color: var(--primary-color);
+  color: #fff;
+}
+
 .cancel-btn:hover {
   background-color: #c94c4c;
   color: #fff;
@@ -96,6 +101,11 @@
 }
 
 .save-btn {
+  background-color: var(--active-blue-btn-color);
+  color: #fff;
+}
+
+.check-btn {
   background-color: var(--active-blue-btn-color);
   color: #fff;
 }
