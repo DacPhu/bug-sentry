@@ -4,4 +4,4 @@ const formatDate = function (dateString, format) {
   return moment(dateString).format(format);
 };
 
-module.exports = formatDate;
+module.exports = {formatDate};
