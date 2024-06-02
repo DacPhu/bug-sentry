@@ -7,7 +7,6 @@ module.exports = (sequelize, DataTypes) => {
       User.belongsTo(models.Role, { foreignKey: "role_id" });
       User.hasMany(models.Project, { foreignKey: "project_manager_id" });
       User.hasMany(models.Member, { foreignKey: "user_id" });
-     
     }
   }
 
@@ -22,7 +21,11 @@ module.exports = (sequelize, DataTypes) => {
       address: DataTypes.TEXT,
       phone_number: DataTypes.STRING,
       profile_picture: DataTypes.STRING,
-      created_at: { type: DataTypes.DATE, allowNull: false, defaultValue: sequelize.literal('CURRENT_TIMESTAMP') },
+      created_at: {
+        type: DataTypes.DATE,
+        allowNull: false,
+        defaultValue: sequelize.literal("CURRENT_TIMESTAMP"),
+      },
       status: DataTypes.STRING,
     },
     {
