@@ -1,2 +1,4 @@
 *.local
 .vscode/*
+node_modules/*
+servers/node_modules/*
