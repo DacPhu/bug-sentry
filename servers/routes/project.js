@@ -13,7 +13,7 @@ const release_controller = require("../controllers/release");
 const administration_controller = require("../controllers/administration");
 
 router.get("/", project_controller.showAll);
-router.get("/:id/", project_controller.showOverview);
+router.get("/:id", project_controller.showOverview);
 
 router.get("/:id/administration", administration_controller.showAll);
 router.get("/:id/testrun", testrun_controller.showAll);
