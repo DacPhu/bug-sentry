@@ -19,15 +19,11 @@ controller.createProject = async (req, res) => {
   }
 
   try {
-    res.redirect("project");
+    res.redirect("/project");
   } catch (error) {
     console.error("Error creating project: ", error);
     res.send("Can not create project!");
   }
 };
 
-controller.addUser = async (req, res) => {};
-
-controller.removeUser = async (req, res) => {};
-controller.editUser = async (req, res) => {};
 module.exports = controller;

@@ -1,0 +1,524 @@
+<main class="bg-grey" style="height: 100vh">
+  <div class="row">
+    {{> sidebar_main}}
+    <div class="bg-grey col-md-11">
+      <section class="container-fluid" id="section-owned-board">
+        {{> nav_main}}
+        <div class="row">
+          <div class="col-md-6">
+            <div class="m-3">
+              <input
+                type="text"
+                class="form-control"
+                name=""
+                id=""
+                aria-describedby="helpId"
+                placeholder="Search by board name"
+              />
+            </div>
+          </div>
+          <div class="col-md-6 d-flex justify-content-end">
+            <div class="align-content-center">
+              <div class="btn-group sort-btn">
+                <button
+                  class="btn btn-primary"
+                  type="button"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  id="dropdownSort"
+                  data-bs-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  style="background-color: #034f75"
+                >
+                  Sort
+                </button>
+                <button
+                  class="btn btn-primary"
+                  data-sort="none"
+                  style="background-color: #034f75"
+                >
+                  <i class="fa fa-sort"></i>
+                </button>
+                <ul class="dropdown-menu p-2" aria-labelledby="dropdownSort">
+                  <li>
+                    <a
+                      href="#"
+                      tabindex="-1"
+                      data-type="alpha"
+                      style="text-decoration: none"
+                    >Name</a>
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      tabindex="-1"
+                      data-type="numeric"
+                      style="text-decoration: none"
+                    >Date</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div
+              id="add-board"
+              class="mx-4 my-3 d-flex btn custom-bold-btn"
+              onclick="showDialog()"
+            >
+              <div class="me-2 p-1">Add board</div>
+              <img src="/icons/add.svg" alt="" />
+            </div>
+          </div>
+        </div>
+        <div class="container bg-white">
+          <div class="row p-5">
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
+              <a href="../board/detail-board.html">
+                <div class="bg-white">
+                  <div class="card">
+                    <div class="card-body">
+                      <div class="d-flex justify-content-between">
+                        <div class="d-flex">
+                          <img src="/icons/board.svg" />
+                          <div class="p-2">
+                            <h4 class="card-title">Board 1</h4>
+                            <p style="font-size: 0.75rem">
+                              Last updated on March 16, 2024
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <hr />
+                      <div class="d-flex justify-content-between">
+                        <div class="btn custom-bold-btn">
+                          <i class="bi bi-person-plus"></i>
+                        </div>
+                        <div class="btn btn-danger">
+                          <i class="bi bi-trash"></i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
+              <a href="../board/detail-board.html">
+                <div class="bg-white">
+                  <div class="card">
+                    <div class="card-body">
+                      <div class="d-flex justify-content-between">
+                        <div class="d-flex">
+                          <img src="/icons/board.svg" />
+                          <div class="p-2">
+                            <h4 class="card-title">Board 1</h4>
+                            <p style="font-size: 0.75rem">
+                              Last updated on March 16, 2024
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <hr />
+                      <div class="d-flex justify-content-between">
+                        <div class="btn custom-bold-btn">
+                          <i class="bi bi-person-plus"></i>
+                        </div>
+                        <div class="btn btn-danger">
+                          <i class="bi bi-trash"></i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
+              <a href="../board/detail-board.html">
+                <div class="bg-white">
+                  <div class="card">
+                    <div class="card-body">
+                      <div class="d-flex justify-content-between">
+                        <div class="d-flex">
+                          <img src="/icons/board.svg" />
+                          <div class="p-2">
+                            <h4 class="card-title">Board 1</h4>
+                            <p style="font-size: 0.75rem">
+                              Last updated on March 16, 2024
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <hr />
+                      <div class="d-flex justify-content-between">
+                        <div class="btn custom-bold-btn">
+                          <i class="bi bi-person-plus"></i>
+                        </div>
+                        <div class="btn btn-danger">
+                          <i class="bi bi-trash"></i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
+              <a href="../board/detail-board.html">
+                <div class="bg-white">
+                  <div class="card">
+                    <div class="card-body">
+                      <div class="d-flex justify-content-between">
+                        <div class="d-flex">
+                          <img src="/icons/board.svg" />
+                          <div class="p-2">
+                            <h4 class="card-title">Board 1</h4>
+                            <p style="font-size: 0.75rem">
+                              Last updated on March 16, 2024
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <hr />
+                      <div class="d-flex justify-content-between">
+                        <div class="btn custom-bold-btn">
+                          <i class="bi bi-person-plus"></i>
+                        </div>
+                        <div class="btn btn-danger">
+                          <i class="bi bi-trash"></i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
+              <a href="../board/detail-board.html">
+                <div class="bg-white">
+                  <div class="card">
+                    <div class="card-body">
+                      <div class="d-flex justify-content-between">
+                        <div class="d-flex">
+                          <img src="/icons/board.svg" />
+                          <div class="p-2">
+                            <h4 class="card-title">Board 1</h4>
+                            <p style="font-size: 0.75rem">
+                              Last updated on March 16, 2024
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <hr />
+                      <div class="d-flex justify-content-between">
+                        <div class="btn custom-bold-btn">
+                          <i class="bi bi-person-plus"></i>
+                        </div>
+                        <div class="btn btn-danger">
+                          <i class="bi bi-trash"></i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
+              <a href="../board/detail-board.html">
+                <div class="bg-white">
+                  <div class="card">
+                    <div class="card-body">
+                      <div class="d-flex justify-content-between">
+                        <div class="d-flex">
+                          <img src="/icons/board.svg" />
+                          <div class="p-2">
+                            <h4 class="card-title">Board 1</h4>
+                            <p style="font-size: 0.75rem">
+                              Last updated on March 16, 2024
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <hr />
+                      <div class="d-flex justify-content-between">
+                        <div class="btn custom-bold-btn">
+                          <i class="bi bi-person-plus"></i>
+                        </div>
+                        <div class="btn btn-danger">
+                          <i class="bi bi-trash"></i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+          <div class="row mt-5 align-content-center px-3">
+            <div class="col">
+              <h4>Showing 1 to 6 of 6 entries</h4>
+            </div>
+            <div class="col d-flex align-items-center">
+              <button class="border-0 rounded-3 p-2 text-muted ms-auto">
+                <i class="bi bi-chevron-double-left"></i>
+              </button>
+              <div
+                class="bg-main-color rounded-circle d-flex justify-content-center align-items-center mx-3"
+                style="width: 40px; height: 40px"
+              >
+                <h1 class="mb-0 text-light" style="font-size: 1.5rem">1</h1>
+              </div>
+              <button class="border-0 rounded-3 p-2 text-muted me-3">
+                <i class="bi bi-chevron-double-right"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section
+        class="container-fluid"
+        id="section-joined-board"
+        style="display: none"
+      >
+        <nav class="navbar navbar-expand navbar-light">
+          <ul class="nav navbar-nav" id="navbar-in-project">
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                href="#"
+                onclick="toggleSection('section-owned-board')"
+              >Owned</a>
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link active"
+                href="#"
+                onclick="toggleSection('section-joined-board')"
+              >Joined</a>
+            </li>
+          </ul>
+        </nav>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="m-3">
+              <input
+                type="text"
+                class="form-control"
+                name=""
+                id=""
+                aria-describedby="helpId"
+                placeholder="Search by board name"
+              />
+            </div>
+          </div>
+          <div class="col-md-6 d-flex justify-content-end">
+            <div class="align-content-center pe-4">
+              <div class="btn-group sort-btn">
+                <button
+                  class="btn btn-primary"
+                  type="button"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  id="dropdownSort"
+                  data-bs-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  style="background-color: #034f75"
+                >
+                  Sort
+                </button>
+                <button
+                  class="btn btn-primary"
+                  data-sort="none"
+                  style="background-color: #034f75"
+                >
+                  <i class="fa fa-sort"></i>
+                </button>
+                <ul class="dropdown-menu p-2" aria-labelledby="dropdownSort">
+                  <li>
+                    <a
+                      href="#"
+                      tabindex="-1"
+                      data-type="alpha"
+                      style="text-decoration: none"
+                    >Name</a>
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      tabindex="-1"
+                      data-type="numeric"
+                      style="text-decoration: none"
+                    >Date</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="container bg-white">
+          <div class="row p-5">
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
+              <a href="../board/detail-board.html">
+                <div class="bg-white">
+                  <div class="card">
+                    <div class="card-body">
+                      <div class="d-flex justify-content-between">
+                        <div class="d-flex">
+                          <img src="/icons/board.svg" />
+                          <div class="p-2">
+                            <h4 class="card-title">Board 1</h4>
+                            <p style="font-size: 0.75rem">
+                              Created by Phan Le Dac Phu
+                            </p>
+                            <p style="font-size: 0.75rem">
+                              Last updated on March 16, 2024
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <hr />
+                      <div class="d-flex justify-content-end">
+                        <div class="btn bg-active-blue-color text-white">
+                          <i class="bi bi-box-arrow-right"></i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
+              <a href="../board/detail-board.html">
+                <div class="bg-white">
+                  <div class="card">
+                    <div class="card-body">
+                      <div class="d-flex justify-content-between">
+                        <div class="d-flex">
+                          <img src="/icons/board.svg" />
+                          <div class="p-2">
+                            <h4 class="card-title">Board 1</h4>
+                            <p style="font-size: 0.75rem">
+                              Created by Phan Le Dac Phu
+                            </p>
+                            <p style="font-size: 0.75rem">
+                              Last updated on March 16, 2024
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <hr />
+                      <div class="d-flex justify-content-end">
+                        <div class="btn bg-active-blue-color text-white">
+                          <i class="bi bi-box-arrow-right"></i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
+              <a href="../board/detail-board.html">
+                <div class="bg-white">
+                  <div class="card">
+                    <div class="card-body">
+                      <div class="d-flex justify-content-between">
+                        <div class="d-flex">
+                          <img src="/icons/board.svg" />
+                          <div class="p-2">
+                            <h4 class="card-title">Board 1</h4>
+                            <p style="font-size: 0.75rem">
+                              Created by Phan Le Dac Phu
+                            </p>
+                            <p style="font-size: 0.75rem">
+                              Last updated on March 16, 2024
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <hr />
+                      <div class="d-flex justify-content-end">
+                        <div class="btn bg-active-blue-color text-white">
+                          <i class="bi bi-box-arrow-right"></i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
+              <a href="../board/detail-board.html">
+                <div class="bg-white">
+                  <div class="card">
+                    <div class="card-body">
+                      <div class="d-flex justify-content-between">
+                        <div class="d-flex">
+                          <img src="/icons/board.svg" />
+                          <div class="p-2">
+                            <h4 class="card-title">Board 1</h4>
+                            <p style="font-size: 0.75rem">
+                              Created by Phan Le Dac Phu
+                            </p>
+                            <p style="font-size: 0.75rem">
+                              Last updated on March 16, 2024
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <hr />
+                      <div class="d-flex justify-content-end">
+                        <div class="btn bg-active-blue-color text-white">
+                          <i class="bi bi-box-arrow-right"></i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+          <div class="row mt-5 align-content-center px-3 pb-4">
+            <div class="col">
+              <h4>Showing 1 to 4 of 4 entries</h4>
+            </div>
+            <div class="col d-flex align-items-center">
+              <button class="border-0 rounded-3 p-2 text-muted ms-auto">
+                <i class="bi bi-chevron-double-left"></i>
+              </button>
+              <div
+                class="bg-main-color rounded-circle d-flex justify-content-center align-items-center mx-3"
+                style="width: 40px; height: 40px"
+              >
+                <h1 class="mb-0 text-light" style="font-size: 1.5rem">1</h1>
+              </div>
+              <button class="border-0 rounded-3 p-2 text-muted me-3">
+                <i class="bi bi-chevron-double-right"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</main>
+<footer>
+  <!-- place footer here -->
+</footer>
+<!-- Bootstrap JavaScript Libraries -->
+<script
+  src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+  integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+  crossorigin="anonymous"
+></script>
+
+<script
+  src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+  integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+  crossorigin="anonymous"
+></script>
+<script
+  src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"
+></script>
+<script src="../../scripts/sort.js"></script>
+<script src="../../scripts/change-board-type.js"></script>

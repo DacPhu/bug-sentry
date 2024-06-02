@@ -1,5 +1,5 @@
-'use strict';
-const { Model } = require('sequelize');
+"use strict";
+const { Model } = require("sequelize");
 
 module.exports = (sequelize, DataTypes) => {
   class Project extends Model {
@@ -11,51 +11,54 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       Project.belongsTo(models.User, {
-        foreignKey: 'project_manager_id',
-        as: 'projectManager',
-        onUpdate: 'CASCADE',
-        onDelete: 'SET NULL'
+        foreignKey: "project_manager_id",
+        as: "projectManager",
+        onUpdate: "CASCADE",
+        onDelete: "SET NULL",
       });
     }
   }
 
-  Project.init({
-    id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      autoIncrement: true,
-      primaryKey: true
-    },
-    name: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    created_at: {
-      type: DataTypes.DATE,
-      allowNull: false,
-      defaultValue: DataTypes.NOW
-    },
-    project_manager_id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: 'users',
-        key: 'id'
+  Project.init(
+    {
+      id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
       },
-      onUpdate: 'CASCADE',
-      onDelete: 'SET NULL'
+      name: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      created_at: {
+        type: DataTypes.DATE,
+        allowNull: false,
+        defaultValue: DataTypes.NOW,
+      },
+      project_manager_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+          model: "users",
+          key: "id",
+        },
+        onUpdate: "CASCADE",
+        onDelete: "SET NULL",
+      },
+      number_of_members: {
+        type: DataTypes.INTEGER,
+        defaultValue: 1,
+      },
     },
-    number_of_members: {
-      type: DataTypes.INTEGER,
-      defaultValue: 1
+    {
+      sequelize,
+      modelName: "Project",
+      tableName: "projects",
+      underscored: true,
+      timestamps: false,
     }
-  }, {
-    sequelize,
-    modelName: 'Project',
-    tableName: 'projects',
-    underscored: true,
-    timestamps: false
-  });
+  );
 
   return Project;
 };

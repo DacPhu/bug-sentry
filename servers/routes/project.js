@@ -15,9 +15,11 @@ const attachment_controller = require("../controllers/attachment");
 const activity_controller = require("../controllers/activity");
 router.get("/", project_controller.showAll);
 
+router.get("/addUser", administration_controller.showAddUserForm);
+
 router.get("/:id", (req, res) => {
   const { id } = req.params;
-  res.redirect(`${id}/overview`);
+  if (id) res.redirect(`/${id}/overview`);
 });
 
 router.get("/:id/overview", project_controller.showOverview);

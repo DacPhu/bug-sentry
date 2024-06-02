@@ -1,0 +1,241 @@
+<main class="bg-grey">
+    <div class="container-fluid">
+    <div class="row">
+        <!-- Side bar -->
+        {{> sidebar_main}}
+
+        <div class="bg-grey col-md-11">
+        <div class="row">
+            <div class="col-md-6 px-5 py-3"><h1>Create New User</h1></div>
+            <div class="col-md-6"></div>
+        </div>
+        <div class="container bg-white">
+            <div class="container p-4 position-relative">
+            <div class="row gap-5">
+                <div class="col-5">
+                    <div class="row">
+                        <span class="fs-6 font-weight-semibold">Email<span
+                                class="text-danger"
+                                >*</span></span>
+                        <div class="col-10">
+                            <div class="input-group w-100 mb-4 mt-2">
+                                <input
+                                type="email"
+                                id="email-input"
+                                class="form-control"
+                                placeholder="abc@gmail.com"
+                                aria-label="Email"
+                                />
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <div class="mb-4 mt-2 d-flex btn check-btn text-center align-center" onclick="checkUserRole()">Check</div>
+                        </div>
+                    </div>
+                    
+                
+                <div class="row">
+                    <div class="col-6">
+                        <span class="fs-6 font-weight-semibold">First Name</span>
+                        <div class="input-group w-100 mb-4 mt-2">
+                            <input
+                            type="text"
+                            class="form-control"
+                            placeholder="First Name"
+                            aria-label="First name"
+                            disabled="true"
+                            />
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <span class="fs-6 font-weight-semibold">Last Name</span>
+                        <div class="input-group w-100 mb-4 mt-2">
+                            <input
+                            type="text"
+                            class="form-control"
+                            placeholder="Last Name"
+                            aria-label="Last name"
+                            disabled="true"
+                            />
+                        </div>
+                    </div>
+                </div>
+                
+                 <span class="fs-6 font-weight-semibold">Username</span>
+
+                <div class="input-group w-100 mb-4 mt-2">
+                    <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Username"
+                    aria-label="Username"
+                    disabled="true"
+                    />
+                </div>
+
+                <span class="fs-6 font-weight-semibold">Status<span
+                    class="text-danger"
+                    >*</span></span>
+                <select
+                    class="form-select w-100 mb-3 mt-2"
+                    aria-label="Default select example"
+                >
+                    <option value="1" selected>Active</option>
+                    <option value="2">Inactive</option>
+                </select>
+                </div>
+
+                <div class="col-6 flex-column">
+                <div class="d-flex justify-content-between w-67 gap-2">
+                    <span>Role <span class="text-danger">*</span></span>
+                </div>
+
+                <div class="d-flex justify-content-around flex-column p-3">
+                    <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Role"
+                    aria-label="Role"
+                    disabled="true"
+                    />
+                    <p style="margin-top:0.5rem">
+                    <b>Tester</b>
+                    - Users with access type Tester will have access to
+                    Dashboard and Projects Assigned to them(Overview,
+                    Requirements, Attachments, Releases, Modules, Test
+                    Cases, Test Plans, Test Runs, Issues, Jira Issues,
+                    Reports, Project Integration Mapping)
+                    </p>
+                    <p>
+                    <b>Developer</b>
+                    - Users with access type Developer will have access only
+                    to Issues of Projects Assigned to them.
+                    </p>
+                    <a href="#"> Read more...</a>
+                </div>
+                <div class="d-flex justify-content-between w-67 gap-2">
+                    <span>File</span>
+                </div>
+                <div
+                    class="d-flex flex-justify-content-around flex-row p-3"
+                >
+                    <input
+                    type="file"
+                    class="form-control"
+                    name="project-file"
+                    aria-label="File input"
+                    />
+                </div>
+                </div>
+            </div>
+            <div class="d-flex m-3 justify-content-center">
+                <div class="ps-3 pe-3 ms-4 d-flex btn save-btn">Save</div>
+                <div
+                class="closePopup btn text-center ps-3 pe-3 ms-4 cancel-btn"
+                >
+                Cancel
+                </div>
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
+    </div>
+</main>
+
+<div
+    id="projectPopup"
+    class="vh-100 position-absolute overlay position-absolute top-0 bottom-0 start-0 end-0"
+>
+    <div
+    class="d-flex justify-content-center align-items-center w-100 position-absolute top-0 bottom-0 start-0 end-0"
+    >
+    <!-- main content -->
+    <div class="w-25 shadow bg-white rounded-4">
+        <div class="m-2 mt-2 bg-white semi-rounded">
+        <div class="container p-4 position-relative">
+            <img
+            class="closePopup position-absolute top-0 end-0 pointer-cursor"
+            width="30px"
+            src="../../../public/icons/clarity_remove-line.svg"
+            alt=""
+            />
+            <h6 class="text-left fs-4">Create Project</h6>
+            <div class="d-flex justify-content-between gap-5 mb-4">
+            <div class="flex-fill">
+                <span class="fs-6 font-weight-semibold">Name<span
+                    class="text-danger"
+                >*</span></span>
+                <textarea
+                class="form-control"
+                aria-label="With textarea"
+                name="project-name"
+                ></textarea>
+            </div>
+            </div>
+            <div class="d-flex justify-content-center" id="createProject">
+            <div class="ps-3 pe-3 ms-4 d-flex btn save-btn">Create</div>
+            <div
+                class="closePopup btn text-center ps-3 pe-3 ms-4 cancel-btn"
+            >
+                Cancel
+            </div>
+            </div>
+        </div>
+        <hr />
+        </div>
+    </div>
+    </div>
+</div>
+<script
+    src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+    crossorigin="anonymous"
+></script>
+
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+    integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+    crossorigin="anonymous"
+></script>
+
+<script
+    src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"
+></script>
+<script src="/scripts/sort.js"></script>
+<script src="/scripts/add-user.js"></script>
+<script>
+    async function checkUserRole() {
+      const emailInput = document.getElementById('email-input');
+      const email = emailInput.value.trim();
+
+      if (!email) {
+        alert("Email is required");
+        return;
+      }
+
+      try {
+        const response = await fetch('/getUserRole', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ email })
+        });
+
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+
+        const data = await response.json();
+
+        if (data.message) {
+          alert(data.message);
+        } else {
+          document.getElementById('role-info').innerText = `Role: ${data.role}`;
+        }
+      } catch (error) {
+        console.error('There has been a problem with your fetch operation:', error);
+      }
+    }
+  </script>

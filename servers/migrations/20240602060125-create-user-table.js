@@ -48,9 +48,6 @@ module.exports = {
         type: Sequelize.DATE,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
       },
-      status: {
-        type: Sequelize.STRING
-      },
       role_id: {
         type: Sequelize.INTEGER,
         references: {

@@ -24,6 +24,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       sequelize,
       modelName: "TestRun",
+      tableName: "test_runs",
       timestamps: false,
       indexes: [
         {
