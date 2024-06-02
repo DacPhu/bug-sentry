@@ -21,16 +21,12 @@ module.exports = (sequelize, DataTypes) => {
       address: DataTypes.TEXT,
       phone_number: DataTypes.STRING,
       profile_picture: DataTypes.STRING,
-      created_at: {
-        type: DataTypes.DATE,
-        allowNull: false,
-        defaultValue: sequelize.literal("CURRENT_TIMESTAMP"),
-      },
-      status: DataTypes.STRING,
+      created_at: { type: DataTypes.DATE, allowNull: false, defaultValue: sequelize.literal('CURRENT_TIMESTAMP') },
     },
     {
       sequelize,
       modelName: "User",
+      tableName: "users",
       timestamps: false,
     }
   );

@@ -16,14 +16,13 @@ module.exports = (sequelize, DataTypes) => {
         {
             name: DataTypes.STRING,
             project_id: { type: DataTypes.INTEGER, allowNull: false },
-            destination_url: { type: DataTypes.STRING, allowNull: false },
             created_by: { type: DataTypes.INTEGER, allowNull: false },
             created_at: { type: DataTypes.DATE, allowNull: false, defaultValue: sequelize.literal('CURRENT_TIMESTAMP') },
         },
         {
             sequelize,
             modelName: "Module",
-            tableName: "requirement",
+            tableName: "modules",
             timestamps: false,
         }
     );
