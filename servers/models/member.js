@@ -53,6 +53,10 @@ module.exports = (sequelize, DataTypes) => {
           key: 'id'
         }
       },
+      status: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: true
+      },
     },
     {
       sequelize,
