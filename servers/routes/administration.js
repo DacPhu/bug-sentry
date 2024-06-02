@@ -4,6 +4,6 @@ const express = require("express");
 const router = express.Router();
 const controller = require("../controllers/administration");
 
-router.post("/addUser", require(controller.addUserToProject));
+router.post("/add-user", require(controller.addUserToProject));
 
 module.exports = router;

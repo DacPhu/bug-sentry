@@ -14,7 +14,7 @@ const administration_controller = require("../controllers/administration");
 const attachment_controller = require("../controllers/attachment");
 router.get("/", project_controller.showAll);
 
-router.get("/addUser", administration_controller.showAddUserForm);
+router.get("/add-user", administration_controller.showAddUserForm);
 
 router.get("/:id", (req, res) => {
   const { id } = req.params;
