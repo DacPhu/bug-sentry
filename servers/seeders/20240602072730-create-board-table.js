@@ -1,5 +1,5 @@
 'use strict';
-const { User, Board } = require('../models'); // Adjust the path to your models
+const { User, Board } = require('../models'); 
 
 module.exports = {
   async up(queryInterface, Sequelize) {

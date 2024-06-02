@@ -22,7 +22,7 @@ module.exports = {
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE'
       },
-      destination_url: {
+      description_url: {
         type: Sequelize.STRING,
         allowNull: false
       },

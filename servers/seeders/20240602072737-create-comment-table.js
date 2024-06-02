@@ -1,11 +1,10 @@
 'use strict';
-const { Project, Member, Issue, Comment } = require('../models'); // Adjust the path to your models
+const { Project, Member, Issue, Comment } = require('../models'); 
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    const commentsData = require('../mocks/comments.json'); 
-    const commentContents = JSON.parse(commentsData);
+    const commentContents = require('../mocks/comments.json'); 
 
     // Fetch 50 random issues from the database
     const issues = await Issue.findAll({
