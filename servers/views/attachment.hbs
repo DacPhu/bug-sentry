@@ -1,0 +1,268 @@
+<main class="bg-grey">
+  <div class="container-fluid">
+    <div class="row">
+      <!-- sidebar -->
+      {{> sidebar_main}}
+
+      <!-- main content -->
+      <div class="bg-grey col-md-11">
+        {{> nav_main}}
+        <div class="m-4 mt-5 bg-white semi-rounded">
+          <div class="container p-4">
+            <div class="d-flex flex-row justify-content-between">
+              <!-- header of main  -->
+              <h6 class="text-left fs-4">Attachments</h6>
+              <div id="add-req" class="d-flex btn custom-bold-btn">
+                <div class="me-2 p-1">Upload Attachment</div>
+
+                <img
+                  class="upload-icon"
+                  src="/icons/add.svg"
+                  alt=""
+                />
+                <input type="file" id="fileInput" class="d-none" />
+              </div>
+            </div>
+            <hr />
+
+            <div class="min-h-50 d-flex flex-column">
+              <div style="color: red"><b>Notes</b></div>
+              <div>
+                You can upload the project level documents like Business
+                Requirements Document, Design Documents (Wireframe/Mockup)
+              </div>
+              <div class="mt-1">
+                File size should be less than 2MB and allowed formats are .png,
+                .jpg, .doc, .docx, .xls, .xlsx, .pdf, .ppt, .pptx, .txt, .odf,
+                .gif, .ipynb
+              </div>
+              <div class="container-fluid mt-4 gap-3">
+                <div class="row gx-1 gx-lg-5 gx-md-3 mb-3">
+                  <div class="col col-3">
+                    <div
+                      class="bg-grey p-3 d-flex flex-column align-items-center gap-2 semi-rounded"
+                    >
+                      <div class="d-flex gap-2 justify-content-end w-100">
+                        <img src="/icons/download.svg" alt="" />
+                        <img src="/icons/bin-red.svg" alt="" />
+                      </div>
+                      <img
+                        width="100px"
+                        src="/icons/pdf.svg"
+                        alt=""
+                      />
+                      <div class="text-center">Document Name</div>
+                    </div>
+                  </div>
+                  <div class="col col-3">
+                    <div
+                      class="bg-grey p-3 d-flex flex-column align-items-center gap-2 semi-rounded"
+                    >
+                      <div class="d-flex gap-2 justify-content-end w-100">
+                        <img src="/icons/download.svg" alt="" />
+                        <img src="/icons/bin-red.svg" alt="" />
+                      </div>
+                      <img
+                        width="100px"
+                        src="/icons/pptx.svg"
+                        alt=""
+                      />
+                      <div class="text-center">Document Name</div>
+                    </div>
+                  </div>
+                  <div class="col col-3">
+                    <div
+                      class="bg-grey p-3 d-flex flex-column align-items-center gap-2 semi-rounded"
+                    >
+                      <div class="d-flex gap-2 justify-content-end w-100">
+                        <img src="/icons/download.svg" alt="" />
+                        <img src="/icons/bin-red.svg" alt="" />
+                      </div>
+                      <img
+                        width="100px"
+                        src="/icons/pptx.svg"
+                        alt=""
+                      />
+                      <div class="text-center">Document Name</div>
+                    </div>
+                  </div>
+                  <div class="col col-3">
+                    <div
+                      class="bg-grey p-3 d-flex flex-column align-items-center gap-2 semi-rounded"
+                    >
+                      <div class="d-flex gap-2 justify-content-end w-100">
+                        <img src="/icons/download.svg" alt="" />
+                        <img src="/icons/bin-red.svg" alt="" />
+                      </div>
+                      <img
+                        width="100px"
+                        src="/icons/pptx.svg"
+                        alt=""
+                      />
+                      <div class="text-center">Document Name</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row gx-1 gx-lg-5 gx-md-3 mb-3">
+                  <div class="col col-3">
+                    <div
+                      class="bg-grey p-3 d-flex flex-column align-items-center gap-2 semi-rounded"
+                    >
+                      <div class="d-flex gap-2 justify-content-end w-100">
+                        <img src="/icons/download.svg" alt="" />
+                        <img src="/icons/bin-red.svg" alt="" />
+                      </div>
+                      <img
+                        width="100px"
+                        src="/icons/pdf.svg"
+                        alt=""
+                      />
+                      <div class="text-center">Document Name</div>
+                    </div>
+                  </div>
+                  <div class="col col-3">
+                    <div
+                      class="bg-grey p-3 d-flex flex-column align-items-center gap-2 semi-rounded"
+                    >
+                      <div class="d-flex gap-2 justify-content-end w-100">
+                        <img src="/icons/download.svg" alt="" />
+                        <img src="/icons/bin-red.svg" alt="" />
+                      </div>
+                      <img
+                        width="100px"
+                        src="/icons/pptx.svg"
+                        alt=""
+                      />
+                      <div class="text-center">Document Name</div>
+                    </div>
+                  </div>
+                  <div class="col col-3">
+                    <div
+                      class="bg-grey p-3 d-flex flex-column align-items-center gap-2 semi-rounded"
+                    >
+                      <div class="d-flex gap-2 justify-content-end w-100">
+                        <img src="/icons/download.svg" alt="" />
+                        <img src="/icons/bin-red.svg" alt="" />
+                      </div>
+                      <img
+                        width="100px"
+                        src="/icons/pptx.svg"
+                        alt=""
+                      />
+                      <div class="text-center">Document Name</div>
+                    </div>
+                  </div>
+                  <div class="col col-3">
+                    <div
+                      class="bg-grey p-3 d-flex flex-column align-items-center gap-2 semi-rounded"
+                    >
+                      <div class="d-flex gap-2 justify-content-end w-100">
+                        <img src="/icons/download.svg" alt="" />
+                        <img src="/icons/bin-red.svg" alt="" />
+                      </div>
+                      <img
+                        width="100px"
+                        src="/icons/pdf.svg"
+                        alt=""
+                      />
+                      <div class="text-center">Document Name</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+<footer>
+  <!-- place footer here -->
+</footer>
+
+<!-- add request popup -->
+<div
+  id="addAttachPopup"
+  class="vh-100 position-absolute overlay top-0 bottom-0 start-0 end-0"
+>
+  <div
+    class="d-flex justify-content-center align-items-center w-100 position-absolute top-0 bottom-0 start-0 end-0"
+  >
+    <!-- main content -->
+    <div class="w-75 shadow bg-white">
+      <div class="m-4 mt-2 bg-white semi-rounded">
+        <div class="container p-4 position-relative">
+          <img
+            class="closePopup position-absolute top-0 end-0 pointer-cursor"
+            width="30px"
+            src="/icons/clarity_remove-line.svg"
+            alt=""
+          />
+          <h6 class="text-left fs-4">Upload Attachment</h6>
+          <div
+            class="d-flex flex-column justify-content-between align-items-center"
+          >
+            <div class="d-flex mb-3">
+              <div class="ps-3 pe-3 ms-4 d-flex btn save-btn">Save</div>
+              <div class="closePopup btn text-center ps-3 pe-3 ms-4 cancel-btn">
+                Cancel
+              </div>
+            </div>
+
+            <span class="fs-6 font-weight-semibold">
+              Attachment Name
+              <span class="text-danger">*</span></span>
+            <div class="input-group mb-3 w-50">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Requirement name"
+                aria-label="Requirement name"
+              />
+            </div>
+            <span class="fs-6 font-weight-semibold">
+              File
+              <span class="text-danger">*</span></span>
+            <div class="input-group mb-3 w-50">
+              <input
+                type="file"
+                class="form-control"
+                placeholder="Requirement name"
+                aria-label="Requirement name"
+              />
+            </div>
+          </div>
+        </div>
+        <hr />
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Bootstrap JavaScript Libraries -->
+<script
+  src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+  integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+  crossorigin="anonymous"
+></script>
+
+<script
+  src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+  integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+  crossorigin="anonymous"
+></script>
+<script
+  src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"
+></script>
+<script>
+  (function (fn) { "use strict"; fn(window.jQuery, window, document);
+  })(function ($, window, document) { "use strict"; $(function () {
+  $(".sort-btn").on("click", "[data-sort]", function (event) {
+  event.preventDefault(); var $this = $(this), sortDir = "desc"; if
+  ($this.data("sort") !== "asc") { sortDir = "asc"; } $this .data("sort",
+  sortDir) .find(".fa") .attr("class", "fa fa-sort-" + sortDir); // call
+  sortDesc() or sortAsc() or whathaveyou... }); $("#addAttachPopup").hide();
+  $("#add-req").click(function () { console.log("click");
+  $("#addAttachPopup").fadeIn(200); }); }); });
+</script>
+<script src="../../scripts/add-attachment.js"></script>

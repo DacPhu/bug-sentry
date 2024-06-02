@@ -3,7 +3,7 @@
 const controller = {};
 
 controller.showAll = (req, res) => {
-  res.send("All Project");
+  res.render("project");
 };
 
 controller.showOverview = (req, res) => {

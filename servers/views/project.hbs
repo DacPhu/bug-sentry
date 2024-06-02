@@ -1,0 +1,487 @@
+<main class="bg-grey">
+  <div class="container-fluid">
+    <div class="row">
+      <!-- Side bar -->
+      {{> sidebar_main}}
+
+      <div class="bg-grey col-md-11">
+        <div class="row">
+          <div class="col-md-6 px-5 py-3"><h1>Project</h1></div>
+          <div class="col-md-6"></div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="px-4">
+              <input
+                type="text"
+                class="form-control"
+                name=""
+                id=""
+                aria-describedby="helpId"
+                placeholder="Search by project name"
+              />
+            </div>
+          </div>
+          <div class="col-md-6 d-flex justify-content-end">
+            <div class="align-content-center">
+              <div class="btn-group sort-btn">
+                <button
+                  class="btn btn-primary"
+                  type="button"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  id="dropdownSort"
+                  data-bs-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  style="background-color: #034f75"
+                >
+                  Sort
+                </button>
+                <button
+                  class="btn btn-primary"
+                  data-sort="none"
+                  style="background-color: #034f75"
+                >
+                  <i class="fa fa-sort"></i>
+                </button>
+                <ul class="dropdown-menu p-2" aria-labelledby="dropdownSort">
+                  <li>
+                    <a
+                      href="#"
+                      tabindex="-1"
+                      data-type="alpha"
+                      style="text-decoration: none"
+                    >Name</a>
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      tabindex="-1"
+                      data-type="numeric"
+                      style="text-decoration: none"
+                    >Date</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="mx-4 my-3 d-flex btn custom-bold-btn">
+              <div class="me-2 p-1" id="add-project">Add project</div>
+              <img src="/icons/add.svg" alt="" />
+            </div>
+          </div>
+        </div>
+        <div class="container bg-white">
+          <div class="row px-5 pt-5">
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
+              <a href="../project/over-view.html">
+                <div class="bg-white">
+                  <div class="card">
+                    <div class="card-body">
+                      <div class="d-flex justify-content-between text-dark">
+                        <div class="d-flex">
+                          <img src="/icons/project-list.svg" />
+                          <div class="p-2">
+                            <h4 class="card-title">Project 1</h4>
+                            <p style="font-size: 0.75rem">
+                              Created on March 16, 2024
+                            </p>
+                          </div>
+                        </div>
+
+                        <div>
+                          <i class="bi bi-pencil-square"></i>
+                          <i class="bi bi-trash"></i>
+                        </div>
+                      </div>
+                      <hr class="text-dark" />
+                      <div class="row text-dark">
+                        <div class="col" style="font-size: 0.8rem">
+                          Test Cases
+                          <br />
+                          1
+                        </div>
+                        <div class="col" style="font-size: 0.8rem">
+                          Test Runs
+                          <br />
+                          1
+                        </div>
+                        <div class="col" style="font-size: 0.8rem">
+                          Issues
+                          <br />
+                          1
+                        </div>
+                      </div>
+                      <hr class="text-dark" />
+                      <div class="d-flex justify-content-end">
+                        <div class="btn custom-bold-btn">
+                          <a href="../administration/add-user.html"><i
+                              class="bi bi-person-plus text-light"
+                            ></i>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
+              <a href="../project/over-view.html">
+                <div class="bg-white">
+                  <div class="card">
+                    <div class="card-body">
+                      <div class="d-flex justify-content-between text-dark">
+                        <div class="d-flex">
+                          <img src="/icons/project-list.svg" />
+                          <div class="p-2">
+                            <h4 class="card-title">Project 1</h4>
+                            <p style="font-size: 0.75rem">
+                              Created on March 16, 2024
+                            </p>
+                          </div>
+                        </div>
+
+                        <div>
+                          <i class="bi bi-pencil-square"></i>
+                          <i class="bi bi-trash"></i>
+                        </div>
+                      </div>
+                      <hr class="text-dark" />
+                      <div class="row text-dark">
+                        <div class="col" style="font-size: 0.8rem">
+                          Test Cases
+                          <br />
+                          1
+                        </div>
+                        <div class="col" style="font-size: 0.8rem">
+                          Test Runs
+                          <br />
+                          1
+                        </div>
+                        <div class="col" style="font-size: 0.8rem">
+                          Issues
+                          <br />
+                          1
+                        </div>
+                      </div>
+                      <hr class="text-dark" />
+                      <div class="d-flex justify-content-end">
+                        <div class="btn custom-bold-btn">
+                          <a href="../administration/add-user.html"><i
+                              class="bi bi-person-plus text-light"
+                            ></i>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
+              <a href="../project/over-view.html">
+                <div class="bg-white">
+                  <div class="card">
+                    <div class="card-body">
+                      <div class="d-flex justify-content-between text-dark">
+                        <div class="d-flex">
+                          <img src="/icons/project-list.svg" />
+                          <div class="p-2">
+                            <h4 class="card-title">Project 1</h4>
+                            <p style="font-size: 0.75rem">
+                              Created on March 16, 2024
+                            </p>
+                          </div>
+                        </div>
+
+                        <div>
+                          <i class="bi bi-pencil-square"></i>
+                          <i class="bi bi-trash"></i>
+                        </div>
+                      </div>
+                      <hr class="text-dark" />
+                      <div class="row text-dark">
+                        <div class="col" style="font-size: 0.8rem">
+                          Test Cases
+                          <br />
+                          1
+                        </div>
+                        <div class="col" style="font-size: 0.8rem">
+                          Test Runs
+                          <br />
+                          1
+                        </div>
+                        <div class="col" style="font-size: 0.8rem">
+                          Issues
+                          <br />
+                          1
+                        </div>
+                      </div>
+                      <hr class="text-dark" />
+                      <div class="d-flex justify-content-end">
+                        <div class="btn custom-bold-btn">
+                          <a href="../administration/add-user.html"><i
+                              class="bi bi-person-plus text-light"
+                            ></i>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
+              <a href="../project/over-view.html">
+                <div class="bg-white">
+                  <div class="card">
+                    <div class="card-body">
+                      <div class="d-flex justify-content-between text-dark">
+                        <div class="d-flex">
+                          <img src="/icons/project-list.svg" />
+                          <div class="p-2">
+                            <h4 class="card-title">Project 1</h4>
+                            <p style="font-size: 0.75rem">
+                              Created on March 16, 2024
+                            </p>
+                          </div>
+                        </div>
+
+                        <div>
+                          <i class="bi bi-pencil-square"></i>
+                          <i class="bi bi-trash"></i>
+                        </div>
+                      </div>
+                      <hr class="text-dark" />
+                      <div class="row text-dark">
+                        <div class="col" style="font-size: 0.8rem">
+                          Test Cases
+                          <br />
+                          1
+                        </div>
+                        <div class="col" style="font-size: 0.8rem">
+                          Test Runs
+                          <br />
+                          1
+                        </div>
+                        <div class="col" style="font-size: 0.8rem">
+                          Issues
+                          <br />
+                          1
+                        </div>
+                      </div>
+                      <hr class="text-dark" />
+                      <div class="d-flex justify-content-end">
+                        <div class="btn custom-bold-btn">
+                          <a href="../administration/add-user.html"><i
+                              class="bi bi-person-plus text-light"
+                            ></i>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
+              <a href="../project/over-view.html">
+                <div class="bg-white">
+                  <div class="card">
+                    <div class="card-body">
+                      <div class="d-flex justify-content-between text-dark">
+                        <div class="d-flex">
+                          <img src="/icons/project-list.svg" />
+                          <div class="p-2">
+                            <h4 class="card-title">Project 1</h4>
+                            <p style="font-size: 0.75rem">
+                              Created on March 16, 2024
+                            </p>
+                          </div>
+                        </div>
+
+                        <div>
+                          <i class="bi bi-pencil-square"></i>
+                          <i class="bi bi-trash"></i>
+                        </div>
+                      </div>
+                      <hr class="text-dark" />
+                      <div class="row text-dark">
+                        <div class="col" style="font-size: 0.8rem">
+                          Test Cases
+                          <br />
+                          1
+                        </div>
+                        <div class="col" style="font-size: 0.8rem">
+                          Test Runs
+                          <br />
+                          1
+                        </div>
+                        <div class="col" style="font-size: 0.8rem">
+                          Issues
+                          <br />
+                          1
+                        </div>
+                      </div>
+                      <hr class="text-dark" />
+                      <div class="d-flex justify-content-end">
+                        <div class="btn custom-bold-btn">
+                          <a href="../administration/add-user.html"><i
+                              class="bi bi-person-plus text-light"
+                            ></i>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
+              <a href="../project/over-view.html">
+                <div class="bg-white">
+                  <div class="card">
+                    <div class="card-body">
+                      <div class="d-flex justify-content-between text-dark">
+                        <div class="d-flex">
+                          <img src="/icons/project-list.svg" />
+                          <div class="p-2">
+                            <h4 class="card-title">Project 1</h4>
+                            <p style="font-size: 0.75rem">
+                              Created on March 16, 2024
+                            </p>
+                          </div>
+                        </div>
+
+                        <div>
+                          <i class="bi bi-pencil-square"></i>
+                          <i class="bi bi-trash"></i>
+                        </div>
+                      </div>
+                      <hr class="text-dark" />
+                      <div class="row text-dark">
+                        <div class="col" style="font-size: 0.8rem">
+                          Test Cases
+                          <br />
+                          1
+                        </div>
+                        <div class="col" style="font-size: 0.8rem">
+                          Test Runs
+                          <br />
+                          1
+                        </div>
+                        <div class="col" style="font-size: 0.8rem">
+                          Issues
+                          <br />
+                          1
+                        </div>
+                      </div>
+                      <hr class="text-dark" />
+                      <div class="d-flex justify-content-end">
+                        <div class="btn custom-bold-btn">
+                          <a href="../administration/add-user.html"><i
+                              class="bi bi-person-plus text-light"
+                            ></i>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+          <div class="row mt-5 align-content-center px-3 pb-4">
+            <div class="col">
+              <h4>Showing 1 to 6 of 6 entries</h4>
+            </div>
+            <div class="col d-flex align-items-center">
+              <button class="border-0 rounded-3 p-2 text-muted ms-auto">
+                <i class="bi bi-chevron-double-left"></i>
+              </button>
+              <div
+                class="bg-main-color rounded-circle d-flex justify-content-center align-items-center mx-3"
+                style="width: 40px; height: 40px"
+              >
+                <h1 class="mb-0 text-light" style="font-size: 1.5rem">1</h1>
+              </div>
+              <button class="border-0 rounded-3 p-2 text-muted me-3">
+                <i class="bi bi-chevron-double-right"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+<footer>
+  <!-- place footer here -->
+</footer>
+<!-- Bootstrap JavaScript Libraries -->
+<div
+  id="projectPopup"
+  class="position-fixed overlay top-0 bottom-0 start-0 end-0"
+>
+  <div
+    class="d-flex justify-content-center align-items-center w-100 position-absolute top-0 bottom-0 start-0 end-0"
+  >
+    <!-- main content -->
+    <div class="w-25 shadow bg-white rounded-4">
+      <div class="m-2 mt-2 bg-white semi-rounded">
+        <div class="container p-4 position-relative">
+          <img
+            class="closePopup position-absolute top-0 end-0 pointer-cursor"
+            width="30px"
+            src="/icons/clarity_remove-line.svg"
+            alt=""
+          />
+          <h6 class="text-left fs-4">Create Project</h6>
+          <div class="d-flex justify-content-between gap-5 mb-4">
+            <div class="flex-fill">
+              <span class="fs-6 font-weight-semibold">Name<span
+                  class="text-danger"
+                >*</span></span>
+              <div class="input-group w-100 mb-4 mt-2">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Project Name"
+                  aria-label="Project name"
+                  name="project-name"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="d-flex justify-content-center">
+            <div class="ps-3 pe-3 ms-4 d-flex btn save-btn" id="createProject">
+              Create
+            </div>
+            <div class="closePopup btn text-center ps-3 pe-3 ms-4 cancel-btn">
+              Cancel
+            </div>
+          </div>
+        </div>
+        <hr />
+      </div>
+    </div>
+  </div>
+</div>
+<script
+  src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+  integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+  crossorigin="anonymous"
+></script>
+
+<script
+  src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+  integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+  crossorigin="anonymous"
+></script>
+
+<script
+  src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"
+></script>
+<script src="/scripts/sort.js"></script>
+<script src="/scripts/add-project.js"></script>

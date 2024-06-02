@@ -3,7 +3,7 @@
 const controller = {};
 
 controller.showAll = (req, res) => {
-  res.send("Release");
+  res.render("release");
 };
 
 module.exports = controller;

@@ -3,8 +3,7 @@
 const controller = {};
 
 controller.showAll = (req, res) => {
-  res.send("Test run");
-  //   res.render("home", { layout: "home_layout" });
+  res.render("testrun");
 };
 
 module.exports = controller;
