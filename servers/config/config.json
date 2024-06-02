@@ -1,23 +1,45 @@
 {
+
   "development": {
-    "username": "root",
-    "password": null,
-    "database": "database_development",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
+    "username": "bugsentry_db_user",
+    "password": "ep4EqAAJIExJS31OioLZC4MD5x7BGRiR",
+    "database": "bugsentry_db",
+    "host": "dpg-cpe0r57109ks73enupm0-a.oregon-postgres.render.com",
+    "dialect": "postgres",
+    "ssl": true,
+    "dialectOptions": {
+      "ssl": {
+        "require": true,
+        "rejectUnauthorized": false
+      }
+    }
   },
   "test": {
-    "username": "root",
-    "password": null,
-    "database": "database_test",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
+    "username": "bugsentry_db_user",
+    "password": "ep4EqAAJIExJS31OioLZC4MD5x7BGRiR",
+    "database": "bugsentry_db",
+    "host": "dpg-cpe0r57109ks73enupm0-a.oregon-postgres.render.com",
+    "dialect": "postgres",
+    "ssl": true,
+    "dialectOptions": {
+      "ssl": {
+        "require": true,
+        "rejectUnauthorized": false
+      }
+    }
   },
   "production": {
-    "username": "root",
-    "password": null,
-    "database": "database_production",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
+    "username": "bugsentry_db_user",
+    "password": "ep4EqAAJIExJS31OioLZC4MD5x7BGRiR",
+    "database": "bugsentry_db",
+    "host": "dpg-cpe0r57109ks73enupm0-a.oregon-postgres.render.com",
+    "dialect": "postgres",
+    "ssl": true,
+    "dialectOptions": {
+      "ssl": {
+        "require": true,
+        "rejectUnauthorized": false
+      }
+    }
   }
 }
