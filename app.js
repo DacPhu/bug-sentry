@@ -59,10 +59,10 @@ app.use((req, res, next) => {
 app.set("view engine", "hbs");
 
 // Routes
+app.use("/", require("./routes/home"));
 app.use("/", require("./routes/auth"));
 
 app.use(authMiddleware.require_login);
-app.use("/", require("./routes/home"));
 
 app.use("/dashboard", require("./routes/dashboard"));
 app.use("/project", require("./routes/project"));

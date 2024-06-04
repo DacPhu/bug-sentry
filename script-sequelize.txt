@@ -28,10 +28,4 @@ sequelize model:generate --name Requirement --attributes name:string,projectId:i
 sequelize model:generate --name Board --attributes name:string,createdBy:integer,createdOn:dateTime
 sequelize model:generate --name NoteBoard --attributes boardId:integer,name:string,content:text,createdBy:integer,createdOn:dateTime
 
-sequelize seed:generate --name Category
-sequelize seed:generate --name Tag
-sequelize seed:generate --name User
-sequelize seed:generate --name Blog
-sequelize seed:generate --name Comment
-
 sequelize db:seed:all
