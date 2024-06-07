@@ -16,6 +16,9 @@ module.exports = (sequelize, DataTypes) => {
         onUpdate: "CASCADE",
         onDelete: "SET NULL",
       });
+      Project.hasMany(models.TestCase, { foreignKey: "project_id" });
+      Project.hasMany(models.TestRun, { foreignKey: "project_id" });
+      Project.hasMany(models.Issue, { foreignKey: "project_id" });
     }
   }
 

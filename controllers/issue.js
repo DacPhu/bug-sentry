@@ -3,6 +3,25 @@
 const controller = {};
 const models = require("../models");
 
+
+controller.showAll = async (req, res) => {
+  try {
+    const issues = await models.Issue.findAll({
+      attributes: ["id", "name", "project_id", "created_at", "note"],
+    });
+
+    if (!issues || issues.length === 0) {
+      return res.status(404).json({ message: "No issues found" });
+    }
+
+    // Render the issue.hbs view and pass the issues data to it
+    return res.render("issue", { issues });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ message: "Internal server error", error: error.message });
+  }
+};
 controller.getIssuesByName = async (req, res) => {
   const name = req.query.keyword;
 
