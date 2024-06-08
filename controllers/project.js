@@ -12,22 +12,25 @@ controller.showAll = async (req, res) => {
         "id",
         "name",
         "created_at",
-        [models.sequelize.fn("COUNT", models.sequelize.col("TestCases.id")), "testcaseCount"],
-        [models.sequelize.fn("COUNT", models.sequelize.col("TestRuns.id")), "testrunCount"],
-        [models.sequelize.fn("COUNT", models.sequelize.col("Issues.id")), "issueCount"]
+        [models.sequelize.fn("COUNT", models.sequelize.fn("DISTINCT", models.sequelize.col("TestCases.id"))), "testcaseCount"],
+        [models.sequelize.fn("COUNT", models.sequelize.fn("DISTINCT", models.sequelize.col("TestRuns.id"))), "testrunCount"],
+        [models.sequelize.fn("COUNT", models.sequelize.fn("DISTINCT", models.sequelize.col("Issues.id"))), "issueCount"]
       ],
       include: [
         {
           model: models.TestCase,
-          attributes: []
+          attributes: [],
+          required: true 
         },
         {
           model: models.TestRun,
-          attributes: []
+          attributes: [],
+          required: true 
         },
         {
           model: models.Issue,
-          attributes: []
+          attributes: [],
+          required: true 
         }
       ],
       group: ["Project.id", "Project.name", "Project.created_at"]
