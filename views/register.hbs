@@ -31,7 +31,7 @@
             Register
             <img width="30px" src="/images/BugSentryLogo.png" alt="" />
           </div>
-          <form action="" method="POST">
+          <form action="/register" method="POST" >
             <input type="hidden" name="_csrf" value="{{csrfToken}}">
             <div class="mainform">
               <label for="signup_email"> Email (*)</label>
@@ -41,28 +41,7 @@
                 type="email"
                 name="email"
               />
-              <label for="signup_username"> User Name(*)</label>
-              <input
-                id="signup_username"
-                placeholder="username"
-                type="text"
-                name="username"
-              />
-
-              <label for="signup_password"> Password (*)</label>
-              <input
-                id="signup_password"
-                placeholder="password"
-                type="password"
-                name="password"
-              />
-              <input
-                id="signup_password_again"
-                placeholder="password again"
-                type="password"
-              />
-              
-              <label for="signup_firstname"> First name (*)</label>
+                     <label for="signup_firstname"> First name (*)</label>
               <input
                 id="signup_firstname"
                 placeholder="first name"
@@ -79,6 +58,21 @@
                 name="last_name"
               />
                
+
+              <label for="signup_password"> Password (*)</label>
+              <input
+                id="signup_password"
+                placeholder="password"
+                type="password"
+                name="password"
+              />
+              <input
+                id="signup_password_again"
+                placeholder="password again"
+                type="password"
+              />
+              
+       
               
 
               <label> Gender (*)</label>
@@ -120,5 +114,15 @@
       </div>
     </div>
     <script src="/scripts/register.js"></script>
+
+     <script>
+    // Check if error message exists and display it
+    $(document).ready(function () {
+            var errorMessage = "{{error_msg}}";
+            if (errorMessage.trim() !== "") {
+                $.notify(errorMessage, "error");
+            }
+        });
+  </script>
   </body>
 </html>
