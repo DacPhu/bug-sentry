@@ -55,7 +55,15 @@ controller.showAll = async (req, res) => {
     throw new Error("Error fetching project list: " + error.message);
   }
 }
-controller.showOverview = (req, res) => {
+controller.showOverview = async (req, res) => {
+  console.log(req.params.id)
+    
+  // const project = await model.Project.findOne(
+  //   where: { 
+  //     project_manager_id: req.session.userId,
+  //     pro
+  //   }
+  // )
   res.render("project_overview");
 };
 
