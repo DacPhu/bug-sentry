@@ -11,6 +11,7 @@ module.exports.signup = async (req, res) => {
       username,
       first_name,
       last_name,
+      role_id: role,
       email,
       password: hashedPassword,
     });
