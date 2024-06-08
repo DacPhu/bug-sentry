@@ -24,26 +24,24 @@ module.exports.signup = async (req, res) => {
 
 module.exports.login = async (req, res) => {
   try {
-    
     const { email, password } = req.body;
     console.log(email, password);
-    const user = await User.findOne({ where: { email },
-        include: [
-            {
-              model: Role
-            }
-          ],
-        plain:true });
+
+    const user = await User.findOne({ 
+      where: { email },
+      include: [{ model: Role }],
+      plain: true
+    });
+
     if (!user) {
-      return res.status(400).send("Invalid email or password");
+      return res.redirect(`/login?error=Invalid email or password`);
     }
-    let data = await bcrypt.hash(password, 10)
-    console.log(data);
 
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
-      return res.status(400).send("Invalid email or password");
+      return res.redirect(`/login?error=Invalid email or password`);
     }
+
     req.session.userId = user.id;
     req.session.username = user.username;
     const userRole = user.Role.get({ plain: true });
@@ -52,9 +50,10 @@ module.exports.login = async (req, res) => {
     res.redirect(`/project`);
   } catch (error) {
     console.error(error);
-    res.status(500).send("Server error");
+    res.redirect(`/login?error=Server error, please try again later`);
   }
 };
+
 
 module.exports.logout = (req, res) => {
   req.session.destroy(err => {

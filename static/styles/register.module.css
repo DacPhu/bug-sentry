@@ -22,6 +22,7 @@ body {
 
 .loginform_container {
   margin: 30px;
+  margin-top: 10px;
 }
 
 .loginform {
@@ -30,7 +31,7 @@ body {
 
 .loginform_title {
   text-align: center;
-  font-size: 3rem;
+  font-size: 2rem;
   font-weight: 400;
 }
 
@@ -53,7 +54,7 @@ body {
   border: none;
   outline: none;
   border-bottom: 2px solid #b0b3b9;
-  margin-bottom: 22px;
+  margin-bottom: 15px;
   display: block;
   border-radius: 0px;
 }
@@ -109,14 +110,6 @@ body {
   color: #000000;
 }
 
-.warning_signup {
-  margin-top: 20px;
-  height: 30px;
-  color: rgb(255, 0, 0);
-  font-family: "Times New Roman", Times, serif;
-  font-weight: 700;
-  font-size: 1.2rem;
-}
 
 .bottomform {
   display: flex;
