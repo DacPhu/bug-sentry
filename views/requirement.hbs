@@ -86,7 +86,7 @@
                       </div>
                     </div>
                     <div class="d-flex me-3">
-                      <img width="35px" src="/icons/add-green.svg" alt="" />
+                      {{!-- <img width="35px" src="/icons/add-green.svg" alt="" /> --}}
                     </div>
                   </div>
 
@@ -112,18 +112,7 @@
                           </div>
                         </td>
                       </tr>
-                      <tr>
-                        <th scope="row">1</th>
-                        <td>Mark Requirement Code Requirement</td>
-                        <td class="ps-0">
-                          <div class="d-flex pointer-cursor p-2 pt-0 pb-0 justify-content-between">
-                            <img src="/icons/mdi_eye-outline.svg" alt="" />
-                            <img src="/icons/edit.svg" alt="" />
-
-                            <img src="/icons/bin-red.svg" alt="" />
-                          </div>
-                        </td>
-                      </tr>
+                 
                       <tr>
                         <th scope="row">1</th>
                         <td>Mark Requirement Code Requirement</td>
@@ -251,6 +240,10 @@
         });
       });
     </script>
+ <script>
+    const requirementsDataStr= `{{{requirements}}}`;
+    const requirementsData = JSON.parse(requirementsDataStr);
+ </script>
 <script src="/scripts/add-requirement.js"></script>
 <script src="/scripts/requirement.js"></script>
 {{/section}}

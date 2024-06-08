@@ -19,11 +19,15 @@ controller.showAll = async (req, res) => {
         
       ],
     });
-    console.log(requirements);
     // Render the results using the specified layout
+    const modulesJSON = requirements.map(module => module.toJSON());
+    for (let i = 0; i < modulesJSON.length; i++) {
+      modulesJSON[i].requirements = modulesJSON[i].Requirements;
+      delete modulesJSON[i].Requirements;
+    }
     res.render("requirement", {
       layout: "main_layout",
-      requirements: requirements
+      requirements: JSON.stringify(modulesJSON), 
     });
   } catch (error) {
     console.error("Error fetching requirements:", error);
