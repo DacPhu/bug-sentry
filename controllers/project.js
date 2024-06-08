@@ -56,15 +56,47 @@ controller.showAll = async (req, res) => {
   }
 }
 controller.showOverview = async (req, res) => {
-  console.log(req.params.id)
-    
-  // const project = await model.Project.findOne(
-  //   where: { 
-  //     project_manager_id: req.session.userId,
-  //     pro
-  //   }
-  // )
-  res.render("project_overview");
+  const id = req.params.id
+  const project = await models.Project.findOne({
+    where: { id: id }
+  })
+  const testCases = await models.TestCase.findAll({
+    where: { project_id: id}
+  })
+  const testRuns = await models.TestRun.findAll({
+    where: { project_id: id}
+  })
+  const issues = await models.Issue.findAll({
+    where: { project_id: id}
+  })
+  const releases = await models.Release.findAll({
+    where: { project_id: id}
+  })
+  const FormatProject = {
+    id: project.id,
+    name: project.name,
+    created_at: project.created_at,
+    number_of_members: project.number_of_members,
+  };
+  console.log(FormatProject)
+  const FormatReleases = releases.map((release) => ({
+    id: release.dataValues.id,
+    name: release.dataValues.name
+  }))
+  const FormatTestCases = testCases.map((testcase) => ({
+    id: testcase.dataValues.id,
+    name: testcase.dataValues.title
+  }))
+  const FormatTestRuns = testRuns.map((testrun) => ({
+    id: testrun.dataValues.id,
+    name: testrun.dataValues.name
+  }))
+  const FormatIssues = issues.map((issue) => ({
+    id: issue.dataValues.id,
+    name: issue.dataValues.name
+  }))
+
+  res.render("project_overview", {FormatProject, FormatReleases, FormatTestCases, FormatTestRuns, FormatIssues});
 };
 
 controller.createProject = async (req, res) => {

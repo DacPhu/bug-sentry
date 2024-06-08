@@ -30,10 +30,7 @@ app.engine(
     runtimeOptions: {
       allowProtoPropertiesByDefault: true,
     },
-    helpers: {
-      formatDate: helpers.formatDate,
-      section: helpers.section,
-    },
+    helpers: helpers
   })
 );
 

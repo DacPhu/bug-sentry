@@ -7,7 +7,6 @@ module.exports = (sequelize, DataTypes) => {
       Issue.belongsTo(models.Project, { foreignKey: "project_id" });
       Issue.hasMany(models.Comment, { foreignKey: "issue_id" });
       Issue.belongsTo(models.Member, { foreignKey: "member_id" });
-    
     }
   }
 
