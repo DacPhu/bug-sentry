@@ -8,7 +8,6 @@ module.exports = (sequelize, DataTypes) => {
       Release.belongsTo(models.Member, { foreignKey: "created_by" });
     }
   }
-
   Release.init(
     {
       project_id: { type: DataTypes.INTEGER, allowNull: false },

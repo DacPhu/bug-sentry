@@ -2,7 +2,9 @@
 
 const controller = {};
 const models = require("../models");
-
+controller.showAll = async (req, res) => {
+  res.render("release")
+}
 controller.getReleasesByName = async (req, res) => {
   const name = req.query.keyword;
 
