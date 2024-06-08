@@ -1,10 +1,37 @@
 "use strict";
 
 const controller = {};
+const models = require("../models");
+controller.showAll = async (req, res) => {
+  try {
+    // Extract project_id from request parameters
+    const { id } = req.params;
+    console.log("id", req.params);
+    // Query the database for requirements with the specified project_id
+    const requirements = await models.Requirement.findAll({
+      where: {
+        project_id: id
+      },
+      raw: true,
+      include: [
+        {
+          model: models.Module,
+          attributes: [],
+          required: true 
+        },
+        
+      ],
+    });
 
-controller.showAll = (req, res) => {
-  res.render("requirement");
-  //   res.render("home", { layout: "home_layout" });
+    // Render the results using the specified layout
+    res.render("requirement", {
+      layout: "main_layout",
+      requirements: requirements
+    });
+  } catch (error) {
+    console.error("Error fetching requirements:", error);
+    res.status(500).send("An error occurred while fetching requirements.");
+  }
 };
 
 module.exports = controller;

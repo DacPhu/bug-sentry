@@ -110,7 +110,7 @@ const renderer = {
       modulesHtml += `<div id="${moduleId}" class="d-flex pointer-cursor align-items-center col m-4 mt-4 mb-0 ${
         initialModuleId == moduleId ? "font-weight-semibold" : "font-color-blur"
       } ">
-                              <img class="me-2" src="../../../public/icons/ic_round-folder.svg" alt="">
+                              <img class="me-2" src="/icons/ic_round-folder.svg" alt="">
                               ${module.name}
                             </div>`;
     }
@@ -131,19 +131,19 @@ const renderer = {
               <div
                 class="d-flex pointer-cursor p-2 pt-0 pb-0 justify-content-between"
               >
-                <a href="./detail-requirement.html">
+                <a href="./requirement/detail">
                     <img
-                    src="../../../public/icons/mdi_eye-outline.svg"
+                    src="/icons/mdi_eye-outline.svg"
                     alt=""
                     />
                 </a>
                 <img
-                  src="../../../public/icons/edit.svg"
+                  src="/icons/edit.svg"
                   alt=""
                 />
       
                 <img
-                  src="../../../public/icons/bin-red.svg"
+                  src="/icons/bin-red.svg"
                   alt=""
                 />
               </div>
