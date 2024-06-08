@@ -6,6 +6,8 @@ const formatDate = require("./helpers/time");
 const session = require("express-session");
 const csrf = require("csurf");
 const cookieParser = require("cookie-parser");
+const flash = require("connect-flash");
+
 const {
   errorHandler,
   authMiddleware,
@@ -57,6 +59,11 @@ app.use((req, res, next) => {
 });
 
 app.set("view engine", "hbs");
+app.use(flash());
+app.use((req, res, next) => {
+  res.locals.error_msg = req.flash('error')??"";
+  next();
+});
 
 // Routes
 app.use("/", require("./routes/home"));

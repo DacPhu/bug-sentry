@@ -16,6 +16,9 @@
 .bg-active-blue-color {
   background-color: var(--active-blue-btn-color) !important;
 }
+.notifyjs-corner{
+  position: absolute;
+}
 
 .btn-main-color {
   background-color: var(--primary-color) !important;

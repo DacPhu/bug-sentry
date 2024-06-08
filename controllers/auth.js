@@ -3,9 +3,10 @@ const { User,Role } = require("../models"); // Adjust according to your setup
 
 module.exports.signup = async (req, res) => {
   try {
-    const { username, first_name, last_name, email, password } = req.body;
+    let { username, first_name, last_name, email, password } = req.body;
     console.log(req.body)
     const hashedPassword = await bcrypt.hash(password, 10);
+    if (!username) username = email;
     const newUser = await User.create({
       username,
       first_name,
@@ -18,7 +19,8 @@ module.exports.signup = async (req, res) => {
     res.redirect(`/project`);
   } catch (error) {
     console.error(error);
-    res.status(500).send("Server error");
+    req.flash("error", "Tài khoản không hợp lệ."); // Flash error message
+    res.redirect("/register");
   }
 };
 
