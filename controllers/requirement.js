@@ -5,24 +5,21 @@ const models = require("../models");
 controller.showAll = async (req, res) => {
   try {
     // Extract project_id from request parameters
-    const { id } = req.params;
-    console.log("id", req.params);
+    const projectId = req.params.id;
+
     // Query the database for requirements with the specified project_id
-    const requirements = await models.Requirement.findAll({
+    const requirements = await models.Module.findAll({
       where: {
-        project_id: id
+        project_id: projectId
       },
-      raw: true,
       include: [
         {
-          model: models.Module,
-          attributes: [],
-          required: true 
+          model: models.Requirement,
         },
         
       ],
     });
-
+    console.log(requirements);
     // Render the results using the specified layout
     res.render("requirement", {
       layout: "main_layout",
