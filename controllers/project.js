@@ -40,9 +40,9 @@ controller.showAll = async (req, res) => {
 
     // Format the result
     const listProjects = projectsWithCounts.map((project) => ({
-      id: project.dataValues.id,
-      name: project.dataValues.name,
-      created_at: project.dataValues.created_at,
+      id: project.id,
+      name: project.name,
+      created_at: project.created_at,
       testcaseCount: project.get("testcaseCount"),
       testrunCount: project.get("testrunCount"),
       issueCount: project.get("issueCount") // Added issueCount
@@ -80,20 +80,20 @@ controller.showOverview = async (req, res) => {
   };
   console.log(FormatProject)
   const FormatReleases = releases.map((release) => ({
-    id: release.dataValues.id,
-    name: release.dataValues.name
+    id: release.id,
+    name: release.name
   }))
   const FormatTestCases = testCases.map((testcase) => ({
-    id: testcase.dataValues.id,
-    name: testcase.dataValues.title
+    id: testcase.id,
+    name: testcase.title
   }))
   const FormatTestRuns = testRuns.map((testrun) => ({
-    id: testrun.dataValues.id,
-    name: testrun.dataValues.name
+    id: testrun.id,
+    name: testrun.name
   }))
   const FormatIssues = issues.map((issue) => ({
-    id: issue.dataValues.id,
-    name: issue.dataValues.name
+    id: issue.id,
+    name: issue.name
   }))
 
   res.render("project_overview", {FormatProject, FormatReleases, FormatTestCases, FormatTestRuns, FormatIssues});
