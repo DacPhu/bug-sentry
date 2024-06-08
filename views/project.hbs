@@ -73,8 +73,9 @@
         </div>
         <div class="container bg-white">
           <div class="row px-5 pt-5">
+            {{#each listProjects}}
             <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
-              <a href="/project/:id">
+              <a href="/project/{{name}}">
                 <div class="bg-white">
                   <div class="card">
                     <div class="card-body">
@@ -82,9 +83,9 @@
                         <div class="d-flex">
                           <img src="/icons/project-list.svg" />
                           <div class="p-2">
-                            <h4 class="card-title">Project 1</h4>
+                            <h4 class="card-title">{{name}}</h4>
                             <p style="font-size: 0.75rem">
-                              Created on March 16, 2024
+                              {{created_at}}
                             </p>
                           </div>
                         </div>
@@ -99,17 +100,17 @@
                         <div class="col" style="font-size: 0.8rem">
                           Test Cases
                           <br />
-                          1
+                          {{testcaseCount}}
                         </div>
                         <div class="col" style="font-size: 0.8rem">
                           Test Runs
                           <br />
-                          1
+                          {{testrunCount}}
                         </div>
                         <div class="col" style="font-size: 0.8rem">
                           Issues
                           <br />
-                          1
+                          {{issueCount}}
                         </div>
                       </div>
                       <hr class="text-dark" />
@@ -126,271 +127,8 @@
                 </div>
               </a>
             </div>
-            <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
-              <a href="project/:id">
-                <div class="bg-white">
-                  <div class="card">
-                    <div class="card-body">
-                      <div class="d-flex justify-content-between text-dark">
-                        <div class="d-flex">
-                          <img src="/icons/project-list.svg" />
-                          <div class="p-2">
-                            <h4 class="card-title">Project 1</h4>
-                            <p style="font-size: 0.75rem">
-                              Created on March 16, 2024
-                            </p>
-                          </div>
-                        </div>
-
-                        <div>
-                          <i class="bi bi-pencil-square"></i>
-                          <i class="bi bi-trash"></i>
-                        </div>
-                      </div>
-                      <hr class="text-dark" />
-                      <div class="row text-dark">
-                        <div class="col" style="font-size: 0.8rem">
-                          Test Cases
-                          <br />
-                          1
-                        </div>
-                        <div class="col" style="font-size: 0.8rem">
-                          Test Runs
-                          <br />
-                          1
-                        </div>
-                        <div class="col" style="font-size: 0.8rem">
-                          Issues
-                          <br />
-                          1
-                        </div>
-                      </div>
-                      <hr class="text-dark" />
-                      <div class="d-flex justify-content-end">
-                        <div class="btn custom-bold-btn">
-                          <a href="/project/add-user"><i
-                              class="bi bi-person-plus text-light"
-                            ></i>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </a>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
-              <a href="/project/:id">
-                <div class="bg-white">
-                  <div class="card">
-                    <div class="card-body">
-                      <div class="d-flex justify-content-between text-dark">
-                        <div class="d-flex">
-                          <img src="/icons/project-list.svg" />
-                          <div class="p-2">
-                            <h4 class="card-title">Project 1</h4>
-                            <p style="font-size: 0.75rem">
-                              Created on March 16, 2024
-                            </p>
-                          </div>
-                        </div>
-
-                        <div>
-                          <i class="bi bi-pencil-square"></i>
-                          <i class="bi bi-trash"></i>
-                        </div>
-                      </div>
-                      <hr class="text-dark" />
-                      <div class="row text-dark">
-                        <div class="col" style="font-size: 0.8rem">
-                          Test Cases
-                          <br />
-                          1
-                        </div>
-                        <div class="col" style="font-size: 0.8rem">
-                          Test Runs
-                          <br />
-                          1
-                        </div>
-                        <div class="col" style="font-size: 0.8rem">
-                          Issues
-                          <br />
-                          1
-                        </div>
-                      </div>
-                      <hr class="text-dark" />
-                      <div class="d-flex justify-content-end">
-                        <div class="btn custom-bold-btn">
-                          <a href="/project/add-user"><i
-                              class="bi bi-person-plus text-light"
-                            ></i>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </a>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
-              <a href="/project/:id">
-                <div class="bg-white">
-                  <div class="card">
-                    <div class="card-body">
-                      <div class="d-flex justify-content-between text-dark">
-                        <div class="d-flex">
-                          <img src="/icons/project-list.svg" />
-                          <div class="p-2">
-                            <h4 class="card-title">Project 1</h4>
-                            <p style="font-size: 0.75rem">
-                              Created on March 16, 2024
-                            </p>
-                          </div>
-                        </div>
-
-                        <div>
-                          <i class="bi bi-pencil-square"></i>
-                          <i class="bi bi-trash"></i>
-                        </div>
-                      </div>
-                      <hr class="text-dark" />
-                      <div class="row text-dark">
-                        <div class="col" style="font-size: 0.8rem">
-                          Test Cases
-                          <br />
-                          1
-                        </div>
-                        <div class="col" style="font-size: 0.8rem">
-                          Test Runs
-                          <br />
-                          1
-                        </div>
-                        <div class="col" style="font-size: 0.8rem">
-                          Issues
-                          <br />
-                          1
-                        </div>
-                      </div>
-                      <hr class="text-dark" />
-                      <div class="d-flex justify-content-end">
-                        <div class="btn custom-bold-btn">
-                          <a href="/project/add-user"><i
-                              class="bi bi-person-plus text-light"
-                            ></i>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </a>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
-              <a href="/project/:id">
-                <div class="bg-white">
-                  <div class="card">
-                    <div class="card-body">
-                      <div class="d-flex justify-content-between text-dark">
-                        <div class="d-flex">
-                          <img src="/icons/project-list.svg" />
-                          <div class="p-2">
-                            <h4 class="card-title">Project 1</h4>
-                            <p style="font-size: 0.75rem">
-                              Created on March 16, 2024
-                            </p>
-                          </div>
-                        </div>
-
-                        <div>
-                          <i class="bi bi-pencil-square"></i>
-                          <i class="bi bi-trash"></i>
-                        </div>
-                      </div>
-                      <hr class="text-dark" />
-                      <div class="row text-dark">
-                        <div class="col" style="font-size: 0.8rem">
-                          Test Cases
-                          <br />
-                          1
-                        </div>
-                        <div class="col" style="font-size: 0.8rem">
-                          Test Runs
-                          <br />
-                          1
-                        </div>
-                        <div class="col" style="font-size: 0.8rem">
-                          Issues
-                          <br />
-                          1
-                        </div>
-                      </div>
-                      <hr class="text-dark" />
-                      <div class="d-flex justify-content-end">
-                        <div class="btn custom-bold-btn">
-                          <a href="/project/add-user"><i
-                              class="bi bi-person-plus text-light"
-                            ></i>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </a>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
-              <a href="/project/:id">
-                <div class="bg-white">
-                  <div class="card">
-                    <div class="card-body">
-                      <div class="d-flex justify-content-between text-dark">
-                        <div class="d-flex">
-                          <img src="/icons/project-list.svg" />
-                          <div class="p-2">
-                            <h4 class="card-title">Project 1</h4>
-                            <p style="font-size: 0.75rem">
-                              Created on March 16, 2024
-                            </p>
-                          </div>
-                        </div>
-
-                        <div>
-                          <i class="bi bi-pencil-square"></i>
-                          <i class="bi bi-trash"></i>
-                        </div>
-                      </div>
-                      <hr class="text-dark" />
-                      <div class="row text-dark">
-                        <div class="col" style="font-size: 0.8rem">
-                          Test Cases
-                          <br />
-                          1
-                        </div>
-                        <div class="col" style="font-size: 0.8rem">
-                          Test Runs
-                          <br />
-                          1
-                        </div>
-                        <div class="col" style="font-size: 0.8rem">
-                          Issues
-                          <br />
-                          1
-                        </div>
-                      </div>
-                      <hr class="text-dark" />
-                      <div class="d-flex justify-content-end">
-                        <div class="btn custom-bold-btn">
-                          <a href="/project/add-user"><i
-                              class="bi bi-person-plus text-light"
-                            ></i>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </a>
-            </div>
+            {{/each}}
+            
           </div>
           <div class="row mt-5 align-content-center px-3 pb-4">
             <div class="col">

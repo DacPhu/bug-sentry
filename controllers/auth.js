@@ -4,6 +4,7 @@ const { User,Role } = require("../models"); // Adjust according to your setup
 module.exports.signup = async (req, res) => {
   try {
     const { username, first_name, last_name, email, password } = req.body;
+    console.log(req.body)
     const hashedPassword = await bcrypt.hash(password, 10);
     const newUser = await User.create({
       username,
@@ -12,8 +13,9 @@ module.exports.signup = async (req, res) => {
       email,
       password: hashedPassword,
     });
+    console.log(req.body);
     req.session.userId = newUser.id;
-    res.redirect("/dashboard");
+    res.redirect(`/project`);
   } catch (error) {
     console.error(error);
     res.status(500).send("Server error");
@@ -22,7 +24,9 @@ module.exports.signup = async (req, res) => {
 
 module.exports.login = async (req, res) => {
   try {
+    
     const { email, password } = req.body;
+    console.log(email, password);
     const user = await User.findOne({ where: { email },
         include: [
             {
@@ -45,7 +49,7 @@ module.exports.login = async (req, res) => {
     const userRole = user.Role.get({ plain: true });
     req.session.role = userRole.name;
     console.log(req.session.username, req.session.userId);
-    res.redirect("/dashboard");
+    res.redirect(`/project`);
   } catch (error) {
     console.error(error);
     res.status(500).send("Server error");

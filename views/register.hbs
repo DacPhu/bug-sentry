@@ -32,15 +32,24 @@
             <img width="30px" src="/images/BugSentryLogo.png" alt="" />
           </div>
           <div id="warning_signup" class="warning_signup"></div>
-          <form action="#" method="POST">
+          <form action="" method="POST">
+            <input type="hidden" name="_csrf" value="{{csrfToken}}">
             <div class="mainform">
-              <label for="signup_email"> User Name(email) (*)</label>
+              <label for="signup_email"> Email (*)</label>
               <input
                 id="signup_email"
                 placeholder="email"
                 type="email"
                 name="email"
               />
+              <label for="signup_username"> User Name(*)</label>
+              <input
+                id="signup_username"
+                placeholder="username"
+                type="text"
+                name="username"
+              />
+
               <label for="signup_password"> Password (*)</label>
               <input
                 id="signup_password"
@@ -53,13 +62,25 @@
                 placeholder="password again"
                 type="password"
               />
-              <label for="signup_fullname"> Full name (*)</label>
+              
+              <label for="signup_firstname"> First name (*)</label>
               <input
-                id="signup_fullname"
-                placeholder="full name"
+                id="signup_firstname"
+                placeholder="first name"
                 type="text"
-                name="fullname"
+                name="first_name"
               />
+            
+            
+              <label for="signup_lastname"> Last name (*)</label>
+              <input
+                id="signup_lastname"
+                placeholder="Last name"
+                type="text"
+                name="last_name"
+              />
+               
+              
 
               <label> Gender (*)</label>
               <div class="container_gender">
