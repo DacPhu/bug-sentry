@@ -16,7 +16,7 @@
                 type="text"
                 class="form-control"
                 name=""
-                id=""
+                id="searchProject"
                 aria-describedby="helpId"
                 placeholder="Search by project name"
               />
@@ -74,8 +74,8 @@
         <div class="container bg-white">
           <div class="row px-5 pt-5">
             {{#each listProjects}}
-            <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
-              <a href="/project/{{name}}">
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-3 project-item" data-name="{{name}}">
+              <a href="project/{{name}}/overview">
                 <div class="bg-white">
                   <div class="card">
                     <div class="card-body">
@@ -132,19 +132,19 @@
           </div>
           <div class="row mt-5 align-content-center px-3 pb-4">
             <div class="col">
-              <h4>Showing 1 to 6 of 6 entries</h4>
+              <h4 id="pagination-info">Showing 1 to 6 of 6 entries</h4>
             </div>
             <div class="col d-flex align-items-center">
-              <button class="border-0 rounded-3 p-2 text-muted ms-auto">
+              <button class="border-0 rounded-3 p-2 text-muted ms-auto" id="prev-page">
                 <i class="bi bi-chevron-double-left"></i>
               </button>
               <div
                 class="bg-main-color rounded-circle d-flex justify-content-center align-items-center mx-3"
                 style="width: 40px; height: 40px"
               >
-                <h1 class="mb-0 text-light" style="font-size: 1.5rem">1</h1>
+                <h1 class="mb-0 text-light" style="font-size: 1.5rem" id="current-page">1</h1>
               </div>
-              <button class="border-0 rounded-3 p-2 text-muted me-3">
+              <button class="border-0 rounded-3 p-2 text-muted me-3" id="next-page">
                 <i class="bi bi-chevron-double-right"></i>
               </button>
             </div>
@@ -166,7 +166,6 @@
   <div
     class="d-flex justify-content-center align-items-center w-100 position-absolute top-0 bottom-0 start-0 end-0"
   >
-    <!-- main content -->
     <div class="w-25 shadow bg-white rounded-4">
       <div class="m-2 mt-2 bg-white semi-rounded">
         <div class="container p-4 position-relative">
@@ -207,6 +206,7 @@
     </div>
   </div>
 </div>
+<script src="/scripts/list-project.js"></script>
 <script
   src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
   integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
