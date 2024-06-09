@@ -15,18 +15,17 @@ module.exports.signup = async (req, res) => {
       email,
       password: hashedPassword,
     });
-    req.flash("success", "Tạo tài khoản thành công."); // Flash success message
+    req.flash("success", "Create account successfully !"); // Flash success message
     res.redirect(`/login`);
   } catch (error) {
     console.error(error);
-    req.flash("error", "Tài khoản không hợp lệ."); // Flash error message
+    req.flash("error", "Account not valid !"); // Flash error message
     res.redirect("/register");
   }
 };
 
 module.exports.get_sign_up = async (req, res) => {
   try {
-    // get all roles
     const roles = await Role.findAll({ raw: true });
     console.log(roles);
     res.render("register", { roles, layout: "home_layout" });
@@ -43,7 +42,6 @@ module.exports.login = async (req, res) => {
     const { email, password } = req.body;
     console.log(email, password);
 
-
     const user = await User.findOne({ 
       where: { email },
       include: [{ model: Role }],
@@ -51,7 +49,7 @@ module.exports.login = async (req, res) => {
     });
 
     if (!user) {
-      req.flash("error", "Email hoặc mật khẩu không đúng."); // Flash error message
+      req.flash("error", "Email or Password isn't correct!"); // Flash error message
       return res.redirect(`/login`);
     }
 
@@ -59,7 +57,7 @@ module.exports.login = async (req, res) => {
     console.log(hashedPassword);
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
-      req.flash("error", "Email hoặc mật khẩu không đúng.");
+      req.flash("error", "Email or Password isn't correct!");
       return res.redirect(`/login`);
     }
 

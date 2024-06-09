@@ -3,30 +3,56 @@
 const controller = {};
 const models = require("../models");
 
+const currentTimestamp = new Date();
+
 controller.showAll = async (req, res) => {
   res.render("release");
 };
 
-controller.getReleasesByNameAPI = async (req, res) => {
-  const name = req.query.keyword;
-
-  if (!name) {
-    return res.status(400).json({ message: "Name is empty" });
-  }
+controller.getReleasesAPI = async (req, res) => {
+  const name = req.query.keyword | "";
+  const type = req.query.type | "open";
+  const projectId = req.query.projectId | 1;
+  const page = parseInt(req.query.page) | 1;
+  const size = parseInt(req.query.size) | 0;
 
   try {
-    const releases = await models.Release.findAll({
-      where: { name },
-      attributes: [
-        "id",
-        "project_id",
-        "name",
-        "start_date",
-        "end_date",
-        "description",
-        "created_by",
-        "created_at",
+    let whereClause = {};
+
+    whereClause = {
+      [Op.and]: [
+        { name: { [Op.like]: `%${name}%` } },
+        { project_id: projectId },
+        {
+          [Op.or]: [
+            type === "open"
+              ? {
+                  start_date: { [Op.lte]: currentTimestamp },
+                  end_date: { [Op.gte]: currentTimestamp },
+                }
+              : null,
+            type === "completed"
+              ? {
+                  end_date: { [Op.lt]: currentTimestamp },
+                }
+              : null,
+            type === "upcoming"
+              ? {
+                  start_date: { [Op.gt]: currentTimestamp },
+                }
+              : null,
+          ].filter((condition) => condition !== null), // Remove null values from array
+        },
       ],
+    };
+
+    const limit = size;
+    const offset = (page - 1) * size;
+
+    const { count, rows: releases } = await models.Release.findAndCountAll({
+      where: whereClause,
+      limit,
+      offset,
     });
 
     if (!releases || releases.length === 0) {
@@ -34,16 +60,10 @@ controller.getReleasesByNameAPI = async (req, res) => {
     }
 
     return res.status(200).json({
-      releases: releases.map((release) => ({
-        id: release.id,
-        project_id: release.project_id,
-        name: release.name,
-        start_date: release.start_date,
-        end_date: release.end_date,
-        description: release.description,
-        created_by: release.created_by,
-        created_at: release.created_at,
-      })),
+      totalItems: count,
+      totalPages: Math.ceil(count / limit),
+      currentPage: page,
+      releases: releases,
     });
   } catch (error) {
     return res
@@ -52,97 +72,7 @@ controller.getReleasesByNameAPI = async (req, res) => {
   }
 };
 
-controller.getReleasesByProjectId = async (req, res) => {
-  const project_id = req.query.project_id;
-
-  if (!project_id) {
-    return res.status(400).json({ message: "Project Id is empty" });
-  }
-
-  try {
-    const releases = await models.Release.findAll({
-      where: { project_id },
-      attributes: [
-        "id",
-        "project_id",
-        "name",
-        "start_date",
-        "end_date",
-        "description",
-        "created_by",
-        "created_at",
-      ],
-    });
-
-    if (!releases || releases.length === 0) {
-      return res.status(404).json({ message: "No releases found" });
-    }
-
-    return res.status(200).json({
-      releases: releases.map((release) => ({
-        id: release.id,
-        project_id: release.project_id,
-        name: release.name,
-        start_date: release.start_date,
-        end_date: release.end_date,
-        description: release.description,
-        created_by: release.created_by,
-        created_at: release.created_at,
-      })),
-    });
-  } catch (error) {
-    return res
-      .status(500)
-      .json({ message: "Internal server error", error: error.message });
-  }
-};
-
-controller.getReleaseById = async (req, res) => {
-  const id = req.query.id;
-
-  if (!id) {
-    return res.status(400).json({ message: "Id is empty" });
-  }
-
-  try {
-    const release = await models.Release.findOne({
-      where: { id },
-      attributes: [
-        "id",
-        "project_id",
-        "name",
-        "start_date",
-        "end_date",
-        "description",
-        "created_by",
-        "created_at",
-      ],
-    });
-
-    if (!release) {
-      return res.status(404).json({ message: "Release not found" });
-    }
-
-    return res.status(200).json({
-      release: {
-        id: release.id,
-        project_id: release.project_id,
-        name: release.name,
-        start_date: release.start_date,
-        end_date: release.end_date,
-        description: release.description,
-        created_by: release.created_by,
-        created_at: release.created_at,
-      },
-    });
-  } catch (error) {
-    return res
-      .status(500)
-      .json({ message: "Internal server error", error: error.message });
-  }
-};
-
-controller.getAllReleases = async (req, res) => {
+controller.getAllReleasesAPI = async (req, res) => {
   try {
     const releases = await models.Release.findAll({
       attributes: [

@@ -11,65 +11,6 @@
   });
 });
 
-// const requirementsData = {
-//   modules: {
-//     modules1: {
-//       id: "modules1",
-//       name: "Module 1",
-//       requirements: [
-//         {
-//           id: "req1",
-//           name: "Requirement Number 1",
-//         },
-//         {
-//           id: "req2",
-//           name: "Requirement Number 2",
-//         },
-//         {
-//           id: "req3",
-//           name: "Requirement Number 3",
-//         },
-//       ],
-//     },
-//     modules2: {
-//       id: "modules2",
-//       name: "Module 2",
-//       requirements: [
-//         {
-//           id: "req4",
-//           name: "Requirement Number 4",
-//         },
-//         {
-//           id: "req5",
-//           name: "Requirement Number 5",
-//         },
-//         {
-//           id: "req6",
-//           name: "Requirement Number 6",
-//         },
-//       ],
-//     },
-//     modules3: {
-//       id: "modules3",
-//       name: "Module 3",
-//       requirements: [
-//         {
-//           id: "req7",
-//           name: "Requirement Number 7",
-//         },
-//         {
-//           id: "req8",
-//           name: "Requirement Number 8",
-//         },
-//         {
-//           id: "req9",
-//           name: "Requirement Number 9",
-//         },
-//       ],
-//     },
-//   },
-// };
-
 const eventHandler = {
   onClickModule: function (moduleId) {
     console.log("clickedModuleId", moduleId);

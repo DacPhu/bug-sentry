@@ -1,34 +1,86 @@
-<nav class="navbar navbar-expand navbar-light">
-  <ul class="nav navbar-nav" id="navbar-in-project">
-    <li class="nav-item">
-      <a class="nav-link" href="overview">Overview</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="administration">Administration</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="requirement">Requirements</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="attachment">Attachments</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="release">Releases</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="module">Modules</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="testcase">Test Cases</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="testrun">Test run</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="issue">Issues</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="activity-log">Activity log</a>
-    </li>
-  </ul>
-</nav>
+{{#if (equals role "project manager")}}
+  <nav
+    class="navbar navbar-expand navbar-light"
+    style="overflow-x: auto; white-space: nowrap;"
+  >
+    <ul class="nav navbar-nav" id="navbar-in-project">
+      <li class="nav-item">
+        <a class="nav-link" href="overview">Overview</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="administration">Administration</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="requirement">Requirements</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="attachment">Attachments</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="release">Releases</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="module">Modules</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="testcase">Test Cases</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="testrun">Test run</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="issue">Issues</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="activity-log">Activity log</a>
+      </li>
+    </ul>
+  </nav>
+{{/if}}
+
+{{#if (equals role "tester")}}
+  <nav class="navbar navbar-expand navbar-light">
+    <ul class="nav navbar-nav" id="navbar-in-project">
+      <li class="nav-item">
+        <a class="nav-link" href="overview">Overview</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="requirement">Requirements</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="attachment">Attachments</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="release">Releases</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="module">Modules</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="testcase">Test Cases</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="testrun">Test run</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="issue">Issues</a>
+      </li>
+    </ul>
+  </nav>
+{{/if}}
+
+{{#if (equals role "developer")}}
+  <nav class="navbar navbar-expand navbar-light">
+    <ul class="nav navbar-nav" id="navbar-in-project">
+      <li class="nav-item">
+        <a class="nav-link" href="overview">Overview</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="release">Releases</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="issue">Issues</a>
+      </li>
+    </ul>
+  </nav>
+{{/if}}

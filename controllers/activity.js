@@ -32,6 +32,7 @@ controller.showAll = async (req, res) => {
     res.render("activity_log", {
       layout: "main_layout",
       activities,
+      role: req.session.role,
     });
   } catch (error) {
     console.error("Error fetching activity logs:", error);

@@ -144,7 +144,6 @@ controller.getDetailRequirement = async (req, res) => {
     });
     const totalPages = Math.ceil(testCases.count / size);
 
-    // map step_count to test case
     for (const testCase of testCases.rows) {
       const steps = JSON.parse(testCase.steps);
       testCase.step_count = steps.length;

@@ -11,7 +11,13 @@ const project_controller = require("../controllers/project");
 const release_controller = require("../controllers/release");
 const administration_controller = require("../controllers/administration");
 const activity_controller = require("../controllers/activity");
-const {requirement_router, attachment_router} = require("./project_routes");
+const { requirement_router, attachment_router } = require("./project_routes");
+
+const {
+  require_pm,
+  require_tester,
+} = require("../middlewares/auth");
+
 router.get("/", project_controller.showAll);
 
 router.get("/add-user", administration_controller.showAddUserForm);
@@ -22,15 +28,19 @@ router.get("/:id", (req, res) => {
 });
 
 router.get("/:id/overview", project_controller.showOverview);
-router.get("/:id/administration", administration_controller.showAll);
+router.get(
+  "/:id/administration",
+  require_pm,
+  administration_controller.showAll
+);
 
-router.get("/:id/testrun", testrun_controller.showAll);
-router.get("/:id/testcase", testcase_controller.showAll);
-router.get("/:id/module", module_controller.showAll);
+router.get("/:id/testrun", require_tester, testrun_controller.showAll);
+router.get("/:id/testcase", require_tester, testcase_controller.showAll);
+router.get("/:id/module", require_tester, module_controller.showAll);
 router.use("/:id/requirement", requirement_router);
 router.get("/:id/issue", issue_controller.showAll);
 router.get("/:id/release", release_controller.showAll);
-router.get("/:id/activity-log", activity_controller.showAll);
-router.use("/:id/attachment", attachment_router);
+router.get("/:id/activity-log", require_pm, activity_controller.showAll);
+router.use("/:id/attachment", require_tester, attachment_router);
 
 module.exports = router;

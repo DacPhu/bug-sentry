@@ -5,7 +5,8 @@ const models = require("../models");
 const controller = {};
 
 controller.showAll = (req, res) => {
-  res.render("administration");
+  const role = req.session.role;
+  res.render("administration", { role });
 };
 
 controller.showAddUserForm = (req, res) => {
@@ -49,10 +50,6 @@ controller.getUserRole = async (req, res) => {
 
 controller.addUserToProject = async (req, res) => {
   const { userId, projectId, roleId } = req.body;
-
-  //   if (!userId || !roleId || !projectId) {
-  //     return res.status(400).
-  //   }
 
   try {
     const users = await models.User.findAll({

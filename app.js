@@ -14,19 +14,22 @@ const {
   authMiddleware,
   logMiddleware,
 } = require("./middlewares");
+
 const helpers = require("./helpers");
 const middlewares = require("./middlewares");
 require("dotenv").config();
 
-mongoose.connect(process.env.MONGO_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-}).then(() => {
-  console.log("Connected to MongoDB");
-}).catch((err) => {
-  console.error("Failed to connect to MongoDB", err);
-});
-
+mongoose
+  .connect(process.env.MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => {
+    console.log("Connected to MongoDB");
+  })
+  .catch((err) => {
+    console.error("Failed to connect to MongoDB", err);
+  });
 
 app.use(express.static(__dirname + "/static/"));
 
@@ -41,7 +44,7 @@ app.engine(
     runtimeOptions: {
       allowProtoPropertiesByDefault: true,
     },
-    helpers: helpers
+    helpers: helpers,
   })
 );
 
@@ -53,8 +56,8 @@ app.use(
     cookie: { secure: false }, // Set to true if using HTTPS
     store: MongoStore.create({
       mongoUrl: process.env.MONGO_URI,
-      collectionName: 'sessions'
-    })
+      collectionName: "sessions",
+    }),
   })
 );
 
@@ -73,8 +76,8 @@ app.use((req, res, next) => {
 app.set("view engine", "hbs");
 app.use(flash());
 app.use((req, res, next) => {
-  res.locals.error_msg = req.flash('error')??"";
-  res.locals.success_msg = req.flash('success')??"";
+  res.locals.error_msg = req.flash("error") ?? "";
+  res.locals.success_msg = req.flash("success") ?? "";
   next();
 });
 
@@ -83,15 +86,18 @@ app.use("/", require("./routes/home"));
 app.use("/", require("./routes/auth"));
 
 app.use(authMiddleware.require_login);
+app.use(authMiddleware.injectRole);
 
 app.use("/dashboard", require("./routes/dashboard"));
 app.use("/project", require("./routes/project"));
 app.use("/user", require("./routes/user"));
 app.use("/role", require("./routes/role"));
+app.use("/release", require("./routes/release"));
 
 app.use(errorHandler.notFoundHandler);
 app.use(errorHandler.csrfErrorHandler);
 app.use(errorHandler.generalErrorHandler);
+
 app.listen(port, () =>
   console.log(`Example app listening on port ${port}! http://localhost:${port}`)
 );
