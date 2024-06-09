@@ -57,6 +57,10 @@ controller.showAll = async (req, res) => {
       limit: size,
       offset: offset
     });
+
+  
+
+
     const totalPages = Math.ceil(requirements.count / size);
     console.log(requirements);
     
@@ -105,7 +109,12 @@ controller.getDetailRequirement = async (req, res) => {
         },
       ]
     });
-
+    const modules = await models.Module.findAll({
+      where: {
+        project_id: projectId,
+        
+      }
+    });
     // select all test cases have this requirement
     const testCases = await models.TestCase.findAndCountAll({
       include: [
@@ -135,6 +144,11 @@ controller.getDetailRequirement = async (req, res) => {
     });
     const totalPages = Math.ceil(testCases.count / size);
 
+    // map step_count to test case
+    for (const testCase of testCases.rows) {
+      const steps = JSON.parse(testCase.steps);
+      testCase.step_count = steps.length;
+    }
     console.log(requirement);
     if (!requirement) {
       return res.status(404).send("Requirement not found");
@@ -145,6 +159,7 @@ controller.getDetailRequirement = async (req, res) => {
       testCases: testCases.rows,
       pageType: pageType,
       page: page,
+      modules: modules,
       totalPages: totalPages,
       size: size
     });

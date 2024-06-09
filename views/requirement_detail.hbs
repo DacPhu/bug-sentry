@@ -119,7 +119,7 @@
                         <tr>
                           <th scope="row">{{id}}</th>
                           <td>{{title}}</td>
-                          <td>{{steps}}</td>
+                          <td>{{step_count}}</td>
 
                           <td>{{Member.User.first_name}} {{Member.User.last_name}}</td>
 
@@ -146,36 +146,7 @@
                           </td>
                         </tr>
                         {{/each}}
-                        <tr>
-                          <th scope="row">TC001</th>
-                          <td>TC Number 01</td>
-                          <td>4</td>
-
-                          <td>Lokissdo</td>
-
-                          <td
-                            style="max-width: 100px"
-                            class="eclipsis-overflow"
-                          >
-                            7h28m 33 7h28m 33 7h28m 337h28m 337h28m 337h28m
-                            337h28m 337h28m 33
-                          </td>
-
-                          <td class="ps-0">
-                            <div
-                              class="d-flex pointer-cursor p-2 pt-0 pb-0 justify-content-end"
-                            >
-                              <img
-                                src="/icons/octicon_unlink-24.svg"
-                                alt=""
-                              />
-                              <span
-                                class="ms-2 font-weight-semibold text-danger"
-                                >Unlink</span
-                              >
-                            </div>
-                          </td>
-                        </tr>
+                      
                         
                       </tbody>
                     </table>
@@ -255,47 +226,23 @@
                   </div>
 
                   <hr />
-                  <div class="p-3">
-                    <input
-                      class="w-100 p-3 pt-1 pb-1"
-                      type="text"
-                      placeholder="Search requirement type by name"
-                    />
-                  </div>
+                 
                   <div id="modulesContainer" class="d-flex flex-column">
+                    {{#each modules}}
                     <div
-                      id="module1"
-                      class="d-flex pointer-cursor align-items-center col m-4 mt-4 mb-0 font-weight-semibold"
+                      id="{{id}}"
+                      class="d-flex pointer-cursor align-items-center col m-4 mt-4 mb-0 {{#if @first}} font-weight-semibold{{else}} font-color-blur{{/if}}"
                     >
                       <img
                         class="me-2"
                         src="/icons/ic_round-folder.svg"
                         alt=""
                       />
-                      Module 1
+                      {{name}}
                     </div>
-                    <div
-                      id="module2"
-                      class="d-flex pointer-cursor align-items-center col m-4 mt-4 mb-0 font-color-blur"
-                    >
-                      <img
-                        class="me-2"
-                        src="/icons/ic_round-folder.svg"
-                        alt=""
-                      />
-                      Module 2
-                    </div>
-                    <div
-                      id="module3"
-                      class="d-flex pointer-cursor align-items-center col m-4 mt-4 mb-0 font-color-blur"
-                    >
-                      <img
-                        class="me-2"
-                        src="/icons/ic_round-folder.svg"
-                        alt=""
-                      />
-                      Module 3
-                    </div>
+                    {{/each}}
+                  
+                    
                   </div>
                 </div>
               </div>
@@ -305,30 +252,26 @@
                 <div class="h-100 flex bg-semi-grey semi-rounded p-3">
                   <!-- action bar -->
                   <div class="d-flex align-items-center">
-                    <div class="d-flex flex-fill ms-4 align-items-center">
-                      Show
-                      <div
-                        class="rounded m-1 p-3 pt-0 pb-0 cursor-pointer border-secondary border-1 border"
-                      >
-                        5
-                        <img
-                          class="m-3"
-                          src="/icons/down-arrow.svg"
-                          alt=""
-                        />
-                      </div>
-                      entries
-                    </div>
+                    
                     <div class="d-flex align-items-center flex-fill">
                       <span>Sort</span>
                       <div class="d-flex rounded-1 p-2 ms-2 bg-white">
-                        <span class="me-4 font-weight-semibold">
-                          Position
-                          <img
-                            src="/icons/sort-icon.svg"
-                            alt=""
-                          />
-                        </span>
+                         <a class="nav-link " href="#" id="dropdownLanguageId" data-bs-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            <span class="me-4 font-weight-semibold">
+                              {{#if (equals sortField "test_case_code")}}
+                              TestCase Code
+                              {{else}}
+                              Title
+                              {{/if}}
+                              <img src="/icons/sort-icon.svg" alt="" />
+                            </span>
+                          </a>
+
+                          <div class="dropdown-menu" aria-labelledby="dropdownLanguageId">
+                            <a class="dropdown-item" href="?module={{module}}&moduleName={{moduleName}}&size={{size}}&page={{page}}&sortField=id&sortType={{sortType}}">TestCase Code</a>
+                            <a class="dropdown-item" href="?module={{module}}&moduleName={{moduleName}}&size={{size}}&page={{page}}&sortField=name&sortType={{sortType}}">Title</a>
+                          </div>
 
                         <span
                           class="font-weight-semibold d-flex align-items-center"
@@ -356,7 +299,37 @@
                       </tr>
                     </thead>
                     <tbody>
+                      {{#each testCases}}
                       <tr>
+                        <td>
+                          <input
+                            class="ms-2 mt-1 checkbox-lg"
+                            size=""
+                            type="checkbox"
+                            name="chosen-tc"
+                            value="{{id}}"
+                            id="{{id}}"
+                          />
+                        </td>
+                        <th scope="row">
+                          <label for="{{id}}">{{id}}</label>
+                        </th>
+                        <td>{{title}}</td>
+                        <td>{{step_count}}</td>
+
+                        <td class="ps-0">
+                          <div
+                            class="d-flex pointer-cursor p-2 pt-0 pb-0 justify-content-end"
+                          >
+                            <img
+                              src="/icons/mdi_eye-outline.svg"
+                              alt=""
+                            />
+                          </div>
+                        </td>
+                      </tr>
+                      {{/each}}
+                      {{!-- <tr>
                         <td>
                           <input
                             class="ms-2 mt-1 checkbox-lg"
@@ -383,69 +356,13 @@
                             />
                           </div>
                         </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <input
-                            class="ms-2 mt-1 checkbox-lg"
-                            size=""
-                            type="checkbox"
-                            name="chosen-tc"
-                            value="2"
-                            id="md3"
-                          />
-                        </td>
-                        <th scope="row">
-                          <label for="md3">TC003</label>
-                        </th>
-                        <td>TC Number 01</td>
-                        <td>4</td>
-
-                        <td class="ps-0">
-                          <div
-                            class="d-flex pointer-cursor p-2 pt-0 pb-0 justify-content-end"
-                          >
-                            <img
-                              src="/icons/mdi_eye-outline.svg"
-                              alt=""
-                            />
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <input
-                            class="ms-2 mt-1 checkbox-lg"
-                            size=""
-                            type="checkbox"
-                            name="chosen-tc"
-                            value="4"
-                            id="md2"
-                          />
-                        </td>
-                        <th scope="row">
-                          <label for="md2">TC002</label>
-                        </th>
-                        <td>TC Number 02</td>
-                        <td>4</td>
-
-                        <td class="ps-0">
-                          <div
-                            class="d-flex pointer-cursor p-2 pt-0 pb-0 justify-content-end"
-                          >
-                            <img
-                              src="/icons/mdi_eye-outline.svg"
-                              alt=""
-                            />
-                          </div>
-                        </td>
-                      </tr>
+                      </tr> --}}
+                     
                     </tbody>
                   </table>
 
                   <!-- pagination -->
                   <div class="d-flex justify-content-between p-3">
-                    <span> Showing 1 of 3 entries </span>
                     <div>
                       <img
                         width="20px"
