@@ -1,6 +1,7 @@
 "use strict";
 
 const controller = {};
+const { inc } = require("../helpers");
 const models = require("../models");
 const { paginate } = require("../utils/pagination");
 controller.showAll = async (req, res) => {
@@ -84,18 +85,68 @@ controller.getDetailRequirement = async (req, res) => {
   try {
     const projectId = req.params.id;
     const requirementId = req.params.requirement_id;
+    const pageType = req.query.pageType??0;
+    const { page, size, offset } = paginate(req, 1, 5);
     const requirement = await models.Requirement.findOne({
       where: {
         id: requirementId,
         project_id: projectId
-      }
+      },
+      include: [
+        {
+          model: models.Member,
+          include: [
+            {
+              model: models.User,
+              required: false,
+            },
+          ],
+          required: false,
+        },
+      ]
     });
+
+    // select all test cases have this requirement
+    const testCases = await models.TestCase.findAndCountAll({
+      include: [
+        {
+          model: models.Requirement,
+          where: {
+            id: requirementId
+          },
+          attributes: []
+        },
+        {
+          model: models.Member,
+          include: [
+            {
+              model: models.User,
+              required: false,
+              attributes: ['id', 'first_name', 'last_name']
+            },
+          ],
+          required: false,
+        },
+        
+      ],
+      limit: size,
+      offset: offset,
+      subQuery: false,
+    });
+    const totalPages = Math.ceil(testCases.count / size);
+
+    console.log(requirement);
     if (!requirement) {
       return res.status(404).send("Requirement not found");
     }
     res.render("requirement_detail", {
       layout: "main_layout",
-      requirement: requirement
+      requirement: requirement,
+      testCases: testCases.rows,
+      pageType: pageType,
+      page: page,
+      totalPages: totalPages,
+      size: size
     });
   } catch (error) {
     console.error("Error fetching requirement:", error);

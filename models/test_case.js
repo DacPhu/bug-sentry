@@ -8,9 +8,10 @@ module.exports = (sequelize, DataTypes) => {
       TestCase.belongsTo(models.Module, { foreignKey: "module_id" });
       TestCase.belongsTo(models.Member, { foreignKey: "tester_id" });
       TestCase.belongsToMany(models.Requirement, {
-        through: 'RequirementTestCase',
+        through: 'requirement_test_cases',
         foreignKey: 'test_case_id',
-        otherKey: 'requirement_id'
+        otherKey: 'requirement_id',
+        timestamps: false 
       });
       
     }

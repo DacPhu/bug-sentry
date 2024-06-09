@@ -64,24 +64,33 @@
                   </div>
 
                   <!-- Detail Requirement -->
+                  {{#with requirement}}
                   <div
                     id="detailReq"
                     class="shadow mt-4 p-4 ps-3 pe-3 mb-5 bg-body rounded"
                   >
-                    <div class="m-2"><b>Title:</b> Hehe</div>
+                    <div class="m-2"><b>Title:</b> {{name}}</div>
                     <div class="m-2">
-                      <b>Description:</b>Lorem, ipsum dolor sit amet consectetur
-                      adipisicing elit. Voluptate praesentium libero amet labore
-                      et exercitationem est itaque dolorem at necessitatibus
-                      animi, quidem veritatis? Sapiente reprehenderit debitis,
-                      atque enim saepe aut.
+                      <b>Description:</b>{{#if description}}
+                      {{description}}
+                      {{else}}
+                        No description
+                        {{/if}}
+                    </div>
+                     <div class="m-2">
+                      <b>URL:</b>{{#if url}}
+                     <a href="{{url}}">{{url}}</a> 
+                      {{else}}
+                        No URL
+                        {{/if}}
                     </div>
 
-                    <div class="m-2"><b>Created At:</b> Hehe</div>
 
-                    <div class="m-2"><b>Created By:</b> Hehe</div>
+                    <div class="m-2"><b>Created At:</b> {{formatDate created_at "DD-MM-YYYY" }}</div>
+
+                    <div class="m-2"><b>Created By:</b> {{ Member.User.first_name }}  {{ Member.User.last_name }}</div>
                   </div>
-
+                    {{/with}}
                   <!-- Table Linked Test Cases -->
                   <div id="linkedTestCases" style="display: none">
                     <table class="table mt-4 me-2">
@@ -106,6 +115,37 @@
                         </tr>
                       </thead>
                       <tbody>
+                        {{#each testCases}}
+                        <tr>
+                          <th scope="row">{{id}}</th>
+                          <td>{{title}}</td>
+                          <td>{{steps}}</td>
+
+                          <td>{{Member.User.first_name}} {{Member.User.last_name}}</td>
+
+                          <td
+                            style="max-width: 100px"
+                            class="eclipsis-overflow"
+                          >
+                            {{formatDate created_at "DD-MM-YYYY" }}
+                          </td>
+
+                          <td class="ps-0">
+                            <div
+                              class="d-flex pointer-cursor p-2 pt-0 pb-0 justify-content-end"
+                            >
+                              <img
+                                src="/icons/octicon_unlink-24.svg"
+                                alt=""
+                              />
+                              <span
+                                class="ms-2 font-weight-semibold text-danger"
+                                >Unlink</span
+                              >
+                            </div>
+                          </td>
+                        </tr>
+                        {{/each}}
                         <tr>
                           <th scope="row">TC001</th>
                           <td>TC Number 01</td>
@@ -136,66 +176,7 @@
                             </div>
                           </td>
                         </tr>
-                        <tr>
-                          <th scope="row">TC001</th>
-                          <td>TC Number 01</td>
-                          <td>4</td>
-
-                          <td>Lokissdo</td>
-
-                          <td
-                            style="max-width: 100px"
-                            class="eclipsis-overflow"
-                          >
-                            7h28m 33 7h28m 33 7h28m 337h28m 337h28m 337h28m
-                            337h28m 337h28m 33
-                          </td>
-
-                          <td class="ps-0">
-                            <div
-                              class="d-flex pointer-cursor p-2 pt-0 pb-0 justify-content-end"
-                            >
-                              <img
-                                src="/icons/octicon_unlink-24.svg"
-                                alt=""
-                              />
-                              <span
-                                class="ms-2 font-weight-semibold text-danger"
-                                >Unlink</span
-                              >
-                            </div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <th scope="row">TC001</th>
-                          <td>TC Number 01</td>
-                          <td>4</td>
-
-                          <td>Lokissdo</td>
-
-                          <td
-                            style="max-width: 100px"
-                            class="eclipsis-overflow"
-                          >
-                            7h28m 33 7h28m 33 7h28m 337h28m 337h28m 337h28m
-                            337h28m 337h28m 33
-                          </td>
-
-                          <td class="ps-0">
-                            <div
-                              class="d-flex pointer-cursor p-2 pt-0 pb-0 justify-content-end"
-                            >
-                              <img
-                                src="/icons/octicon_unlink-24.svg"
-                                alt=""
-                              />
-                              <span
-                                class="ms-2 font-weight-semibold text-danger"
-                                >Unlink</span
-                              >
-                            </div>
-                          </td>
-                        </tr>
+                        
                       </tbody>
                     </table>
 
