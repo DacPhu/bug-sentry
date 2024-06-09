@@ -143,7 +143,8 @@
                         </td>
                         <td class="ps-0">
                           <div class="d-flex pointer-cursor p-2 pt-0 pb-0 justify-content-end">
-                            <img src="/icons/mdi_eye-outline.svg" alt="" />
+                            
+                            <img src="/icons/mdi_eye-outline.svg" alt="" onclick="onClickViewTCDetail({{this.id}})" />
                             <img src="/icons/bin-black.svg" alt="" />
                           </div>
                         </td>
@@ -326,6 +327,13 @@
 
 {{#section 'scripts'}}
 <script>
+  const dataStr = `{{{testcasesJson}}}`;
+  const testCases = JSON.parse(dataStr);
+  const chosenModuleName = "{{{chosenModuleName}}}";
+
+console.log(testCases, chosenModuleName)
+</script>
+<script>
   (function (fn) {
     "use strict";
     fn(window.jQuery, window, document);
@@ -391,4 +399,6 @@
 </script>
 
 <script src="/scripts/add-testcase.js"></script>
+<script src="/scripts/view-detail-tc.js"></script>
+
 {{/section}}

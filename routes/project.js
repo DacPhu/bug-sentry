@@ -13,7 +13,7 @@ const release_controller = require("../controllers/release");
 const administration_controller = require("../controllers/administration");
 const attachment_controller = require("../controllers/attachment");
 const activity_controller = require("../controllers/activity");
-const {requirement_router} = require("./project_routes");
+const {requirement_router, attachment_router} = require("./project_routes");
 router.get("/", project_controller.showAll);
 
 router.get("/add-user", administration_controller.showAddUserForm);
@@ -32,7 +32,7 @@ router.get("/:id/module", module_controller.showAll);
 router.use("/:id/requirement", requirement_router);
 // router.get("/:id/issue", issue_controller.showAll);
 // router.get("/:id/release", release_controller.showAll);
-// router.get("/:id/attachment", attachment_controller.showAll);
+router.get("/:id/attachment", attachment_router);
 // router.get("/:id/activity-log", activity_controller.showAll);
 
 module.exports = router;

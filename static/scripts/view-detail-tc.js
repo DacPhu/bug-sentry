@@ -1,18 +1,12 @@
-const fetchTestcaseDetail = async (testcaseId) => {
-  const response = await fetch(`/testcase/${testcaseId}`);
-  const data = await response.json();
-  console.log("data", data);
-  return data;
-};
 
-function onClickViewTCDetail(testcase, moduleName) {
-  console.log($("#testcaseDetailPopup"));
+function onClickViewTCDetail(testcaseID) {
+  const testcase = testCases.find(tc => tc.id == testcaseID);
 
   $("#testcaseDetailPopup").fadeIn(200);
   $(".closeTCPopup").click(function () {
     $("#testcaseDetailPopup").fadeOut(200);
   });
-  $("#tcdetail-module-name")[0].textContent = moduleName;
+  $("#tcdetail-module-name")[0].textContent = chosenModuleName;
   $("#tcdetail-tc-name")[0].textContent = testcase.title;
   $("#tcdetail-tc-description")[0].textContent =
     testcase.description ?? "No description";
@@ -40,6 +34,6 @@ function onClickViewTCDetail(testcase, moduleName) {
 
                   ${stepsHtml}
               `;
-  console.log("clickedTestcaseId", testcaseId);
+  console.log("clickedTestcaseId", testcaseID);
 }
 

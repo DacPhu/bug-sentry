@@ -1,3 +1,4 @@
 module.exports = {
-    "requirement_router": require("./requirement")
+    "requirement_router": require("./requirement"),
+    "attachment_router": require("./attachment"),
 };

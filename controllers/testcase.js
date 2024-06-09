@@ -39,7 +39,8 @@ controller.showAll = async (req, res) => {
         page: page,
         totalPages: 0,
         size: size,
-        module: null
+        module: null,
+        chosenModuleName: ''
       });
     }
     const targetModule = req.query.module??modules[0].id;
@@ -79,8 +80,16 @@ controller.showAll = async (req, res) => {
     const totalPages = Math.ceil(testcases.count / size);
     console.log(testcases);
     for (const testCase of testcases.rows) {
-      const steps = JSON.parse(testCase.steps);
-      testCase.step_count = steps.length;
+      // const steps = JSON.parse(testCase.steps);
+      testCase.steps = JSON.parse(testCase.steps);
+      testCase.step_count = testCase.steps.length;
+    }
+    let chosenModuleName = '';
+    for (const module of modules) {
+      if (module.id == targetModule) {
+        chosenModuleName = module.name;
+        break;
+      }
     }
     res.render("testcase", {
       layout: "main_layout",
@@ -90,10 +99,12 @@ controller.showAll = async (req, res) => {
       testcaseName: testcaseName,
       sortType: sortType,
       sortField: sortField,
+      testcasesJson : JSON.stringify(testcases.rows),
       page: page,
       size: size,
       totalPages: totalPages,
-      module: targetModule
+      module: targetModule,
+      chosenModuleName:chosenModuleName,
     });
   } catch (error) {
     console.error("Error fetching testcases:", error);
