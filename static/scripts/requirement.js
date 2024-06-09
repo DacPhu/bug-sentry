@@ -5,70 +5,70 @@
   "use strict";
 
   $(function () {
-    let initialModuleId = "modules1";
-    renderer.renderModules(dataFaker, initialModuleId);
+    let initialModuleId = requirementsData[0].id;
+    renderer.renderModules(requirementsData, initialModuleId);
     renderer.renderRequirements(initialModuleId);
   });
 });
 
-const dataFaker = {
-  modules: {
-    modules1: {
-      id: "modules1",
-      name: "Module 1",
-      requirements: [
-        {
-          id: "req1",
-          name: "Requirement Number 1",
-        },
-        {
-          id: "req2",
-          name: "Requirement Number 2",
-        },
-        {
-          id: "req3",
-          name: "Requirement Number 3",
-        },
-      ],
-    },
-    modules2: {
-      id: "modules2",
-      name: "Module 2",
-      requirements: [
-        {
-          id: "req4",
-          name: "Requirement Number 4",
-        },
-        {
-          id: "req5",
-          name: "Requirement Number 5",
-        },
-        {
-          id: "req6",
-          name: "Requirement Number 6",
-        },
-      ],
-    },
-    modules3: {
-      id: "modules3",
-      name: "Module 3",
-      requirements: [
-        {
-          id: "req7",
-          name: "Requirement Number 7",
-        },
-        {
-          id: "req8",
-          name: "Requirement Number 8",
-        },
-        {
-          id: "req9",
-          name: "Requirement Number 9",
-        },
-      ],
-    },
-  },
-};
+// const requirementsData = {
+//   modules: {
+//     modules1: {
+//       id: "modules1",
+//       name: "Module 1",
+//       requirements: [
+//         {
+//           id: "req1",
+//           name: "Requirement Number 1",
+//         },
+//         {
+//           id: "req2",
+//           name: "Requirement Number 2",
+//         },
+//         {
+//           id: "req3",
+//           name: "Requirement Number 3",
+//         },
+//       ],
+//     },
+//     modules2: {
+//       id: "modules2",
+//       name: "Module 2",
+//       requirements: [
+//         {
+//           id: "req4",
+//           name: "Requirement Number 4",
+//         },
+//         {
+//           id: "req5",
+//           name: "Requirement Number 5",
+//         },
+//         {
+//           id: "req6",
+//           name: "Requirement Number 6",
+//         },
+//       ],
+//     },
+//     modules3: {
+//       id: "modules3",
+//       name: "Module 3",
+//       requirements: [
+//         {
+//           id: "req7",
+//           name: "Requirement Number 7",
+//         },
+//         {
+//           id: "req8",
+//           name: "Requirement Number 8",
+//         },
+//         {
+//           id: "req9",
+//           name: "Requirement Number 9",
+//         },
+//       ],
+//     },
+//   },
+// };
 
 const eventHandler = {
   onClickModule: function (moduleId) {
@@ -103,12 +103,11 @@ const eventHandler = {
 const renderer = {
   renderModules: function (data, initialModuleId = "modules1") {
     let modulesContainer = document.getElementById("modulesContainer");
-    let modules = data.modules;
+    let modules = data;
     let modulesHtml = "";
-    for (let moduleId in modules) {
-      let module = modules[moduleId];
-      modulesHtml += `<div id="${moduleId}" class="d-flex pointer-cursor align-items-center col m-4 mt-4 mb-0 ${
-        initialModuleId == moduleId ? "font-weight-semibold" : "font-color-blur"
+    for (let module of modules) {
+      modulesHtml += `<div id="${module.id}" class="d-flex pointer-cursor align-items-center col m-4 mt-4 mb-0 ${
+        initialModuleId == module.id ? "font-weight-semibold" : "font-color-blur"
       } ">
                               <img class="me-2" src="/icons/ic_round-folder.svg" alt="">
                               ${module.name}
@@ -121,7 +120,9 @@ const renderer = {
     let requirementsContainer = document.getElementById(
       "requirementsContainer"
     );
-    let requirements = dataFaker.modules[modulesId].requirements;
+    console.log("requirementsData", requirementsData);
+    console.log("modulesId", modulesId);
+    let requirements = requirementsData.find((module) => module.id == modulesId).requirements;
     let requirementsHtml = "";
     requirements.forEach((requirement, index) => {
       requirementsHtml += `<tr id ="${requirement.id}">
@@ -131,7 +132,7 @@ const renderer = {
               <div
                 class="d-flex pointer-cursor p-2 pt-0 pb-0 justify-content-between"
               >
-                <a href="./requirement/detail">
+                <a href="./requirement/${requirement.id}">
                     <img
                     src="/icons/mdi_eye-outline.svg"
                     alt=""
