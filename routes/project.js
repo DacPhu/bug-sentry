@@ -31,7 +31,7 @@ router.get("/:id/testcase", testcase_controller.showAll);
 router.get("/:id/module", module_controller.showAll);
 router.use("/:id/requirement", requirement_router);
 router.get("/:id/issue", issue_controller.showAll);
-// router.get("/:id/release", release_controller.showAll);
+router.get("/:id/release", release_controller.showAll);
 // router.get("/:id/attachment", attachment_controller.showAll);
 router.get("/:id/activity-log", activity_controller.showAll);
 

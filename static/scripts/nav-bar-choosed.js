@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const chosenItem = localStorage.getItem("chosenItem");
   if (chosenItem) {
     const activeLink = document.querySelector(
-      `.nav-link[href="${chosenItem}"]`
+      `#navbar-in-project .nav-item .nav-link[href="${chosenItem}"]`
     );
     if (activeLink) {
       activeLink.classList.add("active");
