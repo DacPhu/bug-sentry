@@ -5,13 +5,11 @@ const router = express.Router();
 
 const testcase_controller = require("../controllers/testcase");
 const testrun_controller = require("../controllers/testrun");
-const requirement_controller = require("../controllers/requirement");
 const module_controller = require("../controllers/module");
 const issue_controller = require("../controllers/issue");
 const project_controller = require("../controllers/project");
 const release_controller = require("../controllers/release");
 const administration_controller = require("../controllers/administration");
-const attachment_controller = require("../controllers/attachment");
 const activity_controller = require("../controllers/activity");
 const {requirement_router, attachment_router} = require("./project_routes");
 router.get("/", project_controller.showAll);
