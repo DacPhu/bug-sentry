@@ -33,5 +33,8 @@ module.exports = {
     dec: function(value, options) {
         return parseInt(value) - 1;
     },
+    modEqual : function(a, b, c) {
+        return a % b == c;
+    },
 
 };
