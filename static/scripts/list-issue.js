@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
         item.style.display = "none";
       }
     });
-
+    
     paginationInfo.innerText = `Showing ${startIndex + 1} to ${Math.min(
       endIndex,
       filteredIssues.length
