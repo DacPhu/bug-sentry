@@ -26,38 +26,57 @@
                     <li class="nav-item">
                     <a
                         class="nav-link active text-info"
-                        href="#"
+                        href="./release?type=open"
                         aria-current="page"
                     >Open</a>
                     </li>
                     <li class="nav-item">
                     <a
                         class="nav-link text-warning"
-                        href="#"
+                        href="./release?type=upcomming"
                         onclick="showSection('upcoming-releases')"
                     >Upcomming</a>
                     </li>
                     <li class="nav-item">
                     <a
                         class="nav-link text-success"
-                        href="#"
+                        href="./release?type=completed"
                         onclick="showSection('completed-releases')"
                     >Completed</a>
                     </li>
                 </ul>
                 </nav>
+                {{!-- <nav class="navbar navbar-expand navbar-light">
+                    <ul class="nav navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link active text-info" href="./release?type=open">Open</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-warning" href="./release?type=upcoming">Upcoming</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-success" href="./release?type=completed">Completed</a>
+                        </li>
+                    </ul>
+                </nav> --}}
             </div>
             <div class="col-md-6">
                 <ul class="nav justify-content-end">
+                {{#with countOpen}}
                 <li class="nav-item p-2">
-                    <p>6 Open Release(s)</p>
+                    <p>{{this}} Open Release(s)</p>
                 </li>
+                {{/with}}
+                {{#with countUpcomming}}
                 <li class="nav-item p-2">
-                    <p>5 Upcoming Release(s)</p>
+                    <p>{{this}} Upcoming Release(s)</p>
                 </li>
+                {{/with}}
+                {{#with countCompleted}}
                 <li class="nav-item p-2">
-                    <p>3 Completed Release(s)</p>
+                    <p>{{this}} Completed Release(s)</p>
                 </li>
+                {{/with}}
                 </ul>
             </div>
             </div>
@@ -72,223 +91,66 @@
                     id=""
                     aria-describedby="helpId"
                     placeholder="Search"
+                    id="searchRelease"
                 />
                 </div>
             </div>
             </div>
-            <div class="row px-5 pt-3">
-            <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
-                <div class="bg-white">
-                <div class="card bg-info">
-                    <div class="card-body">
-                    <div class="d-flex justify-content-between">
-                        <div class="d-flex">
-                        <img src="/icons/project-list.svg" />
-                        <div class="p-2">
-                            <h4 class="card-title">Version 1</h4>
-                            Release key:
+            <div class="row px-5 pt-3" id="release-container">
+                {{#each releasesOpen}}
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-3 release-item" name-date="{{name}}">
+                    <div class="bg-white">
+                    <div class="card bg-info">
+                        <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <div class="d-flex">
+                            <img src="/icons/project-list.svg" />
+                            <div class="p-2">
+                                <h4 class="card-title">{{name}}</h4>
+                                Release key: {{id}}
+                            </div>
+                            </div>
                         </div>
+                        <div class="row">
+                            <div class="col-md-8">
+                            <p>Start date: {{formatDate start_date "MMM DD YYYY"}}</p>
+                            <p>End date: {{formatDate end_date "MMM DD YYY"}}</p>
+                            </div>
+                            <div class="col-md-4"></div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-8">
-                        <p>Start date: Not set</p>
-                        <p>End date: Not set</p>
-                        </div>
-                        <div class="col-md-4"></div>
-                    </div>
 
-                    <hr />
-                    <div class="d-flex justify-content-end">
-                        <div>
-                        <i class="bi bi-pencil-square"></i>
-                        <i class="bi bi-trash"></i>
+                        <hr />
+                        <div class="d-flex justify-content-end">
+                            <div>
+                            <i class="bi bi-pencil-square"></i>
+                            <i class="bi bi-trash"></i>
+                            </div>
+                        </div>
                         </div>
                     </div>
                     </div>
                 </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
-                <div class="bg-white">
-                <div class="card bg-info">
-                    <div class="card-body">
-                    <div class="d-flex justify-content-between">
-                        <div class="d-flex">
-                        <img src="/icons/project-list.svg" />
-                        <div class="p-2">
-                            <h4 class="card-title">Version 1</h4>
-                            Release key:
-                        </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-8">
-                        <p>Start date: Not set</p>
-                        <p>End date: Not set</p>
-                        </div>
-                        <div class="col-md-4"></div>
-                    </div>
-
-                    <hr />
-                    <div class="d-flex justify-content-end">
-                        <div>
-                        <i class="bi bi-pencil-square"></i>
-                        <i class="bi bi-trash"></i>
-                        </div>
-                    </div>
-                    </div>
-                </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
-                <div class="bg-white">
-                <div class="card bg-info">
-                    <div class="card-body">
-                    <div class="d-flex justify-content-between">
-                        <div class="d-flex">
-                        <img src="/icons/project-list.svg" />
-                        <div class="p-2">
-                            <h4 class="card-title">Version 1</h4>
-                            Release key:
-                        </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-8">
-                        <p>Start date: Not set</p>
-                        <p>End date: Not set</p>
-                        </div>
-                        <div class="col-md-4"></div>
-                    </div>
-
-                    <hr />
-                    <div class="d-flex justify-content-end">
-                        <div>
-                        <i class="bi bi-pencil-square"></i>
-                        <i class="bi bi-trash"></i>
-                        </div>
-                    </div>
-                    </div>
-                </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
-                <div class="bg-white">
-                <div class="card bg-info">
-                    <div class="card-body">
-                    <div class="d-flex justify-content-between">
-                        <div class="d-flex">
-                        <img src="/icons/project-list.svg" />
-                        <div class="p-2">
-                            <h4 class="card-title">Version 1</h4>
-                            Release key:
-                        </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-8">
-                        <p>Start date: Not set</p>
-                        <p>End date: Not set</p>
-                        </div>
-                        <div class="col-md-4"></div>
-                    </div>
-
-                    <hr />
-                    <div class="d-flex justify-content-end">
-                        <div>
-                        <i class="bi bi-pencil-square"></i>
-                        <i class="bi bi-trash"></i>
-                        </div>
-                    </div>
-                    </div>
-                </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
-                <div class="bg-white">
-                <div class="card bg-info">
-                    <div class="card-body">
-                    <div class="d-flex justify-content-between">
-                        <div class="d-flex">
-                        <img src="/icons/project-list.svg" />
-                        <div class="p-2">
-                            <h4 class="card-title">Version 1</h4>
-                            Release key:
-                        </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-8">
-                        <p>Start date: Not set</p>
-                        <p>End date: Not set</p>
-                        </div>
-                        <div class="col-md-4"></div>
-                    </div>
-
-                    <hr />
-                    <div class="d-flex justify-content-end">
-                        <div>
-                        <i class="bi bi-pencil-square"></i>
-                        <i class="bi bi-trash"></i>
-                        </div>
-                    </div>
-                    </div>
-                </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
-                <div class="bg-white">
-                <div class="card bg-info">
-                    <div class="card-body">
-                    <div class="d-flex justify-content-between">
-                        <div class="d-flex">
-                        <img src="/icons/project-list.svg" />
-                        <div class="p-2">
-                            <h4 class="card-title">Version 1</h4>
-                            Release key:
-                        </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-8">
-                        <p>Start date: Not set</p>
-                        <p>End date: Not set</p>
-                        </div>
-                        <div class="col-md-4"></div>
-                    </div>
-
-                    <hr />
-                    <div class="d-flex justify-content-end">
-                        <div>
-                        <i class="bi bi-pencil-square"></i>
-                        <i class="bi bi-trash"></i>
-                        </div>
-                    </div>
-                    </div>
-                </div>
-                </div>
-            </div>
+                {{/each}}
             </div>
             <div class="row mt-5 align-content-center px-3 pb-4">
-            <div class="col">
-                <h4>Showing 1 to 6 of 6 entries</h4>
-            </div>
-            <div class="col d-flex align-items-center">
-                <button class="border-0 rounded-3 p-2 text-muted ms-auto">
-                <i class="bi bi-chevron-double-left"></i>
+                <div class="col">
+                <h4 id="pagination-info-completed">Showing 1 to 6 of 6 entries</h4>
+                </div>
+                <div class="col d-flex align-items-center">
+                <button class="border-0 rounded-3 p-2 text-muted ms-auto" id="prev-page">
+                    <i class="bi bi-chevron-double-left"></i>
                 </button>
                 <div
-                class="bg-main-color rounded-circle d-flex justify-content-center align-items-center mx-3"
-                style="width: 40px; height: 40px"
+                    class="bg-main-color rounded-circle d-flex justify-content-center align-items-center mx-3"
+                    style="width: 40px; height: 40px"
                 >
-                <h1 class="mb-0 text-light" style="font-size: 1.5rem">1</h1>
+                    <h1 class="mb-0 text-light" style="font-size: 1.5rem" id="current-page">1</h1>
                 </div>
-                <button class="border-0 rounded-3 p-2 text-muted me-3">
-                <i class="bi bi-chevron-double-right"></i>
+                <button class="border-0 rounded-3 p-2 text-muted me-3" id="next-page">
+                    <i class="bi bi-chevron-double-right"></i>
                 </button>
             </div>
-            </div>
+          </div>
         </section>
 
         <section
@@ -303,7 +165,7 @@
                     <li class="nav-item">
                     <a
                         class="nav-link text-info"
-                        href="#"
+                        href="./release?type=open"
                         aria-current="page"
                         onclick="showSection('open-releases')"
                     >Open</a>
@@ -311,13 +173,13 @@
                     <li class="nav-item">
                     <a
                         class="nav-link active text-warning"
-                        href="#"
+                        href="./release?type=upcomming"
                     >Upcomming</a>
                     </li>
                     <li class="nav-item">
                     <a
                         class="nav-link text-success"
-                        href="#"
+                        href="./release?type=completed"
                         onclick="showSection('completed-releases')"
                     >Completed</a>
                     </li>
@@ -326,15 +188,21 @@
             </div>
             <div class="col-md-6">
                 <ul class="nav justify-content-end">
+                {{#with countOpen}}
                 <li class="nav-item p-2">
-                    <p>6 Open Release(s)</p>
+                    <p>{{this}} Open Release(s)</p>
                 </li>
+                {{/with}}
+                {{#with countUpcomming}}
                 <li class="nav-item p-2">
-                    <p>5 Upcoming Release(s)</p>
+                    <p>{{this}} Upcoming Release(s)</p>
                 </li>
+                {{/with}}
+                {{#with countCompleted}}
                 <li class="nav-item p-2">
-                    <p>3 Completed Release(s)</p>
+                    <p>{{this}} Completed Release(s)</p>
                 </li>
+                {{/with}}
                 </ul>
             </div>
             </div>
@@ -349,191 +217,66 @@
                     id=""
                     aria-describedby="helpId"
                     placeholder="Search"
+                    id="searchRelease"
                 />
                 </div>
             </div>
             </div>
-            <div class="row px-5 pt-3">
-            <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
-                <div class="bg-white">
-                <div class="card bg-warning">
-                    <div class="card-body">
-                    <div class="d-flex justify-content-between">
-                        <div class="d-flex">
-                        <img src="/icons/project-list.svg" />
-                        <div class="p-2">
-                            <h4 class="card-title">Version 1</h4>
-                            Release key:
+            <div class="row px-5 pt-3" id="release-container">
+                {{#each releasesUpComming}}
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-3 release-item" date-name="{{name}}">
+                    <div class="bg-white">
+                    <div class="card bg-warning">
+                        <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <div class="d-flex">
+                            <img src="/icons/project-list.svg" />
+                            <div class="p-2">
+                                <h4 class="card-title">{{name}}</h4>
+                                Release key: {{id}}
+                            </div>
+                            </div>
                         </div>
+                        <div class="row">
+                            <div class="col-md-8">
+                            <p>Start date: {{formatDate start_date "MMM DD YYYY"}}</p>
+                            <p>End date: {{formatDate end_date "MMM DD YYYY"}}</p>
+                            </div>
+                            <div class="col-md-4"></div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-8">
-                        <p>Start date: Not set</p>
-                        <p>End date: Not set</p>
-                        </div>
-                        <div class="col-md-4"></div>
-                    </div>
 
-                    <hr />
-                    <div class="d-flex justify-content-end">
-                        <div>
-                        <i class="bi bi-pencil-square"></i>
-                        <i class="bi bi-trash"></i>
+                        <hr />
+                        <div class="d-flex justify-content-end">
+                            <div>
+                            <i class="bi bi-pencil-square"></i>
+                            <i class="bi bi-trash"></i>
+                            </div>
+                        </div>
                         </div>
                     </div>
                     </div>
                 </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
-                <div class="bg-white">
-                <div class="card bg-warning">
-                    <div class="card-body">
-                    <div class="d-flex justify-content-between">
-                        <div class="d-flex">
-                        <img src="/icons/project-list.svg" />
-                        <div class="p-2">
-                            <h4 class="card-title">Version 1</h4>
-                            Release key:
-                        </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-8">
-                        <p>Start date: Not set</p>
-                        <p>End date: Not set</p>
-                        </div>
-                        <div class="col-md-4"></div>
-                    </div>
-
-                    <hr />
-                    <div class="d-flex justify-content-end">
-                        <div>
-                        <i class="bi bi-pencil-square"></i>
-                        <i class="bi bi-trash"></i>
-                        </div>
-                    </div>
-                    </div>
-                </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
-                <div class="bg-white">
-                <div class="card bg-warning">
-                    <div class="card-body">
-                    <div class="d-flex justify-content-between">
-                        <div class="d-flex">
-                        <img src="/icons/project-list.svg" />
-                        <div class="p-2">
-                            <h4 class="card-title">Version 1</h4>
-                            Release key:
-                        </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-8">
-                        <p>Start date: Not set</p>
-                        <p>End date: Not set</p>
-                        </div>
-                        <div class="col-md-4"></div>
-                    </div>
-
-                    <hr />
-                    <div class="d-flex justify-content-end">
-                        <div>
-                        <i class="bi bi-pencil-square"></i>
-                        <i class="bi bi-trash"></i>
-                        </div>
-                    </div>
-                    </div>
-                </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
-                <div class="bg-white">
-                <div class="card bg-warning">
-                    <div class="card-body">
-                    <div class="d-flex justify-content-between">
-                        <div class="d-flex">
-                        <img src="/icons/project-list.svg" />
-                        <div class="p-2">
-                            <h4 class="card-title">Version 1</h4>
-                            Release key:
-                        </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-8">
-                        <p>Start date: Not set</p>
-                        <p>End date: Not set</p>
-                        </div>
-                        <div class="col-md-4"></div>
-                    </div>
-
-                    <hr />
-                    <div class="d-flex justify-content-end">
-                        <div>
-                        <i class="bi bi-pencil-square"></i>
-                        <i class="bi bi-trash"></i>
-                        </div>
-                    </div>
-                    </div>
-                </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
-                <div class="bg-white">
-                <div class="card bg-warning">
-                    <div class="card-body">
-                    <div class="d-flex justify-content-between">
-                        <div class="d-flex">
-                        <img src="/icons/project-list.svg" />
-                        <div class="p-2">
-                            <h4 class="card-title">Version 1</h4>
-                            Release key:
-                        </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-8">
-                        <p>Start date: Not set</p>
-                        <p>End date: Not set</p>
-                        </div>
-                        <div class="col-md-4"></div>
-                    </div>
-
-                    <hr />
-                    <div class="d-flex justify-content-end">
-                        <div>
-                        <i class="bi bi-pencil-square"></i>
-                        <i class="bi bi-trash"></i>
-                        </div>
-                    </div>
-                    </div>
-                </div>
-                </div>
-            </div>
+                {{/each}}
             </div>
             <div class="row mt-5 align-content-center px-3 pb-4">
-            <div class="col">
-                <h4>Showing 1 to 5 of 5 entries</h4>
-            </div>
-            <div class="col d-flex align-items-center">
-                <button class="border-0 rounded-3 p-2 text-muted ms-auto">
-                <i class="bi bi-chevron-double-left"></i>
+                <div class="col">
+                <h4 id="pagination-info-open">Showing 1 to 6 of 6 entries</h4>
+                </div>
+                <div class="col d-flex align-items-center">
+                <button class="border-0 rounded-3 p-2 text-muted ms-auto" id="prev-page">
+                    <i class="bi bi-chevron-double-left"></i>
                 </button>
                 <div
-                class="bg-main-color rounded-circle d-flex justify-content-center align-items-center mx-3"
-                style="width: 40px; height: 40px"
+                    class="bg-main-color rounded-circle d-flex justify-content-center align-items-center mx-3"
+                    style="width: 40px; height: 40px"
                 >
-                <h1 class="mb-0 text-light" style="font-size: 1.5rem">1</h1>
+                    <h1 class="mb-0 text-light" style="font-size: 1.5rem" id="current-page">1</h1>
                 </div>
-                <button class="border-0 rounded-3 p-2 text-muted me-3">
-                <i class="bi bi-chevron-double-right"></i>
+                <button class="border-0 rounded-3 p-2 text-muted me-3" id="next-page">
+                    <i class="bi bi-chevron-double-right"></i>
                 </button>
             </div>
-            </div>
+          </div>
         </section>
 
         <section
@@ -570,15 +313,21 @@
             </div>
             <div class="col-md-6">
                 <ul class="nav justify-content-end">
+                {{#with countOpen}}
                 <li class="nav-item p-2">
-                    <p>6 Open Release(s)</p>
+                    <p>{{this}} Open Release(s)</p>
                 </li>
+                {{/with}}
+                {{#with countUpcomming}}
                 <li class="nav-item p-2">
-                    <p>5 Upcoming Release(s)</p>
+                    <p>{{this}} Upcoming Release(s)</p>
                 </li>
+                {{/with}}
+                {{#with countCompleted}}
                 <li class="nav-item p-2">
-                    <p>3 Completed Release(s)</p>
+                    <p>{{this}} Completed Release(s)</p>
                 </li>
+                {{/with}}
                 </ul>
             </div>
             </div>
@@ -593,127 +342,66 @@
                     id=""
                     aria-describedby="helpId"
                     placeholder="Search"
+                    id="searchRelease"
                 />
                 </div>
             </div>
             </div>
             <div class="row px-5 pt-3">
-            <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
-                <div class="bg-white">
-                <div class="card bg-success">
-                    <div class="card-body">
-                    <div class="d-flex justify-content-between">
-                        <div class="d-flex">
-                        <img src="/icons/project-list.svg" />
-                        <div class="p-2">
-                            <h4 class="card-title">Version 1</h4>
-                            Release key:
+                {{#each releasesCompleted}}
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-3 release-item" data-name="{{name}}">
+                    <div class="bg-white">
+                    <div class="card bg-success">
+                        <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <div class="d-flex">
+                            <img src="/icons/project-list.svg" />
+                            <div class="p-2">
+                                <h4 class="card-title">{{name}}</h4>
+                                Release key: {{id}}
+                            </div>
+                            </div>
                         </div>
+                        <div class="row">
+                            <div class="col-md-8">
+                            <p>Start date: {{formatDate start_date "MMM DD YYYY"}}</p>
+                            <p>End date: {{formatDate end_date "MMM DD YYYY"}}</p>
+                            </div>
+                            <div class="col-md-4"></div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-8">
-                        <p>Start date: Not set</p>
-                        <p>End date: Not set</p>
-                        </div>
-                        <div class="col-md-4"></div>
-                    </div>
 
-                    <hr />
-                    <div class="d-flex justify-content-end">
-                        <div>
-                        <i class="bi bi-pencil-square"></i>
-                        <i class="bi bi-trash"></i>
+                        <hr />
+                        <div class="d-flex justify-content-end">
+                            <div>
+                            <i class="bi bi-pencil-square"></i>
+                            <i class="bi bi-trash"></i>
+                            </div>
+                        </div>
                         </div>
                     </div>
                     </div>
                 </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
-                <div class="bg-white">
-                <div class="card bg-success">
-                    <div class="card-body">
-                    <div class="d-flex justify-content-between">
-                        <div class="d-flex">
-                        <img src="/icons/project-list.svg" />
-                        <div class="p-2">
-                            <h4 class="card-title">Version 1</h4>
-                            Release key:
-                        </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-8">
-                        <p>Start date: Not set</p>
-                        <p>End date: Not set</p>
-                        </div>
-                        <div class="col-md-4"></div>
-                    </div>
-
-                    <hr />
-                    <div class="d-flex justify-content-end">
-                        <div>
-                        <i class="bi bi-pencil-square"></i>
-                        <i class="bi bi-trash"></i>
-                        </div>
-                    </div>
-                    </div>
-                </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
-                <div class="bg-white">
-                <div class="card bg-success">
-                    <div class="card-body">
-                    <div class="d-flex justify-content-between">
-                        <div class="d-flex">
-                        <img src="/icons/project-list.svg" />
-                        <div class="p-2">
-                            <h4 class="card-title">Version 1</h4>
-                            Release key:
-                        </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-8">
-                        <p>Start date: Not set</p>
-                        <p>End date: Not set</p>
-                        </div>
-                        <div class="col-md-4"></div>
-                    </div>
-
-                    <hr />
-                    <div class="d-flex justify-content-end">
-                        <div>
-                        <i class="bi bi-pencil-square"></i>
-                        <i class="bi bi-trash"></i>
-                        </div>
-                    </div>
-                    </div>
-                </div>
-                </div>
-            </div>
+                {{/each}}
             </div>
             <div class="row mt-5 align-content-center px-3 pb-4">
-            <div class="col">
-                <h4>Showing 1 to 3 of 3 entries</h4>
-            </div>
-            <div class="col d-flex align-items-center">
-                <button class="border-0 rounded-3 p-2 text-muted ms-auto">
-                <i class="bi bi-chevron-double-left"></i>
+                <div class="col">
+                <h4 id="pagination-info-upcomming">Showing 1 to 6 of 6 entries</h4>
+                </div>
+                <div class="col d-flex align-items-center">
+                <button class="border-0 rounded-3 p-2 text-muted ms-auto" id="prev-page">
+                    <i class="bi bi-chevron-double-left"></i>
                 </button>
                 <div
-                class="bg-main-color rounded-circle d-flex justify-content-center align-items-center mx-3"
-                style="width: 40px; height: 40px"
+                    class="bg-main-color rounded-circle d-flex justify-content-center align-items-center mx-3"
+                    style="width: 40px; height: 40px"
                 >
-                <h1 class="mb-0 text-light" style="font-size: 1.5rem">1</h1>
+                    <h1 class="mb-0 text-light" style="font-size: 1.5rem" id="current-page">1</h1>
                 </div>
-                <button class="border-0 rounded-3 p-2 text-muted me-3">
-                <i class="bi bi-chevron-double-right"></i>
+                <button class="border-0 rounded-3 p-2 text-muted me-3" id="next-page">
+                    <i class="bi bi-chevron-double-right"></i>
                 </button>
             </div>
-            </div>
+          </div>
         </section>
         </div>
     </div>
@@ -737,5 +425,5 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
     <script src="../../scripts/sort.js"></script>
-
+    <script src="/scripts/list-release.js"></script>
     <script src="../../scripts/change-release-type.js"></script>

@@ -1,18 +1,75 @@
 "use strict";
 
 const controller = {};
+const { where } = require("sequelize");
 const models = require("../models");
 
 const currentTimestamp = new Date();
 
 controller.showAll = async (req, res) => {
-  res.render("release");
+  const type = req.query.type | "open";
+
+  try {
+    const whereClauseOpen = {
+      [models.Sequelize.Op.and]: [
+        { start_date: { [models.Sequelize.Op.lt]: `%${currentTimestamp}%` } },
+        { end_date: { [models.Sequelize.Op.gt]: `%${currentTimestamp}%` } },
+      ],
+    };
+    const whereClauseCompleted = {
+      [models.Sequelize.Op.and]: [
+        { start_date: { [models.Sequelize.Op.lt]: `%${currentTimestamp}%` } },
+        { end_date: { [models.Sequelize.Op.lt]: `%${currentTimestamp}%` } },
+      ],
+    };
+    const whereClauseUpComming = {
+      [models.Sequelize.Op.and]: [
+        { start_date: { [models.Sequelize.Op.gt]: `%${currentTimestamp}%` } },
+        { end_date: { [models.Sequelize.Op.gt]: `%${currentTimestamp}%` } },
+      ],
+    };
+
+    const releasesOpen = await models.Release.findAll({
+      where: whereClauseOpen,
+    });
+
+    const releasesUpComming = await models.Release.findAll({
+      where: whereClauseUpComming,
+    });
+
+    const releasesCompleted = await models.Release.findAll({
+      where: whereClauseCompleted,
+    });
+    let releases = [];
+    if (type == "open") {
+      releases = releasesOpen;
+    } else if (type == "completed") {
+      releases = releasesCompleted;
+    } else {
+      releases = releasesUpComming;
+    }
+
+    res.render("release", {
+      releases,
+      type,
+      releasesOpen,
+      releasesCompleted,
+      releasesUpComming,
+      countOpen: releasesOpen.length,
+      countCompleted: releasesCompleted.length,
+      countUpcomming: releasesUpComming.length,
+    });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ message: "Internal server error", error: error.message });
+  }
 };
 
 controller.getReleasesAPI = async (req, res) => {
   const name = req.query.keyword | "";
   const type = req.query.type | "open";
-  const projectId = req.query.projectId | 1;
+  const projectId = req.query.projectId | 0;
   const page = parseInt(req.query.page) | 1;
   const size = parseInt(req.query.size) | 0;
 
@@ -20,25 +77,25 @@ controller.getReleasesAPI = async (req, res) => {
     let whereClause = {};
 
     whereClause = {
-      [Op.and]: [
-        { name: { [Op.like]: `%${name}%` } },
+      [models.Sequelize.Op.and]: [
+        { name: { [models.Sequelize.Op.like]: `%${name}%` } },
         { project_id: projectId },
         {
-          [Op.or]: [
+          [models.Sequelize.Op.or]: [
             type === "open"
               ? {
-                  start_date: { [Op.lte]: currentTimestamp },
-                  end_date: { [Op.gte]: currentTimestamp },
+                  start_date: { [models.Sequelize.Op.lte]: currentTimestamp },
+                  end_date: { [models.Sequelize.Op.gte]: currentTimestamp },
                 }
               : null,
             type === "completed"
               ? {
-                  end_date: { [Op.lt]: currentTimestamp },
+                  end_date: { [models.Sequelize.Op.lt]: currentTimestamp },
                 }
               : null,
             type === "upcoming"
               ? {
-                  start_date: { [Op.gt]: currentTimestamp },
+                  start_date: { [models.Sequelize.Op.gt]: currentTimestamp },
                 }
               : null,
           ].filter((condition) => condition !== null), // Remove null values from array
