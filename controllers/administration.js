@@ -4,9 +4,39 @@ const models = require("../models");
 
 const controller = {};
 
-controller.showAll = (req, res) => {
-  const role = req.session.role;
-  res.render("administration", { role });
+controller.showAll = async (req, res) => {
+  try {
+    const projectId = req.params.id;
+    // Lấy toàn bộ member có trong projectID
+    const members = await models.Member.findAll({
+      where: { project_id: projectId },
+      include: [
+        {
+          model: models.User,
+          attributes: ["first_name", "last_name", "email"], // Lấy thông tin user liên quan
+        },
+        {
+          model: models.Role,
+          attributes: ["name"],
+        },
+      ],
+    });
+    const formatMembers = members.map(item => ({
+      first_name: item.User.first_name,
+      last_name: item.User.last_name,
+      full_name: `${item.User.first_name} ${item.User.last_name}`,
+      email: item.User.email,
+      role: item.Role.name
+    }));
+    // Render trang administration với dữ liệu members
+    res.render("administration", {
+      layout: "main_layout",
+      members: formatMembers,
+    });
+  } catch (error) {
+    console.error("Error fetching members:", error);
+    res.status(500).send("An error occurred while fetching members.");
+  }
 };
 
 controller.showAddUserForm = (req, res) => {

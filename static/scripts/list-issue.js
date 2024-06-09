@@ -1,12 +1,14 @@
 document.addEventListener("DOMContentLoaded", function () {
+  var dropdownItems = document.querySelectorAll('.dropdown-menu .dropdown-item');
   const searchInput = document.getElementById("searchIssue");
-  const issueItems = Array.from(document.querySelectorAll(".issue-item"));
+  let issueItems = Array.from(document.querySelectorAll(".issue-item"));
 
   const paginationInfo = document.getElementById("pagination-info");
   const prevPageBtn = document.getElementById("prev-page");
   const nextPageBtn = document.getElementById("next-page");
   const currentPageDisplay = document.getElementById("current-page");
-
+  const sortTypeDropdown = document.getElementById('dropdownMenuType');
+  const sortOrderDropdown = document.getElementById('dropdownIsAsc');
   const itemsPerPage = 8;
   let currentPage = 1;
   let filteredIssues = issueItems;
@@ -14,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
   function updateDisplay() {
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
-    console.log(startIndex, endIndex);
+  
     issueItems.forEach((item, index) => {
       if (
         filteredIssues.includes(item) &&
@@ -26,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
         item.style.display = "none";
       }
     });
-
+    
     paginationInfo.innerText = `Showing ${startIndex + 1} to ${Math.min(
       endIndex,
       filteredIssues.length
@@ -60,6 +62,31 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
+  // Hàm cập nhật URL với các tham số mới và reload trang
+  function updateURLParams(sortType, sortOrder) {
+    var url = new URL(window.location.href);
+    url.searchParams.set('sortType', sortType);
+    url.searchParams.set('sortOrder', sortOrder);
+    
+    // Reload trang với URL mới
+    window.location.href = url.toString();
+  }
+  dropdownItems.forEach(function(item) {
+    item.addEventListener('click', function() {
+      var selectedText = item.textContent.trim();
+      console.log(selectedText)
+      var dropdownToggle = item.closest('.dropdown').querySelector('.dropdown-toggle');
+      
+      // Cập nhật nội dung của toggle dropdown thành nội dung của mục được nhấp
+      dropdownToggle.textContent = selectedText;
+      var selectedSortType = sortTypeDropdown.textContent.trim();
+      var selectedSortOrder = sortOrderDropdown.textContent.trim();
+      console.log(selectedSortType, selectedSortOrder)
+    // Cập nhật URL với các tham số mới
+      updateURLParams(selectedSortType, selectedSortOrder);
+    });
+  });
   // Initial display
   updateDisplay();
+  
 });

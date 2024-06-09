@@ -2,12 +2,13 @@
 
 const controller = {};
 const models = require("../models");
-
 controller.showAll = async (req, res) => {
   try {
     const projectId = req.params.id;
-
-    const issues = await models.Issue.findAll({
+    const sortType = req.query.sortType || "CreatedAt"; 
+    const sortOrder = req.query.sortOrder || "Asc"; 
+    console.log(sortType, sortOrder)
+    let issues = await models.Issue.findAll({
       where: {
         project_id: projectId,
       },
@@ -26,7 +27,28 @@ controller.showAll = async (req, res) => {
         },
       ],
     });
-    console.log(issues);
+    
+    issues = issues.sort((a, b) => {
+      switch (sortType) {
+        case "Priority":
+          console.log("HH1")
+          return sortOrder === "Asc"
+            ? a.priority.localeCompare(b.priority)
+            : b.priority.localeCompare(a.priority);
+        case "Code":
+          console.log("HH2")
+          return sortOrder === "Asc" ? a.id - b.id : b.id - a.id;
+        case "CreatedAt":
+          console.log("HH3")
+          return sortOrder === "Asc"
+            ? new Date(a.createdAt) - new Date(b.createdAt)
+            : new Date(b.createdAt) - new Date(a.createdAt);
+        default:
+          return 0;
+        }
+      })
+      const issuesIdAft = issues.map(item => item.id)
+      console.log(issuesIdAft)
     res.render("issue", {
       layout: "main_layout",
       issues: issues,
@@ -180,5 +202,4 @@ controller.getAllIssues = async (req, res) => {
       .json({ message: "Internal server error", error: error.message });
   }
 };
-
 module.exports = controller;

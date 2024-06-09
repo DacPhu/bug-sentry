@@ -6,6 +6,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       Member.belongsTo(models.User, { foreignKey: "user_id" });
       Member.belongsTo(models.Project, { foreignKey: "project_id" });
+      Member.belongsTo(models.Role, { foreignKey: "role_id" });
 
       Member.hasMany(models.Activity, { foreignKey: "member_id" });
       Member.hasMany(models.TestCase, { foreignKey: "tester_id" });
