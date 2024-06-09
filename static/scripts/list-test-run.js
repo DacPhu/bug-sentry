@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
   const searchInput = document.getElementById("searchTestRun");
   const testRunItems = Array.from(document.querySelectorAll(".test-run-item"));
-  console.log(testRunItems);
+
   const paginationInfo = document.getElementById("pagination-info");
   const prevPageBtn = document.getElementById("prev-page");
   const nextPageBtn = document.getElementById("next-page");
