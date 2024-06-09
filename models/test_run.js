@@ -9,7 +9,6 @@ module.exports = (sequelize, DataTypes) => {
       TestRun.belongsTo(models.TestCase, { foreignKey: "test_case_id" });
       TestRun.belongsTo(models.Member, { foreignKey: "created_by" });
       TestRun.belongsTo(models.Release, { foreignKey: "release_id" });
-
     }
   }
 

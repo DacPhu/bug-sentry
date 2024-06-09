@@ -125,6 +125,7 @@
                     placeholder="Search"
                     aria-label="Search"
                     aria-describedby="search-addon"
+                    id="searchTestRun"
                 />
                 <span class="input-group-text border-0" id="search-addon">
                     <i class="fas fa-search"></i>
@@ -139,80 +140,52 @@
             <div class="col fs-5 text-color-1">Title</div>
             <div class="col fs-5 text-color-1">Type</div>
             <div class="col fs-5 text-color-1">Assigned to</div>
-            <div class="col fs-5 text-color-1">Created date</div>
+            <div class="col fs-5 text-color-1">Created at</div>
             <div class="col fs-5 text-color-1">Test case</div>
             <div class="col fs-5 text-color-1">Status</div>
             <div class="col fs-5 text-color-1">Action</div>
             </div>
         </div>
         <div class="container-fluid bg-light py-3">
-            <div class="row">
-            <div class="col text-color-1">Phan Le Dac Phu</div>
-            <div class="col text-color-1">Test run dang nhap 1</div>
-            <div class="col text-color-1">Supter Admin</div>
-            <div class="col text-color-1">Hung</div>
-            <div class="col text-color-1">Mar 16, 2024 09:03:47</div>
-            <div class="col text-color-1">1</div>
-            <div class="col text-color-1">fail</div>
-            <div class="col text-color-1 d-flex justify-content-between">
-                <i class="bi bi-play-circle-fill text-success"></i>
-                <i class="bi bi-copy"></i>
-                <i class="bi bi-pencil"></i>
-                <i class="bi bi-trash"></i>
-            </div>
-            </div>
-            <hr />
-            <div class="row">
-            <div class="col text-color-1">Phan Le Dac Phu</div>
-            <div class="col text-color-1">Test run dang nhap 1</div>
-            <div class="col text-color-1">Supter Admin</div>
-            <div class="col text-color-1">Hung</div>
-            <div class="col text-color-1">Mar 16, 2024 09:03:47</div>
-            <div class="col text-color-1">1</div>
-            <div class="col text-color-1">fail</div>
-            <div class="col text-color-1 d-flex justify-content-between">
-                <i class="bi bi-play-circle-fill text-success"></i>
-                <i class="bi bi-copy"></i>
-                <i class="bi bi-pencil"></i>
-                <i class="bi bi-trash"></i>
-            </div>
-            </div>
-            <hr />
-            <div class="row">
-            <div class="col text-color-1">Phan Le Dac Phu</div>
-            <div class="col text-color-1">Test run dang nhap 1</div>
-            <div class="col text-color-1">Supter Admin</div>
-            <div class="col text-color-1">Hung</div>
-            <div class="col text-color-1">Mar 16, 2024 09:03:47</div>
-            <div class="col text-color-1">1</div>
-            <div class="col text-color-1">fail</div>
-            <div class="col text-color-1 d-flex justify-content-between">
-                <i class="bi bi-play-circle-fill text-success"></i>
-                <i class="bi bi-copy"></i>
-                <i class="bi bi-pencil"></i>
-                <i class="bi bi-trash"></i>
-            </div>
+            {{#each test_runs}}
+            <div class="row test-run-item">
+                <div class="col text-color-1">{{created_by}}</div>
+                <div class="col text-color-1">{{name}}</div>
+                <div class="col text-color-1">role</div>
+                <div class="col text-color-1">{{tester_id}}</div>
+                <div class="col text-color-1">{{created_at}}</div>
+                <div class="col text-color-1">{{test_case_id}}</div>
+                <div class="col text-color-1">fail</div>
+                <div class="col text-color-1 d-flex justify-content-between">
+                    <i class="bi bi-play-circle-fill text-success"></i>
+                    <i class="bi bi-copy"></i>
+                    <i class="bi bi-pencil"></i>
+                    <i class="bi bi-trash"></i>
+                </div>
+                <hr />
             </div>
 
-            <div class="row mt-5 align-content-center px-3">
-            <div class="col">
-                <h4>Showing 1 to 3 of 5 entries</h4>
-            </div>
-            <div class="col d-flex align-items-center">
-                <button class="border-0 rounded-3 p-2 text-muted ms-auto">
-                <i class="bi bi-chevron-double-left"></i>
+            {{/each}}
+
+            <div class="row mt-5 align-content-center px-3 pb-4">
+                <div class="col">
+                <h4 id="pagination-info">Showing 1 to 6 of 6 entries</h4>
+                </div>
+                <div class="col d-flex align-items-center">
+                <button class="border-0 rounded-3 p-2 text-muted ms-auto" id="prev-page">
+                    <i class="bi bi-chevron-double-left"></i>
                 </button>
                 <div
-                class="bg-main-color rounded-circle d-flex justify-content-center align-items-center mx-3"
-                style="width: 40px; height: 40px"
+                    class="bg-main-color rounded-circle d-flex justify-content-center align-items-center mx-3"
+                    style="width: 40px; height: 40px"
                 >
-                <h1 class="mb-0 text-light" style="font-size: 1.5rem">1</h1>
+                    <h1 class="mb-0 text-light" style="font-size: 1.5rem" id="current-page">1</h1>
                 </div>
-                <button class="border-0 rounded-3 p-2 text-muted me-3">
-                <i class="bi bi-chevron-double-right"></i>
+                <button class="border-0 rounded-3 p-2 text-muted me-3" id="next-page">
+                    <i class="bi bi-chevron-double-right"></i>
                 </button>
             </div>
-            </div>
+          </div>
         </div>
         </div>
     </div>
@@ -473,27 +446,24 @@
                 </table>
 
                 <!-- pagination -->
-                <div class="d-flex justify-content-between p-3">
-                    <span> Showing 1 of 3 entries </span>
-                    <div>
-                    <img
-                        width="20px"
-                        src="/icons/arrow-left.svg"
-                        alt=""
-                        srcset=""
-                    />
-                    <span
-                        class="p-1 ps-2 pe-2 rounded-circle green-dark-theme"
-                    >1</span>
-                    <img
-                        width="20px"
-                        src="/icons/arrow-right.svg"
-                        alt=""
-                        srcset=""
-                    />
+                <div class="row mt-5 align-content-center px-3 pb-4">
+                    <div class="col">
+                    <h4 id="pagination-info">Showing 1 to 6 of 6 entries</h4>
                     </div>
-                </div>
-                </div>
+                    <div class="col d-flex align-items-center">
+                    <button class="border-0 rounded-3 p-2 text-muted ms-auto" id="prev-page">
+                        <i class="bi bi-chevron-double-left"></i>
+                    </button>
+                    <div
+                        class="bg-main-color rounded-circle d-flex justify-content-center align-items-center mx-3"
+                        style="width: 40px; height: 40px"
+                    >
+                        <h1 class="mb-0 text-light" style="font-size: 1.5rem" id="current-page">1</h1>
+                    </div>
+                    <button class="border-0 rounded-3 p-2 text-muted me-3" id="next-page">
+                        <i class="bi bi-chevron-double-right"></i>
+                    </button>
+                </div>                
             </div>
             </div>
         </div>
@@ -518,3 +488,4 @@
 ></script>
 
 <script src="/scripts/add-testrun.js"></script>
+<script src="/scripts/list-test-run.js"></script>
