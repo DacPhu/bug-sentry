@@ -2,7 +2,29 @@
 
 const controller = {};
 const models = require("../models");
-controller.showAll = async(req, res) => {
+
+controller.showAll = async (req, res) => {
+  try {
+    const projectId = req.params.id;
+
+    const modules = await models.Module.findAll({
+      where: {
+        project_id: projectId,
+      },
+    });
+    console.log(modules);
+
+    res.render("module", {
+      layout: "main_layout",
+      modules,
+    });
+  } catch (error) {
+    console.error("Error fetching modules:", error);
+    res.status(500).send("An error occurred while fetching modules.");
+  }
+};
+
+controller.getAllModulesAPI = async (req, res) => {
   try {
     const modules = await models.Module.findAll({
       attributes: ["id", "name", "project_id", "created_by", "created_at"],
@@ -13,18 +35,20 @@ controller.showAll = async(req, res) => {
     }
 
     res.render("module", {
-      modules: modules.map(module => ({
+      modules: modules.map((module) => ({
         id: module.id,
         name: module.name,
         project_id: module.project_id,
         created_by: module.created_by,
         created_at: module.created_at,
-      }))
+      })),
     });
   } catch (error) {
-    return res.status(500).json({ message: "Internal server error", error: error.message });
+    return res
+      .status(500)
+      .json({ message: "Internal server error", error: error.message });
   }
-}
+};
 controller.getModulesByName = async (req, res) => {
   const name = req.query.keyword;
 

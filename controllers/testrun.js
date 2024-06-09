@@ -6,10 +6,8 @@ const sequelize = require("sequelize");
 
 controller.showAll = async (req, res) => {
   try {
-    // Extract project_id from request parameters
     const projectId = req.params.id;
 
-    // Query the database for requirements with the specified project_id
     const test_runs = await models.TestRun.findAll({
       where: {
         project_id: projectId,
@@ -21,7 +19,7 @@ controller.showAll = async (req, res) => {
           include: [
             {
               model: models.User,
-              attributes: ["first_name", "last_name"], // Exclude attributes from User, since you only need username
+              attributes: ["first_name", "last_name"], 
               required: false,
             },
           ],
@@ -46,6 +44,7 @@ controller.showAll = async (req, res) => {
       ],
     });
     console.log(test_runs);
+
     res.render("testrun", {
       layout: "main_layout",
       test_runs: test_runs,

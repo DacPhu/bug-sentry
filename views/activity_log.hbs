@@ -139,42 +139,25 @@
             </div>
             <div class="container-fluid bg-color1 py-3">
                 <div class="row">
-                    <div class="col fs-5 text-color-1">User name</div>
-                    <div class="col fs-5 text-color-1">title</div>
-                    <div class="col fs-5 text-color-1">Activity</div>
-                    <div class="col fs-5 text-color-1">Action</div>
-                    <div class="col fs-5 text-color-1">Role</div>
-                    <div class="col fs-5 text-color-1">Date</div>
+                    <div class="col-md-4 fs-5 text-color-1">Name</div>
+                    {{!-- <div class="col-md-1 fs-5 text-color-1">title</div> --}}
+                    <div class="col-md-2 fs-5 text-color-1">Activity</div>
+                    <div class="col-md-2 fs-5 text-color-1">Action</div>
+                    <div class="col-md-2 fs-5 text-color-1">Role</div>
+                    <div class="col-md-2 fs-5 text-color-1">Date</div>
                 </div>
             </div>
             <div class="container-fluid bg-light py-3">
+                {{#each activities}}
                 <div class="row flex-wrap">
-                    <div class="col text-color-1">Nguyen Ngoc Thien An</div>
-                    <div class="col text-color-1">TC1</div>
-                    <div class="col text-color-1">test-case</div>
-                    <div class="col text-color-1">Create</div>
-                    <div class="col text-color-1">Tester</div>
-                    <div class="col text-color-1">1/1/2024</div>
+                    <div class="col-md-4 text-color-1">{{name}}</div>
+                    <div class="col-md-2 text-color-1">{{title_name}}</div>
+                    <div class="col-md-2 text-color-1">{{action}}</div>
+                    <div class="col-md-2 text-color-1">{{Actor.Role.name}}</div>
+                    <div class="col-md-2 text-color-1">{{formatDate created_at "MMM DD YYYY HH:mm"}}</div>
+                    <hr />
                 </div>
-                <hr />
-                <div class="row flex-wrap">
-                    <div class="col text-color-1">Do Khai Hung</div>
-                    <div class="col text-color-1">TR1</div>
-                    <div class="col text-color-1">test-run</div>
-                    <div class="col text-color-1">Create</div>
-                    <div class="col text-color-1">Developer</div>
-                    <div class="col text-color-1">1/1/2024</div>
-                </div>
-                <hr />
-                <div class="row flex-wrap">
-                    <div class="col text-color-1">Phan Le Dac Phu</div>
-                    <div class="col text-color-1">IS1</div>
-                    <div class="col text-color-1">issue</div>
-                    <div class="col text-color-1">Create</div>
-                    <div class="col text-color-1">Project manager</div>
-                    <div class="col text-color-1">1/1/2024</div>
-                </div>
-                <hr />
+                {{/each}}
 
                 <div class="row mt-5 align-content-center px-3">
                     <div class="col">
