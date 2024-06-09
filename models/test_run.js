@@ -5,9 +5,9 @@ module.exports = (sequelize, DataTypes) => {
   class TestRun extends Model {
     static associate(models) {
       TestRun.belongsTo(models.Project, { foreignKey: "project_id" });
-      TestRun.belongsTo(models.Member, { foreignKey: "tester_id" });
+      TestRun.belongsTo(models.Member, { foreignKey: "tester_id", as: "Assignee"});
       TestRun.belongsTo(models.TestCase, { foreignKey: "test_case_id" });
-      TestRun.belongsTo(models.Member, { foreignKey: "created_by" });
+      TestRun.belongsTo(models.Member, { foreignKey: "created_by", as: "Creator" });
       TestRun.belongsTo(models.Release, { foreignKey: "release_id" });
     }
   }

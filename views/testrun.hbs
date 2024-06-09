@@ -77,7 +77,7 @@
                 class="mx-4 my-3 d-flex btn custom-bold-btn"
                 onclick="showDialog()"
                 >
-                <div class="me-2 p-1">Add project</div>
+                <div class="me-2 p-1">Add Test Run</div>
                 <img src="/icons/add.svg" alt="" />
                 </div>
             </div>
@@ -136,27 +136,25 @@
         </div>
         <div class="container-fluid bg-color1 py-3">
             <div class="row">
-            <div class="col fs-5 text-color-1">Created By</div>
-            <div class="col fs-5 text-color-1">Title</div>
-            <div class="col fs-5 text-color-1">Type</div>
-            <div class="col fs-5 text-color-1">Assigned to</div>
-            <div class="col fs-5 text-color-1">Created at</div>
-            <div class="col fs-5 text-color-1">Test case</div>
-            <div class="col fs-5 text-color-1">Status</div>
+            <div class="col-md-2 fs-5 text-color-1">Created By</div>
+            <div class="col-md-2 fs-5 text-color-1">Title</div>
+            <div class="col-md-2 fs-5 text-color-1">Assigned to</div>
+            <div class="col-md-2 fs-5 text-color-1">Created at</div>
+            <div class="col-md-2 fs-5 text-color-1">Test case</div>
+            <div class="col-md-1 fs-5 text-color-1">Status</div>
             <div class="col fs-5 text-color-1">Action</div>
             </div>
         </div>
         <div class="container-fluid bg-light py-3">
             {{#each test_runs}}
             <div class="row test-run-item">
-                <div class="col text-color-1">{{created_by}}</div>
-                <div class="col text-color-1">{{name}}</div>
-                <div class="col text-color-1">role</div>
-                <div class="col text-color-1">{{tester_id}}</div>
-                <div class="col text-color-1">{{created_at}}</div>
-                <div class="col text-color-1">{{test_case_id}}</div>
-                <div class="col text-color-1">fail</div>
-                <div class="col text-color-1 d-flex justify-content-between">
+                <div class="col-md-2 text-color-1 truncate" id="CreatorName">{{Creator.User.first_name}} {{Creator.User.last_name}}</div>
+                <div class="col-md-2 text-color-1 truncate" id="TestRunName">{{name}}</div>
+                <div class="col-md-2 text-color-1 truncate" id="AssigneeName">{{Assignee.User.first_name}} {{Assignee.User.last_name}}</div>
+                <div class="col-md-2 text-color-1 truncate">{{formatDate created_at "MMM D YYYY HH:mm"}}</div>
+                <div class="col-md-2 text-color-1 truncate" id="TestCaseName">{{TestCase.title}}</div>
+                <div class="col-md-1 text-color-1 text-center">{{status}}</div>
+                <div class="col-md-1 text-color-1 d-flex justify-content-between">
                     <i class="bi bi-play-circle-fill text-success"></i>
                     <i class="bi bi-copy"></i>
                     <i class="bi bi-pencil"></i>
@@ -489,3 +487,4 @@
 
 <script src="/scripts/add-testrun.js"></script>
 <script src="/scripts/list-test-run.js"></script>
+<script src="/scripts/auto-slice-test-run.js"></script>

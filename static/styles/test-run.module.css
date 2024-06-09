@@ -1,15 +1,21 @@
 .bg-gray {
-    background-color: #EDF1F4;
+  background-color: #edf1f4;
 }
 
 .bg-light {
-    background-color: #FFFFFF;
+  background-color: #ffffff;
 }
 
 .bg-color1 {
-    background-color: #CFE2EB;
+  background-color: #cfe2eb;
 }
 
 .text-color-1 {
-    color: #024F75;
+  color: #024f75;
+}
+
+.truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
