@@ -23,6 +23,7 @@ module.exports = (sequelize, DataTypes) => {
       title: DataTypes.STRING,
       project_id: { type: DataTypes.INTEGER, allowNull: false },
       description: DataTypes.TEXT,
+      steps : DataTypes.TEXT,
       type: DataTypes.STRING,
       priority: { type: DataTypes.STRING, allowNull: false, validate: { isIn: [['critical', 'high', 'medium', 'low']] } },
       created_at: { type: DataTypes.DATE, allowNull: false, defaultValue: sequelize.literal('CURRENT_TIMESTAMP') },
