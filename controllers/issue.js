@@ -7,7 +7,7 @@ controller.showAll = async (req, res) => {
   try {
     const projectId = req.params.id;
 
-    const test_runs = await models.TestRun.findAll({
+    const issues = await models.Issue.findAll({
       where: {
         project_id: projectId,
       },
@@ -18,42 +18,26 @@ controller.showAll = async (req, res) => {
           include: [
             {
               model: models.User,
-              attributes: ["first_name", "last_name"], // Exclude attributes from User, since you only need username
+              attributes: ["first_name", "last_name"],
               required: false,
             },
           ],
-          required: false,
-        },
-        {
-          model: models.Member,
-          as: "Assignee",
-          include: [
-            {
-              model: models.User,
-              attributes: ["first_name", "last_name"], // Exclude attributes from User, since you only need username
-              required: false,
-            },
-          ],
-          required: false,
-        },
-        {
-          model: models.TestCase,
           required: false,
         },
       ],
     });
-    console.log(test_runs);
-    res.render("testrun", {
+    console.log(issues);
+    res.render("issue", {
       layout: "main_layout",
-      test_runs: test_runs,
+      issues: issues,
     });
   } catch (error) {
-    console.error("Error fetching requirements:", error);
-    res.status(500).send("An error occurred while fetching requirements.");
+    console.error("Error fetching issues:", error);
+    res.status(500).send("An error occurred while fetching issues.");
   }
 };
 
-controller.showAllData = async (req, res) => {
+controller.showAllAPI = async (req, res) => {
   try {
     const issues = await models.Issue.findAll({
       attributes: ["id", "name", "project_id", "created_at", "note"],

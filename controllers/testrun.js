@@ -46,15 +46,13 @@ controller.showAll = async (req, res) => {
       ],
     });
     console.log(test_runs);
-    // console.log(test_runs.map(item => (item.Creator.User, item.Assignee.User)));
-    // Render the results using the specified layout
     res.render("testrun", {
       layout: "main_layout",
       test_runs: test_runs,
     });
   } catch (error) {
-    console.error("Error fetching requirements:", error);
-    res.status(500).send("An error occurred while fetching requirements.");
+    console.error("Error fetching test runs:", error);
+    res.status(500).send("An error occurred while fetching test runs.");
   }
 };
 
