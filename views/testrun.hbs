@@ -122,7 +122,7 @@
                 <input
                     type="search"
                     class="form-control rounded"
-                    placeholder="Search"
+                    placeholder="Search Test Run by name"
                     aria-label="Search"
                     aria-describedby="search-addon"
                     id="searchTestRun"
@@ -147,7 +147,7 @@
         </div>
         <div class="container-fluid bg-light py-3">
             {{#each test_runs}}
-            <div class="row test-run-item">
+            <div class="row test-run-item" data-name="{{name}}">
                 <div class="col-md-2 text-color-1 truncate" id="CreatorName">{{Creator.User.first_name}} {{Creator.User.last_name}}</div>
                 <div class="col-md-2 text-color-1 truncate" id="TestRunName">{{name}}</div>
                 <div class="col-md-2 text-color-1 truncate" id="AssigneeName">{{Assignee.User.first_name}} {{Assignee.User.last_name}}</div>
