@@ -1,7 +1,6 @@
 "use strict";
 
 const controller = {};
-const { where } = require("sequelize");
 const models = require("../models");
 
 const currentTimestamp = new Date();
@@ -22,7 +21,7 @@ controller.showAll = async (req, res) => {
         { end_date: { [models.Sequelize.Op.lt]: `%${currentTimestamp}%` } },
       ],
     };
-    const whereClauseUpComming = {
+    const whereClauseUpcoming = {
       [models.Sequelize.Op.and]: [
         { start_date: { [models.Sequelize.Op.gt]: `%${currentTimestamp}%` } },
         { end_date: { [models.Sequelize.Op.gt]: `%${currentTimestamp}%` } },
@@ -33,8 +32,8 @@ controller.showAll = async (req, res) => {
       where: whereClauseOpen,
     });
 
-    const releasesUpComming = await models.Release.findAll({
-      where: whereClauseUpComming,
+    const releasesUpcoming = await models.Release.findAll({
+      where: whereClauseUpcoming,
     });
 
     const releasesCompleted = await models.Release.findAll({
@@ -46,7 +45,7 @@ controller.showAll = async (req, res) => {
     } else if (type == "completed") {
       releases = releasesCompleted;
     } else {
-      releases = releasesUpComming;
+      releases = releasesUpcoming;
     }
 
     res.render("release", {
@@ -54,10 +53,10 @@ controller.showAll = async (req, res) => {
       type,
       releasesOpen,
       releasesCompleted,
-      releasesUpComming,
+      releasesUpcoming,
       countOpen: releasesOpen.length,
       countCompleted: releasesCompleted.length,
-      countUpcomming: releasesUpComming.length,
+      countUpcoming: releasesUpcoming.length,
     });
   } catch (error) {
     return res

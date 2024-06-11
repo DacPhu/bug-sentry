@@ -1,133 +1,102 @@
-// const releasesContainer = document.getElementById("release-container");
-// const prevPageButton = document.getElementById("prev-page");
-// const nextPageButton = document.getElementById("next-page");
-
-// let currentPage = 1;
-// const pageSize = 8;
-// let savedType = sessionStorage.getItem("releaseType") || "open";
-
-// async function fetchReleases(page, size, type) {
-//   const keyword = "";
-//   let projectId = 1;
-
-//   const url = window.location.href;
-
-//   const matches = url.match(/\/project\/(\d+)\/release/);
-
-//   if (matches && matches.length > 1) {
-//     projectId = matches[1]; // Extract projectId
-//   }
-
-//   // Save type to session storage
-//   sessionStorage.setItem("releaseType", type);
-
-//   const response = await fetch(
-//     `/release/api?keyword=${keyword}&type=${type}&projectId=${projectId}&page=${page}&size=${size}`
-//   );
-//   const data = await response.json();
-
-//   if (response.ok) {
-//     displayReleases(data.releases);
-//     updatePagination(data.totalPages, data.currentPage);
-//   } else {
-//     console.error("Error fetching releases:", data.message);
-//   }
-// }
-
-// function displayReleases(releases) {
-//   releasesContainer.innerHTML = ""; // Clear previous content
-
-//   releases.forEach((release) => {
-//     // Create release element
-//     const releaseElement = document.createElement("div");
-//     releaseElement.classList.add("col-lg-3", "col-md-4", "col-sm-6", "mb-3");
-//     releaseElement.innerHTML = `
-//         <div class="bg-white">
-//           <div class="card bg-info">
-//             <div class="card-body">
-//               <div class="d-flex justify-content-between">
-//                 <div class="d-flex">
-//                   <img src="/icons/project-list.svg">
-//                   <div class="p-2">
-//                     <h4 class="card-title">${release.name}</h4>
-//                     Release key: ${release.id}
-//                   </div>
-//                 </div>
-//               </div>
-//               <div class="row">
-//                 <div class="col-md-8">
-//                   <p>Start date: ${release.start_date || "Not set"}</p>
-//                   <p>End date: ${release.end_date || "Not set"}</p>
-//                 </div>
-//                 <div class="col-md-4"></div>
-//               </div>
-//               <hr>
-//               <div class="d-flex justify-content-end">
-//                 <div>
-//                   <i class="bi bi-pencil-square"></i>
-//                   <i class="bi bi-trash"></i>
-//                 </div>
-//               </div>
-//             </div>
-//           </div>
-//         </div>
-//       `;
-
-//     releasesContainer.appendChild(releaseElement); // Append release element to container
-//   });
-// }
-
-// function updatePagination(totalPages, currentPage) {
-//   prevPageButton.disabled = currentPage === 1;
-//   nextPageButton.disabled = currentPage === totalPages;
-
-//   prevPageButton.onclick = () => {
-//     if (currentPage > 1) {
-//       fetchReleases(currentPage - 1, pageSize, savedType);
-//     }
-//   };
-
-//   nextPageButton.onclick = () => {
-//     if (currentPage < totalPages) {
-//       fetchReleases(currentPage + 1, pageSize, savedType);
-//     }
-//   };
-// }
-
-// // Initial fetch
-// fetchReleases(currentPage, pageSize, savedType);
-
-// async function changeType(type) {
-//   savedType = type;
-//   await fetchReleases(currentPage, pageSize, savedType);
-// }
-
 document.addEventListener("DOMContentLoaded", function () {
-  const searchInput = document.querySelector("#searchRelease");
-  const releaseItems = Array.from(document.querySelectorAll(".release-item"));
+  const sectionOpen = document.getElementById("open-releases");
+  const sectionUpcoming = document.getElementById("upcoming-releases");
+  const sectionCompleted = document.getElementById("completed-releases");
+
+  const searchOpenInput = document.querySelector("#searchOpenRelease");
+  const searchUpcomingInput = document.querySelector("#searchUpcomingRelease");
+  const searchCompletedInput = document.querySelector(
+    "#searchCompletedRelease"
+  );
+
+  const releaseOpenItems = Array.from(
+    document.querySelectorAll(".release-open-item")
+  );
+  const releaseCompletedItems = Array.from(
+    document.querySelectorAll(".release-completed-item")
+  );
+  const releaseUpcomingItems = Array.from(
+    document.querySelectorAll(".release-upcoming-item")
+  );
 
   const paginationInfoOpen = document.getElementById("pagination-info-open");
   const paginationInfoCompleted = document.getElementById(
     "pagination-info-completed"
   );
-  const paginationInfoUpcomming = document.getElementById(
-    "pagination-info-upcomming"
+  const paginationInfoUpcoming = document.getElementById(
+    "pagination-info-upcoming"
   );
-  const prevPageBtn = document.getElementById("prev-page");
-  const nextPageBtn = document.getElementById("next-page");
-  const currentPageDisplay = document.getElementById("current-page");
+
+  const url = new URL(window.location.href);
+  const type = url.searchParams.get("type");
+
+  if (type === "completed") {
+    sectionCompleted.style.display = "block";
+    sectionOpen.style.display = "none";
+    sectionUpcoming.style.display = "none";
+  } else if (type === "upcoming") {
+    sectionUpcoming.style.display = "block";
+    sectionCompleted.style.display = "none";
+    sectionOpen.style.display = "none";
+  } else {
+    sectionOpen.style.display = "block";
+    sectionCompleted.style.display = "none";
+    sectionUpcoming.style.display = "none";
+  }
+
+  const prevPageBtnOpen = document.getElementById("prev-page-open");
+  const nextPageBtnOpen = document.getElementById("next-page-open");
+  const prevPageBtnCompleted = document.getElementById("prev-page-completed");
+  const nextPageBtnCompleted = document.getElementById("next-page-completed");
+  const prevPageBtnUpcoming = document.getElementById("prev-page-upcoming");
+  const nextPageBtnUpcoming = document.getElementById("next-page-upcoming");
+
+  const currentPageDisplayOpen = document.getElementById("current-page-open");
+  const currentPageDisplayCompleted = document.getElementById(
+    "current-page-completed"
+  );
+  const currentPageDisplayUpcoming = document.getElementById(
+    "current-page-upcoming"
+  );
 
   const itemsPerPage = 8;
   let currentPage = 1;
-  let filteredReleases = releaseItems;
+  let filteredOpenReleases = releaseOpenItems;
+  let filteredCompletedReleases = releaseCompletedItems;
+  let filteredUpcomingReleases = releaseUpcomingItems;
 
   function updateDisplay() {
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
     console.log(startIndex, endIndex);
-    releaseItems.forEach((item, index) => {
+
+    releaseOpenItems.forEach((item, index) => {
       if (
-        filteredReleases.includes(item) &&
+        filteredOpenReleases.includes(item) &&
+        index >= startIndex &&
+        index < endIndex
+      ) {
+        item.style.display = "";
+      } else {
+        item.style.display = "none";
+      }
+    });
+
+    releaseCompletedItems.forEach((item, index) => {
+      if (
+        filteredCompletedReleases.includes(item) &&
+        index >= startIndex &&
+        index < endIndex
+      ) {
+        item.style.display = "";
+      } else {
+        item.style.display = "none";
+      }
+    });
+
+    releaseUpcomingItems.forEach((item, index) => {
+      if (
+        filteredUpcomingReleases.includes(item) &&
         index >= startIndex &&
         index < endIndex
       ) {
@@ -139,41 +108,102 @@ document.addEventListener("DOMContentLoaded", function () {
 
     paginationInfoOpen.innerText = `Showing ${startIndex + 1} to ${Math.min(
       endIndex,
-      filteredReleases.length
-    )} of ${filteredReleases.length} entries`;
-    paginationInfoUpcomming.innerText = `Showing ${
-      startIndex + 1
-    } to ${Math.min(endIndex, filteredReleases.length)} of ${
-      filteredReleases.length
-    } entries`;
+      filteredOpenReleases.length
+    )} of ${filteredOpenReleases.length} entries`;
     paginationInfoCompleted.innerText = `Showing ${
       startIndex + 1
-    } to ${Math.min(endIndex, filteredReleases.length)} of ${
-      filteredReleases.length
+    } to ${Math.min(endIndex, filteredCompletedReleases.length)} of ${
+      filteredCompletedReleases.length
     } entries`;
-    currentPageDisplay.innerText = currentPage;
-    prevPageBtn.disabled = currentPage === 1;
-    nextPageBtn.disabled = endIndex >= filteredReleases.length;
+    paginationInfoUpcoming.innerText = `Showing ${startIndex + 1} to ${Math.min(
+      endIndex,
+      filteredUpcomingReleases.length
+    )} of ${filteredUpcomingReleases.length} entries`;
+
+    currentPageDisplayOpen.innerText = currentPage;
+    prevPageBtnOpen.disabled = currentPage === 1;
+    nextPageBtnOpen.disabled = endIndex >= filteredOpenReleases.length;
+
+    currentPageDisplayCompleted.innerText = currentPage;
+    prevPageBtnCompleted.disabled = currentPage === 1;
+    nextPageBtnCompleted.disabled =
+      endIndex >= filteredCompletedReleases.length;
+
+    currentPageDisplayUpcoming.innerText = currentPage;
+    prevPageBtnUpcoming.disabled = currentPage === 1;
+    nextPageBtnUpcoming.disabled = endIndex >= filteredUpcomingReleases.length;
   }
 
-  //   searchInput.addEventListener("input", function () {
-  //     const searchQuery = searchInput.value.toLowerCase();
-  //     filteredReleases = releaseItems.filter((item) =>
-  //       item.getAttribute("data-name").toLowerCase().includes(searchQuery)
-  //     );
-  //     currentPage = 1;
-  //     updateDisplay();
-  //   });
+  // searchOpenInput.addEventListener("input", function () {
+  //   const searchQuery = searchOpenInput.value.toLowerCase();
+  //   filteredOpenReleases = releaseOpenItems.filter((item) =>
+  //     item.getAttribute("data-name").toLowerCase().includes(searchQuery)
+  //   );
+  //   currentPage = 1;
+  //   updateDisplay();
+  // });
 
-  prevPageBtn.addEventListener("click", function () {
+  // searchUpcomingInput.addEventListener("input", function () {
+  //   const searchQuery = searchUpcomingInput.value.toLowerCase();
+  //   filteredUpcomingReleases = releaseUpcomingItems.filter((item) =>
+  //     item.getAttribute("data-name").toLowerCase().includes(searchQuery)
+  //   );
+  //   currentPage = 1;
+  //   updateDisplay();
+  // });
+
+  // searchCompletedInput.addEventListener("input", function () {
+  //   const searchQuery = searchCompletedInput.value.toLowerCase();
+  //   filteredCompletedReleases = releaseCompletedItems.filter((item) =>
+  //     item.getAttribute("data-name").toLowerCase().includes(searchQuery)
+  //   );
+  //   currentPage = 1;
+  //   updateDisplay();
+  // });
+
+  prevPageBtnOpen.addEventListener("click", function () {
     if (currentPage > 1) {
       currentPage--;
       updateDisplay();
     }
   });
 
-  nextPageBtn.addEventListener("click", function () {
-    const totalPages = Math.ceil(filteredReleases.length / itemsPerPage);
+  nextPageBtnOpen.addEventListener("click", function () {
+    const totalPages = Math.ceil(filteredOpenReleases.length / itemsPerPage);
+    if (currentPage < totalPages) {
+      currentPage++;
+      updateDisplay();
+    }
+  });
+
+  prevPageBtnCompleted.addEventListener("click", function () {
+    if (currentPage > 1) {
+      currentPage--;
+      updateDisplay();
+    }
+  });
+
+  nextPageBtnCompleted.addEventListener("click", function () {
+    const totalPages = Math.ceil(
+      filteredCompletedReleases.length / itemsPerPage
+    );
+    if (currentPage < totalPages) {
+      currentPage++;
+      updateDisplay();
+    }
+  });
+
+  prevPageBtnUpcoming.addEventListener("click", function () {
+    if (currentPage > 1) {
+      currentPage--;
+      updateDisplay();
+    }
+  });
+
+  nextPageBtnUpcoming.addEventListener("click", function () {
+    const totalPages = Math.ceil(
+      filteredUpcomingReleases.length / itemsPerPage
+    );
     if (currentPage < totalPages) {
       currentPage++;
       updateDisplay();

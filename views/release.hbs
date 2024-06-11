@@ -33,9 +33,9 @@
                     <li class="nav-item">
                     <a
                         class="nav-link text-warning"
-                        href="./release?type=upcomming"
+                        href="./release?type=upcoming"
                         onclick="showSection('upcoming-releases')"
-                    >Upcomming</a>
+                    >Upcoming</a>
                     </li>
                     <li class="nav-item">
                     <a
@@ -67,7 +67,7 @@
                     <p>{{this}} Open Release(s)</p>
                 </li>
                 {{/with}}
-                {{#with countUpcomming}}
+                {{#with countUpcoming}}
                 <li class="nav-item p-2">
                     <p>{{this}} Upcoming Release(s)</p>
                 </li>
@@ -91,14 +91,14 @@
                     id=""
                     aria-describedby="helpId"
                     placeholder="Search"
-                    id="searchRelease"
+                    id="searchOpenRelease"
                 />
                 </div>
             </div>
             </div>
             <div class="row px-5 pt-3" id="release-container">
                 {{#each releasesOpen}}
-                <div class="col-lg-3 col-md-4 col-sm-6 mb-3 release-item" name-date="{{name}}">
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-3 release-open-item" name-date="{{name}}">
                     <div class="bg-white">
                     <div class="card bg-info">
                         <div class="card-body">
@@ -112,11 +112,11 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-8">
+                            <div class="col-md-12">
                             <p>Start date: {{formatDate start_date "MMM DD YYYY"}}</p>
-                            <p>End date: {{formatDate end_date "MMM DD YYY"}}</p>
+                            <p>End date: {{formatDate end_date "MMM DD YYYY"}}</p>
                             </div>
-                            <div class="col-md-4"></div>
+                            {{!-- <div class="col-md-4"></div> --}}
                         </div>
 
                         <hr />
@@ -134,19 +134,19 @@
             </div>
             <div class="row mt-5 align-content-center px-3 pb-4">
                 <div class="col">
-                <h4 id="pagination-info-completed">Showing 1 to 6 of 6 entries</h4>
+                <h4 id="pagination-info-open">Showing 1 to 6 of 6 entries</h4>
                 </div>
                 <div class="col d-flex align-items-center">
-                <button class="border-0 rounded-3 p-2 text-muted ms-auto" id="prev-page">
+                <button class="border-0 rounded-3 p-2 text-muted ms-auto" id="prev-page-open">
                     <i class="bi bi-chevron-double-left"></i>
                 </button>
                 <div
                     class="bg-main-color rounded-circle d-flex justify-content-center align-items-center mx-3"
                     style="width: 40px; height: 40px"
                 >
-                    <h1 class="mb-0 text-light" style="font-size: 1.5rem" id="current-page">1</h1>
+                    <h1 class="mb-0 text-light" style="font-size: 1.5rem" id="current-page-open">1</h1>
                 </div>
-                <button class="border-0 rounded-3 p-2 text-muted me-3" id="next-page">
+                <button class="border-0 rounded-3 p-2 text-muted me-3" id="next-page-open">
                     <i class="bi bi-chevron-double-right"></i>
                 </button>
             </div>
@@ -173,8 +173,8 @@
                     <li class="nav-item">
                     <a
                         class="nav-link active text-warning"
-                        href="./release?type=upcomming"
-                    >Upcomming</a>
+                        href="./release?type=upcoming"
+                    >Upcoming</a>
                     </li>
                     <li class="nav-item">
                     <a
@@ -193,7 +193,7 @@
                     <p>{{this}} Open Release(s)</p>
                 </li>
                 {{/with}}
-                {{#with countUpcomming}}
+                {{#with countUpcoming}}
                 <li class="nav-item p-2">
                     <p>{{this}} Upcoming Release(s)</p>
                 </li>
@@ -217,14 +217,14 @@
                     id=""
                     aria-describedby="helpId"
                     placeholder="Search"
-                    id="searchRelease"
+                    id="searchUpcomingRelease"
                 />
                 </div>
             </div>
             </div>
             <div class="row px-5 pt-3" id="release-container">
-                {{#each releasesUpComming}}
-                <div class="col-lg-3 col-md-4 col-sm-6 mb-3 release-item" date-name="{{name}}">
+                {{#each releasesUpcoming}}
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-3 release-upcoming-item" date-name="{{name}}">
                     <div class="bg-white">
                     <div class="card bg-warning">
                         <div class="card-body">
@@ -238,11 +238,11 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-8">
+                            <div class="col-md-12">
                             <p>Start date: {{formatDate start_date "MMM DD YYYY"}}</p>
                             <p>End date: {{formatDate end_date "MMM DD YYYY"}}</p>
                             </div>
-                            <div class="col-md-4"></div>
+                            {{!-- <div class="col-md-4"></div> --}}
                         </div>
 
                         <hr />
@@ -260,19 +260,19 @@
             </div>
             <div class="row mt-5 align-content-center px-3 pb-4">
                 <div class="col">
-                <h4 id="pagination-info-open">Showing 1 to 6 of 6 entries</h4>
+                <h4 id="pagination-info-upcoming">Showing 1 to 6 of 6 entries</h4>
                 </div>
                 <div class="col d-flex align-items-center">
-                <button class="border-0 rounded-3 p-2 text-muted ms-auto" id="prev-page">
+                <button class="border-0 rounded-3 p-2 text-muted ms-auto" id="prev-page-upcoming">
                     <i class="bi bi-chevron-double-left"></i>
                 </button>
                 <div
                     class="bg-main-color rounded-circle d-flex justify-content-center align-items-center mx-3"
                     style="width: 40px; height: 40px"
                 >
-                    <h1 class="mb-0 text-light" style="font-size: 1.5rem" id="current-page">1</h1>
+                    <h1 class="mb-0 text-light" style="font-size: 1.5rem" id="current-page-upcoming">1</h1>
                 </div>
-                <button class="border-0 rounded-3 p-2 text-muted me-3" id="next-page">
+                <button class="border-0 rounded-3 p-2 text-muted me-3" id="next-page-upcoming">
                     <i class="bi bi-chevron-double-right"></i>
                 </button>
             </div>
@@ -291,21 +291,21 @@
                     <li class="nav-item">
                     <a
                         class="nav-link text-info"
-                        href="#"
+                        href="./release?type=open"
                         aria-current="page"
                     >Open</a>
                     </li>
                     <li class="nav-item">
                     <a
                         class="nav-link text-warning"
-                        href="#"
+                        href="./release?type=upcoming"
                         onclick="showSection('upcoming-releases')"
-                    >Upcomming</a>
+                    >Upcoming</a>
                     </li>
                     <li class="nav-item">
                     <a
                         class="nav-link active text-success"
-                        href="#"
+                        href="./relase?type=completed"
                     >Completed</a>
                     </li>
                 </ul>
@@ -318,7 +318,7 @@
                     <p>{{this}} Open Release(s)</p>
                 </li>
                 {{/with}}
-                {{#with countUpcomming}}
+                {{#with countUpcoming}}
                 <li class="nav-item p-2">
                     <p>{{this}} Upcoming Release(s)</p>
                 </li>
@@ -342,14 +342,14 @@
                     id=""
                     aria-describedby="helpId"
                     placeholder="Search"
-                    id="searchRelease"
+                    id="searchCompletedRelease"
                 />
                 </div>
             </div>
             </div>
             <div class="row px-5 pt-3">
                 {{#each releasesCompleted}}
-                <div class="col-lg-3 col-md-4 col-sm-6 mb-3 release-item" data-name="{{name}}">
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-3 release-completed-item" data-name="{{name}}">
                     <div class="bg-white">
                     <div class="card bg-success">
                         <div class="card-body">
@@ -363,11 +363,11 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-8">
+                            <div class="col-md-12">
                             <p>Start date: {{formatDate start_date "MMM DD YYYY"}}</p>
                             <p>End date: {{formatDate end_date "MMM DD YYYY"}}</p>
                             </div>
-                            <div class="col-md-4"></div>
+                            {{!-- <div class="col-md-4"></div> --}}
                         </div>
 
                         <hr />
@@ -385,19 +385,19 @@
             </div>
             <div class="row mt-5 align-content-center px-3 pb-4">
                 <div class="col">
-                <h4 id="pagination-info-upcomming">Showing 1 to 6 of 6 entries</h4>
+                <h4 id="pagination-info-completed">Showing 1 to 6 of 6 entries</h4>
                 </div>
                 <div class="col d-flex align-items-center">
-                <button class="border-0 rounded-3 p-2 text-muted ms-auto" id="prev-page">
+                <button class="border-0 rounded-3 p-2 text-muted ms-auto" id="prev-page-completed">
                     <i class="bi bi-chevron-double-left"></i>
                 </button>
                 <div
                     class="bg-main-color rounded-circle d-flex justify-content-center align-items-center mx-3"
                     style="width: 40px; height: 40px"
                 >
-                    <h1 class="mb-0 text-light" style="font-size: 1.5rem" id="current-page">1</h1>
+                    <h1 class="mb-0 text-light" style="font-size: 1.5rem" id="current-page-completed">1</h1>
                 </div>
-                <button class="border-0 rounded-3 p-2 text-muted me-3" id="next-page">
+                <button class="border-0 rounded-3 p-2 text-muted me-3" id="next-page-completed">
                     <i class="bi bi-chevron-double-right"></i>
                 </button>
             </div>
@@ -426,4 +426,4 @@
 
     <script src="../../scripts/sort.js"></script>
     <script src="/scripts/list-release.js"></script>
-    <script src="../../scripts/change-release-type.js"></script>
+    {{!-- <script src="../../scripts/change-release-type.js"></script> --}}
