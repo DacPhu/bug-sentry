@@ -375,7 +375,7 @@
                         <div class="d-flex justify-content-end">
                             <div>
                                 <i role="button" class="bi bi-pencil-square" data-bs-toggle="modal" data-bs-target="#editReleaseModal" onclick="showEditReleaseModal(this)" data-id="{{id}}" data-name="{{name}}" data-start-date="{{startDate}}" data-end-date="{{endDate}}"></i>
-                                <i role="button" class="bi bi-trash text-danger delete-btn" data-id="{{id}}"></i>
+                                <i role="button" class="bi bi-trash text-danger" data-bs-toggle="modal" data-bs-target="#deleteReleaseModal"></i>
                             </div>
                         </div>
                         </div>
@@ -501,6 +501,25 @@
       </form>
     </div>
   </div>
+
+{{!-- Modal Delete --}}
+  <div class="modal fade" id="deleteReleaseModal" tabindex="-1" aria-labelledby="deleteReleaseModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteReleaseModalLabel">Are you sure?</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Do you really want to delete this release?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                    <button type="button" class="btn btn-danger" onclick="deleteUser()">Yes</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
   <div class="toast-container position-fixed bottom-0 end-0 p-3">
     <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">

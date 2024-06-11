@@ -64,31 +64,3 @@ async function deleteUser(id) {
     console.log(error);
   }
 }
-
-document.querySelectorAll(".delete-btn").forEach((btnConfirm) => {
-  btnConfirm.addEventListener("click", (e) => {
-    let id = e.target.dataset.id;
-    console.log(id);
-    const options = {
-      title: "Are you sure?",
-      type: "danger",
-      btnOkText: "Yes",
-      btnCancelText: "No",
-      onConfirm: () => {
-        console.log("id");
-        deleteUser(id);
-      },
-      onCancel: () => {
-        console.log("Cancel");
-      },
-    };
-    const {
-      el,
-      content,
-      options: confirmedOptions,
-    } = bs5diaLog.confirm(
-      "Do you really want to delete this release?",
-      options
-    );
-  });
-});
