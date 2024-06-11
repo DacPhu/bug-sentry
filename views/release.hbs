@@ -88,7 +88,6 @@
                     type="text"
                     class="form-control"
                     name=""
-                    id=""
                     aria-describedby="helpId"
                     placeholder="Search"
                     id="searchOpenRelease"
@@ -98,7 +97,7 @@
             </div>
             <div class="row px-5 pt-3" id="release-container">
                 {{#each releasesOpen}}
-                <div class="col-lg-3 col-md-4 col-sm-6 mb-3 release-open-item" name-date="{{name}}">
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-3 release-open-item" data-name="{{name}}">
                     <div class="bg-white">
                     <div class="card bg-info">
                         <div class="card-body">
@@ -214,7 +213,6 @@
                     type="text"
                     class="form-control"
                     name=""
-                    id=""
                     aria-describedby="helpId"
                     placeholder="Search"
                     id="searchUpcomingRelease"
@@ -224,7 +222,7 @@
             </div>
             <div class="row px-5 pt-3" id="release-container">
                 {{#each releasesUpcoming}}
-                <div class="col-lg-3 col-md-4 col-sm-6 mb-3 release-upcoming-item" date-name="{{name}}">
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-3 release-upcoming-item" data-name="{{name}}">
                     <div class="bg-white">
                     <div class="card bg-warning">
                         <div class="card-body">
@@ -339,7 +337,6 @@
                     type="text"
                     class="form-control"
                     name=""
-                    id=""
                     aria-describedby="helpId"
                     placeholder="Search"
                     id="searchCompletedRelease"

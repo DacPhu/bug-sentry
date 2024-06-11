@@ -3,10 +3,10 @@ document.addEventListener("DOMContentLoaded", function () {
   const sectionUpcoming = document.getElementById("upcoming-releases");
   const sectionCompleted = document.getElementById("completed-releases");
 
-  const searchOpenInput = document.querySelector("#searchOpenRelease");
-  const searchUpcomingInput = document.querySelector("#searchUpcomingRelease");
-  const searchCompletedInput = document.querySelector(
-    "#searchCompletedRelease"
+  const searchOpenInput = document.getElementById("searchOpenRelease");
+  const searchUpcomingInput = document.getElementById("searchUpcomingRelease");
+  const searchCompletedInput = document.getElementById(
+    "searchCompletedRelease"
   );
 
   const releaseOpenItems = Array.from(
@@ -134,32 +134,41 @@ document.addEventListener("DOMContentLoaded", function () {
     nextPageBtnUpcoming.disabled = endIndex >= filteredUpcomingReleases.length;
   }
 
-  // searchOpenInput.addEventListener("input", function () {
-  //   const searchQuery = searchOpenInput.value.toLowerCase();
-  //   filteredOpenReleases = releaseOpenItems.filter((item) =>
-  //     item.getAttribute("data-name").toLowerCase().includes(searchQuery)
-  //   );
-  //   currentPage = 1;
-  //   updateDisplay();
-  // });
+  searchOpenInput.addEventListener("input", function () {
+    const value = searchOpenInput.value;
+    if (value) {
+      const searchQuery = value.toLowerCase();
+      filteredOpenReleases = releaseOpenItems.filter((item) =>
+        item.getAttribute("data-name").toLowerCase().includes(searchQuery)
+      );
+      currentPage = 1;
+      updateDisplay();
+    }
+  });
 
-  // searchUpcomingInput.addEventListener("input", function () {
-  //   const searchQuery = searchUpcomingInput.value.toLowerCase();
-  //   filteredUpcomingReleases = releaseUpcomingItems.filter((item) =>
-  //     item.getAttribute("data-name").toLowerCase().includes(searchQuery)
-  //   );
-  //   currentPage = 1;
-  //   updateDisplay();
-  // });
+  searchUpcomingInput.addEventListener("input", function () {
+    const value = searchUpcomingInput.value;
+    if (value) {
+      const searchQuery = value.toLowerCase();
+      filteredUpcomingReleases = releaseUpcomingItems.filter((item) =>
+        item.getAttribute("data-name").toLowerCase().includes(searchQuery)
+      );
+      currentPage = 1;
+      updateDisplay();
+    }
+  });
 
-  // searchCompletedInput.addEventListener("input", function () {
-  //   const searchQuery = searchCompletedInput.value.toLowerCase();
-  //   filteredCompletedReleases = releaseCompletedItems.filter((item) =>
-  //     item.getAttribute("data-name").toLowerCase().includes(searchQuery)
-  //   );
-  //   currentPage = 1;
-  //   updateDisplay();
-  // });
+  searchCompletedInput.addEventListener("input", function () {
+    const value = searchCompletedInput.value;
+    if (value) {
+      const searchQuery = value.toLowerCase();
+      filteredCompletedReleases = releaseCompletedItems.filter((item) =>
+        item.getAttribute("data-name").toLowerCase().includes(searchQuery)
+      );
+      currentPage = 1;
+      updateDisplay();
+    }
+  });
 
   prevPageBtnOpen.addEventListener("click", function () {
     if (currentPage > 1) {
