@@ -88,16 +88,7 @@ controller.getAllReleases = async (req, res) => {
         }
 
         return res.status(200).json({
-        releases: releases.map((release) => ({
-            id: release.id,
-            project_id: release.project_id,
-            name: release.name,
-            start_date: release.start_date,
-            end_date: release.end_date,
-            description: release.description,
-            created_by: release.created_by,
-            created_at: release.created_at,
-        })),
+            releases: releases,
         });
     } catch (error) {
         return res
