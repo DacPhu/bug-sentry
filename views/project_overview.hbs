@@ -5,7 +5,7 @@
         <!-- Main content -->
         <div class="col-md-11 col-lg-11 col-xl-11 bg-grey px-4">
             {{> nav_main}}
-            {{#with FormatProject}}
+            {{#with formatProject}}
             <div class="container bg-light">
                 <div class="d-flex flex-nowrap py-2 ">
                     <h4 class="ms-3 text-success">Project list</h4>
@@ -23,7 +23,7 @@
                                     <div class="col">
                                         <img src="/images/projectImage.png" alt="none" class="img-fluid">
                                     </div>
-                                    {{#with FormatProject}}
+                                    {{#with formatProject}}
                                     <div class="col">
                                         <h3 class="fw-bold"> {{name}}</h4>
                                             <p> {{formatDate created_at "MM-YYYY"}}</p>
@@ -36,7 +36,7 @@
                                     <div class="col-auto ms-3">
                                         <i class="bi bi-pencil h3"></i>
                                     </div>
-                                    {{#with FormatProject}}
+                                    {{#with formatProject}}
                                     <div class="col-auto text-center">
                                         <p class="mb-0">{{number_of_members}} members</p>
                                     </div>
@@ -46,38 +46,34 @@
                             </div>
                             <div class="col container-fluid bg-light me-3 ">
                                 <div class="row">
-                                    <div class="col-auto p-2">
+                                    <div class="col-auto p-2 text-center">
                                         <h4>Release status</h4>
-                                        <hr>
+                                        
                                         <div class="text-center">
-                                            <img src="/images/chart.png" alt="" class="img-fluid w-75 h-auto">
+                                            <canvas id="releaseChart" style="w-75 h-auto"></canvas>
+                                            {{!-- <img src="/images/chart.png" alt="" class="img-fluid w-75 h-auto"> --}}
                                         </div>
                                     </div>
-                                    <div class="col pt-4">
+                                    <div class="col pt-5">
                                         <div class="row">
-                                            <div class="col-md-3">
-                                                <h3 class="d-inline"> 5 </h3>
-                                                <i class="bi bi-circle-fill text-success d-inline-block"></i>
-                                                <p class="text-muted"> Passed </p>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <h3 class="d-inline"> 2 </h3>
-                                                <i class="bi bi-circle-fill text-primary d-inline-block"></i>
+                                            <div class="col-md-6">
+                                                <h2 class="d-inline testrunCountItem"> 0 </h2>
+                                                <i class="bi bi-circle-fill text-primary d-inline-block fs-5"></i>
                                                 <p class="text-muted"> Untested </p>
                                             </div>
-                                            <div class="col-md-3">
-                                                <h3 class="d-inline"> 0 </h3>
-                                                <i class="bi bi-circle-fill text-muted d-inline-block"></i>
-                                                <p class="text-muted"> Blocked </p>
+                                            <div class="col-md-6">
+                                                <h2 class="d-inline testrunCountItem"> 5 </h2>
+                                                <i class="bi bi-circle-fill text-success d-inline-block fs-5"></i>
+                                                <p class="text-muted"> Passed </p>
                                             </div>
-                                            <div class="col-md-3">
-                                                <h3 class="d-inline"> 0 </h3>
-                                                <i class="bi bi-circle-fill text-warning d-inline-block"></i>
+                                            <div class="col-md-6">
+                                                <h2 class="d-inline testrunCountItem"> 5 </h2>
+                                                <i class="bi bi-circle-fill text-warning d-inline-block fs-5"></i>
                                                 <p class="text-muted"> Retest </p>
                                             </div>
-                                            <div class="col-md-3">
-                                                <h3 class="d-inline"> 0 </h3>
-                                                <i class="bi bi-circle-fill text-danger d-inline-block"></i>
+                                            <div class="col-md-6">
+                                                <h2 class="d-inline testrunCountItem"> 5 </h2>
+                                                <i class="bi bi-circle-fill text-danger d-inline-block fs-5"></i>
                                                 <p class="text-muted"> Failed </p>
                                             </div>
 
@@ -92,14 +88,14 @@
                                 <div class="d-flex flex-column bg-light h-100 px-2">
                                     <div class="mt-3 mx-auto bg-release rounded-circle d-flex justify-content-center align-items-center align-self-center "
                                         style="width: 75px; height: 75px;">
-                                        <h1 class="mb-0 fw-bold"> {{FormatReleases.length}}</h1>
+                                        <h1 class="mb-0 fw-bold"> {{formatReleases.length}}</h1>
                                     </div>
                                     <h5 class="mt-1 fw-bold text-center"> Releases</h5>
                                     <div class="d-flex">
                                         <i class="bi bi-plus-lg h5 fw-bold ms-auto "></i>
                                     </div>
                                     <div class="release-list-container mt-3">
-                                        {{#each FormatReleases}}
+                                        {{#each formatReleases}}
                                             {{#if (lessThan @index 5)}}  
                                             <div class="container d-flex px-0">
                                                 <p class="d-inline"> {{name}} </p>
@@ -117,7 +113,7 @@
                                 <div class="d-flex flex-column bg-light h-100 px-2">
                                     <div class="mt-3 mx-auto bg-test-case rounded-circle d-flex justify-content-center align-items-center align-self-center"
                                         style="width: 75px; height: 75px;">
-                                        <h1 class="mb-0 fw-bold"> {{FormatTestCases.length}}</h1>
+                                        <h1 class="mb-0 fw-bold"> {{formatTestCases.length}}</h1>
                                     </div>
                                     <h5 class="mt-1 fw-bold text-center"> Test Case</h5>
                                     <div class="d-flex">
@@ -125,7 +121,7 @@
                                     </div>
 
                                     <div class="release-list-container mt-3">
-                                        {{#each FormatTestCases}}
+                                        {{#each formatTestCases}}
                                             {{#if (lessThan @index 5)}} 
                                             <div class="container d-flex px-0 mb-2">
                                                 <p class="d-inline"> {{name}} </p>
@@ -143,14 +139,14 @@
                                 <div class="d-flex flex-column bg-light h-100 px-2">
                                     <div class="mt-3 mx-auto bg-test-run rounded-circle d-flex justify-content-center align-items-center align-self-center"
                                         style="width: 75px; height: 75px;">
-                                        <h1 class="mb-0 fw-bold"> {{FormatTestRuns.length}}</h1>
+                                        <h1 class="mb-0 fw-bold"> {{formatTestRuns.length}}</h1>
                                     </div>
                                     <h5 class="mt-1 fw-bold text-center"> Test runs</h5>
                                     <div class="d-flex">
                                         <i class="bi bi-plus-lg h5 fw-bold ms-auto "></i>
                                     </div>
                                     <div class="release-list-container mt-3">
-                                        {{#each FormatTestRuns}}
+                                        {{#each formatTestRuns}}
                                             {{#if (lessThan @index 5)}} 
                                             <div class="container d-flex px-0 mb-2">
                                                 <p class="d-inline"> {{name}} </p>
@@ -168,14 +164,14 @@
                                 <div class="d-flex flex-column bg-light h-100 px-2">
                                     <div class="mt-3 mx-auto bg-issue rounded-circle d-flex justify-content-center align-items-center align-self-center"
                                         style="width: 75px; height: 75px;">
-                                        <h1 class="mb-0 fw-bold">{{FormatIssues.length}}</h1>
+                                        <h1 class="mb-0 fw-bold">{{formatIssues.length}}</h1>
                                     </div>
                                     <h5 class="mt-1 fw-bold text-center"> Issues</h5>
                                     <div class="d-flex">
                                         <i class="bi bi-plus-lg h5 fw-bold ms-auto "></i>
                                     </div>
                                     <div class="release-list-container mt-3">
-                                        {{#each FormatIssues}}
+                                        {{#each formatIssues}}
                                             {{#if (lessThan @index 5)}} 
                                             <div class="container d-flex px-0 mb-2">
                                                 <p class="d-inline"> {{name}} </p>
@@ -249,5 +245,37 @@
         </div>
     </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+<script>
+const xValues = ["Untested", "Passed", "Retest", "Failed"];
+const yValues = [{{counts}}];
+const barColors = ["blue", "green", "yellow", "red"];
+
+const testrunCountItems = document.getElementsByClassName("testrunCountItem")
+yValues.forEach((value, index) => {
+    testrunCountItems[index].innerText = value.toString();
+});
+
+new Chart("releaseChart", {
+  type: "doughnut",
+  data: {
+    labels: xValues,
+    datasets: [{
+      backgroundColor: barColors,
+      data: yValues
+
+    }]
+  },
+  options: {
+    title: {
+      display: false,
+    },
+    legend: {
+      display: false // Ẩn mục lục
+    }
+  }
+});
+</script>
 
 <link href="/styles/overview.module.css" rel="stylesheet" />
