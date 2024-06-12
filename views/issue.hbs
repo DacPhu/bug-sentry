@@ -106,8 +106,7 @@
             <i role="button" class="bi bi-pencil mx-3" data-bs-toggle="modal" data-bs-target="#editIssueModal"
               onclick="showEditIssueModal(this)" data-id="{{id}}" data-name="{{name}}"
               data-created-by="{{Creator.User.first_name}} {{Creator.User.last_name}}" data-status="{{status}}"></i>
-            <i role="button" class="bi bi-trash text-danger" data-bs-toggle="modal"
-              data-bs-target="#deleteIssueModal"></i>
+            <i role="button" class="bi bi-trash text-danger" data-bs-toggle="modal" data-bs-target="#deleteIssueModal"></i>
           </div>
           <hr />
         </div>
@@ -193,7 +192,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title">
-            Edit User
+            Edit Issue
           </h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
@@ -228,6 +227,25 @@
       </div>
     </form>
   </div>
+</div>
+
+{{!-- Delete Modal  --}}
+<div class="modal fade" id="deleteIssueModal" tabindex="-1" aria-labelledby="deleteIssueModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteIssueModalLabel">Are you sure?</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Do you really want to delete this issue?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                <button type="button" class="btn btn-danger" onclick="deleteIssue()">Yes</button>
+            </div>
+        </div>
+    </div>
 </div>
 
 <script src="/scripts/list-issue.js"></script>

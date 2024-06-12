@@ -8,6 +8,6 @@ router.get("/", controller.getIssues);
 router.get("/all", controller.getAllIssues);
 router.post("/", controller.addIssue);
 router.put("/", controller.editIssue);
-router.put("/:id", controller.deleteIssue);
+router.delete("/:id", controller.deleteIssue);
 
 module.exports = router;
