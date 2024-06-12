@@ -7,7 +7,7 @@ const controller = {};
 controller.showAll = async (req, res) => {
   try {
     const projectId = req.params.id;
-    // Lấy toàn bộ member có trong projectID
+
     const members = await models.Member.findAll({
       where: { project_id: projectId },
       include: [
