@@ -7,7 +7,7 @@ document
 document
   .querySelector("#addIssueModal")
   .addEventListener("shown.bs.modal", () => {
-    document.querySelector("#name").focus();
+    document.querySelector("#issueTitle").focus();
   });
 
 function showEditReleaseModal(btn) {

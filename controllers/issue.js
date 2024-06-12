@@ -36,10 +36,8 @@ controller.showAll = async (req, res) => {
             ? a.priority.localeCompare(b.priority)
             : b.priority.localeCompare(a.priority);
         case "Code":
-          console.log("HH2")
           return sortOrder === "Asc" ? a.id - b.id : b.id - a.id;
-        case "CreatedAt":
-          console.log("HH3")
+        case "CreatedAt":         
           return sortOrder === "Asc"
             ? new Date(a.createdAt) - new Date(b.createdAt)
             : new Date(b.createdAt) - new Date(a.createdAt);
@@ -47,8 +45,6 @@ controller.showAll = async (req, res) => {
           return 0;
         }
       })
-      const issuesIdAft = issues.map(item => item.id)
-      console.log(issuesIdAft)
     res.render("issue", {
       layout: "main_layout",
       issues: issues,

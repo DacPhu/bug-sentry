@@ -24,10 +24,11 @@
           </div>
 
           <div class="d-inline-block me-3">
-            <div id="add-issue-btn" class="mx-4 my-3 d-flex btn custom-bold-btn">
+            <button type="button" class="mx-4 my-3 d-flex btn custom-bold-btn" data-bs-toggle="modal"
+              data-bs-target="#addIssueModal">
               <div class="me-2 p-1">Add Issue</div>
               <img src="/icons/add.svg" alt="" />
-            </div>
+            </button>
           </div>
         </div>
       </div>
@@ -102,8 +103,11 @@
           <div class="priority-atribute col-md-1 text-color-1">{{priority}}</div>
           <div class="col-md-2 text-color-1">{{formatDate created_at "MMM DD YYYY MM:hh"}}</div>
           <div class="col text-color-1 d-flex">
-            <i role="button" class="bi bi-pencil mx-3" data-bs-toggle="modal" data-bs-target="#editIssueModal" onclick="showEditIssueModal(this)" data-id="{{id}}" data-name="{{name}}" data-created-by="{{Creator.User.first_name}} {{Creator.User.last_name}}" data-status="{{status}}"></i>
-            <i role="button" class="bi bi-trash text-danger" data-bs-toggle="modal" data-bs-target="#deleteIssueModal"></i>
+            <i role="button" class="bi bi-pencil mx-3" data-bs-toggle="modal" data-bs-target="#editIssueModal"
+              onclick="showEditIssueModal(this)" data-id="{{id}}" data-name="{{name}}"
+              data-created-by="{{Creator.User.first_name}} {{Creator.User.last_name}}" data-status="{{status}}"></i>
+            <i role="button" class="bi bi-trash text-danger" data-bs-toggle="modal"
+              data-bs-target="#deleteIssueModal"></i>
           </div>
           <hr />
         </div>
@@ -131,37 +135,56 @@
   </div>
 </div>
 
-<!-- Overlay -->
-<div class="overlay"></div>
-<!-- Table Issues-->
-<div class="add-issue-table">
-  <div class="container">
-    <div class="d-flex align-item-center p-3">
-      <h1 class="mb-0">Add issue</h1>
-      <button class="btn bg-save-btn btn-primary rounded-3 ms-auto btn-lg" id="save-issue-btn">
-        Save
-      </button>
-      <button class="btn bg-cancel-btn btn-warning bg-main-color rounded-3 mx-3 btn-lg" id="cancel-issue-btn">
-        Cancel
-      </button>
-    </div>
-    <div class="row p-3">
-      <div class="col">
-        <p>Issue title <span class="text-danger">*</span></p>
-        <input type="text" class="form-control" placeholder="" aria-label="title" />
-        <p>Status <span class="text-danger">*</span></p>
-        <input type="text" class="form-control" placeholder="" aria-label="status" />
-        <p>Priority <span class="text-danger">*</span></p>
-        <input type="text" class="form-control" placeholder="" aria-label="priority" />
+{{!-- Add Modal --}}
+<div class="modal fade" id="addIssueModal" tabindex="-1" aria-labelledby="addIssueModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addIssueModalLabel">Add Issue</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="col d-flex flex-column">
-        <p>Description</p>
-        <textarea class="form-control flex-grow-1"></textarea>
+      <div class="modal-body">
+        <!-- Form for adding new issue -->
+        <form id="addIssueForm" onsubmit="addIssue(event)">
+          <div class="row">
+            <div class="col">
+              <div class="mb-3">
+                <label for="issueTitle" class="form-label">Issue Title <span class="text-danger">*</span></label>
+                <input type="text" class="form-control" id="issueTitle" required>
+              </div>
+              <div class="mb-3">
+                <label for="issueStatus" class="form-label">Status <span class="text-danger">*</span></label>
+                <input type="text" class="form-control" id="issueStatus" required>
+              </div>
+              <div class="mb-3">
+                <label for="issuePriority" class="form-label">Priority <span class="text-danger">*</span></label>
+                <input type="text" class="form-control" id="issuePriority" required>
+              </div>
+            </div>
+            <div class="col">
+              <div class="mb-3">
+                <label for="issueDescription" class="form-label">Description</label>
+                <textarea class="form-control" id="issueDescription" rows="8"></textarea>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="text-center text-danger" id="addIssueErrorMessage"></div>
+          <div class="modal-footer">
+            <input type="hidden" name="id" id="id" value="" />
+            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal" id="closeBtnEdit">
+              Close
+            </button>
+            <button type="submit" class="btn btn-primary">
+              Save
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
 </div>
-
 {{!-- Edit Modal --}}
 
 <div class="modal fade" id="editIssueModal" tabindex="-1" aria-hidden="true">
@@ -178,19 +201,17 @@
           <div class="row g-2">
             <div class="col mb-6">
               <label for="nameEdit" class="form-label">Name</label>
-              <input type="text" id="nameEdit" name="firstName" class="form-control" placeholder="John"
-                required />
+              <input type="text" id="nameEdit" name="firstName" class="form-control" placeholder="John" required />
             </div>
           </div>
           <div class="row g-2">
             <div class="col mb-3">
               <label for="createdByEdit" class="form-label">Created by</label>
-              <input type="text" id="createdByEdit" name="createdBy" class="form-control"
-                disabled />
+              <input type="text" id="createdByEdit" name="createdBy" class="form-control" disabled />
             </div>
             <div class="col mb-3">
               <label for="statusEdit" class="form-label">Status</label>
-              <input type="text" id="statusEdit" name="status" class="form-control"/>
+              <input type="text" id="statusEdit" name="status" class="form-control" />
             </div>
           </div>
           <div class="text-center badge bg-label-danger" id="errorMessage"></div>
@@ -211,4 +232,4 @@
 
 <script src="/scripts/list-issue.js"></script>
 <script src="/scripts/management/issue.js"></script>
-  <!-- Bootstrap JavaScript Libraries -->
+<!-- Bootstrap JavaScript Libraries -->
