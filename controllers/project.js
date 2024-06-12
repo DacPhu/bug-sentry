@@ -20,25 +20,25 @@ controller.showAll = async (req, res) => {
         {
           model: models.TestCase,
           attributes: [],
-          required: true 
+          required: true
         },
         {
           model: models.TestRun,
           attributes: [],
-          required: true 
+          required: true
         },
         {
           model: models.Issue,
           attributes: [],
-          required: true 
+          required: true
         }
       ],
       group: ["Project.id", "Project.name", "Project.created_at"]
     });
-    
+
     console.log(projectsWithCounts)
 
-    // Format the result
+    // format the result
     const listProjects = projectsWithCounts.map((project) => ({
       id: project.id,
       name: project.name,
@@ -61,42 +61,53 @@ controller.showOverview = async (req, res) => {
     where: { id: id }
   })
   const testCases = await models.TestCase.findAll({
-    where: { project_id: id}
+    where: { project_id: id }
   })
   const testRuns = await models.TestRun.findAll({
-    where: { project_id: id}
+    where: { project_id: id }
   })
   const issues = await models.Issue.findAll({
-    where: { project_id: id}
+    where: { project_id: id }
   })
   const releases = await models.Release.findAll({
-    where: { project_id: id}
+    where: { project_id: id }
   })
-  const FormatProject = {
+  let counts = [0, 0, 0, 0]; // untested, passed, retest, failed
+  testRuns.forEach(item => {
+    switch (item.status) {
+      case "untested": counts[0]++; break;
+      case "passed": counts[1]++; break;
+      case "retest": counts[2]++; break;
+      case "failed": counts[3]++; break;
+      default: break;
+    }
+  })
+  console.log(counts)
+  const formatProject = {
     id: project.id,
     name: project.name,
     created_at: project.created_at,
     number_of_members: project.number_of_members,
   };
-  console.log(FormatProject)
-  const FormatReleases = releases.map((release) => ({
+
+  const formatReleases = releases.map((release) => ({
     id: release.id,
     name: release.name
   }))
-  const FormatTestCases = testCases.map((testcase) => ({
+  const formatTestCases = testCases.map((testcase) => ({
     id: testcase.id,
     name: testcase.title
   }))
-  const FormatTestRuns = testRuns.map((testrun) => ({
+  const formatTestRuns = testRuns.map((testrun) => ({
     id: testrun.id,
     name: testrun.name
   }))
-  const FormatIssues = issues.map((issue) => ({
+  const formatIssues = issues.map((issue) => ({
     id: issue.id,
     name: issue.name
   }))
 
-  res.render("project_overview", {FormatProject, FormatReleases, FormatTestCases, FormatTestRuns, FormatIssues});
+  res.render("project_overview", { formatProject, formatReleases, formatTestCases, formatTestRuns, formatIssues, counts });
 };
 
 controller.createProject = async (req, res) => {
