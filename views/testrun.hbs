@@ -155,10 +155,9 @@
                 <div class="col-md-2 text-color-1 truncate" id="TestCaseName">{{TestCase.title}}</div>
                 <div class="col-md-1 text-color-1 text-center">{{status}}</div>
                 <div class="col-md-1 text-color-1 d-flex justify-content-between">
-                    <i class="bi bi-play-circle-fill text-success"></i>
-                    <i class="bi bi-copy"></i>
-                    <i class="bi bi-pencil"></i>
-                    <i class="bi bi-trash"></i>
+                    <i role="button" class="bi bi-play-circle-fill text-success"></i>
+                    <i role="button" class="bi bi-pencil" data-bs-toggle="modal" data-bs-target="#editTestRunModal" onclick="showEditTestRunModal(this)" data-id="{{id}}" data-title="{{name}}" data-created-by="{{Creator.User.first_name}} {{Creator.User.last_name}}" data-assigned-to="{{Assignee.User.first_name}} {{Assignee.User.last_name}}" data-test-case="{{TestCase.title}}"></i>
+                    <i role="button" class="bi bi-trash text-danger" data-bs-toggle="modal" data-bs-target="#deleteReleaseModal"></i>
                 </div>
                 <hr />
             </div>
@@ -523,6 +522,58 @@
             </div>
             </div>
         </form>
+    </div>
+</div>
+
+<div class="modal fade" id="editTestRunModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <form action="" id="editTestRunForm" onsubmit="editTestRun(event)">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">
+              Edit Test Run
+            </h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="row g-2">
+              <div class="col mb-6">
+                <label for="createdByEdit" class="form-label">Created By</label>
+                <input type="text" id="createdByEdit" name="createdBy" class="form-control" placeholder="John"
+                  required />
+              </div>
+            </div>
+            <div class="row g-2">
+              <div class="col mb-6">
+                <label for="title" class="form-label">Title</label>
+                <input type="text" id="titleEdit" name="title" class="form-control"/>
+              </div>
+            </div>
+            <div class="row g-2">
+                <div class="col mb-3">
+                    <label for="assignedToEdit" class="form-label">Assigned To</label>
+                    <input type="text" id="assignedToEdit" name="assignedTo" class="form-control"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col mb-3">
+                    <label for="testcaseEdit" class="form-label">Test Case</label>
+                    <input type="text" id="testcaseEdit" name="testcase" class="form-control"/>
+                </div>
+            </div>
+            <div class="text-center badge bg-label-danger" id="errorMessage"></div>
+          </div>
+          <div class="modal-footer">
+            <input type="hidden" name="id" id="id" value="" />
+            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal" id="closeBtnEdit">
+              Close
+            </button>
+            <button type="submit" class="btn btn-primary">
+              Save
+            </button>
+          </div>
+        </div>
+      </form>
     </div>
 </div>
 
