@@ -102,9 +102,8 @@
           <div class="priority-atribute col-md-1 text-color-1">{{priority}}</div>
           <div class="col-md-2 text-color-1">{{formatDate created_at "MMM DD YYYY MM:hh"}}</div>
           <div class="col text-color-1 d-flex">
-            <i class="bi bi-eye"></i>
-            <i class="bi bi-pencil mx-3"></i>
-            <i class="bi bi-trash"></i>
+            <i role="button" class="bi bi-pencil mx-3" data-bs-toggle="modal" data-bs-target="#editIssueModal" onclick="showEditIssueModal(this)" data-id="{{id}}" data-name="{{name}}" data-created-by="{{Creator.User.first_name}} {{Creator.User.last_name}}" data-status="{{status}}"></i>
+            <i role="button" class="bi bi-trash text-danger" data-bs-toggle="modal" data-bs-target="#deleteIssueModal"></i>
           </div>
           <hr />
         </div>
@@ -132,7 +131,7 @@
   </div>
   <!-- Overlay -->
   <div class="overlay"></div>
-  <!-- Bảng add Issues-->
+  <!-- Table Issues-->
   <div class="add-issue-table">
     <div class="container">
       <div class="d-flex align-item-center p-3">
@@ -160,6 +159,56 @@
       </div>
     </div>
   </div>
+
+  {{!-- Edit Modal --}}
+
+  <div class="modal fade" id="editIssueModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <form action="" id="editIssueForm" onsubmit="editIssue(event)">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">
+              Edit User
+            </h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="row g-2">
+              <div class="col mb-6">
+                <label for="nameEdit" class="form-label">Name</label>
+                <input type="text" id="nameEdit" name="firstName" class="form-control" placeholder="John"
+                  required />
+              </div>
+            </div>
+            <div class="row g-2">
+              <div class="col mb-3">
+                <label for="createdByEdit" class="form-label">Created by</label>
+                <input type="text" id="createdByEdit" name="createdBy" class="form-control"
+                  disabled />
+              </div>
+              <div class="col mb-3">
+                <label for="mobileEdit" class="form-label">Status</label>
+                <input type="text" id="statusEdit" name="status" class="form-control"/>
+              </div>
+            </div>
+            <div class="text-center badge bg-label-danger" id="errorMessage"></div>
+          </div>
+          <div class="modal-footer">
+            <input type="hidden" name="id" id="id" value="" />
+            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal" id="closeBtnEdit">
+              Close
+            </button>
+            <button type="submit" class="btn btn-primary">
+              Save
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+
   <script src="/scripts/add-issue.js"></script>
   <script src="/scripts/list-issue.js"></script>
+  <script src="/scripts/issue-management.js"></script>
   <!-- Bootstrap JavaScript Libraries -->
