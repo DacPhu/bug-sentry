@@ -5,7 +5,7 @@ const models = require("../models");
 
 const currentTimestamp = new Date();
 
-controller.getReleasesAPI = async (req, res) => {
+controller.getReleases = async (req, res) => {
     const name = req.query.keyword | "";
     const type = req.query.type | "open";
     const projectId = req.query.projectId | 0;
@@ -68,7 +68,7 @@ controller.getReleasesAPI = async (req, res) => {
     }
   };
   
-controller.getAllReleasesAPI = async (req, res) => {
+controller.getAllReleases = async (req, res) => {
     try {
         const releases = await models.Release.findAll({
         attributes: [
