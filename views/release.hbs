@@ -1,394 +1,393 @@
 <main class="bg-grey">
     <div class="container-fluid">
-    <div class="row">
-        {{> sidebar_main}}
-
-        <div class="col-md-11 col-lg-11 col-xl-11 bg-grey px-4">
-        {{> nav_main}}
-
         <div class="row">
-            <div class="col-md-6"></div>
-            <div class="col-md-6 d-flex justify-content-end">
-            <div
-                id="add-release"
-                class="ms-4 d-flex btn custom-bold-btn mx-4 my-3"
+            {{> sidebar_main}}
+
+            <div class="col-md-11 col-lg-11 col-xl-11 bg-grey px-4">
+            {{> nav_main}}
+
+            <div class="row">
+                <div class="col-md-6"></div>
+                <div class="col-md-6 d-flex justify-content-end">
+                <div
+                    id="add-release"
+                    class="ms-4 d-flex btn custom-bold-btn mx-4 my-3"
+                >
+                    <div class="me-2 p-1" data-bs-toggle="modal" data-bs-target="#addReleaseModal">Add Release</div>
+                    <img src="/icons/add.svg" alt="" />
+                </div>
+                </div>
+            </div>
+
+
+            <section class="container bg-white" id="open-releases">
+                <div class="row">
+                <div class="col-md-6">
+                    <nav class="navbar navbar-expand navbar-light">
+                    <ul class="nav navbar-nav">
+                        <li class="nav-item">
+                        <a
+                            class="nav-link active text-info"
+                            href="./release?type=open"
+                            aria-current="page"
+                        >Open</a>
+                        </li>
+                        <li class="nav-item">
+                        <a
+                            class="nav-link text-warning"
+                            href="./release?type=upcoming"
+                        >Upcoming</a>
+                        </li>
+                        <li class="nav-item">
+                        <a
+                            class="nav-link text-success"
+                            href="./release?type=completed"
+                        >Completed</a>
+                        </li>
+                    </ul>
+                    </nav>
+                </div>
+                <div class="col-md-6">
+                    <ul class="nav justify-content-end">
+                    {{#with countOpen}}
+                    <li class="nav-item p-2">
+                        <p>{{this}} Open Release(s)</p>
+                    </li>
+                    {{/with}}
+                    {{#with countUpcoming}}
+                    <li class="nav-item p-2">
+                        <p>{{this}} Upcoming Release(s)</p>
+                    </li>
+                    {{/with}}
+                    {{#with countCompleted}}
+                    <li class="nav-item p-2">
+                        <p>{{this}} Completed Release(s)</p>
+                    </li>
+                    {{/with}}
+                    </ul>
+                </div>
+                </div>
+                <div class="row">
+                <div class="col-md-8"></div>
+                <div class="col-md-4">
+                    <div class="m-3">
+                    <input
+                        type="text"
+                        class="form-control"
+                        name=""
+                        aria-describedby="helpId"
+                        placeholder="Search"
+                        id="searchOpenRelease"
+                    />
+                    </div>
+                </div>
+                </div>
+                <div class="row px-5 pt-3" id="release-container">
+                    {{#each releasesOpen}}
+                    <div class="col-lg-3 col-md-4 col-sm-6 mb-3 release-open-item" data-name="{{name}}">
+                        <div class="bg-white">
+                        <div class="card bg-info">
+                            <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <div class="d-flex">
+                                <img src="/icons/project-list.svg" />
+                                <div class="p-2">
+                                    <h4 class="card-title">{{name}}</h4>
+                                    Release key: {{id}}
+                                </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                <p>Start date: {{formatDate start_date "MMM DD YYYY"}}</p>
+                                <p>End date: {{formatDate end_date "MMM DD YYYY"}}</p>
+                                </div>
+                                {{!-- <div class="col-md-4"></div> --}}
+                            </div>
+
+                            <hr />
+                            <div class="d-flex justify-content-end">
+                                <div>
+                                <i class="bi bi-pencil-square"></i>
+                                <i class="bi bi-trash text-danger" data-id="{{id}}"></i>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    {{/each}}
+                </div>
+                <div class="row mt-5 align-content-center px-3 pb-4">
+                    <div class="col">
+                    <h4 id="pagination-info-open">Showing 1 to 6 of 6 entries</h4>
+                    </div>
+                    <div class="col d-flex align-items-center">
+                    <button class="border-0 rounded-3 p-2 text-muted ms-auto" id="prev-page-open">
+                        <i class="bi bi-chevron-double-left"></i>
+                    </button>
+                    <div
+                        class="bg-main-color rounded-circle d-flex justify-content-center align-items-center mx-3"
+                        style="width: 40px; height: 40px"
+                    >
+                        <h1 class="mb-0 text-light" style="font-size: 1.5rem" id="current-page-open">1</h1>
+                    </div>
+                    <button class="border-0 rounded-3 p-2 text-muted me-3" id="next-page-open">
+                        <i class="bi bi-chevron-double-right"></i>
+                    </button>
+                </div>
+            </div>
+            </section>
+
+            <section
+                class="container bg-white"
+                id="upcoming-releases"
+                style="display: none"
             >
-                <div class="me-2 p-1" data-bs-toggle="modal" data-bs-target="#addReleaseModal">Add Release</div>
-                <img src="/icons/add.svg" alt="" />
+                <div class="row">
+                <div class="col-md-6">
+                    <nav class="navbar navbar-expand navbar-light">
+                    <ul class="nav navbar-nav">
+                        <li class="nav-item">
+                        <a
+                            class="nav-link text-info"
+                            href="./release?type=open"
+                            aria-current="page"
+                            onclick="showSection('open-releases')"
+                        >Open</a>
+                        </li>
+                        <li class="nav-item">
+                        <a
+                            class="nav-link active text-warning"
+                            href="./release?type=upcoming"
+                        >Upcoming</a>
+                        </li>
+                        <li class="nav-item">
+                        <a
+                            class="nav-link text-success"
+                            href="./release?type=completed"
+                            onclick="showSection('completed-releases')"
+                        >Completed</a>
+                        </li>
+                    </ul>
+                    </nav>
+                </div>
+                <div class="col-md-6">
+                    <ul class="nav justify-content-end">
+                    {{#with countOpen}}
+                    <li class="nav-item p-2">
+                        <p>{{this}} Open Release(s)</p>
+                    </li>
+                    {{/with}}
+                    {{#with countUpcoming}}
+                    <li class="nav-item p-2">
+                        <p>{{this}} Upcoming Release(s)</p>
+                    </li>
+                    {{/with}}
+                    {{#with countCompleted}}
+                    <li class="nav-item p-2">
+                        <p>{{this}} Completed Release(s)</p>
+                    </li>
+                    {{/with}}
+                    </ul>
+                </div>
+                </div>
+                <div class="row">
+                <div class="col-md-8"></div>
+                <div class="col-md-4">
+                    <div class="m-3">
+                    <input
+                        type="text"
+                        class="form-control"
+                        name=""
+                        aria-describedby="helpId"
+                        placeholder="Search"
+                        id="searchUpcomingRelease"
+                    />
+                    </div>
+                </div>
+                </div>
+                <div class="row px-5 pt-3" id="release-container">
+                    {{#each releasesUpcoming}}
+                    <div class="col-lg-3 col-md-4 col-sm-6 mb-3 release-upcoming-item" data-name="{{name}}">
+                        <div class="bg-white">
+                        <div class="card bg-warning">
+                            <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <div class="d-flex">
+                                <img src="/icons/project-list.svg" />
+                                <div class="p-2">
+                                    <h4 class="card-title">{{name}}</h4>
+                                    Release key: {{id}}
+                                </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                <p>Start date: {{formatDate start_date "MMM DD YYYY"}}</p>
+                                <p>End date: {{formatDate end_date "MMM DD YYYY"}}</p>
+                                </div>
+                                {{!-- <div class="col-md-4"></div> --}}
+                            </div>
+
+                            <hr />
+                            <div class="d-flex justify-content-end">
+                                <div>
+                                <i class="bi bi-pencil-square"></i>
+                                <i class="bi bi-trash text-danger" data-id="{{id}}"></i>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    {{/each}}
+                </div>
+                <div class="row mt-5 align-content-center px-3 pb-4">
+                    <div class="col">
+                    <h4 id="pagination-info-upcoming">Showing 1 to 6 of 6 entries</h4>
+                    </div>
+                    <div class="col d-flex align-items-center">
+                    <button class="border-0 rounded-3 p-2 text-muted ms-auto" id="prev-page-upcoming">
+                        <i class="bi bi-chevron-double-left"></i>
+                    </button>
+                    <div
+                        class="bg-main-color rounded-circle d-flex justify-content-center align-items-center mx-3"
+                        style="width: 40px; height: 40px"
+                    >
+                        <h1 class="mb-0 text-light" style="font-size: 1.5rem" id="current-page-upcoming">1</h1>
+                    </div>
+                    <button class="border-0 rounded-3 p-2 text-muted me-3" id="next-page-upcoming">
+                        <i class="bi bi-chevron-double-right"></i>
+                    </button>
+                </div>
             </div>
+            </section>
+
+            <section
+                class="container bg-white"
+                id="completed-releases"
+                style="display: none"
+            >
+                <div class="row">
+                <div class="col-md-6">
+                    <nav class="navbar navbar-expand navbar-light">
+                    <ul class="nav navbar-nav">
+                        <li class="nav-item">
+                        <a
+                            class="nav-link text-info"
+                            href="./release?type=open"
+                            aria-current="page"
+                        >Open</a>
+                        </li>
+                        <li class="nav-item">
+                        <a
+                            class="nav-link text-warning"
+                            href="./release?type=upcoming"
+                            onclick="showSection('upcoming-releases')"
+                        >Upcoming</a>
+                        </li>
+                        <li class="nav-item">
+                        <a
+                            class="nav-link active text-success"
+                            href="./relase?type=completed"
+                        >Completed</a>
+                        </li>
+                    </ul>
+                    </nav>
+                </div>
+                <div class="col-md-6">
+                    <ul class="nav justify-content-end">
+                    {{#with countOpen}}
+                    <li class="nav-item p-2">
+                        <p>{{this}} Open Release(s)</p>
+                    </li>
+                    {{/with}}
+                    {{#with countUpcoming}}
+                    <li class="nav-item p-2">
+                        <p>{{this}} Upcoming Release(s)</p>
+                    </li>
+                    {{/with}}
+                    {{#with countCompleted}}
+                    <li class="nav-item p-2">
+                        <p>{{this}} Completed Release(s)</p>
+                    </li>
+                    {{/with}}
+                    </ul>
+                </div>
+                </div>
+                <div class="row">
+                <div class="col-md-8"></div>
+                <div class="col-md-4">
+                    <div class="m-3">
+                    <input
+                        type="text"
+                        class="form-control"
+                        name=""
+                        aria-describedby="helpId"
+                        placeholder="Search"
+                        id="searchCompletedRelease"
+                    />
+                    </div>
+                </div>
+                </div>
+                <div class="row px-5 pt-3">
+                    {{#each releasesCompleted}}
+                    <div class="col-lg-3 col-md-4 col-sm-6 mb-3 release-completed-item" data-name="{{name}}">
+                        <div class="bg-white">
+                        <div class="card bg-success">
+                            <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <div class="d-flex">
+                                <img src="/icons/project-list.svg" />
+                                <div class="p-2">
+                                    <h4 class="card-title">{{name}}</h4>
+                                    Release key: {{id}}
+                                </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                <p>Start date: {{formatDate start_date "MMM DD YYYY"}}</p>
+                                <p>End date: {{formatDate end_date "MMM DD YYYY"}}</p>
+                                </div>
+                                {{!-- <div class="col-md-4"></div> --}}
+                            </div>
+
+                            <hr />
+                            <div class="d-flex justify-content-end">
+                                <div>
+                                    <i role="button" class="bi bi-pencil-square" data-bs-toggle="modal" data-bs-target="#editReleaseModal" onclick="showEditReleaseModal(this)" data-id="{{id}}" data-name="{{name}}" data-start-date="{{startDate}}" data-end-date="{{endDate}}"></i>
+                                    <i role="button" class="bi bi-trash text-danger" data-bs-toggle="modal" data-bs-target="#deleteReleaseModal"></i>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    {{/each}}
+                </div>
+                <div class="row mt-5 align-content-center px-3 pb-4">
+                    <div class="col">
+                    <h4 id="pagination-info-completed">Showing 1 to 6 of 6 entries</h4>
+                    </div>
+                    <div class="col d-flex align-items-center">
+                    <button class="border-0 rounded-3 p-2 text-muted ms-auto" id="prev-page-completed">
+                        <i class="bi bi-chevron-double-left"></i>
+                    </button>
+                    <div
+                        class="bg-main-color rounded-circle d-flex justify-content-center align-items-center mx-3"
+                        style="width: 40px; height: 40px"
+                    >
+                        <h1 class="mb-0 text-light" style="font-size: 1.5rem" id="current-page-completed">1</h1>
+                    </div>
+                    <button class="border-0 rounded-3 p-2 text-muted me-3" id="next-page-completed">
+                        <i class="bi bi-chevron-double-right"></i>
+                    </button>
+                </div>
             </div>
+            </section>
         </div>
-
-
-        <section class="container bg-white" id="open-releases">
-            <div class="row">
-            <div class="col-md-6">
-                <nav class="navbar navbar-expand navbar-light">
-                <ul class="nav navbar-nav">
-                    <li class="nav-item">
-                    <a
-                        class="nav-link active text-info"
-                        href="./release?type=open"
-                        aria-current="page"
-                    >Open</a>
-                    </li>
-                    <li class="nav-item">
-                    <a
-                        class="nav-link text-warning"
-                        href="./release?type=upcoming"
-                    >Upcoming</a>
-                    </li>
-                    <li class="nav-item">
-                    <a
-                        class="nav-link text-success"
-                        href="./release?type=completed"
-                    >Completed</a>
-                    </li>
-                </ul>
-                </nav>
-            </div>
-            <div class="col-md-6">
-                <ul class="nav justify-content-end">
-                {{#with countOpen}}
-                <li class="nav-item p-2">
-                    <p>{{this}} Open Release(s)</p>
-                </li>
-                {{/with}}
-                {{#with countUpcoming}}
-                <li class="nav-item p-2">
-                    <p>{{this}} Upcoming Release(s)</p>
-                </li>
-                {{/with}}
-                {{#with countCompleted}}
-                <li class="nav-item p-2">
-                    <p>{{this}} Completed Release(s)</p>
-                </li>
-                {{/with}}
-                </ul>
-            </div>
-            </div>
-            <div class="row">
-            <div class="col-md-8"></div>
-            <div class="col-md-4">
-                <div class="m-3">
-                <input
-                    type="text"
-                    class="form-control"
-                    name=""
-                    aria-describedby="helpId"
-                    placeholder="Search"
-                    id="searchOpenRelease"
-                />
-                </div>
-            </div>
-            </div>
-            <div class="row px-5 pt-3" id="release-container">
-                {{#each releasesOpen}}
-                <div class="col-lg-3 col-md-4 col-sm-6 mb-3 release-open-item" data-name="{{name}}">
-                    <div class="bg-white">
-                    <div class="card bg-info">
-                        <div class="card-body">
-                        <div class="d-flex justify-content-between">
-                            <div class="d-flex">
-                            <img src="/icons/project-list.svg" />
-                            <div class="p-2">
-                                <h4 class="card-title">{{name}}</h4>
-                                Release key: {{id}}
-                            </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                            <p>Start date: {{formatDate start_date "MMM DD YYYY"}}</p>
-                            <p>End date: {{formatDate end_date "MMM DD YYYY"}}</p>
-                            </div>
-                            {{!-- <div class="col-md-4"></div> --}}
-                        </div>
-
-                        <hr />
-                        <div class="d-flex justify-content-end">
-                            <div>
-                            <i class="bi bi-pencil-square"></i>
-                            <i class="bi bi-trash text-danger" data-id="{{id}}"></i>
-                            </div>
-                        </div>
-                        </div>
-                    </div>
-                    </div>
-                </div>
-                {{/each}}
-            </div>
-            <div class="row mt-5 align-content-center px-3 pb-4">
-                <div class="col">
-                <h4 id="pagination-info-open">Showing 1 to 6 of 6 entries</h4>
-                </div>
-                <div class="col d-flex align-items-center">
-                <button class="border-0 rounded-3 p-2 text-muted ms-auto" id="prev-page-open">
-                    <i class="bi bi-chevron-double-left"></i>
-                </button>
-                <div
-                    class="bg-main-color rounded-circle d-flex justify-content-center align-items-center mx-3"
-                    style="width: 40px; height: 40px"
-                >
-                    <h1 class="mb-0 text-light" style="font-size: 1.5rem" id="current-page-open">1</h1>
-                </div>
-                <button class="border-0 rounded-3 p-2 text-muted me-3" id="next-page-open">
-                    <i class="bi bi-chevron-double-right"></i>
-                </button>
-            </div>
-          </div>
-        </section>
-
-        <section
-            class="container bg-white"
-            id="upcoming-releases"
-            style="display: none"
-        >
-            <div class="row">
-            <div class="col-md-6">
-                <nav class="navbar navbar-expand navbar-light">
-                <ul class="nav navbar-nav">
-                    <li class="nav-item">
-                    <a
-                        class="nav-link text-info"
-                        href="./release?type=open"
-                        aria-current="page"
-                        onclick="showSection('open-releases')"
-                    >Open</a>
-                    </li>
-                    <li class="nav-item">
-                    <a
-                        class="nav-link active text-warning"
-                        href="./release?type=upcoming"
-                    >Upcoming</a>
-                    </li>
-                    <li class="nav-item">
-                    <a
-                        class="nav-link text-success"
-                        href="./release?type=completed"
-                        onclick="showSection('completed-releases')"
-                    >Completed</a>
-                    </li>
-                </ul>
-                </nav>
-            </div>
-            <div class="col-md-6">
-                <ul class="nav justify-content-end">
-                {{#with countOpen}}
-                <li class="nav-item p-2">
-                    <p>{{this}} Open Release(s)</p>
-                </li>
-                {{/with}}
-                {{#with countUpcoming}}
-                <li class="nav-item p-2">
-                    <p>{{this}} Upcoming Release(s)</p>
-                </li>
-                {{/with}}
-                {{#with countCompleted}}
-                <li class="nav-item p-2">
-                    <p>{{this}} Completed Release(s)</p>
-                </li>
-                {{/with}}
-                </ul>
-            </div>
-            </div>
-            <div class="row">
-            <div class="col-md-8"></div>
-            <div class="col-md-4">
-                <div class="m-3">
-                <input
-                    type="text"
-                    class="form-control"
-                    name=""
-                    aria-describedby="helpId"
-                    placeholder="Search"
-                    id="searchUpcomingRelease"
-                />
-                </div>
-            </div>
-            </div>
-            <div class="row px-5 pt-3" id="release-container">
-                {{#each releasesUpcoming}}
-                <div class="col-lg-3 col-md-4 col-sm-6 mb-3 release-upcoming-item" data-name="{{name}}">
-                    <div class="bg-white">
-                    <div class="card bg-warning">
-                        <div class="card-body">
-                        <div class="d-flex justify-content-between">
-                            <div class="d-flex">
-                            <img src="/icons/project-list.svg" />
-                            <div class="p-2">
-                                <h4 class="card-title">{{name}}</h4>
-                                Release key: {{id}}
-                            </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                            <p>Start date: {{formatDate start_date "MMM DD YYYY"}}</p>
-                            <p>End date: {{formatDate end_date "MMM DD YYYY"}}</p>
-                            </div>
-                            {{!-- <div class="col-md-4"></div> --}}
-                        </div>
-
-                        <hr />
-                        <div class="d-flex justify-content-end">
-                            <div>
-                            <i class="bi bi-pencil-square"></i>
-                            <i class="bi bi-trash text-danger" data-id="{{id}}"></i>
-                            </div>
-                        </div>
-                        </div>
-                    </div>
-                    </div>
-                </div>
-                {{/each}}
-            </div>
-            <div class="row mt-5 align-content-center px-3 pb-4">
-                <div class="col">
-                <h4 id="pagination-info-upcoming">Showing 1 to 6 of 6 entries</h4>
-                </div>
-                <div class="col d-flex align-items-center">
-                <button class="border-0 rounded-3 p-2 text-muted ms-auto" id="prev-page-upcoming">
-                    <i class="bi bi-chevron-double-left"></i>
-                </button>
-                <div
-                    class="bg-main-color rounded-circle d-flex justify-content-center align-items-center mx-3"
-                    style="width: 40px; height: 40px"
-                >
-                    <h1 class="mb-0 text-light" style="font-size: 1.5rem" id="current-page-upcoming">1</h1>
-                </div>
-                <button class="border-0 rounded-3 p-2 text-muted me-3" id="next-page-upcoming">
-                    <i class="bi bi-chevron-double-right"></i>
-                </button>
-            </div>
-          </div>
-        </section>
-
-        <section
-            class="container bg-white"
-            id="completed-releases"
-            style="display: none"
-        >
-            <div class="row">
-            <div class="col-md-6">
-                <nav class="navbar navbar-expand navbar-light">
-                <ul class="nav navbar-nav">
-                    <li class="nav-item">
-                    <a
-                        class="nav-link text-info"
-                        href="./release?type=open"
-                        aria-current="page"
-                    >Open</a>
-                    </li>
-                    <li class="nav-item">
-                    <a
-                        class="nav-link text-warning"
-                        href="./release?type=upcoming"
-                        onclick="showSection('upcoming-releases')"
-                    >Upcoming</a>
-                    </li>
-                    <li class="nav-item">
-                    <a
-                        class="nav-link active text-success"
-                        href="./relase?type=completed"
-                    >Completed</a>
-                    </li>
-                </ul>
-                </nav>
-            </div>
-            <div class="col-md-6">
-                <ul class="nav justify-content-end">
-                {{#with countOpen}}
-                <li class="nav-item p-2">
-                    <p>{{this}} Open Release(s)</p>
-                </li>
-                {{/with}}
-                {{#with countUpcoming}}
-                <li class="nav-item p-2">
-                    <p>{{this}} Upcoming Release(s)</p>
-                </li>
-                {{/with}}
-                {{#with countCompleted}}
-                <li class="nav-item p-2">
-                    <p>{{this}} Completed Release(s)</p>
-                </li>
-                {{/with}}
-                </ul>
-            </div>
-            </div>
-            <div class="row">
-            <div class="col-md-8"></div>
-            <div class="col-md-4">
-                <div class="m-3">
-                <input
-                    type="text"
-                    class="form-control"
-                    name=""
-                    aria-describedby="helpId"
-                    placeholder="Search"
-                    id="searchCompletedRelease"
-                />
-                </div>
-            </div>
-            </div>
-            <div class="row px-5 pt-3">
-                {{#each releasesCompleted}}
-                <div class="col-lg-3 col-md-4 col-sm-6 mb-3 release-completed-item" data-name="{{name}}">
-                    <div class="bg-white">
-                    <div class="card bg-success">
-                        <div class="card-body">
-                        <div class="d-flex justify-content-between">
-                            <div class="d-flex">
-                            <img src="/icons/project-list.svg" />
-                            <div class="p-2">
-                                <h4 class="card-title">{{name}}</h4>
-                                Release key: {{id}}
-                            </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                            <p>Start date: {{formatDate start_date "MMM DD YYYY"}}</p>
-                            <p>End date: {{formatDate end_date "MMM DD YYYY"}}</p>
-                            </div>
-                            {{!-- <div class="col-md-4"></div> --}}
-                        </div>
-
-                        <hr />
-                        <div class="d-flex justify-content-end">
-                            <div>
-                                <i role="button" class="bi bi-pencil-square" data-bs-toggle="modal" data-bs-target="#editReleaseModal" onclick="showEditReleaseModal(this)" data-id="{{id}}" data-name="{{name}}" data-start-date="{{startDate}}" data-end-date="{{endDate}}"></i>
-                                <i role="button" class="bi bi-trash text-danger" data-bs-toggle="modal" data-bs-target="#deleteReleaseModal"></i>
-                            </div>
-                        </div>
-                        </div>
-                    </div>
-                    </div>
-                </div>
-                {{/each}}
-            </div>
-            <div class="row mt-5 align-content-center px-3 pb-4">
-                <div class="col">
-                <h4 id="pagination-info-completed">Showing 1 to 6 of 6 entries</h4>
-                </div>
-                <div class="col d-flex align-items-center">
-                <button class="border-0 rounded-3 p-2 text-muted ms-auto" id="prev-page-completed">
-                    <i class="bi bi-chevron-double-left"></i>
-                </button>
-                <div
-                    class="bg-main-color rounded-circle d-flex justify-content-center align-items-center mx-3"
-                    style="width: 40px; height: 40px"
-                >
-                    <h1 class="mb-0 text-light" style="font-size: 1.5rem" id="current-page-completed">1</h1>
-                </div>
-                <button class="border-0 rounded-3 p-2 text-muted me-3" id="next-page-completed">
-                    <i class="bi bi-chevron-double-right"></i>
-                </button>
-            </div>
-          </div>
-        </section>
-        </div>
-    </div>
     </div>
 </main>
 <footer>

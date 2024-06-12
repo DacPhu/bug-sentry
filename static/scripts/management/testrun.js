@@ -1,29 +1,29 @@
 document
-  .querySelector("#editReleaseModal")
+  .querySelector("#editTestRunModal")
   .addEventListener("shown.bs.modal", () => {
     document.querySelector("#nameEdit").focus();
   });
 
 document
-  .querySelector("#addReleaseModal")
+  .querySelector("#addTestRunModal")
   .addEventListener("shown.bs.modal", () => {
     document.querySelector("#name").focus();
   });
 
-function showEditReleaseModal(btn) {
+function showEditTestRunModal(btn) {
   document.querySelector("#id").value = btn.dataset.id;
   document.querySelector("#nameEdit").value = btn.dataset.name;
   document.querySelector("#startDateEdit").value = btn.dataset.startDate;
   document.querySelector("#endDateEdit").value = btn.dataset.endDate;
 }
 
-async function editRelease(e) {
+async function editTestRun(e) {
   e.preventDefault();
-  const formData = new FormData(document.querySelector("#editReleaseForm"));
+  const formData = new FormData(document.querySelector("#editTestRunForm"));
   let data = Object.fromEntries(formData.entries());
 
   try {
-    let res = await fetch("/release", {
+    let res = await fetch("/testrun", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -38,14 +38,14 @@ async function editRelease(e) {
     }
   } catch (error) {
     e.target.querySelector("#errorMessage").innerText =
-      "Can not update release information";
+      "Can not update test run information";
     console.log(error);
   }
 }
 
-async function deleteRelease(id) {
+async function deleteTestRun(id) {
   try {
-    let res = await fetch(`/release/${id}`, {
+    let res = await fetch(`/testrun/${id}`, {
       method: "DELETE",
     });
 
@@ -58,7 +58,7 @@ async function deleteRelease(id) {
   } catch (error) {
     let toast = new bootstrap.Toast(document.querySelector(".toast"), {});
     let toastBody = document.querySelector(".toast .toast-body");
-    toastBody.innerHTML = "Can not delete release!";
+    toastBody.innerHTML = "Can not delete test run!";
     toastBody.classList.add("text-danger");
     toast.show();
     console.log(error);

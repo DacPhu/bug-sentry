@@ -1,29 +1,27 @@
 document
-  .querySelector("#editReleaseModal")
+  .querySelector("#editModuleModal")
   .addEventListener("shown.bs.modal", () => {
     document.querySelector("#nameEdit").focus();
   });
 
 document
-  .querySelector("#addReleaseModal")
+  .querySelector("#addModuleModal")
   .addEventListener("shown.bs.modal", () => {
     document.querySelector("#name").focus();
   });
 
-function showEditReleaseModal(btn) {
+function showEditModuleModal(btn) {
   document.querySelector("#id").value = btn.dataset.id;
   document.querySelector("#nameEdit").value = btn.dataset.name;
-  document.querySelector("#startDateEdit").value = btn.dataset.startDate;
-  document.querySelector("#endDateEdit").value = btn.dataset.endDate;
 }
 
-async function editRelease(e) {
+async function editModule(e) {
   e.preventDefault();
-  const formData = new FormData(document.querySelector("#editReleaseForm"));
+  const formData = new FormData(document.querySelector("#editModuleForm"));
   let data = Object.fromEntries(formData.entries());
 
   try {
-    let res = await fetch("/release", {
+    let res = await fetch("/module", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -38,14 +36,14 @@ async function editRelease(e) {
     }
   } catch (error) {
     e.target.querySelector("#errorMessage").innerText =
-      "Can not update release information";
+      "Can not update module information";
     console.log(error);
   }
 }
 
-async function deleteRelease(id) {
+async function deleteModule(id) {
   try {
-    let res = await fetch(`/release/${id}`, {
+    let res = await fetch(`/module/${id}`, {
       method: "DELETE",
     });
 
@@ -58,7 +56,7 @@ async function deleteRelease(id) {
   } catch (error) {
     let toast = new bootstrap.Toast(document.querySelector(".toast"), {});
     let toastBody = document.querySelector(".toast .toast-body");
-    toastBody.innerHTML = "Can not delete release!";
+    toastBody.innerHTML = "Can not delete module!";
     toastBody.classList.add("text-danger");
     toast.show();
     console.log(error);
