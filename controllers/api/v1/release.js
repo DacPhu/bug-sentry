@@ -70,18 +70,7 @@ controller.getReleases = async (req, res) => {
   
 controller.getAllReleases = async (req, res) => {
     try {
-        const releases = await models.Release.findAll({
-        attributes: [
-            "id",
-            "project_id",
-            "name",
-            "start_date",
-            "end_date",
-            "description",
-            "created_by",
-            "created_at",
-        ],
-        });
+        const releases = await models.Release.findAll();
 
         if (!releases || releases.length === 0) {
         return res.status(404).json({ message: "No releases found" });

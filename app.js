@@ -98,13 +98,14 @@ app.use("/api/v1/user", require("./routes/api/v1/user"));
 app.use("/api/v1/issue", require("./routes/api/v1/issue"));
 app.use("/api/v1/testcase", require("./routes/api/v1/testcase"));
 app.use("/api/v1/board", require("./routes/api/v1/board"));
+app.use("/api/v1/requirement", require("./routes/api/v1/requirement"));
+app.use("/api/v1/attachment", require("./routes/api/v1/attachment"));
 
-
+// PAGE
 app.use("/dashboard", require("./routes/dashboard"));
 app.use("/project", require("./routes/project"));
 app.use("/role", require("./routes/api/v1/role"));
 app.use("/board", require("./routes/board"));
-
 
 app.use(errorHandler.notFoundHandler);
 app.use(errorHandler.csrfErrorHandler);
