@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
       project_id: { type: DataTypes.INTEGER, allowNull: false },
       description: DataTypes.TEXT,
       content: DataTypes.TEXT,
-      status: { type: DataTypes.INTEGER, allowNull: true, defaultValue: 0 },
+      status: { type: DataTypes.STRING, allowNull: true, defaultValue: "untested" },
       created_at: { type: DataTypes.DATE, allowNull: false, defaultValue: sequelize.literal('CURRENT_TIMESTAMP') },
     },
     {
