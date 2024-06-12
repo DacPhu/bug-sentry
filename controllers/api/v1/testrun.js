@@ -1,7 +1,7 @@
 "use strict";
 
 const controller = {};
-const models = require("../models");
+const models = require("../../../models");
 
 controller.getReleases = async (req, res) => {
     const name = req.query.keyword | "";

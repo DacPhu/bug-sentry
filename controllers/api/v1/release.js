@@ -1,7 +1,7 @@
 "use strict";
 
 const controller = {};
-const models = require("../models");
+const models = require("../../../models");
 
 const currentTimestamp = new Date();
 

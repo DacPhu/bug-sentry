@@ -3,9 +3,9 @@
 const controller = {};
 const models = require("../../../models");
 
-controller.getModules = async (req, res) => {
+controller.getProjects = async (req, res) => {
     const name = req.query.keyword | "";
-    const projectId = req.query.projectId | 0;
+    const pmId = req.query.project_manager_id | 0;
     const page = parseInt(req.query.page) | 1;
     const size = parseInt(req.query.size) | 0;
   
@@ -15,28 +15,28 @@ controller.getModules = async (req, res) => {
       whereClause = {
         [models.Sequelize.Op.and]: [
           { name: { [models.Sequelize.Op.like]: `%${name}%` } },
-          { project_id: projectId },
+          { project_manager_id: pmId },
         ],
       };
   
       const limit = size;
       const offset = (page - 1) * size;
   
-      const { count, rows: modules } = await models.Module.findAndCountAll({
+      const { count, rows: projects } = await models.Project.findAndCountAll({
         where: whereClause,
         limit,
         offset,
       });
   
-      if (!modules || modules.length === 0) {
-        return res.status(404).json({ message: "No modules found" });
+      if (!projects || projects.length === 0) {
+        return res.status(404).json({ message: "No projects found" });
       }
   
       return res.status(200).json({
         totalItems: count,
         totalPages: Math.ceil(count / limit),
         currentPage: page,
-        modules: modules,
+        projects: projects,
       });
     } catch (error) {
       return res
@@ -45,16 +45,16 @@ controller.getModules = async (req, res) => {
     }
   };
   
-controller.getAllModules = async (req, res) => {
+controller.getAllProjects = async (req, res) => {
     try {
-        const modules = await models.Module.findAll();
+        const projects = await models.Project.findAll();
 
-        if (!modules || modules.length === 0) {
-        return res.status(404).json({ message: "No modules found" });
+        if (!projects || projects.length === 0) {
+        return res.status(404).json({ message: "No projects found" });
         }
 
         return res.status(200).json({
-            issues: issues,
+            projects: projects,
         });
     } catch (error) {
         return res
