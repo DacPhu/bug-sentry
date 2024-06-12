@@ -97,61 +97,77 @@ controller.addRelease = async (req, res) => {
     created_at,
   } = req.body;
 
-  if (!firstName || !lastName || !username) {
+  if (!project_id || !name || !created_by || !created_at) {
     return res.render("user-management", {
-      errorMessage: "First name, last name, and email are required.",
+      errorMessage:
+        "Project Id, Name, Created By, Created At fields are required.",
     });
   }
 
   try {
-    await models.User.create({
-      firstName,
-      lastName,
-      username,
-      mobile,
-      isAdmin: isAdmin ? true : false,
+    await models.Release.create({
+      project_id,
+      name,
+      start_date,
+      end_date,
+      description,
+      created_by,
+      created_at,
     });
 
-    res.redirect("/users");
+    res.redirect("/:${project_id}/release");
   } catch (error) {
-    console.error("Error adding user:", error);
-    res.send("Can not add user!");
+    console.error("Error adding release:", error);
+    res.send("Can not add release!");
     console.error(error);
   }
 };
 
 controller.editRelease = async (req, res) => {
-  let { id, firstName, lastName, mobile, isAdmin } = req.body;
+  const {
+    id,
+    project_id,
+    name,
+    start_date,
+    end_date,
+    description,
+    created_by,
+    created_at,
+  } = req.body;
+
   try {
-    console.log(id, firstName, lastName, mobile, isAdmin);
-    const result = await models.User.update(
+    const result = await models.Release.update(
       {
-        firstName,
-        lastName,
-        mobile,
-        isAdmin: isAdmin ? true : false,
+        project_id,
+        name,
+        start_date,
+        end_date,
+        description,
+        created_by,
+        created_at,
       },
       {
         where: { id },
       }
     );
+
     if (result[0] > 0) {
-      res.status(200).send("User updated successfully");
+      res.status(200).send("Release updated successfully");
     } else {
-      res.status(404).send("User not found");
+      res.status(404).send("Release not found");
     }
   } catch (error) {
-    res.status(401).send("cannot update user!");
+    res.status(401).send("Cannot update release!");
     console.error(error);
   }
 };
 
 controller.deleteRelease = async (req, res) => {
   try {
-    await models.User.destroy({ where: { id: parseInt(req.params.id) } });
-    res.send("User deleted!");
+    await models.Release.destroy({ where: { id: parseInt(req.params.id) } });
+    res.send("Release deleted!");
   } catch (error) {
-    res.status(401).send("Can not delete user!");
+    res.status(401).send("Can not delete release!");
     console.error(error);
   }
 };
