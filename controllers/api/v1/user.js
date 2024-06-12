@@ -1,9 +1,9 @@
 "use strict";
 
 const controller = {};
-const models = require("../models");
+const models = require("../../../models");
 
-controller.getUserByEmail = async (req, res) => {
+controller.getUsers = async (req, res) => {
   const email = req.query.email;
 
   if (!email) {
@@ -42,39 +42,7 @@ controller.getUserByEmail = async (req, res) => {
   }
 };
 
-controller.getUserById = async (req, res) => {
-  const id = req.query.id;
-
-  if (!id) {
-    return res.status(400).json({ message: "Id is empty" });
-  }
-
-  try {
-    const user = await models.User.findOne({
-      where: { id },
-      attributes: ["id", "username", "first_name", "last_name", "role_id"],
-    });
-
-    if (!user) {
-      return res.status(404).json({ message: "User not found" });
-    }
-
-    return res.status(200).json({
-      user: {
-        id: user.id,
-        username: user.username,
-        first_name: user.first_name,
-        last_name: user.last_name,
-      },
-    });
-  } catch (error) {
-    return res
-      .status(500)
-      .json({ message: "Internal server error", error: error.message });
-  }
-};
-
-controller.getAllUser = async (req, res) => {
+controller.getAllUsers = async (req, res) => {
   try {
     const users = await models.User.findAll({
       attributes: ["id", "username", "first_name", "last_name", "role_id"],

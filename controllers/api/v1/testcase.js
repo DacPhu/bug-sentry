@@ -3,7 +3,7 @@
 const controller = {};
 const models = require("../../../models");
 
-controller.getTestRuns = async (req, res) => {
+controller.getTestCases = async (req, res) => {
     const name = req.query.keyword | "";
     const projectId = req.query.projectId | 0;
     const page = parseInt(req.query.page) | 1;
@@ -22,21 +22,21 @@ controller.getTestRuns = async (req, res) => {
         const limit = size;
         const offset = (page - 1) * size;
 
-        const { count, rows: testRuns } = await models.TestRun.findAndCountAll({
-        where: whereClause,
-        limit,
-        offset,
+        const { count, rows: testCases } = await models.TestCase.findAndCountAll({
+            where: whereClause,
+            limit,
+            offset,
         });
 
-        if (!testRuns || testRuns.length === 0) {
-        return res.status(404).json({ message: "No test runs found" });
+        if (!testCases || testCases.length === 0) {
+        return res.status(404).json({ message: "No test cases found" });
         }
 
         return res.status(200).json({
-        totalItems: count,
-        totalPages: Math.ceil(count / limit),
-        currentPage: page,
-        testRuns: testRuns,
+            totalItems: count,
+            totalPages: Math.ceil(count / limit),
+            currentPage: page,
+            testCases: testCases,
         });
     } catch (error) {
         return res
@@ -45,16 +45,16 @@ controller.getTestRuns = async (req, res) => {
     }
 };
   
-controller.getAllTestRuns = async (req, res) => {
+controller.getAllTestCases = async (req, res) => {
     try {
-        const testRuns = await models.TestRun.findAll();
+        const testCases = await models.TestCase.findAll();
 
-        if (!testRuns || testRuns.length === 0) {
-        return res.status(404).json({ message: "No test runs found" });
+        if (!testCases || testCases.length === 0) {
+        return res.status(404).json({ message: "No test cases found" });
         }
 
         return res.status(200).json({
-            testRuns: testRuns,
+            testCases: testCases,
         });
     } catch (error) {
         return res

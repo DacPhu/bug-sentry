@@ -88,13 +88,21 @@ app.use("/", require("./routes/auth"));
 app.use(authMiddleware.require_login);
 app.use(authMiddleware.injectRole);
 
-// app.use("/api/v1/release", require("./routes/api/v1/release"));
+// API
+app.use("/api/v1/release", require("./routes/api/v1/release"));
+app.use("/api/v1/activity", require("./routes/api/v1/activity"));
+app.use("/api/v1/module", require("./routes/api/v1/module"));
+app.use("/api/v1/project", require("./routes/api/v1/project"));
+app.use("/api/v1/testrun", require("./routes/api/v1/testrun"));
+app.use("/api/v1/user", require("./routes/api/v1/user"));
+app.use("/api/v1/issue", require("./routes/api/v1/issue"));
+app.use("/api/v1/testcase", require("./routes/api/v1/testcase"));
+app.use("/api/v1/board", require("./routes/api/v1/board"));
 
 
 app.use("/dashboard", require("./routes/dashboard"));
 app.use("/project", require("./routes/project"));
-app.use("/user", require("./routes/user"));
-app.use("/role", require("./routes/role"));
+app.use("/role", require("./routes/api/v1/role"));
 app.use("/board", require("./routes/board"));
 
 
