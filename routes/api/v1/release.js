@@ -2,8 +2,8 @@
 
 const express = require("express");
 const router = express.Router();
-const controller = require("../controllers/release");
+const controller = require("../../../controllers/release");
 
-router.get("/", controller.showAll);
+router.get("/api", controller.getReleasesAPI);
 
 module.exports = router;

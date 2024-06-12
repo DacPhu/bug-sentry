@@ -92,7 +92,9 @@ app.use("/dashboard", require("./routes/dashboard"));
 app.use("/project", require("./routes/project"));
 app.use("/user", require("./routes/user"));
 app.use("/role", require("./routes/role"));
+// app.use("/api/v1/release", require("./routes/api/v1/release"));
 app.use("/release", require("./routes/release"));
+app.use("/board", require("./routes/board"));
 
 app.use(errorHandler.notFoundHandler);
 app.use(errorHandler.csrfErrorHandler);
