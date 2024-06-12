@@ -73,12 +73,12 @@
             </div>
             <div class="d-inline-block me-3">
                 <div
-                id="add-project"
-                class="mx-4 my-3 d-flex btn custom-bold-btn"
-                onclick="showDialog()"
+                    id="add-test-run"
+                    class="mx-4 my-3 d-flex btn custom-bold-btn"
+                    onclick="showDialog()"
                 >
-                <div class="me-2 p-1">Add Test Run</div>
-                <img src="/icons/add.svg" alt="" />
+                <div class="me-2 p-1" data-bs-toggle="modal" data-bs-target="#addTestRunModal">Add Test Run</div>
+                    <img src="/icons/add.svg" alt="" />
                 </div>
             </div>
             </div>
@@ -469,6 +469,64 @@
     </div>
     </div>
 </main>
+
+
+{{!-- Add Modal --}}
+<div class="modal fade" id="addTestRunModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <form action="/testrun" id="addTestRunForm" method="POST">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="testRunModalTitle">
+                Add Test Run
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row g-2">
+                    <div class="col mb-6">
+                        <label for="firstName" class="form-label">Created by</label>
+                        <input type="text" id="createdBy" name="createdBy" class="form-control" placeholder="John"
+                        required data-autofocus />
+                    </div>
+                </div>
+                <div class="row g-2">
+                    <div class="col mb-6">
+                        <label for="title" class="form-label">Title</label>
+                        <input type="text" id="title" name="title" class="form-control" placeholder="Lin"
+                        required />
+                    </div>
+                </div>
+                <div class="row g-2">
+                    <div class="col mb-6">
+                        <label for="assignedTo" class="form-label">Assigned To</label>
+                        <input type="text" id="assignedTo" name="assignedTo" class="form-control" placeholder=""
+                        required />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col mb-6">
+                        <label for="testcase" class="form-label">Test Case</label>
+                        <input type="text" id="testcase" name="testcase" class="form-control" placeholder=""
+                        required />
+                    </div>
+                </div>
+                <div class="text-center badge bg-label-danger" id="errorMessage"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal" id="closeBtn">
+                Close
+                </button>
+                <button type="submit" class="btn btn-primary">
+                Save
+                </button>
+            </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
 <!-- Bootstrap JavaScript Libraries -->
 <script
     src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
@@ -476,15 +534,7 @@
     crossorigin="anonymous"
 ></script>
 
-<script
-    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
-    integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
-    crossorigin="anonymous"
-></script>
-<script
-    src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"
-></script>
-
 <script src="/scripts/add-testrun.js"></script>
 <script src="/scripts/list-test-run.js"></script>
 <script src="/scripts/auto-slice-test-run.js"></script>
+<script src="/scripts/management/testrun.js"></script>

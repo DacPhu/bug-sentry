@@ -12,9 +12,10 @@ document
 
 function showEditTestRunModal(btn) {
   document.querySelector("#id").value = btn.dataset.id;
-  document.querySelector("#nameEdit").value = btn.dataset.name;
-  document.querySelector("#startDateEdit").value = btn.dataset.startDate;
-  document.querySelector("#endDateEdit").value = btn.dataset.endDate;
+  document.querySelector("#createdByEdit").value = btn.dataset.createdBy;
+  document.querySelector("#titleEdit").value = btn.dataset.title;
+  document.querySelector("#assignedToEdit").value = btn.dataset.assignedTo;
+  document.querySelector("#testCaseEdit").value = btn.dataset.testCase;
 }
 
 async function editTestRun(e) {
