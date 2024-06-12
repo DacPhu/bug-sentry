@@ -98,10 +98,7 @@ controller.addRelease = async (req, res) => {
   } = req.body;
 
   if (!project_id || !name || !created_by || !created_at) {
-    return res.render("user-management", {
-      errorMessage:
-        "Project Id, Name, Created By, Created At fields are required.",
-    });
+    return res.status(400).message({ error: "Missing some fields" });
   }
 
   try {
