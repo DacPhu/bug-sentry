@@ -11,15 +11,16 @@
             <h5 class="ms-4 my-3">Manage Users</h5>
           </div>
           <div class="d-inline-block ms-auto me-3">
-            <div class="dropdown">
+            <div class="dropdown" style="">
               <button
                 class="btn btn-secondary dropdown-toggle p-2"
                 type="button"
-                id="dropdownMenu1"
+                id="dropdownUserType"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
+                style="width: 150px;"
               >
-                Select User Type
+                All roles
               </button>
               <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                 <li>
@@ -45,26 +46,22 @@
               <button
                 class="btn btn-secondary dropdown-toggle p-2"
                 type="button"
-                id="dropdownMenu2"
+                id="dropdownStatusUser"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
+                style="width: 150px;"
               >
-                All users
+                All status
               </button>
               <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
                 <li>
                   <button class="dropdown-item" type="button">
-                    All users
+                    Active
                   </button>
                 </li>
                 <li>
                   <button class="dropdown-item" type="button">
-                    Active users
-                  </button>
-                </li>
-                <li>
-                  <button class="dropdown-item" type="button">
-                    Inactive users
+                    Inactive
                   </button>
                 </li>
               </ul>
@@ -153,13 +150,13 @@
       </div>
       <div class="container-fluid bg-light py-3">
         {{#each members}}
-        <div class="row p-3 member-item" data-name="{{full_name}}">
+        <div class="row p-3 member-item" data-name="{{full_name}}" data-role="{{role}}" data-status="{{status}}">
           <div class="col text-color-1">{{full_name}}</div>
           <div class="col text-color-1">
             {{email}}
           </div>
           <div class="col text-color-1">{{role}}</div>
-          <div class="col text-color-1">Active</div>
+          <div class="col text-color-1">{{status}}</div>
           <div class="col text-color-1 d-flex">
             <i class="bi bi-lock pe-4"></i>
             <i class="bi bi-pencil pe-4"></i>
