@@ -1,5 +1,6 @@
 {{#section "scripts"}}
 <script src="/scripts/login.js"></script>
+{{> notifications }}
 {{/section}}
 
 {{#section "head"}}
@@ -58,18 +59,6 @@
     </div>
   </div>
 
-  <script>
-    // Check if error message exists and display it
-    $(document).ready(function () {
-      var success_msg = "{{success_msg}}";
-      if (success_msg.trim() !== "") {
-        $.notify(success_msg, "success");
-      }
-      var errorMessage = "{{error_msg}}";
-      if (errorMessage.trim() !== "") {
-        $.notify(errorMessage, "error");
-      }
-    });
-  </script>
+
 
 </section>

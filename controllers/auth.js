@@ -1,9 +1,9 @@
 const bcrypt = require("bcryptjs");
-const { User,Role } = require("../models"); // Adjust according to your setup
+const { User, Role, Member } = require("../models"); // Adjust according to your setup
 
 module.exports.signup = async (req, res) => {
   try {
-    let { username, first_name, last_name, email, password,role } = req.body;
+    let { username, first_name, last_name, email, password, role } = req.body;
     console.log(req.body)
     const hashedPassword = await bcrypt.hash(password, 10);
     if (!username) username = email;
@@ -42,7 +42,7 @@ module.exports.login = async (req, res) => {
     const { email, password } = req.body;
     console.log(email, password);
 
-    const user = await User.findOne({ 
+    const user = await User.findOne({
       where: { email },
       include: [{ model: Role }],
       plain: true
@@ -61,6 +61,22 @@ module.exports.login = async (req, res) => {
       return res.redirect(`/login`);
     }
 
+    const members = await Member.findAll({
+      where: {
+        user_id: user.id
+      },
+      include: [
+        { model: Role },
+      ]
+    });
+    req.session.projects = {};
+    for (const member of members) {
+      req.session.projects[member.project_id] = {
+        memberId: member.id,
+        role: member.Role.name
+      }
+    }
+    console.log(members);
     req.session.userId = user.id;
     req.session.username = user.username;
     const userRole = user.Role.get({ plain: true });

@@ -26,6 +26,17 @@ module.exports.require_tester = (req, res, next) => {
   next();
 };
 
+module.exports.be_in_project = (req, res, next) => {
+  const projectId = req.params.id;
+  if (!req.session.projects[projectId]) {
+    return res.status(403).send("You are not authorized to access this page");
+  }
+  req.session.projectId = projectId;
+  req.session.projectRole = req.session.projects[projectId].role;
+  req.session.memberId = req.session.projects[projectId].memberId;
+
+  next();
+}
 module.exports.injectRole = (req, res, next) => {
   const userRole = req.session.role;
 

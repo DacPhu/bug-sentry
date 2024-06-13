@@ -115,6 +115,8 @@ controller.getDetailRequirement = async (req, res) => {
         
       }
     });
+
+
     // select all test cases have this requirement
     const testCases = await models.TestCase.findAndCountAll({
       include: [
@@ -167,5 +169,58 @@ controller.getDetailRequirement = async (req, res) => {
     res.status(500).send("An error occurred while fetching requirement.");
   }
 }
+
+
+
+controller.createRequirement = async (req, res) => {
+  try {
+    const projectId = req.params.id;
+    const module_id = req.body.module_id;
+    const name = req.body.name;
+    const description = req.body.description??'';
+    const url = req.body.url??'';
+    console.log(req.session);
+    const requirement = await models.Requirement.create({
+      project_id: projectId,
+      module_id: module_id,
+      name: name,
+      description: description,
+      url,
+      created_by: req.session.memberId 
+    });
+    req.flash("success", `Tạo requirement ${requirement.name} thành công!`);
+    res.redirect(`/project/${projectId}/requirement`);
+  } catch (error) {
+    console.error("Error creating requirement:", error);
+    req.flash("error", "An error occurred while creating requirement.");
+    res.status(500).send("An error occurred while creating requirement.");
+  }
+}
+
+
+controller.deleteRequirement = async (req, res)  => {
+  try {
+    const projectId = req.params.id;
+    const requirementId = req.params.requirement_id;
+    const requirement = await models.Requirement.findOne({
+      where: {
+        id: requirementId,
+        project_id: projectId
+      }
+    });
+    if (!requirement) {
+      return res.status(404).send("Requirement not found");
+    }
+    await requirement.destroy();
+    req.flash("success", `Xóa requirement ${requirement.name} thành công!`);
+    res.status(204).send();
+  } catch (error) {
+    console.error("Error deleting requirement:", error);
+    req.flash("error", "An error occurred while deleting requirement.");
+    res.status(500).send("An error occurred while deleting requirement.");
+  }
+}
+
+
 
 module.exports = controller;

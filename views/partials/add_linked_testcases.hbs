@@ -1,0 +1,156 @@
+<div id="linked-popup" class="vh-100 position-absolute overlay top-0 bottom-0 start-0 end-0" style="display: none">
+    <div class="d-flex justify-content-center align-items-center w-100 position-absolute top-0 bottom-0 start-0 end-0">
+        <!-- main content -->
+        <div class="w-75 shadow bg-white semi-rounded">
+            <div class="m-4 mt-2 bg-white semi-rounded">
+                <div class="container p-4">
+                    <div class="d-flex flex-row justify-content-between">
+                        <!-- header of main  -->
+                        <h6 class="text-left fs-4">Test Cases</h6>
+                        <div class="d-flex">
+                            <div id="saveLinkedTC" class="ps-3 pe-3 ms-4 d-flex btn custom-btn save-btn">
+                                Save
+                            </div>
+                            <div class="closePopup btn custom-btn text-center ps-3 pe-3 ms-4 cancel-btn">
+                                Cancel
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr />
+
+                <div class="min-h-50 row gx-3 d-flex justify-content-between">
+                    <!-- left side of main -->
+                    <div class="col-4">
+                        <div class="h-100 d-flex flex-column p-3 bg-semi-grey semi-rounded">
+                            <div class="d-flex">
+                                <div class="flex-fill">Module</div>
+                            </div>
+
+                            <hr />
+
+                            <div id="modulesContainer" class="d-flex flex-column">
+                                {{#each modules}}
+                                <div id="{{id}}"
+                                    class="d-flex pointer-cursor align-items-center col m-4 mt-4 mb-0 {{#if @first}} font-weight-semibold{{else}} font-color-blur{{/if}}">
+                                    <img class="me-2" src="/icons/ic_round-folder.svg" alt="" />
+                                    {{name}}
+                                </div>
+                                {{/each}}
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- right side of main -->
+                    <div class="col-8">
+                        <div class="h-100 flex bg-semi-grey semi-rounded p-3">
+                            <!-- action bar -->
+                            <div class="d-flex align-items-center">
+
+                                <div class="d-flex align-items-center flex-fill">
+                                    <span>Sort</span>
+                                    <div class="d-flex rounded-1 p-2 ms-2 bg-white">
+                                        <a class="nav-link " href="#" id="dropdownLanguageId" data-bs-toggle="dropdown"
+                                            aria-haspopup="true" aria-expanded="false">
+                                            <span  id="sortField" class="me-4 font-weight-semibold">
+                                                <span >
+                                                    {{#if (equals sortField "test_case_code")}}
+                                                    TestCase Code
+                                                    {{else}}
+                                                    Title
+                                                    {{/if}}
+                                                </span>
+
+                                                <img src="/icons/sort-icon.svg" alt="" />
+                                            </span>
+                                        </a>
+
+                                        <div id="sortFieldOptions" class="dropdown-menu"
+                                            aria-labelledby="dropdownLanguageId">
+                                            <a class="dropdown-item" data-value="id"
+                                                ahref="?module={{module}}&moduleName={{moduleName}}&size={{size}}&page={{page}}&sortField=id&sortType={{sortType}}">TestCase
+                                                Code</a>
+                                            <a class="dropdown-item" data-value="title"
+                                                ahref="?module={{module}}&moduleName={{moduleName}}&size={{size}}&page={{page}}&sortField=name&sortType={{sortType}}">Title</a>
+                                        </div>
+
+                                        <span id="sortType" class="font-weight-semibold d-flex align-items-center">
+                                            <span>
+                                                Asc
+                                            </span>
+                                            <img src="/icons/lucide_sort-asc.svg" alt="" />
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- table -->
+                            <table class="table mt-4 me-2">
+                                <thead>
+                                    <tr class="semi-rounded blur-green-theme">
+                                        <th scope="col"></th>
+                                        <th scope="col">Case Code</th>
+                                        <th scope="col">Title</th>
+                                        <th scope="col">Steps</th>
+
+                                        <th scope="col">Created by</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="testcaseBody">
+                                    {{#each testCases}}
+                                    <tr>
+                                        <td>
+                                            <input class="ms-2 mt-1 checkbox-lg" size="" type="checkbox"
+                                                name="chosen-tc" value="{{id}}" id="{{id}}" />
+                                        </td>
+                                        <th scope="row">
+                                            <label for="{{id}}">{{id}}</label>
+                                        </th>
+                                        <td>{{title}}</td>
+                                        <td>{{step_count}}</td>
+
+                                        <td class="ps-0">
+                                            <div class="d-flex pointer-cursor p-2 pt-0 pb-0 justify-content-end">
+                                                <img src="/icons/mdi_eye-outline.svg" alt="" />
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    {{/each}}
+                                    {{!-- <tr>
+                                        <td>
+                                            <input class="ms-2 mt-1 checkbox-lg" size="" type="checkbox"
+                                                name="chosen-tc" value="1" id="md1" />
+                                        </td>
+                                        <th scope="row">
+                                            <label for="md1">TC001</label>
+                                        </th>
+                                        <td>TC Number 01</td>
+                                        <td>4</td>
+
+                                        <td class="ps-0">
+                                            <div class="d-flex pointer-cursor p-2 pt-0 pb-0 justify-content-end">
+                                                <img src="/icons/mdi_eye-outline.svg" alt="" />
+                                            </div>
+                                        </td>
+                                    </tr> --}}
+
+                                </tbody>
+                            </table>
+
+                            <!-- pagination -->
+                            <div class="d-flex justify-content-between p-3">
+                                <div>
+                                    <img width="20px" src="/icons/arrow-left.svg" alt="" srcset="" id="previousPage" />
+                                    <span class="p-1 ps-2 pe-2 rounded-circle green-dark-theme" id="page">1</span>
+                                    <img width="20px" src="/icons/arrow-right.svg" alt="" srcset="" id="nextPage" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

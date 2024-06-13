@@ -112,4 +112,74 @@ controller.showAll = async (req, res) => {
   }
 };
 
+
+
+controller.getTestCasesAPI = async (req, res) => {
+  try {
+      // Extract project_id from request parameters
+      const projectId = req.params.id;
+
+      // Query the database for testcases with the specified project_id
+
+      const sortType = req.query.sortType ?? 'asc';
+      const sortField = req.query.sortField ?? 'id';
+      const { page, size, offset } = paginate(req, 1, 5);
+
+      if (!req.query.module) {
+          return res.status(400).json({ message: "Module id is required" });
+      }
+      const targetModule = req.query.module ;
+
+      const testcases = await models.TestCase.findAndCountAll({
+          where: {
+              module_id: targetModule,
+              project_id: projectId,
+
+          },
+          include: [
+              {
+                  model: models.Member,
+                  include: [
+                      {
+                          model: models.User,
+                          required: false,
+                          attributes: ['id', 'first_name', 'last_name']
+                      },
+                  ],
+                  required: false,
+              }
+          ],
+          order: [
+              [sortField, sortType]
+          ],
+          limit: size,
+          offset: offset
+      });
+
+
+
+
+      const totalPages = Math.ceil(testcases.count / size);
+      console.log(testcases);
+      for (const testCase of testcases.rows) {
+          // const steps = JSON.parse(testCase.steps);
+          testCase.steps = JSON.parse(testCase.steps);
+          testCase.step_count = testCase.steps.length;
+      }
+      
+      res.status(200).json({
+          testcases: testcases.rows,
+          sortType: sortType,
+          sortField: sortField,
+          page: page,
+          size: size,
+          totalPages: totalPages,
+          module: targetModule,
+      });
+  } catch (error) {
+      console.error("Error fetching testcases:", error);
+      res.status(500).send("An error occurred while fetching testcases.");
+  }
+
+}
 module.exports = controller;
