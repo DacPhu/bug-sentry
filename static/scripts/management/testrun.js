@@ -1,13 +1,13 @@
 document
   .querySelector("#editTestRunModal")
   .addEventListener("shown.bs.modal", () => {
-    document.querySelector("#nameEdit").focus();
+    document.querySelector("#titleEdit").focus();
   });
 
 document
   .querySelector("#addTestRunModal")
   .addEventListener("shown.bs.modal", () => {
-    document.querySelector("#name").focus();
+    document.querySelector("#title").focus();
   });
 
 function showEditTestRunModal(btn) {

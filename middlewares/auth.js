@@ -27,8 +27,8 @@ module.exports.require_tester = (req, res, next) => {
 };
 
 module.exports.injectRole = (req, res, next) => {
-  const userRole = req.session.role;
-
-  res.locals.role = userRole;
+  res.locals.fullname = req.session.fullname;
+  res.locals.role = req.session.role;
+  res.locals.username = req.session.username;
   next();
 };

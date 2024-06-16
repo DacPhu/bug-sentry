@@ -75,9 +75,9 @@
                 <div
                     id="add-test-run"
                     class="mx-4 my-3 d-flex btn custom-bold-btn"
-                    onclick="showDialog()"
+                    {{!-- onclick="showDialog()" --}}
                 >
-                <div class="me-2 p-1" data-bs-toggle="modal" data-bs-target="#addTestRunModal">Add Test Run</div>
+                <div class="me-2 p-1" data-bs-toggle="modal" data-bs-target="#addTestRunModal" >Add Test Run</div>
                     <img src="/icons/add.svg" alt="" />
                 </div>
             </div>
@@ -473,41 +473,63 @@
 {{!-- Add Modal --}}
 <div class="modal fade" id="addTestRunModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog" role="document">
-        <form action="/testrun" id="addTestRunForm" method="POST">
+        <form action="/api/v1/testrun" id="addTestRunForm" method="POST">
+            
             <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="testRunModalTitle">
+                <h5 class="modal-title" id="testRunModalTitle" >
                 Add Test Run
                 </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
+                <input type="hidden" name="_csrf" value="{{csrfToken}}">
+                <input type="hidden" id="projectId" name="projectId" value="{{projectId}}">
                 <div class="row g-2">
                     <div class="col mb-6">
                         <label for="firstName" class="form-label">Created by</label>
-                        <input type="text" id="createdBy" name="createdBy" class="form-control" placeholder="John"
-                        required data-autofocus />
+                        <input type="text" class="form-control" value="{{fullname}}"
+                        disabled readonly />
                     </div>
                 </div>
                 <div class="row g-2">
                     <div class="col mb-6">
                         <label for="title" class="form-label">Title</label>
-                        <input type="text" id="title" name="title" class="form-control" placeholder="Lin"
+                        <input type="text" id="title" name="title" class="form-control" placeholder="testrun_title"
                         required />
                     </div>
                 </div>
                 <div class="row g-2">
                     <div class="col mb-6">
                         <label for="assignedTo" class="form-label">Assigned To</label>
-                        <input type="text" id="assignedTo" name="assignedTo" class="form-control" placeholder=""
-                        required />
+                        <select id="assignedTo" name="assignedTo" class="form-select" required>
+                            <option value="" disabled selected>Select a member</option>
+                            {{#each members}}
+                            <option value="{{user_id}}">{{User.first_name}} {{User.last_name}}</option>
+                            {{/each}}
+                        </select>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col mb-6">
                         <label for="testcase" class="form-label">Test Case</label>
-                        <input type="text" id="testcase" name="testcase" class="form-control" placeholder=""
-                        required />
+                        <select id="testCase" name="testCase" class="form-select" required>
+                            <option value="" disabled selected> Select a testcase</option>
+                            {{#each test_cases}}
+                            <option value="{{id}}">{{title}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col mb-6">
+                        <label for="release" class="form-label">Release</label>
+                        <select id="release" name="release" class="form-select" required>
+                            <option value="" disabled selected> Select a release</option>
+                            {{#each release}}
+                            <option value="{{id}}">{{name}}</option>
+                            {{/each}}
+                        </select>
                     </div>
                 </div>
                 <div class="text-center badge bg-label-danger" id="errorMessage"></div>
@@ -524,7 +546,7 @@
         </form>
     </div>
 </div>
-
+{{!-- Edit modal --}}
 <div class="modal fade" id="editTestRunModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <form action="" id="editTestRunForm" onsubmit="editTestRun(event)">
@@ -539,8 +561,8 @@
             <div class="row g-2">
               <div class="col mb-6">
                 <label for="createdByEdit" class="form-label">Created By</label>
-                <input type="text" id="createdByEdit" name="createdBy" class="form-control" placeholder="John"
-                  required />
+                <input type="text" id="createdByEdit" name="createdBy" class="form-control" placeholder="John" 
+                  disabled />
               </div>
             </div>
             <div class="row g-2">
@@ -578,14 +600,9 @@
 </div>
 
 
-<!-- Bootstrap JavaScript Libraries -->
-<script
-    src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-    crossorigin="anonymous"
-></script>
-
+{{#section "scripts"}}
 <script src="/scripts/add-testrun.js"></script>
 <script src="/scripts/list-test-run.js"></script>
 <script src="/scripts/auto-slice-test-run.js"></script>
 <script src="/scripts/management/testrun.js"></script>
+{{/section}}
