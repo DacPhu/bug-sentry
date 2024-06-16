@@ -99,22 +99,45 @@ controller.getAllTestRuns = async (req, res) => {
     }
 };
 controller.editTestRun = async(req, res) => {
-    console.log(req.params.id)
+    console.log(req.body)
+    const { projectId, title, assignedTo, testCase, release } = req.body;
+    const createdBy = req.session.userId
+    const id = req.params.id
+    console.log(projectId, title, assignedTo, testCase, release)
+    console.log(id, createdBy)
     try {
-        const testRun = await models.TestRun.findByPk(req.params.id);
+        const testRun = await models.TestRun.findByPk(id);
         if (!testRun) {
             return res.status(404).json({ message: "Test run not found" });
         }
-        const testCase = await models.TestCase.findByName(req.body.testcase)
-        const updatedData = {
-            createdBy: req.body.createdBy,
-            name: req.body.title,
-            assignedTo: req.body.assignedTo,
-            testcase: req.body.testcase,
-        };
-        await testRun.update(updatedData);
-        return res.status(200).json(testRun);
 
+        const assignee = await models.Member.findOne({
+            where: { user_id: assignedTo }
+        });
+        if (!assignee) {
+            return res.status(404).json({ message: "Assignee not found" });
+        }
+
+        const testCaseInstance = await models.TestCase.findByPk(testCase);
+        if (!testCaseInstance) {
+            return res.status(404).json({ message: "Test case not found" });
+        }
+
+        const releaseInstance = await models.Release.findByPk(release);
+        if (!releaseInstance) {
+            return res.status(404).json({ message: "Release not found" });
+        }
+
+        testRun.project_id = projectId;
+        testRun.name = title;
+        await testRun.setAssignee(assignee);
+        await testRun.setTestCase(testCaseInstance);
+        await testRun.setRelease(releaseInstance);
+
+        await testRun.save();
+
+        console.log('Test Run updated:', testRun.toJSON());
+        return res.status(200).json(testRun);
     } catch (error) {
         return res
         .status(500)

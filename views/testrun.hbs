@@ -1,472 +1,317 @@
 <main>
     <div class="container-fluid">
-    <div class="row">
-        <!-- Side bar -->
-        {{> sidebar_main}}
-        <!-- Main content -->
-        <div class="col-md-11 col-lg-11 col-xl-11 bg-gray px-4">
-        {{> nav_main}}
-        <div class="container-fluid bg-light py-2">
-            <div class="align-items-center d-flex">
-            <div class="d-inline-block">
-                <h5 class="ms-4 my-3">Test run and Results</h5>
-            </div>
-            <div class="d-inline-block ms-auto me-3">
-                <div class="dropdown">
-                <button
-                    class="btn btn-secondary dropdown-toggle p-2"
-                    type="button"
-                    id="dropdownMenu1"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
-                >
-                    Open
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                    <li>
-                    <button class="dropdown-item" type="button">
-                        option 1
-                    </button>
-                    </li>
-                    <li>
-                    <button class="dropdown-item" type="button">
-                        option 2
-                    </button>
-                    </li>
-                    <li>
-                    <button class="dropdown-item" type="button">
-                        option 3
-                    </button>
-                    </li>
-                </ul>
-                </div>
-            </div>
-            <div class="d-inline-block me-3">
-                <div class="dropdown">
-                <button
-                    class="btn btn-secondary dropdown-toggle p-2"
-                    type="button"
-                    id="dropdownMenu2"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
-                >
-                    Select a release
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                    <li>
-                    <button class="dropdown-item" type="button">
-                        option 1
-                    </button>
-                    </li>
-                    <li>
-                    <button class="dropdown-item" type="button">
-                        option 2
-                    </button>
-                    </li>
-                    <li>
-                    <button class="dropdown-item" type="button">
-                        option 3
-                    </button>
-                    </li>
-                </ul>
-                </div>
-            </div>
-            <div class="d-inline-block me-3">
-                <div
-                    id="add-test-run"
-                    class="mx-4 my-3 d-flex btn custom-bold-btn"
-                    {{!-- onclick="showDialog()" --}}
-                >
-                <div class="me-2 p-1" data-bs-toggle="modal" data-bs-target="#addTestRunModal" >Add Test Run</div>
-                    <img src="/icons/add.svg" alt="" />
-                </div>
-            </div>
-            </div>
-        </div>
-
-        <div class="container-fluid bg-light mt-4 py-2">
-            <div class="align-items-center d-flex">
-            <div class="d-inline-block">
-                <h5 class="ms-4 my-3">Show</h5>
-            </div>
-            <div class="d-inline-block ms-2">
-                <div class="dropdown">
-                <button
-                    class="btn btn-secondary dropdown-toggle p-1"
-                    type="button"
-                    id="dropdownMenu1"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
-                    style="min-width: 100px"
-                >
-                    3
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                    <li>
-                    <button class="dropdown-item" type="button">5</button>
-                    </li>
-                    <li>
-                    <button class="dropdown-item" type="button">15</button>
-                    </li>
-                    <li>
-                    <button class="dropdown-item" type="button">20</button>
-                    </li>
-                </ul>
-                </div>
-            </div>
-            <div class="d-inline-block">
-                <h5 class="ms-4 my-3">Entries</h5>
-            </div>
-            <div class="d-inline-block ms-auto" style="min-width: 500px">
-                <div class="input-group rounded">
-                <input
-                    type="search"
-                    class="form-control rounded"
-                    placeholder="Search Test Run by name"
-                    aria-label="Search"
-                    aria-describedby="search-addon"
-                    id="searchTestRun"
-                />
-                <span class="input-group-text border-0" id="search-addon">
-                    <i class="fas fa-search"></i>
-                </span>
-                </div>
-            </div>
-            </div>
-        </div>
-        <div class="container-fluid bg-color1 py-3">
-            <div class="row">
-            <div class="col-md-2 fs-5 text-color-1">Created By</div>
-            <div class="col-md-2 fs-5 text-color-1">Title</div>
-            <div class="col-md-2 fs-5 text-color-1">Assigned to</div>
-            <div class="col-md-2 fs-5 text-color-1">Created at</div>
-            <div class="col-md-2 fs-5 text-color-1">Test case</div>
-            <div class="col-md-1 fs-5 text-color-1">Status</div>
-            <div class="col fs-5 text-color-1">Action</div>
-            </div>
-        </div>
-        <div class="container-fluid bg-light py-3">
-            {{#each test_runs}}
-            <div class="row test-run-item" data-name="{{name}}">
-                <div class="col-md-2 text-color-1 truncate" id="CreatorName">{{Creator.User.first_name}} {{Creator.User.last_name}}</div>
-                <div class="col-md-2 text-color-1 truncate" id="TestRunName">{{name}}</div>
-                <div class="col-md-2 text-color-1 truncate" id="AssigneeName">{{Assignee.User.first_name}} {{Assignee.User.last_name}}</div>
-                <div class="col-md-2 text-color-1 truncate">{{formatDate created_at "MMM D YYYY HH:mm"}}</div>
-                <div class="col-md-2 text-color-1 truncate" id="TestCaseName">{{TestCase.title}}</div>
-                <div class="col-md-1 text-color-1 text-center">{{status}}</div>
-                <div class="col-md-1 text-color-1 d-flex justify-content-between">
-                    <i role="button" class="bi bi-play-circle-fill text-success"></i>
-                    <i role="button" class="bi bi-pencil" data-bs-toggle="modal" data-bs-target="#editTestRunModal" onclick="showEditTestRunModal(this)" data-id="{{id}}" data-title="{{name}}" data-created-by="{{Creator.User.first_name}} {{Creator.User.last_name}}" data-assigned-to="{{Assignee.User.first_name}} {{Assignee.User.last_name}}" data-test-case="{{TestCase.title}}"></i>
-                    <i role="button" class="bi bi-trash text-danger" data-bs-toggle="modal" data-bs-target="#deleteReleaseModal"></i>
-                </div>
-                <hr />
-            </div>
-
-            {{/each}}
-
-            <div class="row mt-5 align-content-center px-3 pb-4">
-                <div class="col">
-                <h4 id="pagination-info">Showing 1 to 6 of 6 entries</h4>
-                </div>
-                <div class="col d-flex align-items-center">
-                <button class="border-0 rounded-3 p-2 text-muted ms-auto" id="prev-page">
-                    <i class="bi bi-chevron-double-left"></i>
-                </button>
-                <div
-                    class="bg-main-color rounded-circle d-flex justify-content-center align-items-center mx-3"
-                    style="width: 40px; height: 40px"
-                >
-                    <h1 class="mb-0 text-light" style="font-size: 1.5rem" id="current-page">1</h1>
-                </div>
-                <button class="border-0 rounded-3 p-2 text-muted me-3" id="next-page">
-                    <i class="bi bi-chevron-double-right"></i>
-                </button>
-            </div>
-          </div>
-        </div>
-        </div>
-    </div>
-    </div>
-
-    <div
-    id="linked-popup"
-    class="vh-100 position-absolute overlay top-0 bottom-0 start-0 end-0"
-    style="display: none"
-    >
-    <div
-        class="d-flex justify-content-center align-items-center w-100 position-absolute top-0 bottom-0 start-0 end-0"
-    >
-        <!-- main content -->
-        <div class="w-75 shadow bg-white">
-        <div class="m-4 mt-2 bg-white semi-rounded">
-            <div class="container p-4">
-            <div class="d-flex flex-row justify-content-between">
-                <!-- header of main  -->
-                <h6 class="text-left fs-4">Test Runs</h6>
-                <div class="d-flex">
-                <div class="ps-3 pe-3 ms-4 d-flex btn custom-btn save-btn">
-                    Save
-                </div>
-                <div
-                    class="btn custom-btn text-center ps-3 pe-3 ms-4 cancel-btn"
-                >
-                    Cancel
-                </div>
-                </div>
-            </div>
-            </div>
-            <div class="row">
-            <div class="col">
-                <p>Name <span class="text-danger">*</span></p>
-                <input
-                type="text"
-                class="form-control"
-                placeholder=""
-                aria-label="title"
-                />
-            </div>
-            <div class="col">
-                <p>Release <span class="text-danger">*</span></p>
-                <input
-                type="text"
-                class="form-control"
-                placeholder=""
-                aria-label="title"
-                />
-            </div>
-            <div class="col">
-                <p>Assign to <span class="text-danger">*</span></p>
-                <input
-                type="text"
-                class="form-control"
-                placeholder=""
-                aria-label="title"
-                />
-            </div>
-            </div>
-            <hr />
-
-            <div class="min-h-50 row gx-3 d-flex justify-content-between">
-            <!-- left side of main -->
-            <div class="col-4">
-                <div
-                class="h-100 d-flex flex-column p-3 bg-semi-grey semi-rounded"
-                >
-                <div class="d-flex">
-                    <div class="flex-fill">Module</div>
-                </div>
-
-                <hr />
-                <div class="p-3">
-                    <input
-                    class="w-100 p-3 pt-1 pb-1"
-                    type="text"
-                    placeholder="Search requirement type by name"
-                    />
-                </div>
-                <div id="modulesContainer" class="d-flex flex-column">
-                    <div
-                    id="module1"
-                    class="d-flex pointer-cursor align-items-center col m-4 mt-4 mb-0 font-weight-semibold"
-                    >
-                    <img
-                        class="me-2"
-                        src="/icons/ic_round-folder.svg"
-                        alt=""
-                    />
-                    Module 1
-                    </div>
-                    <div
-                    id="module2"
-                    class="d-flex pointer-cursor align-items-center col m-4 mt-4 mb-0 font-color-blur"
-                    >
-                    <img
-                        class="me-2"
-                        src="/icons/ic_round-folder.svg"
-                        alt=""
-                    />
-                    Module 2
-                    </div>
-                    <div
-                    id="module3"
-                    class="d-flex pointer-cursor align-items-center col m-4 mt-4 mb-0 font-color-blur"
-                    >
-                    <img
-                        class="me-2"
-                        src="/icons/ic_round-folder.svg"
-                        alt=""
-                    />
-                    Module 3
-                    </div>
-                </div>
-                </div>
-            </div>
-
-            <!-- right side of main -->
-            <div class="col-8">
-                <div class="h-100 flex bg-semi-grey semi-rounded p-3">
-                <!-- action bar -->
-                <div class="d-flex align-items-center">
-                    <div class="d-flex flex-fill ms-4 align-items-center">
-                    Show
-                    <div
-                        class="rounded m-1 p-3 pt-0 pb-0 cursor-pointer border-secondary border-1 border"
-                    >
-                        5
-                        <img
-                        class="m-3"
-                        src="/icons/down-arrow.svg"
-                        alt=""
-                        />
-                    </div>
-                    entries
-                    </div>
-                    <div class="d-flex align-items-center flex-fill">
-                    <span>Sort</span>
-                    <div class="d-flex rounded-1 p-2 ms-2 bg-white">
-                        <span class="me-4 font-weight-semibold">
-                        Position
-                        <img
-                            src="/icons/sort-icon.svg"
-                            alt=""
-                        />
-                        </span>
-
-                        <span
-                        class="font-weight-semibold d-flex align-items-center"
-                        >
-                        Asc
-                        <img
-                            src="/icons/lucide_sort-asc.svg"
-                            alt=""
-                        />
-                        </span>
-                    </div>
-                    </div>
-                </div>
-
-                <!-- table -->
-                <table class="table mt-4 me-2">
-                    <thead>
-                    <tr class="semi-rounded blur-green-theme">
-                        <th scope="col"></th>
-                        <th scope="col">Case Code</th>
-                        <th scope="col">Title</th>
-                        <th scope="col">Steps</th>
-
-                        <th scope="col"></th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>
-                        <input
-                            class="ms-2 mt-1 checkbox-lg"
-                            size=""
-                            type="checkbox"
-                            name=""
-                            id="md1"
-                        />
-                        </td>
-                        <th scope="row">
-                        <label for="md1">TC001</label>
-                        </th>
-                        <td>TC Number 01</td>
-                        <td>4</td>
-
-                        <td class="ps-0">
-                        <div
-                            class="d-flex pointer-cursor p-2 pt-0 pb-0 justify-content-end"
-                        >
-                            <img
-                            src="/icons/mdi_eye-outline.svg"
-                            alt=""
-                            />
+        <div class="row">
+            <!-- Side bar -->
+            {{> sidebar_main}}
+            <!-- Main content -->
+            <div class="col-md-11 col-lg-11 col-xl-11 bg-gray px-4">
+                {{> nav_main}}
+                <div class="container-fluid bg-light py-2">
+                    <div class="align-items-center d-flex">
+                        <div class="d-inline-block">
+                            <h5 class="ms-4 my-3">Test run and Results</h5>
                         </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                        <input
-                            class="ms-2 mt-1 checkbox-lg"
-                            size=""
-                            type="checkbox"
-                            name=""
-                            id="md3"
-                        />
-                        </td>
-                        <th scope="row">
-                        <label for="md3">TC003</label>
-                        </th>
-                        <td>TC Number 01</td>
-                        <td>4</td>
 
-                        <td class="ps-0">
-                        <div
-                            class="d-flex pointer-cursor p-2 pt-0 pb-0 justify-content-end"
-                        >
-                            <img
-                            src="/icons/mdi_eye-outline.svg"
-                            alt=""
-                            />
+                        <div class="d-inline-block ms-auto me-3">
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle p-2" type="button" id="dropdownMenu2"
+                                    data-bs-toggle="dropdown" aria-expanded="false" style="width: 200px">
+                                    Select release
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                    <li>
+                                        <button class="dropdown-item" type="button" data-id="All">
+                                            All releases
+                                        </button>
+                                    </li>
+                                    {{#each releases}}
+                                    <li>
+                                        <button class="dropdown-item" type="button" data-id="{{id}}">
+                                            {{name}}
+                                        </button>
+                                    </li>
+                                    {{/each}}
+                                    
+                                </ul>
+                            </div>
                         </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                        <input
-                            class="ms-2 mt-1 checkbox-lg"
-                            size=""
-                            type="checkbox"
-                            name=""
-                            id="md2"
-                        />
-                        </td>
-                        <th scope="row">
-                        <label for="md2">TC002</label>
-                        </th>
-                        <td>TC Number 02</td>
-                        <td>4</td>
-
-                        <td class="ps-0">
-                        <div
-                            class="d-flex pointer-cursor p-2 pt-0 pb-0 justify-content-end"
-                        >
-                            <img
-                            src="/icons/mdi_eye-outline.svg"
-                            alt=""
-                            />
+                        <div class="d-inline-block me-3">
+                            <div id="add-test-run" class="mx-4 my-3 d-flex btn custom-bold-btn" {{!--
+                                onclick="showDialog()" --}}>
+                                <div class="me-2 p-1" data-bs-toggle="modal" data-bs-target="#addTestRunModal">Add Test
+                                    Run</div>
+                                <img src="/icons/add.svg" alt="" />
+                            </div>
                         </div>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
+                    </div>
+                </div>
 
-                <!-- pagination -->
-                <div class="row mt-5 align-content-center px-3 pb-4">
-                    <div class="col">
-                    <h4 id="pagination-info">Showing 1 to 6 of 6 entries</h4>
+                <div class="container-fluid bg-light mt-4 py-2">
+                    <div class="align-items-center d-flex">
+                        <div class="d-inline-block">
+                            <h5 class="ms-4 my-3">Show 3 Entries</h5>
+                        </div>
+                        <div class="d-inline-block ms-auto" style="min-width: 500px">
+                            <div class="input-group rounded">
+                                <input type="search" class="form-control rounded" placeholder="Search Test Run by name"
+                                    aria-label="Search" aria-describedby="search-addon" id="searchTestRun" />
+                                <span class="input-group-text border-0" id="search-addon">
+                                    <i class="fas fa-search"></i>
+                                </span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col d-flex align-items-center">
-                    <button class="border-0 rounded-3 p-2 text-muted ms-auto" id="prev-page">
-                        <i class="bi bi-chevron-double-left"></i>
-                    </button>
-                    <div
-                        class="bg-main-color rounded-circle d-flex justify-content-center align-items-center mx-3"
-                        style="width: 40px; height: 40px"
-                    >
-                        <h1 class="mb-0 text-light" style="font-size: 1.5rem" id="current-page">1</h1>
+                </div>
+                <div class="container-fluid bg-color1 py-3">
+                    <div class="row">
+                        <div class="col-md-2 fs-5 text-color-1">Created By</div>
+                        <div class="col-md-2 fs-5 text-color-1">Title</div>
+                        <div class="col-md-2 fs-5 text-color-1">Assigned to</div>
+                        <div class="col-md-2 fs-5 text-color-1">Created at</div>
+                        <div class="col-md-2 fs-5 text-color-1">Test case</div>
+                        <div class="col-md-1 fs-5 text-color-1">Status</div>
+                        <div class="col fs-5 text-color-1">Action</div>
                     </div>
-                    <button class="border-0 rounded-3 p-2 text-muted me-3" id="next-page">
-                        <i class="bi bi-chevron-double-right"></i>
-                    </button>
-                </div>                
+                </div>
+                <div class="container-fluid bg-light py-3">
+                    {{#each test_runs}}
+                    <div class="row test-run-item" data-name="{{name}}" data-release="{{release_id}}">
+                        <div class="col-md-2 text-color-1 truncate" id="CreatorName">{{Creator.User.first_name}}
+                            {{Creator.User.last_name}}</div>
+                        <div class="col-md-2 text-color-1 truncate" id="TestRunName">{{name}}</div>
+                        <div class="col-md-2 text-color-1 truncate" id="AssigneeName">{{Assignee.User.first_name}}
+                            {{Assignee.User.last_name}}</div>
+                        <div class="col-md-2 text-color-1 truncate">{{formatDate created_at "MMM D YYYY HH:mm"}}</div>
+                        <div class="col-md-2 text-color-1 truncate" id="TestCaseName">{{TestCase.title}}</div>
+                        <div class="col-md-1 text-color-1 text-center">{{status}}</div>
+                        <div class="col-md-1 text-color-1 d-flex justify-content-between">
+                            <i role="button" class="bi bi-play-circle-fill text-success"></i>
+                            <i role="button" class="bi bi-pencil" data-bs-toggle="modal"
+                                data-bs-target="#editTestRunModal" onclick="showEditTestRunModal(this)" data-id="{{id}}"
+                                data-title="{{name}}"
+                                data-created-by="{{Creator.User.first_name}} {{Creator.User.last_name}}"
+                                data-assigned-to="{{Assignee.User.first_name}} {{Assignee.User.last_name}}"
+                                data-test-case="{{TestCase.title}}"></i>
+                            <i role="button" class="bi bi-trash text-danger" data-bs-toggle="modal"
+                                data-bs-target="#deleteReleaseModal"></i>
+                        </div>
+                        <hr />
+                    </div>
+
+                    {{/each}}
+
+                    <div class="row mt-5 align-content-center px-3 pb-4">
+                        <div class="col">
+                            <h4 id="pagination-info">Showing 1 to 6 of 6 entries</h4>
+                        </div>
+                        <div class="col d-flex align-items-center">
+                            <button class="border-0 rounded-3 p-2 text-muted ms-auto" id="prev-page">
+                                <i class="bi bi-chevron-double-left"></i>
+                            </button>
+                            <div class="bg-main-color rounded-circle d-flex justify-content-center align-items-center mx-3"
+                                style="width: 40px; height: 40px">
+                                <h1 class="mb-0 text-light" style="font-size: 1.5rem" id="current-page">1</h1>
+                            </div>
+                            <button class="border-0 rounded-3 p-2 text-muted me-3" id="next-page">
+                                <i class="bi bi-chevron-double-right"></i>
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        </div>
     </div>
-    </div>
+
+    <div id="linked-popup" class="vh-100 position-absolute overlay top-0 bottom-0 start-0 end-0" style="display: none">
+        <div
+            class="d-flex justify-content-center align-items-center w-100 position-absolute top-0 bottom-0 start-0 end-0">
+            <!-- main content -->
+            <div class="w-75 shadow bg-white">
+                <div class="m-4 mt-2 bg-white semi-rounded">
+                    <div class="container p-4">
+                        <div class="d-flex flex-row justify-content-between">
+                            <!-- header of main  -->
+                            <h6 class="text-left fs-4">Test Runs</h6>
+                            <div class="d-flex">
+                                <div class="ps-3 pe-3 ms-4 d-flex btn custom-btn save-btn">
+                                    Save
+                                </div>
+                                <div class="btn custom-btn text-center ps-3 pe-3 ms-4 cancel-btn">
+                                    Cancel
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <p>Name <span class="text-danger">*</span></p>
+                            <input type="text" class="form-control" placeholder="" aria-label="title" />
+                        </div>
+                        <div class="col">
+                            <p>Release <span class="text-danger">*</span></p>
+                            <input type="text" class="form-control" placeholder="" aria-label="title" />
+                        </div>
+                        <div class="col">
+                            <p>Assign to <span class="text-danger">*</span></p>
+                            <input type="text" class="form-control" placeholder="" aria-label="title" />
+                        </div>
+                    </div>
+                    <hr />
+
+                    <div class="min-h-50 row gx-3 d-flex justify-content-between">
+                        <!-- left side of main -->
+                        <div class="col-4">
+                            <div class="h-100 d-flex flex-column p-3 bg-semi-grey semi-rounded">
+                                <div class="d-flex">
+                                    <div class="flex-fill">Module</div>
+                                </div>
+
+                                <hr />
+                                <div class="p-3">
+                                    <input class="w-100 p-3 pt-1 pb-1" type="text"
+                                        placeholder="Search requirement type by name" />
+                                </div>
+                                <div id="modulesContainer" class="d-flex flex-column">
+                                    <div id="module1"
+                                        class="d-flex pointer-cursor align-items-center col m-4 mt-4 mb-0 font-weight-semibold">
+                                        <img class="me-2" src="/icons/ic_round-folder.svg" alt="" />
+                                        Module 1
+                                    </div>
+                                    <div id="module2"
+                                        class="d-flex pointer-cursor align-items-center col m-4 mt-4 mb-0 font-color-blur">
+                                        <img class="me-2" src="/icons/ic_round-folder.svg" alt="" />
+                                        Module 2
+                                    </div>
+                                    <div id="module3"
+                                        class="d-flex pointer-cursor align-items-center col m-4 mt-4 mb-0 font-color-blur">
+                                        <img class="me-2" src="/icons/ic_round-folder.svg" alt="" />
+                                        Module 3
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- right side of main -->
+                        <div class="col-8">
+                            <div class="h-100 flex bg-semi-grey semi-rounded p-3">
+                                <!-- action bar -->
+                                <div class="d-flex align-items-center">
+                                    <div class="d-flex flex-fill ms-4 align-items-center">
+                                        Show
+                                        <div
+                                            class="rounded m-1 p-3 pt-0 pb-0 cursor-pointer border-secondary border-1 border">
+                                            5
+                                            <img class="m-3" src="/icons/down-arrow.svg" alt="" />
+                                        </div>
+                                        entries
+                                    </div>
+                                    <div class="d-flex align-items-center flex-fill">
+                                        <span>Sort</span>
+                                        <div class="d-flex rounded-1 p-2 ms-2 bg-white">
+                                            <span class="me-4 font-weight-semibold">
+                                                Position
+                                                <img src="/icons/sort-icon.svg" alt="" />
+                                            </span>
+
+                                            <span class="font-weight-semibold d-flex align-items-center">
+                                                Asc
+                                                <img src="/icons/lucide_sort-asc.svg" alt="" />
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- table -->
+                                <table class="table mt-4 me-2">
+                                    <thead>
+                                        <tr class="semi-rounded blur-green-theme">
+                                            <th scope="col"></th>
+                                            <th scope="col">Case Code</th>
+                                            <th scope="col">Title</th>
+                                            <th scope="col">Steps</th>
+
+                                            <th scope="col"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <input class="ms-2 mt-1 checkbox-lg" size="" type="checkbox" name=""
+                                                    id="md1" />
+                                            </td>
+                                            <th scope="row">
+                                                <label for="md1">TC001</label>
+                                            </th>
+                                            <td>TC Number 01</td>
+                                            <td>4</td>
+
+                                            <td class="ps-0">
+                                                <div class="d-flex pointer-cursor p-2 pt-0 pb-0 justify-content-end">
+                                                    <img src="/icons/mdi_eye-outline.svg" alt="" />
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <input class="ms-2 mt-1 checkbox-lg" size="" type="checkbox" name=""
+                                                    id="md3" />
+                                            </td>
+                                            <th scope="row">
+                                                <label for="md3">TC003</label>
+                                            </th>
+                                            <td>TC Number 01</td>
+                                            <td>4</td>
+
+                                            <td class="ps-0">
+                                                <div class="d-flex pointer-cursor p-2 pt-0 pb-0 justify-content-end">
+                                                    <img src="/icons/mdi_eye-outline.svg" alt="" />
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <input class="ms-2 mt-1 checkbox-lg" size="" type="checkbox" name=""
+                                                    id="md2" />
+                                            </td>
+                                            <th scope="row">
+                                                <label for="md2">TC002</label>
+                                            </th>
+                                            <td>TC Number 02</td>
+                                            <td>4</td>
+
+                                            <td class="ps-0">
+                                                <div class="d-flex pointer-cursor p-2 pt-0 pb-0 justify-content-end">
+                                                    <img src="/icons/mdi_eye-outline.svg" alt="" />
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                                <!-- pagination -->
+                                <div class="row mt-5 align-content-center px-3 pb-4">
+                                    <div class="col">
+                                        <h4 id="pagination-info">Showing 1 to 6 of 6 entries</h4>
+                                    </div>
+                                    <div class="col d-flex align-items-center">
+                                        <button class="border-0 rounded-3 p-2 text-muted ms-auto" id="prev-page">
+                                            <i class="bi bi-chevron-double-left"></i>
+                                        </button>
+                                        <div class="bg-main-color rounded-circle d-flex justify-content-center align-items-center mx-3"
+                                            style="width: 40px; height: 40px">
+                                            <h1 class="mb-0 text-light" style="font-size: 1.5rem" id="current-page">1
+                                            </h1>
+                                        </div>
+                                        <button class="border-0 rounded-3 p-2 text-muted me-3" id="next-page">
+                                            <i class="bi bi-chevron-double-right"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 </main>
 
 
@@ -474,74 +319,73 @@
 <div class="modal fade" id="addTestRunModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <form action="/api/v1/testrun" id="addTestRunForm" method="POST">
-            
+
             <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="testRunModalTitle" >
-                Add Test Run
-                </h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <input type="hidden" name="_csrf" value="{{csrfToken}}">
-                <input type="hidden" id="projectId" name="projectId" value="{{projectId}}">
-                <div class="row g-2">
-                    <div class="col mb-6">
-                        <label for="firstName" class="form-label">Created by</label>
-                        <input type="text" class="form-control" value="{{fullname}}"
-                        disabled readonly />
-                    </div>
+                <div class="modal-header">
+                    <h5 class="modal-title" id="testRunModalTitle">
+                        Add Test Run
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="row g-2">
-                    <div class="col mb-6">
-                        <label for="title" class="form-label">Title</label>
-                        <input type="text" id="title" name="title" class="form-control" placeholder="testrun_title"
-                        required />
+                <div class="modal-body">
+                    <input type="hidden" name="_csrf" value="{{csrfToken}}">
+                    <input type="hidden" id="projectId" name="projectId" value="{{projectId}}">
+                    <div class="row g-2">
+                        <div class="col mb-6">
+                            <label for="firstName" class="form-label">Created by</label>
+                            <input type="text" class="form-control" value="{{fullname}}" disabled readonly />
+                        </div>
                     </div>
-                </div>
-                <div class="row g-2">
-                    <div class="col mb-6">
-                        <label for="assignedTo" class="form-label">Assigned To</label>
-                        <select id="assignedTo" name="assignedTo" class="form-select" required>
-                            <option value="" disabled selected>Select a member</option>
-                            {{#each members}}
-                            <option value="{{user_id}}">{{User.first_name}} {{User.last_name}}</option>
-                            {{/each}}
-                        </select>
+                    <div class="row g-2">
+                        <div class="col mb-6">
+                            <label for="title" class="form-label">Title</label>
+                            <input type="text" id="title" name="title" class="form-control" placeholder="testrun_title"
+                                required />
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col mb-6">
-                        <label for="testcase" class="form-label">Test Case</label>
-                        <select id="testCase" name="testCase" class="form-select" required>
-                            <option value="" disabled selected> Select a testcase</option>
-                            {{#each test_cases}}
-                            <option value="{{id}}">{{title}}</option>
-                            {{/each}}
-                        </select>
+                    <div class="row g-2">
+                        <div class="col mb-6">
+                            <label for="assignedTo" class="form-label">Assigned To</label>
+                            <select id="assignedTo" name="assignedTo" class="form-select" required>
+                                <option value="" disabled selected>Select a member</option>
+                                {{#each members}}
+                                <option value="{{user_id}}">{{User.first_name}} {{User.last_name}}</option>
+                                {{/each}}
+                            </select>
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col mb-6">
-                        <label for="release" class="form-label">Release</label>
-                        <select id="release" name="release" class="form-select" required>
-                            <option value="" disabled selected> Select a release</option>
-                            {{#each release}}
-                            <option value="{{id}}">{{name}}</option>
-                            {{/each}}
-                        </select>
+                    <div class="row">
+                        <div class="col mb-6">
+                            <label for="testcase" class="form-label">Test Case</label>
+                            <select id="testCase" name="testCase" class="form-select" required>
+                                <option value="" disabled selected> Select a testcase</option>
+                                {{#each test_cases}}
+                                <option value="{{id}}">{{title}}</option>
+                                {{/each}}
+                            </select>
+                        </div>
                     </div>
+                    <div class="row">
+                        <div class="col mb-6">
+                            <label for="release" class="form-label">Release</label>
+                            <select id="release" name="release" class="form-select" required>
+                                <option value="" disabled selected> Select a release</option>
+                                {{#each releases}}
+                                <option value="{{id}}">{{name}}</option>
+                                {{/each}}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="text-center badge bg-label-danger" id="errorMessage"></div>
                 </div>
-                <div class="text-center badge bg-label-danger" id="errorMessage"></div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal" id="closeBtn">
-                Close
-                </button>
-                <button type="submit" class="btn btn-primary">
-                Save
-                </button>
-            </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal" id="closeBtn">
+                        Close
+                    </button>
+                    <button type="submit" class="btn btn-primary">
+                        Save
+                    </button>
+                </div>
             </div>
         </form>
     </div>
@@ -549,58 +393,84 @@
 {{!-- Edit modal --}}
 <div class="modal fade" id="editTestRunModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog" role="document">
-      <form action="" id="editTestRunForm" onsubmit="editTestRun(event)">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">
-              Edit Test Run
-            </h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <div class="row g-2">
-              <div class="col mb-6">
-                <label for="createdByEdit" class="form-label">Created By</label>
-                <input type="text" id="createdByEdit" name="createdBy" class="form-control" placeholder="John" 
-                  disabled />
-              </div>
-            </div>
-            <div class="row g-2">
-              <div class="col mb-6">
-                <label for="title" class="form-label">Title</label>
-                <input type="text" id="titleEdit" name="title" class="form-control"/>
-              </div>
-            </div>
-            <div class="row g-2">
-                <div class="col mb-3">
-                    <label for="assignedToEdit" class="form-label">Assigned To</label>
-                    <input type="text" id="assignedToEdit" name="assignedTo" class="form-control"/>
+        <form action="" id="editTestRunForm" onsubmit="editTestRun(event)">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        Edit Test Run
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" name="_csrf" value="{{csrfToken}}">
+                    <input type="hidden" id="projectId" name="projectId" value="{{projectId}}">
+                    <div class="row g-2">
+                        <div class="col mb-6">
+                            <label for="createdByEdit" class="form-label">Created By</label>
+                            <input type="text" id="createdByEdit" name="createdBy" class="form-control"
+                                placeholder="John" disabled />
+                        </div>
+                    </div>
+                    <div class="row g-2">
+                        <div class="col mb-6">
+                            <label for="title" class="form-label">Title</label>
+                            <input type="text" id="titleEdit" name="title" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="row g-2">
+                        <div class="col mb-6">
+                            <label for="assignedTo" class="form-label">Assigned To</label>
+                            <select name="assignedTo" class="form-select" required>
+                                <option value="" disabled selected>Select a member</option>
+                                {{#each members}}
+                                <option value="{{user_id}}">{{User.first_name}} {{User.last_name}}</option>
+                                {{/each}}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col mb-6">
+                            <label for="testcase" class="form-label">Test Case</label>
+                            <select name="testCase" class="form-select" required>
+                                <option value="" disabled selected> Select a testcase</option>
+                                {{#each test_cases}}
+                                <option value="{{id}}">{{title}}</option>
+                                {{/each}}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col mb-6">
+                            <label for="release" class="form-label">Release</label>
+                            <select name="release" class="form-select" required>
+                                <option value="" disabled selected> Select a release</option>
+                                {{#each releases}}
+                                <option value="{{id}}">{{name}}</option>
+                                {{/each}}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="text-center badge bg-label-danger" id="errorMessage"></div>
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" name="id" id="id" value="" />
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal" id="closeBtnEdit">
+                        Close
+                    </button>
+                    <button type="submit" class="btn btn-primary">
+                        Save
+                    </button>
                 </div>
             </div>
-            <div class="row">
-                <div class="col mb-3">
-                    <label for="testcaseEdit" class="form-label">Test Case</label>
-                    <input type="text" id="testcaseEdit" name="testcase" class="form-control"/>
-                </div>
-            </div>
-            <div class="text-center badge bg-label-danger" id="errorMessage"></div>
-          </div>
-          <div class="modal-footer">
-            <input type="hidden" name="id" id="id" value="" />
-            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal" id="closeBtnEdit">
-              Close
-            </button>
-            <button type="submit" class="btn btn-primary">
-              Save
-            </button>
-          </div>
-        </div>
-      </form>
+        </form>
     </div>
 </div>
 
 
 {{#section "scripts"}}
+<script>
+   
+</script>
 <script src="/scripts/add-testrun.js"></script>
 <script src="/scripts/list-test-run.js"></script>
 <script src="/scripts/auto-slice-test-run.js"></script>

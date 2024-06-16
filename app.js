@@ -6,6 +6,7 @@ const formatDate = require("./helpers/time");
 const session = require("express-session");
 const csrf = require("csurf");
 const cookieParser = require("cookie-parser");
+const bodyParser = require('body-parser');
 const flash = require("connect-flash");
 const MongoStore = require("connect-mongo");
 const mongoose = require("mongoose");
@@ -65,6 +66,9 @@ const csrfProtection = csrf({ cookie: true });
 
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(middlewares.logMiddleware);
 app.use(csrfProtection);

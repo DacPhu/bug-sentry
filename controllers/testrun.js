@@ -7,7 +7,7 @@ const sequelize = require("sequelize");
 controller.showAll = async (req, res) => {
   try {
     const projectId = req.params.id;
-    const release = await models.Release.findAll({
+    const releases = await models.Release.findAll({
       where: {project_id: projectId},
     })
     const members = await models.Member.findAll({
@@ -63,7 +63,7 @@ controller.showAll = async (req, res) => {
       members: members,
       test_cases: test_cases,
       projectId: projectId,
-      release: release,
+      releases: releases,
     });
 
   } catch (error) {
