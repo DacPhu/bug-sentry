@@ -26,7 +26,8 @@ controller.showAll = async (req, res) => {
       last_name: item.User.last_name,
       full_name: `${item.User.first_name} ${item.User.last_name}`,
       email: item.User.email,
-      role: item.Role.name
+      role: item.Role.name,
+      status: (item.active ? "active" : "inactive"),
     }));
     // Render trang administration với dữ liệu members
     res.render("administration", {

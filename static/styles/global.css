@@ -12,7 +12,6 @@
   --blur-color: #909090;
   --overlay-color: rgba(76, 78, 79, 0.284);
 }
-
 .bg-active-blue-color {
   background-color: var(--active-blue-btn-color) !important;
 }

@@ -8,6 +8,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const currentPageDisplay = document.getElementById("current-page");
 
   const itemsPerPage = 3;
+
+  let releaseId = "All"
   let currentPage = 1;
   let filteredTestRuns = testRunItems;
 
@@ -15,18 +17,19 @@ document.addEventListener("DOMContentLoaded", function () {
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
     console.log(startIndex, endIndex);
-    testRunItems.forEach((item, index) => {
-      if (
-        filteredTestRuns.includes(item) &&
-        index >= startIndex &&
-        index < endIndex
-      ) {
-        item.style.display = "";
+    let id = 0;
+    testRunItems.forEach((item) => {
+      if (filteredTestRuns.includes(item)) {
+        if (id >= startIndex && id < endIndex) {
+          item.style.display = "";
+        } else {
+          item.style.display = "none";
+        }
+        id++;
       } else {
         item.style.display = "none";
       }
     });
-
     paginationInfo.innerText = `Showing ${startIndex + 1} to ${Math.min(
       endIndex,
       filteredTestRuns.length
@@ -39,8 +42,13 @@ document.addEventListener("DOMContentLoaded", function () {
   searchInput.addEventListener("input", function () {
     const searchQuery = searchInput.value.toLowerCase();
     filteredTestRuns = testRunItems.filter((item) =>
-      item.getAttribute("data-name").toLowerCase().includes(searchQuery)
+      item.dataset.name.toLowerCase().includes(searchQuery)
     );
+    const release = document.getElementById('dropdownMenu2').textContent;
+    if (releaseId != "All")
+      filteredTestRuns = filteredTestRuns.filter((item) =>
+        item.dataset.release == releaseId
+      )
     currentPage = 1;
     updateDisplay();
   });
@@ -58,6 +66,24 @@ document.addEventListener("DOMContentLoaded", function () {
       currentPage++;
       updateDisplay();
     }
+  });
+  document.querySelectorAll('.dropdown-item').forEach(item => {
+    item.addEventListener('click', function () {
+      let toggleButton = document.getElementById('dropdownMenu2');
+      toggleButton.textContent = this.textContent;
+      releaseId = this.dataset.id
+      const searchQuery = searchInput.value.toLowerCase();
+      filteredTestRuns = testRunItems.filter((item) =>
+        item.dataset.name.toLowerCase().includes(searchQuery)
+      );
+      const release = document.getElementById('dropdownMenu2').textContent;
+      if (releaseId != "All")
+        filteredTestRuns = filteredTestRuns.filter((item) =>
+          item.dataset.release == releaseId
+        )
+      currentPage = 1;
+      updateDisplay();
+    });
   });
 
   // Initial display

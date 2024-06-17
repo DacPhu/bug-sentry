@@ -62,7 +62,8 @@ module.exports.login = async (req, res) => {
     }
 
     req.session.userId = user.id;
-    req.session.username = user.username;
+    req.session.email = user.username;
+    req.session.fullname = user.first_name + ' '+ user.last_name
     const userRole = user.Role.get({ plain: true });
     req.session.role = userRole.name;
     console.log(req.session.username, req.session.userId);
