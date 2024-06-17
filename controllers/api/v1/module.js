@@ -65,27 +65,26 @@ controller.getAllModules = async (req, res) => {
 };
 
 controller.addModule = async (req, res) => {
-  const { name, project_id, user_id } = req.body;
+  const { name, projectId } = req.body;
 
-  if (!project_id || !name || !user_id) {
-    return res.status(400).message({ error: "Missing some fields" });
+  const createdBy = req.session.memberId;
+  console.log("PROJECT", projectId);
+
+  if (!projectId || !name || !createdBy) {
+    return res.status(400).json({ message: "Missing some fields" });
   }
 
   try {
-    const currentTimestamp = Date.now();
-
     await models.Module.create({
-      name,
-      project_id,
-      user_id,
-      currentTimestamp,
+      name: name,
+      project_id: projectId,
+      created_by: createdBy,
     });
 
-    res.redirect("project/:${project_id}/module");
+    res.redirect(`/project/${projectId}/module`);
   } catch (error) {
     console.error("Error adding module:", error);
     res.send("Can not add module!");
-    console.error(error);
   }
 };
 

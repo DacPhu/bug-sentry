@@ -7,8 +7,12 @@
         {{> nav_main}}
 
         <div class="row">
-          <div class="col-md-6"><h1 class="ps-4 pt-2">Module</h1></div>
-          <div class="col-md-6 d-flex justify-content-end">
+          <div class="col-md-3"><h1 class="ps-4 pt-2">Module</h1></div>
+          <div class="col-md-6">
+            <input id="module-search" class="w-100 p-3 pt-1 pb-1" type="text"
+                      placeholder="Search module by name" value="{{moduleName}}" />
+          </div>
+          <div class="col-md-3 d-flex justify-content-end">
             <div
               id="add-module"
               class="mx-4 my-3 d-flex btn custom-bold-btn"
@@ -80,43 +84,47 @@
   aria-hidden="true"
 >
   <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="moduleNameModalLabel">
-          Enter Module Name
-        </h5>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-        ></button>
+    <form action="/api/v1/module" id="addModuleForm" method="POST">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="moduleNameModalLabel">
+            Enter Module Name
+          </h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <input type="hidden" name="_csrf" value="{{csrfToken}}">
+          <input type="hidden" id="projectId" name="projectId" value="{{projectId}}">
+          <input
+            type="text"
+            id="name"
+            name="name"
+            class="form-control"
+            placeholder="Module Name"
+          />
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Close
+          </button>
+          <button
+            type="submit"
+            class="btn btn-primary"
+          >
+            Create
+          </button>
+        </div>
       </div>
-      <div class="modal-body">
-        <input
-          type="text"
-          id="moduleNameInput"
-          class="form-control"
-          placeholder="Module Name"
-        />
-      </div>
-      <div class="modal-footer">
-        <button
-          type="button"
-          class="btn btn-secondary"
-          data-bs-dismiss="modal"
-        >
-          Close
-        </button>
-        <button
-          type="button"
-          class="btn btn-primary"
-          onclick="createModule()"
-        >
-          Create
-        </button>
-      </div>
-    </div>
+    </form>
   </div>
 </div>
 

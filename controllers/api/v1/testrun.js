@@ -2,13 +2,13 @@
 
 const controller = {};
 const models = require("../../../models");
+
 controller.addTestRun = async (req, res) => {
 
     const { projectId, title, assignedTo, testCase, release } = req.body;
     const createdBy = req.session.userId
     console.log(projectId, createdBy, title, assignedTo, testCase, release)
     try {
-        // Tìm thành viên assignee và creator
         const assignee = await models.Member.findOne({
             where: {user_id : assignedTo}
         });
@@ -39,6 +39,7 @@ controller.addTestRun = async (req, res) => {
         .json({ message: "Internal server error", error: error.message });
     }
 }
+
 controller.getTestRuns = async (req, res) => {
     const name = req.query.keyword | "";
     const projectId = req.query.projectId | 0;
