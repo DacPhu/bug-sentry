@@ -36,7 +36,6 @@ async function editTestRun(e) {
       body: JSON.stringify(data),
     });
     if (res.status == 200) {
-      console.log("HHHHH")
       location.reload();
     } else {
       let resText = await res.text();
@@ -48,25 +47,28 @@ async function editTestRun(e) {
     console.log(error);
   }
 }
-
-async function deleteTestRun(id) {
+function confirmDelete(id) {
+  // $("#deleteConfirmationModal").modal("show");
+  $("#deleteTestRunModal").data("testrun_id", id);
+}
+async function deleteConfirmed() {
+  const testrun_id = $("#deleteTestRunModal").data("testrun_id");
+  console.log(testrun_id, CSRF_TOKEN)
   try {
-    let res = await fetch(`/testrun/${id}`, {
+    let res = await fetch(`/api/v1/testrun/${testrun_id}`, {
       method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRF-Token": CSRF_TOKEN,
+      },
     });
-
-    if (res.status == 200) {
+    if (res.status == 204) {
       location.reload();
     } else {
       let resText = await res.text();
-      throw Error(resText);
+      throw new Error(resText);
     }
   } catch (error) {
-    let toast = new bootstrap.Toast(document.querySelector(".toast"), {});
-    let toastBody = document.querySelector(".toast .toast-body");
-    toastBody.innerHTML = "Can not delete test run!";
-    toastBody.classList.add("text-danger");
-    toast.show();
     console.log(error);
   }
 }

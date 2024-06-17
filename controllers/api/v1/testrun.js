@@ -5,31 +5,19 @@ const models = require("../../../models");
 controller.addTestRun = async (req, res) => {
 
     const { projectId, title, assignedTo, testCase, release } = req.body;
-    const createdBy = req.session.userId
+    // console.log(req.session.projects[projectId].memberId)
+    const createdBy = req.session.projects[projectId].memberId
     console.log(projectId, createdBy, title, assignedTo, testCase, release)
     try {
-        // Tìm thành viên assignee và creator
-        const assignee = await models.Member.findOne({
-            where: {user_id : assignedTo}
-        });
-        const creator = await models.Member.findOne({
-            where: {user_id : createdBy}
-        });
-        
-        
-        // Tìm test case
-        const testCaseInstance = await models.TestCase.findByPk(testCase);
-        const releaseInstance = await models.Release.findByPk(release)
         const newTestRun = await models.TestRun.create({
             project_id: projectId,
             name: title,
             status: "untested",
-            // release_id: release,
+            release_id: release,
+            test_case_id: testCase, 
+            tester_id: assignedTo, 
+            created_by: createdBy,
         });
-        await newTestRun.setAssignee(assignee);
-        await newTestRun.setCreator(creator);
-        await newTestRun.setTestCase(testCaseInstance);
-        await newTestRun.setRelease(releaseInstance)
 
         console.log('Test Run created:', newTestRun.toJSON());
         res.redirect(`/project/${projectId}/testrun`)
@@ -107,37 +95,31 @@ controller.editTestRun = async(req, res) => {
     console.log(id, createdBy)
     try {
         const testRun = await models.TestRun.findByPk(id);
-        if (!testRun) {
-            return res.status(404).json({ message: "Test run not found" });
-        }
-
-        const assignee = await models.Member.findOne({
-            where: { user_id: assignedTo }
-        });
-        if (!assignee) {
-            return res.status(404).json({ message: "Assignee not found" });
-        }
-
-        const testCaseInstance = await models.TestCase.findByPk(testCase);
-        if (!testCaseInstance) {
-            return res.status(404).json({ message: "Test case not found" });
-        }
-
-        const releaseInstance = await models.Release.findByPk(release);
-        if (!releaseInstance) {
-            return res.status(404).json({ message: "Release not found" });
-        }
-
         testRun.project_id = projectId;
         testRun.name = title;
-        await testRun.setAssignee(assignee);
-        await testRun.setTestCase(testCaseInstance);
-        await testRun.setRelease(releaseInstance);
-
+        testRun.tester_id = assignedTo;
+        testRun.test_case_id = testCase;
+        testRun.release_id = release;
         await testRun.save();
 
         console.log('Test Run updated:', testRun.toJSON());
         return res.status(200).json(testRun);
+    } catch (error) {
+        return res
+        .status(500)
+        .json({ message: "Internal server error", error: error.message });
+    }
+}
+controller.deleteTestRun = async(req, res) => {
+    console.log(req.params.id)
+    try {
+        const testRun = await models.TestRun.findByPk(req.params.id)
+        if (!testRun) {
+            return res.status(404).send("Requirement not found");
+        }
+        await testRun.destroy();
+        req.flash("success", `Xóa requirement ${testRun.name} thành công!`);
+        res.status(204).send();
     } catch (error) {
         return res
         .status(500)
