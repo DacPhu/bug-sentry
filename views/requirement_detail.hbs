@@ -133,10 +133,12 @@
                           <td class="ps-0">
                             <div
                               class="d-flex pointer-cursor p-2 pt-0 pb-0 justify-content-end"
+                               onclick="confirmDelete({{this.id}})"
                             >
                               <img
                                 src="/icons/octicon_unlink-24.svg"
                                 alt=""
+                                
                               />
                               <span
                                 class="ms-2 font-weight-semibold text-danger"
@@ -187,6 +189,9 @@
   </body>
 
 {{#section "scripts"}}
+<script> var CSRF_TOKEN = "{{csrfToken}}";
+
+</script>
     <script>
       (function (fn) {
         "use strict";
@@ -216,4 +221,11 @@
       });
     </script>
     <script src="/scripts/add-linked-tc.js"></script>
+    <script src="/scripts/unlink-tc.js"></script>
+{{/section}}
+
+
+
+{{#section "head"}}
+<title>Requirement Detail</title>
 {{/section}}
