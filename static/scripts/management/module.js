@@ -19,12 +19,16 @@ async function editModule(e) {
   e.preventDefault();
   const formData = new FormData(document.querySelector("#editModuleForm"));
   let data = Object.fromEntries(formData.entries());
-
+  const csrfToken = data._csrf
+  const id = data.id;
+  delete data._csrf, data.id;
+  console.log(data, csrfToken, id)
   try {
-    let res = await fetch("/module", {
+    let res = await fetch(`/api/v1/module/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
+        "X-CSRF-Token": csrfToken,
       },
       body: JSON.stringify(data),
     });
@@ -43,7 +47,7 @@ async function editModule(e) {
 
 async function deleteModule(id) {
   try {
-    let res = await fetch(`/module/${id}`, {
+    let res = await fetch(`/api/v1/module/${id}`, {
       method: "DELETE",
     });
 

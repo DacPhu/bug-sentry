@@ -2,6 +2,7 @@
 
 const controller = {};
 const models = require("../../../models");
+
 controller.addTestRun = async (req, res) => {
 
     const { projectId, title, assignedTo, testCase, release } = req.body;
@@ -27,6 +28,7 @@ controller.addTestRun = async (req, res) => {
         .json({ message: "Internal server error", error: error.message });
     }
 }
+
 controller.getTestRuns = async (req, res) => {
     const name = req.query.keyword | "";
     const projectId = req.query.projectId | 0;

@@ -22,17 +22,11 @@ router.get("/", project_controller.showAll);
 
 router.get("/add-user", administration_controller.showAddUserForm);
 
-
-
-
-
-
 router.use("/:id", be_in_project);
 router.get("/:id", (req, res) => {
   const { id } = req.params;
   if (id) res.redirect(`/${id}/overview`);
 });
-
 
 
 router.get("/:id/overview", project_controller.showOverview);
