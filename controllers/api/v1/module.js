@@ -65,54 +65,43 @@ controller.getAllModules = async (req, res) => {
 };
 
 controller.addModule = async (req, res) => {
-  const { name, project_id, user_id } = req.body;
+  const { name, projectId } = req.body;
 
-  if (!project_id || !name || !user_id) {
-    return res.status(400).message({ error: "Missing some fields" });
+  const createdBy = req.session.memberId;
+  console.log("PROJECT", projectId);
+
+  if (!projectId || !name || !createdBy) {
+    return res.status(400).json({ message: "Missing some fields" });
   }
 
   try {
-    const currentTimestamp = Date.now();
-
     await models.Module.create({
-      name,
-      project_id,
-      user_id,
-      currentTimestamp,
+      name: name,
+      project_id: projectId,
+      created_by: createdBy,
     });
 
-    res.redirect("project/:${project_id}/module");
+    res.redirect(`/project/${projectId}/module`);
   } catch (error) {
     console.error("Error adding module:", error);
     res.send("Can not add module!");
-    console.error(error);
   }
 };
 
 controller.editModule = async (req, res) => {
-  const { id, name, project_id } = req.body;
+  const { name, projectId } = req.body;
+
+  const id = req.params.id;
+  const createdBy = req.session.userId;
+
+  if (!name) return res.status(404).json({ message: "Missing some fixed!" });
 
   try {
-    const module = await models.Module.findOne({
-      where: { id },
-    });
-    const result = await models.Release.update(
-      {
-        name,
-        project_id,
-        created_by: module.created_by,
-        create_at: module.create_at,
-      },
-      {
-        where: { id },
-      }
-    );
+    const module = await models.Module.findByPk(id);
 
-    if (result[0] > 0) {
-      res.status(200).send("Module updated successfully");
-    } else {
-      res.status(404).send("Module not found");
-    }
+    module.name = name;
+    await module.save();
+    res.status(200).send("Module updated successfully");
   } catch (error) {
     res.status(401).send("Cannot update module!");
     console.error(error);
@@ -121,11 +110,17 @@ controller.editModule = async (req, res) => {
 
 controller.deleteModule = async (req, res) => {
   try {
-    await models.Module.destroy({ where: { id: parseInt(req.params.id) } });
-    res.send("Module deleted!");
+    const module = await models.Module.findByPk(req.params.id);
+    if (!module) {
+      return res.status(404).send("Module not found");
+    }
+    await module.destroy();
+    req.flash("success", `Delete module ${module.name} successfully!`);
+    res.status(204).send();
   } catch (error) {
-    res.status(401).send("Can not delete module!");
-    console.error(error);
+    return res
+      .status(500)
+      .json({ message: "Internal server error", error: error.message });
   }
 };
 
