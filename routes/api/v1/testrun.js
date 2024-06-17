@@ -10,5 +10,6 @@ router.post("/", controller.addTestRun);
 router.get("/", controller.getTestRuns);
 router.get("/all", controller.getAllTestRuns);
 router.put("/:id", controller.editTestRun);
+router.delete("/:id", controller.deleteTestRun);
 
 module.exports = router;
