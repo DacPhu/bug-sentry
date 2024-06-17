@@ -112,15 +112,16 @@ controller.editTestRun = async(req, res) => {
         .json({ message: "Internal server error", error: error.message });
     }
 }
+
 controller.deleteTestRun = async(req, res) => {
     console.log(req.params.id)
     try {
         const testRun = await models.TestRun.findByPk(req.params.id)
         if (!testRun) {
-            return res.status(404).send("Requirement not found");
+            return res.status(404).send("Test run not found");
         }
         await testRun.destroy();
-        req.flash("success", `Xóa requirement ${testRun.name} thành công!`);
+        req.flash("success", `Delete test run ${testRun.name} successfully!`);
         res.status(204).send();
     } catch (error) {
         return res

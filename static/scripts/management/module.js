@@ -19,16 +19,15 @@ async function editModule(e) {
   e.preventDefault();
   const formData = new FormData(document.querySelector("#editModuleForm"));
   let data = Object.fromEntries(formData.entries());
-  const csrfToken = data._csrf
   const id = data.id;
-  delete data._csrf, data.id;
-  console.log(data, csrfToken, id)
+  delete data.id;
+  console.log(data, CSRF_TOKEN, id)
   try {
     let res = await fetch(`/api/v1/module/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
-        "X-CSRF-Token": csrfToken,
+        "X-CSRF-Token": CSRF_TOKEN,
       },
       body: JSON.stringify(data),
     });
@@ -44,25 +43,27 @@ async function editModule(e) {
     console.log(error);
   }
 }
-
-async function deleteModule(id) {
+function confirmDelete(id) {
+  $("#deleteModuleModal").data("module_id", id);
+}
+async function deleteConfirmed() {
+  const module_id = $("#deleteModuleModal").data("module_id");
+  console.log(module_id, CSRF_TOKEN)
   try {
-    let res = await fetch(`/api/v1/module/${id}`, {
+    let res = await fetch(`/api/v1/module/${module_id}`, {
       method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRF-Token": CSRF_TOKEN,
+      },
     });
-
-    if (res.status == 200) {
+    if (res.status == 204) {
       location.reload();
     } else {
       let resText = await res.text();
-      throw Error(resText);
+      throw new Error(resText);
     }
   } catch (error) {
-    let toast = new bootstrap.Toast(document.querySelector(".toast"), {});
-    let toastBody = document.querySelector(".toast .toast-body");
-    toastBody.innerHTML = "Can not delete module!";
-    toastBody.classList.add("text-danger");
-    toast.show();
     console.log(error);
   }
 }
