@@ -202,5 +202,74 @@ controller.getTestCasesAPI = async (req, res) => {
 }
 
 
+controller.deleteTestCase = async (req, res) => {
+  try {
+    const projectId = req.params.id;
+    const testCaseId = req.params.testcase_id;
+    const testCase = await models.TestCase.findOne({
+      where: {
+        id: testCaseId,
+        project_id: projectId
+      }
+    });
+    if (!testCase) {
+      return res.status(404).send("Testcase not found");
+    }
+    await testCase.destroy();
+    req.flash("success", `Delete testcase ${testCase.title} successfully!`);
+    res.status(204).send();
+  } catch (error) {
+    console.error("Error deleting testcase:", error);
+    req.flash("error", "An error occurred while deleting testcase.");
+    res.status(500).send("An error occurred while deleting testcase.");
+  }
+}
 
+
+
+controller.createTestCase = async (req, res) => {
+  try {
+    const projectId = req.params.id;
+    const module_id = req.body.module_id;
+    const title = req.body.title;
+    const description = req.body.description ?? '';
+    const steps = req.body.steps ?? '';
+    const type = req.body.type ?? '';
+    const priority = req.body.priority ?? 'low'; // Default priority if not provided
+    const tester_id = req.session.memberId
+    // Ensure the module exists in the specified project
+    const module = await models.Module.findOne({
+      where: {
+        id: module_id,
+        project_id: projectId
+      }
+    });
+
+    if (!module) {
+      throw new Error('Module not found in the project.');
+    }
+
+    // Create the test case
+    const testCase = await models.TestCase.create({
+      project_id: projectId,
+      module_id: module_id,
+      title: title,
+      description: description,
+      steps: steps,
+      type: type,
+      priority: priority,
+      tester_id: tester_id,
+      created_at: new Date(), // Assuming default value handling by Sequelize if set
+    });
+
+    // Flash message for success
+    req.flash("success", `Test case ${testCase.title} created successfully!`);
+    // Redirect to the page where you want to show the test cases for the module
+    res.status(200).send(`Test case ${testCase.title} created successfully!`);
+  } catch (error) {
+    console.error("Error creating test case:", error);
+    req.flash("error", "An error occurred while creating test case.");
+    res.status(500).send("An error occurred while creating test case.");
+  }
+};
 module.exports = controller;

@@ -91,7 +91,32 @@
         return;
       }
 
-      $.notify("Testcase added successfully", "success");
+      const payload = {
+        module_id: module,
+        title: testCaseName,
+        description: description,
+        steps: JSON.stringify(steps),
+        _csrf: CSRF_TOKEN,
+      };
+
+      console.log(payload);
+
+      $.ajax({
+        url: "./testcase",
+        type: "POST",
+        data: payload,
+        success: function (data) {
+          $.notify("Testcase created successfully", "success");
+          setTimeout(() => {
+            window.location.reload();
+          }, 1000);
+        },
+        error: function (error) {
+          error = error.responseJSON;
+          console.log(error);
+          $.notify("Error creating requirement: "+ error.title, "error");
+        },
+      });
 
       $("#testCasePopup").hide();
     });
