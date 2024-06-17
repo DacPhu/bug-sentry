@@ -3,6 +3,7 @@
 const { paginate } = require("../utils/pagination");
 const { inc } = require("../helpers");
 const models = require("../models");
+const { raw } = require("express");
 const controller = {};
 
 controller.showAll = async (req, res) => {
@@ -123,6 +124,20 @@ controller.getTestCasesAPI = async (req, res) => {
 
       const sortType = req.query.sortType ?? 'asc';
       const sortField = req.query.sortField ?? 'id';
+      const requirementID = req.query.requirementID ;
+
+      const linkedTestCaseIds = await models.RequirementTestCase.findAll({
+        attributes: ['test_case_id'],
+        where: {
+          requirement_id: requirementID
+        },
+        raw: true
+      });
+      console.log(linkedTestCaseIds);
+      const linkedIds = linkedTestCaseIds.map(tc => tc.test_case_id);
+
+      console.log(linkedIds);
+      
       const { page, size, offset } = paginate(req, 1, 5);
 
       if (!req.query.module) {
@@ -134,6 +149,9 @@ controller.getTestCasesAPI = async (req, res) => {
           where: {
               module_id: targetModule,
               project_id: projectId,
+              id: {
+                [models.Sequelize.Op.notIn]: linkedIds
+              }
 
           },
           include: [
@@ -182,4 +200,7 @@ controller.getTestCasesAPI = async (req, res) => {
   }
 
 }
+
+
+
 module.exports = controller;

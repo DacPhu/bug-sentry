@@ -9,6 +9,7 @@ router.get("/", controller.showAll);
 router.post("/", controller.createRequirement);
 router.get("/:requirement_id",  controller.getDetailRequirement);
 router.delete("/:requirement_id",  controller.deleteRequirement);
-
+router.post("/:requirement_id/linked/api", controller.addLinkedTestCasesAPI);
+router.delete("/:requirement_id/remove/:testcase_id", controller.removeLinkedTestCaseAPI);
 
 module.exports = router;

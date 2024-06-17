@@ -10,17 +10,17 @@ controller.showAll = async (req, res) => {
     const projectId = req.params.id;
 
     // Query the database for requirements with the specified project_id
-    const moduleName = req.query.moduleName??'';
-    
-    const requirementName = req.query.requirementName??'';
-    const sortType = req.query.sortType??'asc';
-    const sortField = req.query.sortField??'id';
+    const moduleName = req.query.moduleName ?? '';
+
+    const requirementName = req.query.requirementName ?? '';
+    const sortType = req.query.sortType ?? 'asc';
+    const sortField = req.query.sortField ?? 'id';
     const { page, size, offset } = paginate(req, 1, 5);
 
     const modules = await models.Module.findAll({
       where: {
         project_id: projectId,
-        name : {
+        name: {
           [models.Sequelize.Op.like]: `%${moduleName}%`
         }
       }
@@ -29,7 +29,7 @@ controller.showAll = async (req, res) => {
     if (modules.length == 0) {
       return res.render("requirement", {
         layout: "main_layout",
-        requirements: {rows: [], count: 0}, 
+        requirements: { rows: [], count: 0 },
         modules: modules,
         moduleName: moduleName,
         requirementName: requirementName,
@@ -41,12 +41,12 @@ controller.showAll = async (req, res) => {
         module: null
       });
     }
-    const targetModule = req.query.module??modules[0].id;
+    const targetModule = req.query.module ?? modules[0].id;
 
     const requirements = await models.Requirement.findAndCountAll({
       where: {
         module_id: targetModule,
-        name : {
+        name: {
           [models.Sequelize.Op.like]: `%${requirementName}%`
         },
         project_id: projectId
@@ -58,15 +58,15 @@ controller.showAll = async (req, res) => {
       offset: offset
     });
 
-  
+
 
 
     const totalPages = Math.ceil(requirements.count / size);
     console.log(requirements);
-    
+
     res.render("requirement", {
       layout: "main_layout",
-      requirements: requirements, 
+      requirements: requirements,
       modules: modules,
       moduleName: moduleName,
       requirementName: requirementName,
@@ -89,7 +89,7 @@ controller.getDetailRequirement = async (req, res) => {
   try {
     const projectId = req.params.id;
     const requirementId = req.params.requirement_id;
-    const pageType = req.query.pageType??0;
+    const pageType = req.query.pageType ?? 0;
     const { page, size, offset } = paginate(req, 1, 5);
     const requirement = await models.Requirement.findOne({
       where: {
@@ -112,7 +112,7 @@ controller.getDetailRequirement = async (req, res) => {
     const modules = await models.Module.findAll({
       where: {
         project_id: projectId,
-        
+
       }
     });
 
@@ -138,7 +138,7 @@ controller.getDetailRequirement = async (req, res) => {
           ],
           required: false,
         },
-        
+
       ],
       limit: size,
       offset: offset,
@@ -177,8 +177,8 @@ controller.createRequirement = async (req, res) => {
     const projectId = req.params.id;
     const module_id = req.body.module_id;
     const name = req.body.name;
-    const description = req.body.description??'';
-    const url = req.body.url??'';
+    const description = req.body.description ?? '';
+    const url = req.body.url ?? '';
     console.log(req.session);
     const requirement = await models.Requirement.create({
       project_id: projectId,
@@ -186,7 +186,7 @@ controller.createRequirement = async (req, res) => {
       name: name,
       description: description,
       url,
-      created_by: req.session.memberId 
+      created_by: req.session.memberId
     });
     req.flash("success", `Tạo requirement ${requirement.name} thành công!`);
     res.redirect(`/project/${projectId}/requirement`);
@@ -198,7 +198,7 @@ controller.createRequirement = async (req, res) => {
 }
 
 
-controller.deleteRequirement = async (req, res)  => {
+controller.deleteRequirement = async (req, res) => {
   try {
     const projectId = req.params.id;
     const requirementId = req.params.requirement_id;
@@ -221,6 +221,66 @@ controller.deleteRequirement = async (req, res)  => {
   }
 }
 
+controller.addLinkedTestCasesAPI = async (req, res) => {
+  try {
+    const { id: projectId, requirement_id: requirementId } = req.params;
+    const { testcases } = req.body;
+    if (!testcases || !Array.isArray(testcases) || testcases.length === 0) {
+      return res.status(400).json({ error: 'Invalid test cases' });
+    }
 
+
+    const requirement = await models.Requirement.findOne({
+      where: {
+        id: requirementId,
+        project_id: projectId
+      }
+    });
+
+    if (!requirement) {
+      return res.status(404).json({ error: 'Requirement not found' });
+    }
+
+    const testCaseInstances = await models.TestCase.findAll({
+      where: {
+        id: testcases
+      }
+    });
+
+    if (testCaseInstances.length !== testcases.length) {
+      return res.status(404).json({ error: 'Some test cases not found' });
+    }
+
+    // Link test cases to the requirement by requirement_test_cases table
+    await requirement.addTestCases(testCaseInstances);
+    console.log("done add",requirement.addTestCases);
+  } catch (error) {
+    console.error("Error add linked testcases:", error);
+    res.status(500).send("An error occurred while fetching linked testcases.");
+  }
+}
+
+
+controller.removeLinkedTestCaseAPI = async (req, res) => {
+  try {
+    const { id: projectId, requirement_id: requirementId, testcase_id } = req.params;
+    const requirementTestCase = await models.RequirementTestCase.findOne({
+      where: {
+        requirement_id: requirementId,
+        test_case_id: testcase_id
+      }
+    });
+
+    if (!requirementTestCase) {
+      return res.status(404).json({ error: 'Test case not linked to requirement' });
+    }
+
+    await requirementTestCase.destroy();
+    res.status(204).send();
+  } catch (error) {
+    console.error("Error unlink test case:", error);
+    res.status(500).send("An error occurred while unlinking test case.");
+  }
+}
 
 module.exports = controller;

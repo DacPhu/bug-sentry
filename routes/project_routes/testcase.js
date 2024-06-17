@@ -8,6 +8,8 @@ router.use(require_tester)
 router.get("/", controller.showAll);
 router.get("/api", controller.getTestCasesAPI);
 
+
+
 // router.post("/", controller.createRequirement);
 // router.get("/:testcase_id",  controller.getDetailRequirement);
 // router.delete("/:testcase_id",  controller.deleteRequirement);
