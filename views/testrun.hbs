@@ -85,13 +85,20 @@
                         <div class="col-md-2 text-color-1 truncate" id="TestCaseName">{{TestCase.title}}</div>
                         <div class="col-md-1 text-color-1 text-center">{{status}}</div>
                         <div class="col-md-1 text-color-1 d-flex justify-content-between">
-                            <i role="button" class="bi bi-play-circle-fill text-success"></i>
+                            <i role="button" class="bi bi-play-circle-fill text-success" data-bs-toggle="modal" 
+                                data-id="{{id}}" data-bs-target="#runTestRunModal" onclick="showRunTestRunModal(this)"
+                                data-title="{{name}}"
+                                data-created-by="{{Creator.User.first_name}} {{Creator.User.last_name}}"
+                                data-assigned-to="{{Assignee.User.first_name}} {{Assignee.User.last_name}}"
+                                data-test-case="{{TestCase.title}}"
+                                data-release="{{Release.name}}" ></i>
                             <i role="button" class="bi bi-pencil" data-bs-toggle="modal"
                                 data-bs-target="#editTestRunModal" onclick="showEditTestRunModal(this)" data-id="{{id}}"
                                 data-title="{{name}}"
                                 data-created-by="{{Creator.User.first_name}} {{Creator.User.last_name}}"
                                 data-assigned-to="{{Assignee.User.first_name}} {{Assignee.User.last_name}}"
-                                data-test-case="{{TestCase.title}}"></i>
+                                data-test-case="{{TestCase.title}}"
+                                data-release="{{Release.name}}"></i>
                             <i role="button" class="bi bi-trash text-danger" data-bs-toggle="modal" data-id ={{id}} onclick="confirmDelete({{id}})"
                                 data-bs-target="#deleteTestRunModal"></i>
                         </div>
@@ -406,7 +413,7 @@
                     <input type="hidden" id="projectId" name="projectId" value="{{projectId}}">
                     <div class="row g-2">
                         <div class="col mb-6">
-                            <label for="createdByEdit" class="form-label">Created By</label>
+                            <label for="createdBy" class="form-label">Created By</label>
                             <input type="text" id="createdByEdit" name="createdBy" class="form-control"
                                 placeholder="John" disabled />
                         </div>
@@ -421,7 +428,7 @@
                         <div class="col mb-6">
                             <label for="assignedTo" class="form-label">Assigned To</label>
                             <select name="assignedTo" class="form-select" required>
-                                <option value="" disabled selected>Select a member</option>
+                                <option id="assignedToEdit" value="" disabled selected>Select a member</option>
                                 {{#each members}}
                                 <option value="{{id}}">{{User.first_name}} {{User.last_name}}</option>
                                 {{/each}}
@@ -432,7 +439,7 @@
                         <div class="col mb-6">
                             <label for="testcase" class="form-label">Test Case</label>
                             <select name="testCase" class="form-select" required>
-                                <option value="" disabled selected> Select a testcase</option>
+                                <option id="testCaseEdit" value="" disabled selected> Select a testcase</option>
                                 {{#each test_cases}}
                                 <option value="{{id}}">{{title}}</option>
                                 {{/each}}
@@ -443,7 +450,7 @@
                         <div class="col mb-6">
                             <label for="release" class="form-label">Release</label>
                             <select name="release" class="form-select" required>
-                                <option value="" disabled selected> Select a release</option>
+                                <option id="releaseEdit" value="" disabled selected> Select a release</option>
                                 {{#each releases}}
                                 <option value="{{id}}">{{name}}</option>
                                 {{/each}}
@@ -496,7 +503,81 @@
     </div>
   </div>
 </div>
-
+{{!-- run testrun modal --}}
+<div class="modal fade" id="runTestRunModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <form action="" id="runTestRunForm" onsubmit="runTestRun(event)">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        Run Test Run
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" name="_csrf" value="{{csrfToken}}">
+                    <input type="hidden" id="projectId" name="projectId" value="{{projectId}}">
+                    <div class="row g-2">
+                        <div class="col mb-6">
+                            <label for="createdBy" class="form-label">Title</label>
+                            <input type="text" id="createdByRun" name="createdBy" class="form-control"
+                                placeholder="{{John}}" disabled />
+                        </div>
+                    </div>
+                    <div class="row g-2">
+                        <div class="col mb-6">
+                            <label for="title" class="form-label">Title</label>
+                            <input type="text" id="titleRun" name="title" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="row g-2">
+                        <div class="col mb-6">
+                            <label for="assignedTo" class="form-label">Assigned To</label>
+                            <select name="assignedTo" class="form-select" required>
+                                <option id="assignedToRun" value="" disabled selected>Select a member</option>
+                                {{#each members}}
+                                <option value="{{id}}">{{User.first_name}} {{User.last_name}}</option>
+                                {{/each}}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col mb-6">
+                            <label for="testcase" class="form-label">Test Case</label>
+                            <select name="testCase" class="form-select" required>
+                                <option id="testCaseRun" value="" disabled selected> Select a testcase</option>
+                                {{#each test_cases}}
+                                <option value="{{id}}">{{title}}</option>
+                                {{/each}}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col mb-6">
+                            <label for="release" class="form-label">Release</label>
+                            <select  name="release" class="form-select" required>
+                                <option id="releaseRun" value="" disabled selected> Select a release</option>
+                                {{#each releases}}
+                                <option value="{{id}}">{{name}}</option>
+                                {{/each}}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="text-center badge bg-label-danger" id="errorMessage"></div>
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" name="id" id="id" value="" />
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal" id="closeBtnEdit">
+                        Close
+                    </button>
+                    <button type="submit" class="btn btn-primary">
+                        Save
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
 {{#section "scripts"}}
 <script>
    const CSRF_TOKEN = "{{csrfToken}}";

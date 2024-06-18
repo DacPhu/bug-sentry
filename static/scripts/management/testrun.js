@@ -11,11 +11,21 @@ document
   });
 
 function showEditTestRunModal(btn) {
-  document.querySelector("#id").value = btn.dataset.id;
+  console.log(btn.dataset.assignedTo)
   document.querySelector("#createdByEdit").value = btn.dataset.createdBy;
   document.querySelector("#titleEdit").value = btn.dataset.title;
+  document.querySelector("#assignedToEdit").textContent = btn.dataset.assignedTo ;
+  document.querySelector("#testCaseEdit").textContent = btn.dataset.testCase;
+  document.querySelector("#releaseEdit").textContent = btn.dataset.release;
   // document.querySelector("#assignedToEdit").value = btn.dataset.assignedTo;
   // document.querySelector("#testCaseEdit").value = btn.dataset.testCase;
+}
+function showRunTestRunModal(btn) {
+  document.querySelector("#createdByRun").value = btn.dataset.createdBy;
+  document.querySelector("#titleRun").value = btn.dataset.title;
+  document.querySelector("#assignedToRun").textContent = btn.dataset.assignedTo ;
+  document.querySelector("#testCaseRun").textContent = btn.dataset.testCase;
+  document.querySelector("#releaseRun").textContentgit = btn.dataset.release;
 }
 
 async function editTestRun(e) {
