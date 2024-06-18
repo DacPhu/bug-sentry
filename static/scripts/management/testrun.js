@@ -58,7 +58,6 @@ async function editTestRun(e) {
   }
 }
 function confirmDelete(id) {
-  // $("#deleteConfirmationModal").modal("show");
   $("#deleteTestRunModal").data("testrun_id", id);
 }
 async function deleteConfirmed() {

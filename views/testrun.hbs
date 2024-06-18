@@ -484,10 +484,10 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        Are you sure you want to delete this requirement?
+        Are you sure you want to delete this test run?
         <div class="text-danger font-weight-bold"><strong>This will delete all linked relationships</strong></div>
       </div>
-      <div id="actions-delete-requirement" class="modal-footer">
+      <div id="actions-delete-testrun" class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
           Cancel
         </button>
@@ -496,7 +496,7 @@
         </button>
       </div>
 
-      <div id="action-delete-load-requirement" class="spinner-border mb-3 centered" style="margin: auto; display:none"
+      <div id="action-delete-load-testrun" class="spinner-border mb-3 centered" style="margin: auto; display:none"
         role="status">
         <span class="visually-hidden">Loading...</span>
       </div>
@@ -586,4 +586,9 @@
 <script src="/scripts/list-test-run.js"></script>
 <script src="/scripts/auto-slice-test-run.js"></script>
 <script src="/scripts/management/testrun.js"></script>
+{{/section}}
+
+
+{{#section "head"}}
+<title>Test run</title>
 {{/section}}
