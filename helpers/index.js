@@ -12,6 +12,13 @@ module.exports = {
     equals: function(a, b) {
         return a === b;
     },
+    equalsStr: function(a, b) {
+        try {
+            return a.trim() == b.trim();
+        }catch(e) {
+            return false;
+        }
+    },
     weakEquals: function(a, b) {
         return a == b;
     },
