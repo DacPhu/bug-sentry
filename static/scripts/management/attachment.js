@@ -1,6 +1,23 @@
+$(document).ready(function () {
+  $("#addAttachPopup").fadeOut();
+
+  $("#add-req").click(function () {
+    console.log("click");
+    $("#addAttachPopup").fadeIn(200);
+  });
+
+  $(".cancel-btn").click(function () {
+    $("#addAttachPopup").hide();
+  });
+
+  $(".save-btn").click(function () {
+    $("#addAttachPopup").hide();
+  });
+});
+
 async function deleteConfirmed() {
   const attachment_id = $("#deleteAttachmentModal").data("attachment_id");
-  console.log(module_id, CSRF_TOKEN);
+  console.log(attachment_id, CSRF_TOKEN);
   try {
     let res = await fetch(`/api/v1/attachment/${attachment_id}`, {
       method: "DELETE",
