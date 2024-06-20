@@ -116,7 +116,7 @@
                       <hr class="text-dark" />
                       <div class="d-flex justify-content-end">
                         <div class="btn custom-bold-btn">
-                          <a href="/project/add-user"><i
+                          <a href="/project/{{id}}/add-user"><i
                               class="bi bi-person-plus text-light"
                             ></i>
                           </a>
@@ -159,7 +159,7 @@
 </footer>
 <!-- Bootstrap JavaScript Libraries -->
 
-
+{{!-- Add Project  --}}
 <div
   id="projectPopup"
   style="display: none;"
@@ -208,6 +208,7 @@
     </div>
   </div>
 </div>
+
 <script src="/scripts/list-project.js"></script>
 <script
   src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
@@ -217,8 +218,6 @@
 
 <script src="/scripts/sort.js"></script>
 <script src="/scripts/add-project.js"></script>
-
-
 
 
 {{#section "head"}}

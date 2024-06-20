@@ -37,4 +37,21 @@ controller.getMembersInProject = async (req, res) => {
   }
 };
 
+controller.addUserToProject = async (req, res) => {
+  try {
+    const { projectId, userId, roleId } = req.body;
+    const member = await models.Member.create({
+      project_id: projectId,
+      user_id: userId,
+      role_id: roleId,
+      active: true,
+    });
+    return res.status(201).json(member);
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ message: "Internal server error", error: error.message });
+  }
+};
+
 module.exports = controller;

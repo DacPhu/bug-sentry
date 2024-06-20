@@ -6,7 +6,7 @@ const formatDate = require("./helpers/time");
 const session = require("express-session");
 const csrf = require("csurf");
 const cookieParser = require("cookie-parser");
-const bodyParser = require('body-parser');
+const bodyParser = require("body-parser");
 const flash = require("connect-flash");
 const MongoStore = require("connect-mongo");
 const mongoose = require("mongoose");
@@ -104,6 +104,7 @@ app.use("/api/v1/testcase", require("./routes/api/v1/testcase"));
 app.use("/api/v1/board", require("./routes/api/v1/board"));
 app.use("/api/v1/requirement", require("./routes/api/v1/requirement"));
 app.use("/api/v1/attachment", require("./routes/api/v1/attachment"));
+app.use("/api/v1/member", require("./routes/api/v1/member"));
 
 // PAGE
 app.use("/dashboard", require("./routes/dashboard"));
