@@ -46,6 +46,7 @@ async function editModule(e) {
 function confirmDelete(id) {
   $("#deleteModuleModal").data("module_id", id);
 }
+
 async function deleteConfirmed() {
   const module_id = $("#deleteModuleModal").data("module_id");
   console.log(module_id, CSRF_TOKEN)

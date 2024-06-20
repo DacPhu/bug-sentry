@@ -88,7 +88,29 @@ controller.uploadFile = async (req, res) => {
       path: filePath,
       type: file.mimetype,
     });
-    return res.status(200).json({ message: "File uploaded successfully", attachment });
+
+    return res
+      .status(200)
+      .json({ message: "File uploaded successfully", attachment });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ message: "Internal server error", error: error.message });
+  }
+};
+
+controller.deleteAttachment = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const attachment = await models.Attachment.findByPk(id);
+
+    if (!attachment) {
+      return res.status(404).json({ message: "Attachment not found" });
+    }
+
+    fs.unlinkSync(attachment.path);
+    await attachment.destroy();
+    return res.status(200).json({ message: "Attachment deleted successfully" });
   } catch (error) {
     return res
       .status(500)
