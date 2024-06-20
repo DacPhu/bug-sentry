@@ -111,6 +111,7 @@ app.use("/dashboard", require("./routes/dashboard"));
 app.use("/project", require("./routes/project"));
 app.use("/role", require("./routes/api/v1/role"));
 app.use("/board", require("./routes/board"));
+app.use("/profile", require("./routes/profile"));
 
 app.use(errorHandler.notFoundHandler);
 app.use(errorHandler.csrfErrorHandler);

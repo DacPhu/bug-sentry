@@ -1,0 +1,148 @@
+
+<main class="bg-grey">
+    <div class="container-fluid">
+    <div class="row">
+        <!-- Side bar -->
+        {{> sidebar_main}}
+        <div class="bg-grey col-md-11 pt-4">
+        <div class="container bootstrap snippets bootdey">
+            <h1 class="text-primary-color">Edit Profile</h1>
+            <hr />
+            <div class="bg-white row p-5">
+            <!-- left column -->
+            <div class="col-md-3">
+                <div class="text-center">
+                <img
+                    src="https://bootdey.com/img/Content/avatar/avatar7.png"
+                    class="avatar img-circle img-thumbnail"
+                    alt="avatar"
+                />
+                <h6>Upload a different photo...</h6>
+                <input type="file" class="form-control" />
+                </div>
+            </div>
+
+            <!-- edit form column -->
+            <div class="col-md-9 personal-info">
+                <div
+                class="alert alert-info alert-dismissible fade show"
+                role="alert"
+                >
+                This is an
+                <strong>.alert</strong>. Use this to show important messages
+                to the user.
+                <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="alert"
+                    aria-label="Close"
+                ></button>
+                </div>
+                <h3>Personal info</h3>
+                <form class="row g-3">
+                <div class="col-md-6">
+                    <label for="first-name" class="form-label"><span
+                        class="text-danger"
+                    >*</span>
+                    First name:</label>
+                    <input
+                    type="text"
+                    class="form-control"
+                    id="first-name"
+                    value="dey-dey"
+                    />
+                </div>
+                <div class="col-md-6">
+                    <label for="last-name" class="form-label">Last name:</label>
+                    <input
+                    type="text"
+                    class="form-control"
+                    id="last-name"
+                    value="bootdey"
+                    />
+                </div>
+                <div class="col-md-6">
+                    <label for="company" class="form-label">Company:</label>
+                    <input
+                    type="text"
+                    class="form-control"
+                    id="company"
+                    value=""
+                    />
+                </div>
+                <div class="col-md-6">
+                    <label for="email" class="form-label">
+                    <span class="text-danger">*</span>
+                    Email:</label>
+                    <input
+                    type="email"
+                    class="form-control"
+                    id="email"
+                    value="janesemail@gmail.com"
+                    />
+                </div>
+                <div class="col-md-6">
+                    <label for="birthday" class="form-label">Birthday:</label>
+                    <input type="date" class="form-control" id="birthday" />
+                </div>
+                <div class="col-md-6">
+                    <label for="address" class="form-label">Address:</label>
+                    <input type="text" class="form-control" id="address" />
+                </div>
+                <div class="col-md-6">
+                    <label for="role" class="form-label">
+                    <span class="text-danger">*</span>
+                    Role:</label>
+                    <input
+                    type="text"
+                    class="form-control"
+                    id="role"
+                    value="Project Manager"
+                    disabled
+                    />
+                </div>
+                <div class="col-md-6">
+                    <label for="time-zone" class="form-label">Time Zone:</label>
+                    <select class="form-select" id="time-zone">
+                    <option value="Hawaii">(GMT-10:00) Hawaii</option>
+                    <option value="Alaska">(GMT-09:00) Alaska</option>
+                    <option value="Pacific Time (US & Canada)">
+                        (GMT-08:00) Pacific Time (US & Canada)
+                    </option>
+                    <option value="Arizona">(GMT-07:00) Arizona</option>
+                    <option value="Mountain Time (US & Canada)">
+                        (GMT-07:00) Mountain Time (US & Canada)
+                    </option>
+                    <option value="Central Time (US & Canada)" selected>
+                        (GMT-06:00) Central Time (US & Canada)
+                    </option>
+                    <option value="Eastern Time (US & Canada)">
+                        (GMT-05:00) Eastern Time (US & Canada)
+                    </option>
+                    <option value="Indiana (East)">
+                        (GMT-05:00) Indiana (East)
+                    </option>
+                    </select>
+                </div>
+                <div class="col-md-6 d-flex justify-content-center pt-5">
+                    <div
+                    class="ps-3 pe-3 ms-4 d-flex btn save-btn"
+                    id="save-profile"
+                    >
+                    Save
+                    </div>
+                    <div
+                    class="closePopup btn text-center ps-3 pe-3 ms-4 cancel-btn"
+                    >
+                    Cancel
+                    </div>
+                </div>
+                </form>
+            </div>
+            </div>
+        </div>
+        <hr />
+        </div>
+    </div>
+    </div>
+</main>
