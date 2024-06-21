@@ -1,19 +1,31 @@
-$(document).ready(function () {
-  $("#addAttachPopup").fadeOut();
+// $(document).ready(function () {
+//   $("#addAttachPopup").fadeOut();
 
-  $("#add-req").click(function () {
-    console.log("click");
-    $("#addAttachPopup").fadeIn(200);
-  });
+//   $("#add-req").click(function () {
+//     console.log("click");
+//     $("#addAttachPopup").fadeIn(200);
+//   });
 
-  $(".cancel-btn").click(function () {
-    $("#addAttachPopup").hide();
-  });
+//   $(".cancel-btn").click(function () {
+//     $("#addAttachPopup").hide();
+//   });
 
-  $(".save-btn").click(function () {
-    $("#addAttachPopup").hide();
+//   $(".save-btn").click(function () {
+//     $("#addAttachPopup").hide();
+//   });
+// });
+
+// document
+  // .querySelector("#editAttachmentModal")
+  // .addEventListener("shown.bs.modal", () => {
+  //   document.querySelector("#nameEdit").focus();
+  // });
+
+document
+  .querySelector("#addAttachmentModal")
+  .addEventListener("shown.bs.modal", () => {
+    document.querySelector("#name").focus();
   });
-});
 
 async function deleteConfirmed() {
   const attachment_id = $("#deleteAttachmentModal").data("attachment_id");
