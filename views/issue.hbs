@@ -86,9 +86,9 @@
         <div class="row">
           <div class="col-md-1 fs-5 text-color-1">Code</div>
           <div class="col-md-2 fs-5 text-color-1">Title</div>
-          <div class="col-md-3 fs-5 text-color-1">Created By</div>
-          <div class="col-md-1 fs-5 text-color-1 text-center">Status</div>
-          <div class="col-md-1 fs-5 text-color-1 text-center">Priority</div>
+          <div class="col-md-2 fs-5 text-color-1">Created By</div>
+          <div class="col-md-2 fs-5 text-color-1">Status</div>
+          <div class="col-md-1 fs-5 text-color-1">Priority</div>
           <div class="col-md-2 fs-5 text-color-1">Created at</div>
           <div class="col fs-5 text-color-1">Action</div>
         </div>
@@ -98,15 +98,16 @@
         <div class="row issue-item" data-name="{{name}}">
           <div class="id-atribute col-md-1 text-color-1">{{id}}</div>
           <div class="col-md-2 text-color-1">{{name}}</div>
-          <div class="col-md-3 text-color-1">{{Creator.User.first_name}} {{Creator.User.last_name}}</div>
-          <div class="col-md-1 text-color-1">{{status}}</div>
+          <div class="col-md-2 text-color-1">{{Creator.User.first_name}} {{Creator.User.last_name}}</div>
+          <div class="col-md-2 text-color-1">{{status}}</div>
           <div class="priority-atribute col-md-1 text-color-1">{{priority}}</div>
           <div class="col-md-2 text-color-1">{{formatDate created_at "MMM DD YYYY MM:hh"}}</div>
           <div class="col text-color-1 d-flex">
-            <i role="button" class="bi bi-pencil mx-3" data-bs-toggle="modal" data-bs-target="#editIssueModal"
+            <i role="button" class="bi bi-pencil me-3" data-bs-toggle="modal" data-bs-target="#editIssueModal"
               onclick="showEditIssueModal(this)" data-id="{{id}}" data-name="{{name}}"
               data-created-by="{{Creator.User.first_name}} {{Creator.User.last_name}}" data-status="{{status}}"></i>
-            <i role="button" class="bi bi-trash text-danger" data-bs-toggle="modal" data-bs-target="#deleteIssueModal"></i>
+            <i role="button" class="bi bi-trash text-danger" data-bs-toggle="modal"
+              data-bs-target="#deleteIssueModal"></i>
           </div>
           <hr />
         </div>
@@ -144,34 +145,44 @@
       </div>
       <div class="modal-body">
         <!-- Form for adding new issue -->
-        <form id="addIssueForm" onsubmit="addIssue(event)">
-          <div class="row">
-            <div class="col">
-              <div class="mb-3">
-                <label for="issueTitle" class="form-label">Issue Title <span class="text-danger">*</span></label>
-                <input type="text" class="form-control" id="issueTitle" required>
+        <form id="addIssueForm" action="/your-endpoint" method="POST">
+          <div class="modal-body">
+            <div class="row">
+              <div class="col">
+                <div class="mb-3">
+                  <label for="issueTitle" class="form-label">Issue Title <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" id="issueTitle" name="title" required>
+                </div>
+                <div class="mb-3">
+                  <label for="issueStatus" class="form-label">Status <span class="text-danger">*</span></label>
+                  <select class="form-select" id="issueStatus" name="status" required>
+                    <option value="open">Open</option>
+                    <option value="in progress">In Progress</option>
+                    <option value="resolved">Resolved</option>
+                    <option value="closed">Closed</option>
+                  </select>
+                </div>
+                <div class="mb-3">
+                  <label for="issuePriority" class="form-label">Priority <span class="text-danger">*</span></label>
+                  <select class="form-select" id="issuePriority" name="priority" required>
+                    <option value="low">Low</option>
+                    <option value="medium">Medium</option>
+                    <option value="high">High</option>
+                    <option value="critical">Critical</option>
+                  </select>
+                </div>
               </div>
-              <div class="mb-3">
-                <label for="issueStatus" class="form-label">Status <span class="text-danger">*</span></label>
-                <input type="text" class="form-control" id="issueStatus" required>
-              </div>
-              <div class="mb-3">
-                <label for="issuePriority" class="form-label">Priority <span class="text-danger">*</span></label>
-                <input type="text" class="form-control" id="issuePriority" required>
+              <div class="col">
+                <div class="mb-3">
+                  <label for="issueDescription" class="form-label">Description</label>
+                  <textarea class="form-control" id="issueDescription" name="description" rows="8"></textarea>
+                </div>
               </div>
             </div>
-            <div class="col">
-              <div class="mb-3">
-                <label for="issueDescription" class="form-label">Description</label>
-                <textarea class="form-control" id="issueDescription" rows="8"></textarea>
-              </div>
-            </div>
+
+            <div class="text-center text-danger" id="addIssueErrorMessage"></div>
           </div>
-
-
-          <div class="text-center text-danger" id="addIssueErrorMessage"></div>
           <div class="modal-footer">
-            <input type="hidden" name="id" id="id" value="" />
             <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal" id="closeBtnEdit">
               Close
             </button>
@@ -229,23 +240,23 @@
   </div>
 </div>
 
-{{!-- Delete Modal  --}}
+{{!-- Delete Modal --}}
 <div class="modal fade" id="deleteIssueModal" tabindex="-1" aria-labelledby="deleteIssueModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="deleteIssueModalLabel">Are you sure?</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                Do you really want to delete this issue?
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-                <button type="button" class="btn btn-danger" onclick="deleteIssue()">Yes</button>
-            </div>
-        </div>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteIssueModalLabel">Are you sure?</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Do you really want to delete this issue?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+        <button type="button" class="btn btn-danger" onclick="deleteIssue()">Yes</button>
+      </div>
     </div>
+  </div>
 </div>
 
 <script src="/scripts/list-issue.js"></script>

@@ -20,7 +20,7 @@ function showEditTestRunModal(btn) {
   // document.querySelector("#assignedToEdit").value = btn.dataset.assignedTo;
   // document.querySelector("#testCaseEdit").value = btn.dataset.testCase;
 }
-function showRunTestRunModal(btn) {
+function showAddIssueModal(btn) {
   document.querySelector("#createdByRun").value = btn.dataset.createdBy;
   document.querySelector("#titleRun").value = btn.dataset.title;
   document.querySelector("#assignedToRun").textContent = btn.dataset.assignedTo ;

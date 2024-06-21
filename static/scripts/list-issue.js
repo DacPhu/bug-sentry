@@ -17,15 +17,17 @@ document.addEventListener("DOMContentLoaded", function () {
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
   
+    let id = 0;
     issueItems.forEach((item, index) => {
-      if (
-        filteredIssues.includes(item) &&
-        index >= startIndex &&
-        index < endIndex
-      ) {
-        item.style.display = "";
+      if (filteredIssues.includes(item)) {
+        if (id >= startIndex && id < endIndex) {
+          item.classList.remove('d-none'); // Xóa lớp để hiển thị
+        } else {
+          item.classList.add('d-none'); // Xóa lớp để hiển thị
+        }
+        id++; 
       } else {
-        item.style.display = "none";
+        item.classList.add('d-none'); // Xóa lớp để hiển thị
       }
     });
     
