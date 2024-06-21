@@ -3,6 +3,7 @@
 const controller = {};
 
 const { Attachment } = require("../models");
+
 controller.showAll = async (req, res) => {
   try {
     console.log("hereeeeee")
@@ -23,5 +24,6 @@ controller.showAll = async (req, res) => {
     res.status(500).send("Internal Server Error");
   }
 };
+
 
 module.exports = controller;

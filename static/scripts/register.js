@@ -14,7 +14,7 @@
       let input = $("input");
       console.log(input);
       for (let i = 0; i < input.length; i++) {
-        if (input[i].name == "male" || input[i].name == "female") {
+        if (input[i].name == "gender" ) {
           if (!input[i].checked) {
             if (countGender === 0) countGender++;
             else {

@@ -21,13 +21,13 @@ controller.showAll = async (req, res) => {
         },
       ],
     });
-    const formatMembers = members.map(item => ({
+    const formatMembers = members.map((item) => ({
       first_name: item.User.first_name,
       last_name: item.User.last_name,
       full_name: `${item.User.first_name} ${item.User.last_name}`,
       email: item.User.email,
       role: item.Role.name,
-      status: (item.active ? "active" : "inactive"),
+      status: item.active ? "active" : "inactive",
     }));
     // Render trang administration với dữ liệu members
     res.render("administration", {
@@ -41,7 +41,7 @@ controller.showAll = async (req, res) => {
 };
 
 controller.showAddUserForm = (req, res) => {
-  const projectId = req.query.id;
+  const projectId = req.session.projectId;
   res.render("addUser", { projectId });
 };
 

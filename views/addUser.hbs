@@ -5,172 +5,175 @@
         {{> sidebar_main}}
 
         <div class="bg-grey col-md-11">
-        <div class="row">
-            <div class="col-md-6 px-5 py-3"><h1>Create New User</h1></div>
-            <div class="col-md-6"></div>
-        </div>
-        <div class="container bg-white">
-            <div class="container p-4 position-relative">
-            <div class="row gap-5">
-                <div class="col-5">
-                    <div class="row">
-                        <span class="fs-6 font-weight-semibold">Email<span
-                                class="text-danger"
-                                >*</span></span>
-                        <div class="col-10">
-                            <div class="input-group w-100 mb-4 mt-2">
-                                <input
-                                type="email"
-                                id="email-input"
-                                class="form-control"
-                                placeholder="abc@gmail.com"
-                                aria-label="Email"
-                                />
+            <form action="/api/v1/{{projectId}}/member" method="POST">
+                <div class="row">
+                    <div class="col-md-6 px-5 py-3"><h1>Create New User</h1></div>
+                    <div class="col-md-6"></div>
+                </div>
+
+                <div class="container bg-white">
+                    <div class="container p-4 position-relative">
+                    <div class="row gap-5">
+                        <div class="col-5">
+                            <div class="row">
+                                <span class="fs-6 font-weight-semibold">Email<span
+                                        class="text-danger"
+                                        >*</span></span>
+                                <div class="col-10">
+                                    <div class="input-group w-100 mb-4 mt-2">
+                                        <input
+                                        type="email"
+                                        id="email-input"
+                                        class="form-control"
+                                        placeholder="abc@gmail.com"
+                                        aria-label="Email"
+                                        />
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <div class="mb-4 mt-2 d-flex btn check-btn text-center align-center" onclick="checkUserInfo()">Check</div>
+                                </div>
+                            </div>
+                            
+                        
+                        <div class="row">
+                            <div class="col-6">
+                                <span class="fs-6 font-weight-semibold">First Name</span>
+                                <div class="input-group w-100 mb-4 mt-2">
+                                    <input
+                                    type="text"
+                                    class="form-control"
+                                    id="first-name"
+                                    placeholder="First Name"
+                                    aria-label="First name"
+                                    disabled="true"
+                                    />
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <span class="fs-6 font-weight-semibold">Last Name</span>
+                                <div class="input-group w-100 mb-4 mt-2">
+                                    <input
+                                    type="text"
+                                    class="form-control"
+                                    id="last-name"
+                                    placeholder="Last Name"
+                                    aria-label="Last name"
+                                    disabled="true"
+                                    />
+                                </div>
                             </div>
                         </div>
-                        <div class="col-2">
-                            <div class="mb-4 mt-2 d-flex btn check-btn text-center align-center" onclick="checkUserInfo()">Check</div>
-                        </div>
-                    </div>
-                    
-                
-                <div class="row">
-                    <div class="col-6">
-                        <span class="fs-6 font-weight-semibold">First Name</span>
+                        
+                        <span class="fs-6 font-weight-semibold">Username</span>
                         <div class="input-group w-100 mb-4 mt-2">
                             <input
                             type="text"
                             class="form-control"
-                            id="first-name"
-                            placeholder="First Name"
-                            aria-label="First name"
+                            id="username"
+                            placeholder="Username"
+                            aria-label="Username"
                             disabled="true"
                             />
                         </div>
-                    </div>
-                    <div class="col-6">
-                        <span class="fs-6 font-weight-semibold">Last Name</span>
-                        <div class="input-group w-100 mb-4 mt-2">
+
+                        <div class="input-group w-100">
                             <input
-                            type="text"
-                            class="form-control"
-                            id="last-name"
-                            placeholder="Last Name"
-                            aria-label="Last name"
-                            disabled="true"
+                                type="text"
+                                class="form-control"
+                                id="projectId"
+                                hidden="true"
+                                value="{{projectId}}"
                             />
                         </div>
+
+                        <div class="input-group w-100">
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="userId"
+                                hidden="true"
+                                value=""
+                            />
+                        </div>
+
+                        <div class="input-group w-100">
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="roleId"
+                                hidden="true"
+                                value=""
+                            />
+                        </div>
+
+                        <span class="fs-6 font-weight-semibold">Status<span
+                            class="text-danger"
+                            >*</span></span>
+                        <select
+                            class="form-select w-100 mb-3 mt-2"
+                            aria-label="Default select example"
+                        >
+                            <option value="1" selected>Active</option>
+                            <option value="2">Inactive</option>
+                        </select>
+                        </div>
+
+                        <div class="col-6 flex-column">
+                        <div class="d-flex justify-content-between w-67 gap-2">
+                            <span>Role <span class="text-danger">*</span></span>
+                        </div>
+
+                        <div class="d-flex justify-content-around flex-column p-3">
+                            <input
+                                type="text"
+                                id="role-info"
+                                class="form-control"
+                                placeholder="Role"
+                                aria-label="Role"
+                                disabled="true"
+                            />
+                            <p style="margin-top:0.5rem">
+                            <b>Tester</b>
+                            - Users with access type Tester will have access to
+                            Dashboard and Projects Assigned to them(Overview,
+                            Requirements, Attachments, Releases, Modules, Test
+                            Cases, Test Plans, Test Runs, Issues, Jira Issues,
+                            Reports, Project Integration Mapping)
+                            </p>
+                            <p>
+                            <b>Developer</b>
+                            - Users with access type Developer will have access only
+                            to Issues of Projects Assigned to them.
+                            </p>
+                            <a href="#"> Read more...</a>
+                        </div>
+                        <div class="d-flex justify-content-between w-67 gap-2">
+                            <span>File</span>
+                        </div>
+                        <div
+                            class="d-flex flex-justify-content-around flex-row p-3"
+                        >
+                            <input
+                            type="file"
+                            class="form-control"
+                            name="project-file"
+                            aria-label="File input"
+                            />
+                        </div>
+                        </div>
+                    </div>
+                    <div class="d-flex m-3 justify-content-center">
+                        <div class="ps-3 pe-3 ms-4 d-flex btn save-btn" type="submit">Save</div>
+                        <div
+                        class="closePopup btn text-center ps-3 pe-3 ms-4 cancel-btn"
+                        >
+                        <a href="/project" style="text-decoration: none;" class="text-white"> Cancel </a>
+                        </div>
+                    </div>
                     </div>
                 </div>
-                
-                 <span class="fs-6 font-weight-semibold">Username</span>
-                <div class="input-group w-100 mb-4 mt-2">
-                    <input
-                    type="text"
-                    class="form-control"
-                    id="username"
-                    placeholder="Username"
-                    aria-label="Username"
-                    disabled="true"
-                    />
-                </div>
-
-                <div class="input-group w-100">
-                    <input
-                        type="text"
-                        class="form-control"
-                        id="projectId"
-                        hidden="true"
-                        value="{{projectId}}"
-                    />
-                </div>
-
-                <div class="input-group w-100">
-                    <input
-                        type="text"
-                        class="form-control"
-                        id="userId"
-                        hidden="true"
-                        value=""
-                    />
-                </div>
-
-                <div class="input-group w-100">
-                    <input
-                        type="text"
-                        class="form-control"
-                        id="roleId"
-                        hidden="true"
-                        value=""
-                    />
-                </div>
-
-                <span class="fs-6 font-weight-semibold">Status<span
-                    class="text-danger"
-                    >*</span></span>
-                <select
-                    class="form-select w-100 mb-3 mt-2"
-                    aria-label="Default select example"
-                >
-                    <option value="1" selected>Active</option>
-                    <option value="2">Inactive</option>
-                </select>
-                </div>
-
-                <div class="col-6 flex-column">
-                <div class="d-flex justify-content-between w-67 gap-2">
-                    <span>Role <span class="text-danger">*</span></span>
-                </div>
-
-                <div class="d-flex justify-content-around flex-column p-3">
-                    <input
-                        type="text"
-                        id="role-info"
-                        class="form-control"
-                        placeholder="Role"
-                        aria-label="Role"
-                        disabled="true"
-                    />
-                    <p style="margin-top:0.5rem">
-                    <b>Tester</b>
-                    - Users with access type Tester will have access to
-                    Dashboard and Projects Assigned to them(Overview,
-                    Requirements, Attachments, Releases, Modules, Test
-                    Cases, Test Plans, Test Runs, Issues, Jira Issues,
-                    Reports, Project Integration Mapping)
-                    </p>
-                    <p>
-                    <b>Developer</b>
-                    - Users with access type Developer will have access only
-                    to Issues of Projects Assigned to them.
-                    </p>
-                    <a href="#"> Read more...</a>
-                </div>
-                <div class="d-flex justify-content-between w-67 gap-2">
-                    <span>File</span>
-                </div>
-                <div
-                    class="d-flex flex-justify-content-around flex-row p-3"
-                >
-                    <input
-                    type="file"
-                    class="form-control"
-                    name="project-file"
-                    aria-label="File input"
-                    />
-                </div>
-                </div>
-            </div>
-            <div class="d-flex m-3 justify-content-center">
-                <div class="ps-3 pe-3 ms-4 d-flex btn save-btn" onclick="submitAssignUserForm()">Save</div>
-                <div
-                class="closePopup btn text-center ps-3 pe-3 ms-4 cancel-btn"
-                >
-                Cancel
-                </div>
-            </div>
-            </div>
-        </div>
+            </form>
         </div>
     </div>
     </div>
@@ -179,12 +182,6 @@
 <script
     src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
     integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-    crossorigin="anonymous"
-></script>
-
-<script
-    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
-    integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
     crossorigin="anonymous"
 ></script>
 
@@ -204,7 +201,7 @@
         }
 
         try {
-            const response = await fetch('/user?email=' + encodeURIComponent(email), {
+            const response = await fetch('/api/v1/user?email=' + encodeURIComponent(email), {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json'
@@ -231,43 +228,4 @@
             console.error('There has been a problem with your fetch operation:', error);
         }
     }
-</script>
-
-<script>
-    async function postUserData() {
-        const user_id = document.getElementById('userId').value;
-        const project_id = document.getElementById('projectId').value;
-        const role_id = document.getElementById('roleId').value;
-        const status = (document.getElementById('status').value === "1") ? 1 : 0;
-
-        try {
-            const response = await fetch('/administration/add-user', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                    user_id,
-                    project_id,
-                    role_id,
-                    status
-                })
-            });
-
-            if (!response.ok) {
-            throw new Error('Network response was not ok');
-            }
-
-            const data = await response.json();
-
-            if (data.message) {
-            alert(data.message);
-            } else {
-            alert('User data posted successfully');
-            }
-        } catch (error) {
-            console.error('There has been a problem with your fetch operation:', error);
-        }
-    }
-
 </script>

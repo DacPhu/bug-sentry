@@ -44,5 +44,6 @@ router.get("/:id/issue", issue_controller.showAll);
 router.get("/:id/release", release_controller.showAll);
 router.get("/:id/activity-log", require_pm, activity_controller.showAll);
 router.use("/:id/attachment", require_tester, attachment_router);
+router.get("/:id/add-user", require_pm, administration_controller.showAddUserForm);
 
 module.exports = router;

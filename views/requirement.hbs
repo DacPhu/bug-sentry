@@ -66,11 +66,7 @@
                           <a class="nav-link " href="#" id="dropdownLanguageId" data-bs-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">
                             <span class="me-4 font-weight-semibold">
-                              {{#if (equals sortField "requirementCode")}}
-                              Requirement Code
-                              {{else}}
-                              Title
-                              {{/if}}
+                              {{#if (equalsStr sortField "id")}}Requirement Code{{else}}Title{{/if}}
                               <img src="/icons/sort-icon.svg" alt="" />
                             </span>
                           </a>
@@ -86,7 +82,7 @@
 
                           <span class="font-weight-semibold d-flex align-items-center">
                             {{sortType}}
-                            <a href="?module={{module}}&moduleName={{moduleName}}&size={{size}}&page={{page}}&sortField={{sortField}}&sortType={{#if (equals sortType "asc")}}desc{{else}}asc{{/if}}">
+                            <a href="?module={{module}}&moduleName={{moduleName}}&size={{size}}&page={{page}}&sortField={{sortField}}&sortType={{#if (equalsStr sortType "asc")}}desc{{else}}asc{{/if}}">
                               <img src="/icons/lucide_sort-{{sortType}}.svg" alt="" />
                             </a>
                           </span>
@@ -179,11 +175,11 @@
           <img class="closePopup position-absolute top-0 end-0 pointer-cursor" width="30px"
             src="/icons/clarity_remove-line.svg" alt="" />
           <h6 class="text-left fs-4">Add Requirement</h6>
-          <form id="requirementForm" action="./requirement" method="post" >
+          <form id="requirementForm" action="./requirement" method="post">
             <div class="d-flex flex-column justify-content-between align-items-center">
               <div id="actions-add-requirement" class="d-flex mb-3">
-                <button id="saveRequirement" class="ps-3 pe-3 ms-4 d-flex btn custom-btn save-btn" type="submit"> 
-                 Save</button>
+                <button id="saveRequirement" class="ps-3 pe-3 ms-4 d-flex btn custom-btn save-btn" type="submit">
+                  Save</button>
                 <div class="closePopup btn custom-btn text-center ps-3 pe-3 ms-4 cancel-btn">Cancel</div>
               </div>
               <div id="action-load-requirement" style="display: none;" class="spinner-border mb-3" role="status">

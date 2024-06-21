@@ -72,10 +72,10 @@
                           <a class="nav-link " href="#" id="dropdownLanguageId" data-bs-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">
                             <span class="me-4 font-weight-semibold">
-                              {{#if (equals sortField "id")}}
+                              {{#if (equalsStr sortField "id")}}
                               TestCase Code
                               {{else}}
-                              {{#if (equals sortField "created_at")}}
+                              {{#if (equalsStr sortField "created_at")}}
                               Created At
                               {{else}}
 
@@ -101,7 +101,7 @@
 
                           <span class="font-weight-semibold d-flex align-items-center">
                             {{sortType}}
-                            <a href="?module={{module}}&moduleName={{moduleName}}&size={{size}}&page={{page}}&sortField={{sortField}}&sortType={{#if (equals sortType "asc")}}desc{{else}}asc{{/if}}">
+                            <a href="?module={{module}}&moduleName={{moduleName}}&size={{size}}&page={{page}}&sortField={{sortField}}&sortType={{#if (equalsStr sortType "asc")}}desc{{else}}asc{{/if}}">
                               <img src="/icons/lucide_sort-{{sortType}}.svg" alt="" />
                             </a>
                           </span>
@@ -139,7 +139,7 @@
                         <td>{{this.step_count}}</td>
                         <td>{{this.Member.User.first_name }} {{this.Member.User.last_name }}</td>
                         <td style="max-width: 100px" class="eclipsis-overflow">
-                          {{formatDate this.createdAt "DD-MM-YYYY"}}
+                          {{formatDate this.created_at "DD-MM-YYYY"}}
                         </td>
                         <td class="ps-0">
                           <div class="d-flex pointer-cursor p-2 pt-0 pb-0 justify-content-end">
