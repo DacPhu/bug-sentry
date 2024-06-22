@@ -69,6 +69,7 @@ module.exports.login = async (req, res) => {
         { model: Role },
       ]
     });
+    
     req.session.projects = {};
     for (const member of members) {
       req.session.projects[member.project_id] = {

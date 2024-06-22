@@ -106,8 +106,11 @@
             <i role="button" class="bi bi-pencil me-3" data-bs-toggle="modal" data-bs-target="#editIssueModal"
               onclick="showEditIssueModal(this)" data-id="{{id}}" data-name="{{name}}"
               data-created-by="{{Creator.User.first_name}} {{Creator.User.last_name}}" data-status="{{status}}"></i>
-            <i role="button" class="bi bi-trash text-danger" data-bs-toggle="modal"
+            <i role="button" class="bi bi-trash text-danger me-3" data-bs-toggle="modal"
               data-bs-target="#deleteIssueModal"></i>
+            <i role="button" class="bi bi-eye" data-bs-toggle="modal" data-bs-target="#viewIssueModal"
+              onclick="showViewIssueModal(this)" data-id="{{id}}" data-name="{{name}}" data-priority="{{priority}}" data-description="{{note}}" data-
+              data-created-by="{{Creator.User.first_name}} {{Creator.User.last_name}}" data-status="{{status}}" ></i>
           </div>
           <hr />
         </div>
@@ -145,13 +148,14 @@
       </div>
       <div class="modal-body">
         <!-- Form for adding new issue -->
-        <form id="addIssueForm" action="/your-endpoint" method="POST">
+        <form id="addIssueForm" action="/api/v1/issue" method="POST">
           <div class="modal-body">
+            <input type="hidden" name="_csrf" value="{{csrfToken}}">
             <div class="row">
               <div class="col">
                 <div class="mb-3">
                   <label for="issueTitle" class="form-label">Issue Title <span class="text-danger">*</span></label>
-                  <input type="text" class="form-control" id="issueTitle" name="title" required>
+                  <input type="text" class="form-control" id="issueTitle" name="name" required>
                 </div>
                 <div class="mb-3">
                   <label for="issueStatus" class="form-label">Status <span class="text-danger">*</span></label>
@@ -171,11 +175,12 @@
                     <option value="critical">Critical</option>
                   </select>
                 </div>
+                
               </div>
               <div class="col">
                 <div class="mb-3">
                   <label for="issueDescription" class="form-label">Description</label>
-                  <textarea class="form-control" id="issueDescription" name="description" rows="8"></textarea>
+                  <textarea class="form-control" id="issueDescription" name="note" rows="8"></textarea>
                 </div>
               </div>
             </div>
@@ -183,6 +188,59 @@
             <div class="text-center text-danger" id="addIssueErrorMessage"></div>
           </div>
           <div class="modal-footer">
+            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal" id="closeBtnEdit">
+              Close
+            </button>
+            <button type="submit" class="btn btn-primary">
+              Save
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{{!-- view Issue Modal --}}
+<div class="modal fade" id="viewIssueModal" tabindex="-1" aria-labelledby="viewIssueModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="viewIssueModalLabel">view Issue</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="editIssueForm" action="">
+          <div class="modal-body">
+            <input type="hidden" name="_csrf" value="{{csrfToken}}">
+            <input type="hidden" id="viewIssueId" name="id" value="">
+            <div class="row">
+              <div class="col">
+                <div class="mb-3">
+                  <label for="issueTitle" class="form-label">Issue Title </label>
+                  <input type="text" class="form-control" id="viewIssueTitle" name="title" disabled>
+                </div>
+                <div class="mb-3">
+                  <label for="issueTitle" class="form-label">Status </label>
+                  <input type="text" class="form-control" id="viewIssueStatus"name="status" disabled>
+                </div>
+                <div class="mb-3">
+                  <label for="issueTitle" class="form-label">Priority </label>
+                  <input type="text" class="form-control" id="viewIssuePriority" name="priority" disabled>
+                </div>
+                
+              </div>
+              <div class="col">
+                <div class="mb-3">
+                  <label for="issueDescription" class="form-label">Description</label>
+                  <i role="button" class="bi bi-pencil" id="editDescription" style="cursor: pointer;"></i>
+                  <textarea class="form-control" id="viewIssueDescription" name="note" rows="8" disabled></textarea>
+                </div>
+              </div>
+            </div>
+            
+            <div class="text-center text-danger" id="addIssueErrorMessage"></div>
+          </div>
+          <div class="modal-footer d-none">
             <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal" id="closeBtnEdit">
               Close
             </button>
@@ -258,9 +316,10 @@
     </div>
   </div>
 </div>
-
+{{#section "scripts"}}
 <script src="/scripts/list-issue.js"></script>
 <script src="/scripts/management/issue.js"></script>
+{{/section}}
 <!-- Bootstrap JavaScript Libraries -->
 
 

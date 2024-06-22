@@ -64,25 +64,26 @@ controller.getAllIssues = async (req, res) => {
 };
 
 controller.addIssue = async (req, res) => {
-  const { name, project_id, status, priority, note } = req.body;
-
+  const { name, status, priority, note } = req.body;
+  const project_id = parseInt(req.session.project_id);
+  const member_id = req.session.projects[project_id].memberId
+  console.log(name, project_id, status, priority, note, member_id)
   if (!project_id || !name || !status || !priority || !note) {
     return res.status(400).message({ error: "Missing some fields" });
   }
 
   try {
-    const currentTimestamp = Date.now();
 
-    await models.Issue.create({
+    const newIssue = await models.Issue.create({
       name,
       project_id,
       status,
       priority,
-      currentTimestamp,
       note,
+      member_id
     });
-
-    res.redirect("project/:${project_id}/issue");
+    console.log('Test Run created:', newIssue.toJSON());
+    res.redirect(`/project/${project_id}/testrun`)
   } catch (error) {
     console.error("Error adding issue:", error);
     res.send("Can not add issue!");
@@ -91,36 +92,28 @@ controller.addIssue = async (req, res) => {
 };
 
 controller.editIssue = async (req, res) => {
-  const { id, name, status, priority, note } = req.body;
-
+  const { title, status, priority, note } = req.body;
+  const id = req.params.id;
+  console.log(title, status, priority, note, id)
   try {
-    const issue = await models.Issue.findOne({
-      where: { id },
-    });
-    const result = await models.Issue.update(
-      {
-        name,
-        project_id,
-        status,
-        priority,
-        create_at: issue.create_at,
-        note,
-      },
-      {
-        where: { id },
-      }
-    );
-
-    if (result[0] > 0) {
-      res.status(200).send("Issue updated successfully");
-    } else {
-      res.status(404).send("Issue not found");
+    const issue = await models.Issue.findByPk(id);
+    if (!issue) {
+      return res.status(404).json({ message: "Issue not found" });
     }
+    if (title !== undefined) issue.name = title;
+    if (status !== undefined) issue.status = status;
+    if (priority !== undefined) issue.priority = priority;
+    if (note !== undefined) issue.note = note;
+    await issue.save();
+    console.log('Issue updated:', issue.toJSON());
+    return res.status(200).json(issue);
   } catch (error) {
-    res.status(401).send("Cannot update issue!");
-    console.error(error);
+    return res
+      .status(500)
+      .json({ message: "Internal server error", error: error.message });
   }
 };
+
 
 controller.deleteIssue = async (req, res) => {
   try {

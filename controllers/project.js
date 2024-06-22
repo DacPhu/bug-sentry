@@ -57,6 +57,7 @@ controller.showAll = async (req, res) => {
 }
 controller.showOverview = async (req, res) => {
   const id = req.params.id
+  req.session.project_id = id;
   const project = await models.Project.findOne({
     where: { id: id }
   })
