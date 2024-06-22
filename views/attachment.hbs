@@ -13,8 +13,7 @@
               <!-- header of main  -->
               <h6 class="text-left fs-4">Attachments</h6>
               <div id="add-req" class="d-flex btn custom-bold-btn">
-                <div class="me-2 p-1">Upload Attachment</div>
-
+                <div class="me-2 p-1" data-bs-target="#addAttachmentModal" data-bs-toggle="modal">Upload Attachment</div>
                 <img class="upload-icon" src="/icons/add.svg" alt="" />
                 <input type="file" id="fileInput" class="d-none" />
               </div>
@@ -62,17 +61,15 @@
     </div>
   </div>
 </main>
-<footer>
-  <!-- place footer here -->
-</footer>
 
-<!-- add request popup -->
-<div id="addAttachPopup" class="vh-100 position-absolute overlay top-0 bottom-0 start-0 end-0" style="display: none">
+<!-- add attachment modal -->
+<div class="modal fade" id="addAttachmentModal" aria-hidden="true" tabindex="-1" aria-labelledby="addConfirmationModalLabel">
   <div class="d-flex justify-content-center align-items-center w-100 position-absolute top-0 bottom-0 start-0 end-0">
     <!-- main content -->
     <div class="w-75 shadow bg-white">
       <div class="m-4 mt-2 bg-white semi-rounded">
         <form action="/api/v1/attachment/upload">
+          <input type="hidden" name="_csrf" value="{{csrfToken}}">
           <div class="container p-4 position-relative">
             <img class="closePopup position-absolute top-0 end-0 pointer-cursor" width="30px"
               src="/icons/clarity_remove-line.svg" alt="" />
@@ -83,14 +80,14 @@
                 Attachment Name
                 <span class="text-danger">*</span></span>
               <div class="input-group mb-3 w-50">
-                <input type="text" class="form-control" placeholder="Requirement name" aria-label="Requirement name" />
+                <input type="text" class="form-control" placeholder="Requirement name" aria-label="Attachment name" />
               </div>
               <span class="fs-6 font-weight-semibold">
                 File
                 <span class="text-danger">*</span></span>
               <div class="input-group mb-3 w-50">
-                <input type="file" class="form-control" placeholder="Requirement name" aria-label="Requirement name" />
-              </div>
+                <input type="file" class="form-control" aria-label="Attachment file" />
+              </div>  
 
               <div class="d-flex mb-3">
                 <div class="ps-3 pe-3 ms-4 d-flex btn save-btn" type="submit">Save</div>
@@ -101,7 +98,6 @@
             </div>
           </div>
         </form>
-
         <hr />
       </div>
     </div>
@@ -140,15 +136,10 @@
   </div>
 </div>
 
-<!-- Bootstrap JavaScript Libraries -->
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-  integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-  
-<script src="/scripts/management/attachment.js"></script>
-
 {{#section "head"}}
 <title>Attachment</title>
 {{/section}}
 
 {{#section "script"}}
+<script src="/scripts/management/attachment.js"></script>
 {{/section}}
