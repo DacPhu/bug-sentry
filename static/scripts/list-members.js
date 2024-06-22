@@ -22,13 +22,13 @@ document.addEventListener('DOMContentLoaded', function () {
     memberItems.forEach((item, index) => {
       if (filteredMembers.includes(item)) {
         if (id >= startIndex && id < endIndex) {
-          item.style.display = "";
+          item.classList.remove('d-none'); // Xóa lớp để hiển thị
         } else {
-          item.style.display = "none";
+          item.classList.add('d-none'); // Xóa lớp để hiển thị
         }
         id++; 
       } else {
-        item.style.display = "none";
+        item.classList.add('d-none'); // Xóa lớp để hiển thị
       }
     });
     paginationInfo.innerText = `Showing ${startIndex + 1} to ${Math.min(
