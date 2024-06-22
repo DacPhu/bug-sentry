@@ -4,7 +4,6 @@ const controller = {};
 const models = require("../models");
 
 controller.showAll = async (req, res) => {
-  console.log(req.session);
   try {
     const projectId = req.params.id;
     const modules = await models.Module.findAll({

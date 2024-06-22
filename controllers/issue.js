@@ -31,7 +31,6 @@ controller.showAll = async (req, res) => {
     issues = issues.sort((a, b) => {
       switch (sortType) {
         case "Priority":
-          console.log("HH1")
           return sortOrder === "Asc"
             ? a.priority.localeCompare(b.priority)
             : b.priority.localeCompare(a.priority);

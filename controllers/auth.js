@@ -4,7 +4,6 @@ const { User, Role, Member } = require("../models"); // Adjust according to your
 module.exports.signup = async (req, res) => {
   try {
     let { username, first_name, last_name, email, password, role } = req.body;
-    console.log(req.body)
     const hashedPassword = await bcrypt.hash(password, 10);
     if (!username) username = email;
     const newUser = await User.create({
@@ -27,7 +26,6 @@ module.exports.signup = async (req, res) => {
 module.exports.get_sign_up = async (req, res) => {
   try {
     const roles = await Role.findAll({ raw: true });
-    console.log(roles);
     res.render("register", { roles, layout: "home_layout" });
   }
   catch (error) {

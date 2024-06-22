@@ -12,7 +12,6 @@ controller.showAll = async (req, res) => {
         project_id: projectId
       },
     });
-    console.log(attachments)
     res.render("attachment", {
       layout: "main_layout",
       attachments: attachments

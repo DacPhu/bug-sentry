@@ -61,11 +61,6 @@ app.use(
     }),
   })
 );
-app.use((req, res, next) => {
-  console.log("---------------------TEST_UPLOAD", req);
-  console.log("---------------------TEST_UPLOAD");
-  next();
-});
 
 const csrfProtection = csrf({ cookie: true });
 
