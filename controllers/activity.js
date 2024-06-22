@@ -28,7 +28,6 @@ controller.showAll = async (req, res) => {
         },
       ],
     });
-    console.log(activities);
     res.render("activity_log", {
       layout: "main_layout",
       activities,

@@ -5,6 +5,7 @@ function notFoundHandler(req, res, next) {
 }
 
 function csrfErrorHandler(err, req, res, next) {
+  console.error(req);
   if (err.code === "EBADCSRFTOKEN") {
     res.status(403).send({ title: "Form Tampered With" });
   } else {

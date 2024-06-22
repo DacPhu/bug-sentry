@@ -3,9 +3,7 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.addColumn('issues', 'status', {
-      type: Sequelize.INTEGER,
-      allowNull: true, 
-      defaultValue: 0
+      type: Sequelize.STRING, allowNull: true, defaultValue: 'open' 
     });
 
     await queryInterface.addColumn('issues', 'priority', {

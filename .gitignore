@@ -2,3 +2,4 @@
 .vscode/*
 node_modules
 servers/node_modules/*
+private

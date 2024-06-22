@@ -71,6 +71,18 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(middlewares.logMiddleware);
+
+const controller = require("./controllers/api/v1/attachment");
+const upload = require("./middlewares/upload");
+
+
+app.post(
+  "/api/v1/attachment/upload",
+  upload.single("file"),
+  csrfProtection,
+  controller.uploadFile
+);
+
 app.use(csrfProtection);
 app.use((req, res, next) => {
   res.locals.csrfToken = req.csrfToken();

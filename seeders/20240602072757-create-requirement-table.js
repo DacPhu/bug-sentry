@@ -25,7 +25,8 @@ module.exports = {
       requirements.push({
         project_id: randomMember.project_id,
         name: `Requirement ${i + 1}`,
-        description_url: `http://example.com/${i + 1}`,
+        url: `http://example.com/${i + 1}`,
+        description: `Description for requirement ${i + 1}`,
         created_by: randomMember.id,
         created_at: Sequelize.literal('CURRENT_TIMESTAMP'),
         
