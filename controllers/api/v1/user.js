@@ -68,4 +68,46 @@ controller.getAllUsers = async (req, res) => {
   }
 };
 
+controller.editUser = async (req, res) => {
+  try {
+    const file_avatar = req.avatar;
+    const first_name = req.body.first_name;
+    const last_name = req.body.last_name;
+    const address = req.body.address;
+    const phone = req.body.phone;
+    const birth_date = req.body.birth_date;
+
+    const uploadDir = path.join(__dirname, "../../../private/avatar/uploads");
+
+    if (!fs.existsSync(uploadDir)) {
+      fs.mkdirSync(uploadDir);
+    }
+
+    const filePath = path.join(uploadDir, `${req.params.id}_avatar`);
+    fs.writeFileSync(filePath, file_avatar.buffer);
+    const user = await models.User.update(
+      {
+        first_name,
+        last_name,
+        address,
+        phone,
+        birth_date,
+        avatar: filePath,
+      },
+      {
+        where: { id: req.params.id },
+      }
+    );
+    if (user[0] === 0) {
+      return res.status(404).json({ message: "User not found" });
+    } else {
+      return res.redirect(`/profile/edit-profile`);
+    }
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ message: "Internal server error", error: error.message });
+  }
+};
+
 module.exports = controller;
