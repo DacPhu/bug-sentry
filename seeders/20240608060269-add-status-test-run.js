@@ -9,7 +9,8 @@ module.exports = {
         });
         const MAX_STATUS = 4;
         for (const testRun of testRuns) {
-            const randomStatus = Math.floor(Math.random() * MAX_STATUS);
+            const status = ['passed', 'failed', 'retested', 'untested']
+            const randomStatus = status[Math.floor(Math.random() * MAX_STATUS)];
             try {
                 await testRun.update({ status: randomStatus});
             } catch (error) {

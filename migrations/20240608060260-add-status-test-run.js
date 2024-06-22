@@ -3,9 +3,7 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.addColumn('test_runs', 'status', {
-      type: Sequelize.INTEGER,
-      allowNull: true, 
-      defaultValue: 0
+       type: Sequelize.STRING, allowNull: true, defaultValue: "untested" 
     });
   },
   down: async (queryInterface, Sequelize) => {
