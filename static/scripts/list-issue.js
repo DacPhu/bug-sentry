@@ -64,13 +64,26 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  // Hàm cập nhật URL với các tham số mới và reload trang
+  function initDropdown() {
+    var urlParams = new URLSearchParams(window.location.search);
+    const savedSortType = urlParams.get('sortType');
+    const savedSortOrder = urlParams.get('sortOrder');
+
+    if (savedSortType) {
+      sortTypeDropdown.textContent = savedSortType;
+    }
+
+    if (savedSortOrder) {
+      sortOrderDropdown.textContent = savedSortOrder;
+    }
+  }
+
   function updateURLParams(sortType, sortOrder) {
     var url = new URL(window.location.href);
     url.searchParams.set('sortType', sortType);
     url.searchParams.set('sortOrder', sortOrder);
     
-    // Reload trang với URL mới
+
     window.location.href = url.toString();
   }
   dropdownItems.forEach(function(item) {
@@ -79,16 +92,17 @@ document.addEventListener("DOMContentLoaded", function () {
       console.log(selectedText)
       var dropdownToggle = item.closest('.dropdown').querySelector('.dropdown-toggle');
       
-      // Cập nhật nội dung của toggle dropdown thành nội dung của mục được nhấp
+
       dropdownToggle.textContent = selectedText;
       var selectedSortType = sortTypeDropdown.textContent.trim();
       var selectedSortOrder = sortOrderDropdown.textContent.trim();
       console.log(selectedSortType, selectedSortOrder)
-    // Cập nhật URL với các tham số mới
+
       updateURLParams(selectedSortType, selectedSortOrder);
     });
   });
-  // Initial display
+
+  initDropdown()
   updateDisplay();
   
 });
