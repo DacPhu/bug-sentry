@@ -1,3 +1,4 @@
+
 var targetModule = "";
 var sortField = "id";
 var totalPage = 1;
@@ -123,6 +124,10 @@ const API = {
             .then(data => {
                 console.log('Success:', data);
                 $.notify("Test cases linked successfully", "success");
+                setTimeout(() => {
+                    location.reload();
+                }
+                    , 2000);
             })
             .catch((error) => {
                 console.error('Error:', error);
@@ -176,7 +181,7 @@ const renderer = {
         if (totalPages <= 1) {
             $("#paginationCont").hide();
             // remove class d-flex
-            
+
         } else {
             $("#paginationCont").show();
         }

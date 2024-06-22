@@ -3,6 +3,9 @@ const { User, Role, Member } = require("../models"); // Adjust according to your
 
 module.exports.signup = async (req, res) => {
   try {
+    if (req.session && req.session.userId) {
+      return res.redirect("/project");
+    }
     let { username, first_name, last_name, email, password, role } = req.body;
     const hashedPassword = await bcrypt.hash(password, 10);
     if (!username) username = email;
@@ -25,6 +28,9 @@ module.exports.signup = async (req, res) => {
 
 module.exports.get_sign_up = async (req, res) => {
   try {
+    if (req.session && req.session.userId) {
+      return res.redirect("/project");
+    }
     const roles = await Role.findAll({ raw: true });
     res.render("register", { roles, layout: "home_layout" });
   }
@@ -34,6 +40,12 @@ module.exports.get_sign_up = async (req, res) => {
   }
 };
 
+module.exports.get_login = async (req, res) => {
+  if (req.session && req.session.userId) {
+    return res.redirect("/project");
+  }
+  res.render("login",{ layout: "home_layout" });
+};
 
 module.exports.login = async (req, res) => {
   try {

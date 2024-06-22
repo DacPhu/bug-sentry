@@ -112,7 +112,7 @@
                             <a href="./requirement/{{this.id}}">
                               <img src="/icons/mdi_eye-outline.svg" alt="" />
                             </a>
-                            <img src="/icons/edit.svg" alt="" />
+                            <img src="/icons/edit.svg" alt=""  onclick="editRequirement({{this.id}}, '{{description}}', '{{url}}', '{{name}}', '{{module_id}}')" />
 
                             <img src="/icons/bin-red.svg" alt="" onclick="confirmDelete({{this.id}})" />
                           </div>
@@ -222,6 +222,7 @@
 </div>
 
 
+{{!-- delete confirm --}}
 <div class="modal fade" id="deleteConfirmationModal" tabindex="-1" aria-labelledby="deleteConfirmationModalLabel"
   aria-hidden="true">
   <div class="modal-dialog">
@@ -252,6 +253,66 @@
     </div>
   </div>
 </div>
+
+
+
+
+<div id="editReqPopup"  class=" vh-100 position-absolute overlay top-0 bottom-0 start-0 end-0" style="display: none" >
+  <div style="max-width: none;" class=" d-flex justify-content-center align-items-center w-100 position-absolute top-0 bottom-0 start-0 end-0">
+    <!-- main content -->
+    <div class="w-75 shadow bg-white">
+      <div class="m-4 mt-2 bg-white semi-rounded">
+        <div class="container p-4 position-relative">
+          <img class="closePopup position-absolute top-0 end-0 pointer-cursor" width="30px"
+            src="/icons/clarity_remove-line.svg" alt="" />
+          <h6  class="text-left fs-4">Edit Requirement</h6>
+          <form id="requirementForm" action="./requirement/edit" method="post">
+            <div class="d-flex flex-column justify-content-between align-items-center">
+              <div id="actions-add-requirement" class="d-flex mb-3">
+                <button id="saveRequirement" class="ps-3 pe-3 ms-4 d-flex btn custom-btn save-btn" type="submit">
+                  Save</button>
+                <div class="closePopup btn custom-btn text-center ps-3 pe-3 ms-4 cancel-btn">Cancel</div>
+              </div>
+              <div id="action-load-requirement" style="display: none;" class="spinner-border mb-3" role="status">
+                <span class="visually-hidden">Loading...</span>
+              </div>
+              <span  class="fs-6 font-weight-semibold"> Module </span>
+              <div class="input-group mb-3 w-50">
+                <input id="module-name" type="text" class="form-control" placeholder="Requirement name" aria-label="Requirement name"
+                  disabled="true" />
+              </div>
+
+              <input name="id" type="text" class="form-control" hidden="true" placeholder="Requirement name" aria-label="Requirement name"
+                  />
+              <span class="fs-6 font-weight-semibold">Requirement Name <span class="text-danger">*</span></span>
+              <div class="input-group mb-3 w-50">
+                <input type="text" class="form-control" placeholder="Requirement name" aria-label="Requirement name"
+                  name="name" />
+              </div>
+
+              <span class="fs-6 font-weight-semibold">Description<span class="text-danger"></span></span>
+              <div class="input-group w-50">
+                <textarea class="form-control" aria-label="With textarea" name="description"></textarea>
+              </div>
+
+              <input type="hidden" name="_csrf" value="{{csrfToken}}">
+
+              <span class="fs-6 font-weight-semibold">URL </span>
+              <div class="input-group mb-3 w-50">
+                <input type="text" class="form-control" aria-label="URL" name="url" />
+              </div>
+
+            </div>
+          </form>
+
+        </div>
+        <hr />
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <!-- Bootstrap JavaScript Libraries -->
 {{#section "scripts"}}
 <script>
@@ -306,10 +367,28 @@
 
 
   function confirmDelete(id) {
-
+    
     $("#deleteConfirmationModal").modal("show");
     $("#deleteConfirmationModal").data("requirement_id", id);
   }
+
+    function editRequirement(id,description, url, name, module) {
+
+    $("#editReqPopup").fadeIn(200);
+    $("#editReqPopup").data("requirement_id", id);
+    moduleName = modules.find((m) => m.id == module).name;
+
+    $("#editReqPopup").data("requirement_module", moduleName);
+    $("#editReqPopup #module-name").val("Module " +moduleName);
+    $("#editReqPopup [name=name]").val(name);
+    $("#editReqPopup  [name=url]").val(url);
+    $("#editReqPopup  [name=description]").val(description);
+    $("#editReqPopup  [name=id]").val(id);
+
+    
+
+  }
+
 
   function deleteConfirmed() {
     // having input _csrf  in body and ajax request
@@ -341,6 +420,8 @@
     //
 
   }
+  const modules = JSON.parse(`{{{JSON modules}}}`);
+  console.log(modules);
 </script>
 
 <script src="/scripts/add-requirement.js"></script>

@@ -188,12 +188,64 @@ controller.createRequirement = async (req, res) => {
       url,
       created_by: req.session.memberId
     });
-    req.flash("success", `Tạo requirement ${requirement.name} thành công!`);
+
+    
+    models.Activity.create({
+      project_id: projectId,
+      user_id: req.session.userId,
+      title_name: `Create requirement ${requirement.name}`,
+      member_id: req.session.memberId,
+      action: 'create',
+      time : new Date()
+    });
+
+
+
+    req.flash("success", `Create requirement ${requirement.name} successfully!`);
     res.redirect(`/project/${projectId}/requirement`);
   } catch (error) {
     console.error("Error creating requirement:", error);
     req.flash("error", "An error occurred while creating requirement.");
     res.status(500).send("An error occurred while creating requirement.");
+  }
+}
+
+controller.editRequirement = async (req, res) => {
+  try {
+    const id = req.body.id;
+    var projectId = req.params.id;
+    const name = req.body.name;
+    const description = req.body.description ?? '';
+    const url = req.body.url ?? '';
+    const requirement = await models.Requirement.findOne({
+      where: {
+        id: id,
+        project_id: projectId
+      }
+    });
+    
+    if (!requirement) {
+      return res.status(404).send("Requirement not found");
+    }
+    requirement.name = name;
+    requirement.description = description;
+    requirement.url = url;
+    await requirement.save();
+
+    models.Activity.create({
+      project_id: projectId,
+      user_id: req.session.userId,
+      title_name: `Edit requirement ${requirement.name}`,
+      member_id: req.session.memberId,
+      action: 'edit',
+      time : new Date()
+    });
+    req.flash("success", `Edit requirement ${requirement.name} successfully!`);
+    res.redirect(`/project/${projectId}/requirement`);
+  } catch (error) {
+    console.error("Error creating requirement:", error);
+    req.flash("error", "An error occurred while editting requirement.");
+    res.redirect(`/project/${projectId}/requirement`);
   }
 }
 
@@ -212,7 +264,19 @@ controller.deleteRequirement = async (req, res) => {
       return res.status(404).send("Requirement not found");
     }
     await requirement.destroy();
-    req.flash("success", `Xóa requirement ${requirement.name} thành công!`);
+
+
+    models.Activity.create({
+      project_id: projectId,
+      user_id: req.session.userId,
+      title_name: `Delete requirement ${requirementId}`,
+      member_id: req.session.memberId,
+      action: 'delete',
+      time : new Date()
+    });
+
+
+    req.flash("success", `Delete requirement ${requirement.name} successfully!`);
     res.status(204).send();
   } catch (error) {
     console.error("Error deleting requirement:", error);
@@ -254,6 +318,21 @@ controller.addLinkedTestCasesAPI = async (req, res) => {
     // Link test cases to the requirement by requirement_test_cases table
     await requirement.addTestCases(testCaseInstances);
     console.log("done add",requirement.addTestCases);
+
+
+    
+    models.Activity.create({
+      project_id: projectId,
+      user_id: req.session.userId,
+      title_name: `Link test case ${JSON.stringify(testcases)} to requirement ${requirementId}`,
+      member_id: req.session.memberId,
+      action: 'create',
+      time : new Date()
+    });
+
+
+
+    res.status(200).json({ message: 'Linked test cases successfully'});
   } catch (error) {
     console.error("Error add linked testcases:", error);
     res.status(500).send("An error occurred while fetching linked testcases.");
@@ -276,6 +355,18 @@ controller.removeLinkedTestCaseAPI = async (req, res) => {
     }
 
     await requirementTestCase.destroy();
+
+
+    models.Activity.create({
+      project_id: projectId,
+      user_id: req.session.userId,
+      title_name: `Unlink test case ${testcase_id} from requirement ${requirementId}`,
+      member_id: req.session.memberId,
+      action: 'delete',
+      time : new Date()
+    });
+
+
     res.status(204).send();
   } catch (error) {
     console.error("Error unlink test case:", error);
