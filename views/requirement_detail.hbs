@@ -154,23 +154,33 @@
                     </table>
 
                     <!-- pagination -->
-                    <div class="d-flex justify-content-end p-3">
-                      <img
-                        width="20px"
-                        src="/icons/arrow-left.svg"
-                        alt=""
-                        srcset=""
-                      />
-                      <span
-                        class="p-1 m-2 ps-2 pe-2 rounded-circle bg-green-dark"
-                        >1</span
-                      >
-                      <img
-                        width="20px"
-                        src="/icons/arrow-right.svg"
-                        alt=""
-                        srcset=""
-                      />
+                   <!-- pagination -->
+                  {{#if (greaterThan totalPages 1)}}
+                  <div class="row mt-5 align-content-center px-3">
+                    <div class="col"></div>
+                    <div class="col d-flex align-items-center">
+
+                      {{#if (notEquals page 1)}}
+                      <button class="border-0 rounded-3 p-2 text-muted ms-auto">
+                        <a href="?&size={{size}}&page={{dec page }}&link-page=true">
+                          <i class="bi bi-chevron-double-left"></i>
+                        </a>
+                      </button>
+                      {{/if}}
+                      <div class="bg-main-color rounded-circle d-flex justify-content-center align-items-center mx-3"
+                        style="width: 30px; height: 30px">
+                        <h1 class="mb-0 text-light" style="font-size: 1.2rem">{{page}}</h1>
+                      </div>
+                      {{#if (lessThan page totalPages)}}
+                      <button class="border-0 rounded-3 p-2 text-muted me-3">
+                        <a href="?&size={{size}}&page={{inc page}}&link-page=true">
+                          <i class="bi bi-chevron-double-right"></i>
+                        </a>
+                      </button>
+                      {{/if}}
+                    </div>
+                  </div>
+                  {{/if}}
                     </div>
                   </div>
                 </div>
@@ -211,12 +221,18 @@
           });
 
           $("#linkedTCNav").click(function () {
+            showLinkedTC()
+          });
+          if (window.location.search.includes("link-page=true")) {
+            showLinkedTC()
+          }
+
+          function showLinkedTC() {
             $("#detailReq").hide(); // fades it in
             $("#linkedTestCases").fadeIn(300);
-
             $("#linkedTCNav").attr("class", "p-2 font-weight-semibold");
             $("#detailReqNav").attr("class", "p-2 font-color-blur");
-          });
+          }
         });
       });
     </script>

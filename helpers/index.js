@@ -22,6 +22,9 @@ module.exports = {
     weakEquals: function(a, b) {
         return a == b;
     },
+    JSON: function(a) {
+        return JSON.stringify(a);
+    },
     notEquals: function(a, b) {
         return a != b;
     },

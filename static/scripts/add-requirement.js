@@ -10,6 +10,7 @@
     $(function () {
         $(".closePopup").click(function () {
             $("#addReqPopup").hide();
+            $("#editReqPopup").hide();
         });
         $("#saveRequirement").click(function (e) {
             e.preventDefault();
