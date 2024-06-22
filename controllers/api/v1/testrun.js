@@ -89,21 +89,19 @@ controller.getAllTestRuns = async (req, res) => {
     }
 };
 controller.editTestRun = async(req, res) => {
-    console.log(req.body)
-    const { projectId, title, assignedTo, testCase, release } = req.body;
-    const createdBy = req.session.userId
+    const { projectId, title, assignedTo, testCase, release, status } = req.body;
+    console.log(projectId, title, assignedTo, testCase, release, status)
     const id = req.params.id
-    console.log(projectId, title, assignedTo, testCase, release)
-    console.log(id, createdBy)
     try {
         const testRun = await models.TestRun.findByPk(id);
-        testRun.project_id = projectId;
-        testRun.name = title;
-        testRun.tester_id = assignedTo;
-        testRun.test_case_id = testCase;
-        testRun.release_id = release;
+        if (projectId !== undefined) testRun.project_id = projectId;
+        if (title !== undefined) testRun.name = title;
+        if (assignedTo !== undefined) testRun.tester_id = assignedTo;
+        if (testCase !== undefined) testRun.test_case_id = testCase;
+        if (release !== undefined) testRun.release_id = release;
+        if (status !== undefined) testRun.status = status;
+        
         await testRun.save();
-
         console.log('Test Run updated:', testRun.toJSON());
         return res.status(200).json(testRun);
     } catch (error) {

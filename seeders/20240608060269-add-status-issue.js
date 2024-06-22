@@ -10,8 +10,9 @@ module.exports = {
         const MAX_STATUS = 4;
         for (const issue of issues) {
             const priority = ['critical', 'high', 'medium', 'low']
+            const status = ['open', 'in progress', 'resolved', 'closed']
             const randomPriority = priority[Math.floor(Math.random() * priority.length)];
-            const randomStatus = Math.floor(Math.random() * MAX_STATUS);
+            const randomStatus = status[Math.floor(Math.random() * MAX_STATUS)];
             try {
                 await issue.update({ priority: randomPriority, status: randomStatus});
             } catch (error) {
@@ -21,6 +22,6 @@ module.exports = {
     },
 
     async down(queryInterface, Sequelize) {
-        // No need for down migration as it doesn't revert any changes
+        await queryInterface.bulkDelete('issues', null, {});
     }
 };

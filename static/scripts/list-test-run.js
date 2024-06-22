@@ -17,17 +17,18 @@ document.addEventListener("DOMContentLoaded", function () {
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
     console.log(startIndex, endIndex);
+    console.log(filteredTestRuns)
     let id = 0;
     testRunItems.forEach((item) => {
       if (filteredTestRuns.includes(item)) {
         if (id >= startIndex && id < endIndex) {
-          item.style.display = "";
+          item.classList.remove('d-none'); // Xóa lớp để hiển thị
         } else {
-          item.style.display = "none";
+          item.classList.add('d-none'); // Xóa lớp để hiển thị
         }
         id++;
       } else {
-        item.style.display = "none";
+        item.classList.add('d-none'); // Thêm lớp để ẩn
       }
     });
     paginationInfo.innerText = `Showing ${startIndex + 1} to ${Math.min(

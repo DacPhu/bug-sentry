@@ -53,6 +53,10 @@ controller.showAll = async (req, res) => {
           model: models.TestCase,
           required: false,
         },
+        {
+          model: models.Release,
+          required: false,
+        },
       ],
     });
     console.log(members);

@@ -14,7 +14,6 @@ module.exports = (sequelize, DataTypes) => {
       user_id: { type: DataTypes.INTEGER, allowNull: false },
       project_id: DataTypes.INTEGER,
       title_name: DataTypes.STRING,
-      link : DataTypes.STRING,
       action: { type: DataTypes.STRING, validate: { isIn: [['edit', 'add', 'create', 'delete']] } },
       time: { type: DataTypes.DATE, allowNull: false, defaultValue: sequelize.literal('CURRENT_TIMESTAMP') },
     },
