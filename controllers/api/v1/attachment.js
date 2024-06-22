@@ -5,6 +5,12 @@ const models = require("../../../models");
 const fs = require("fs");
 const path = require("path");
 
+const uploadDir = path.join(__dirname, "../../../private/attachment/uploads");
+
+if (!fs.existsSync(uploadDir)) {
+  fs.mkdirSync(uploadDir, { recursive: true });
+}
+
 controller.getAttachments = async (req, res) => {
   const name = req.query.keyword | "";
   const projectId = req.query.projectId | 0;
@@ -72,16 +78,22 @@ controller.uploadFile = async (req, res) => {
     const attachment_name = req.body.name;
     const project_id = req.session.projectId;
 
+    console.log("SESSION", req.session);
+
     if (!file) {
       return res.status(400).json({ message: "No file uploaded" });
     }
+    const uploadDir = path.join(
+      __dirname,
+      "../../../private/attachment/uploads"
+    );
 
-    const uploadDir = path.join(__dirname, "private/attachment/uploads");
     if (!fs.existsSync(uploadDir)) {
       fs.mkdirSync(uploadDir);
     }
     const filePath = path.join(uploadDir, file.originalname);
     fs.writeFileSync(filePath, file.buffer);
+
     const attachment = await models.Attachment.create({
       project_id: project_id,
       name: attachment_name,
@@ -89,9 +101,7 @@ controller.uploadFile = async (req, res) => {
       type: file.mimetype,
     });
 
-    return res
-      .status(200)
-      .json({ message: "File uploaded successfully", attachment });
+    res.redirect(`/project/${project_id}/attachment`);
   } catch (error) {
     return res
       .status(500)
