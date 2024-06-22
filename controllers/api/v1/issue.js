@@ -83,7 +83,7 @@ controller.addIssue = async (req, res) => {
       member_id
     });
     console.log('Test Run created:', newIssue.toJSON());
-    res.redirect(`/project/${project_id}/testrun`)
+    res.redirect(`/project/${project_id}/issue`)
   } catch (error) {
     console.error("Error adding issue:", error);
     res.send("Can not add issue!");
@@ -114,15 +114,21 @@ controller.editIssue = async (req, res) => {
   }
 };
 
-
-controller.deleteIssue = async (req, res) => {
+controller.deleteIssue = async(req, res) => {
+  console.log(req.params.id)
   try {
-    await models.Issue.destroy({ where: { id: parseInt(req.params.id) } });
-    res.send("Issue deleted!");
+      const issue = await models.Issue.findByPk(req.params.id)
+      if (!issue) {
+          return res.status(404).send("Issue not found");
+      }
+      await issue.destroy();
+      req.flash("success", `Delete Issue ${issue.name} successfully!`);
+      res.status(204).send();
   } catch (error) {
-    res.status(401).send("Can not delete issue!");
-    console.error(error);
+      return res
+      .status(500)
+      .json({ message: "Internal server error", error: error.message });
   }
-};
+}
 
 module.exports = controller;
