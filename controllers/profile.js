@@ -8,7 +8,7 @@ controller.showEditProfileForm = async (req, res) => {
 
   try {
     const user = await models.User.findByPk(userId);
-    console.log(user)
+    console.log(user);
     res.render("editProfile", { user });
   } catch (error) {
     console.error(error);
@@ -16,7 +16,15 @@ controller.showEditProfileForm = async (req, res) => {
 };
 
 controller.showEditPasswordForm = async (req, res) => {
-  res.render("editPassword");
+  const userId = req.session.userId;
+
+  try {
+    const user = await models.User.findByPk(userId);
+    console.log(user);
+    res.render("editPassword", { user });
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
 };
 
 module.exports = controller;

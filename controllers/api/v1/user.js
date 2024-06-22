@@ -2,6 +2,7 @@
 
 const controller = {};
 const models = require("../../../models");
+const bcrypt = require("bcryptjs");
 
 controller.getUsers = async (req, res) => {
   const email = req.query.email;
@@ -68,7 +69,7 @@ controller.getAllUsers = async (req, res) => {
   }
 };
 
-controller.editUser = async (req, res) => {
+controller.editUserInfo = async (req, res) => {
   try {
     const file_avatar = req.avatar;
     const first_name = req.body.first_name;
@@ -102,6 +103,50 @@ controller.editUser = async (req, res) => {
       return res.status(404).json({ message: "User not found" });
     } else {
       return res.redirect(`/profile/edit-profile`);
+    }
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ message: "Internal server error", error: error.message });
+  }
+};
+
+controller.editUserPassword = async (req, res) => {
+  try {
+    const newPassword = req.body.new_password;
+    const userId = req.body.id;
+
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+    const user = await models.User.update(
+      {
+        password: hashedPassword,
+      },
+      {
+        where: { id: userId },
+      }
+    );
+    if (user[0] === 0) {
+      return res.status(404).json({ message: "User not found" });
+    } else {
+      return res.redirect(`/profile/edit-password`);
+    }
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ message: "Internal server error", error: error.message });
+  }
+};
+
+controller.checkPassword = async (req, res) => {
+  const currentPassword = req.body.currentPassword;
+  const userId = req.session.userId;
+  try {
+    const user = await models.User.findByPk(userId);
+    const isMatch = await bcrypt.compare(currentPassword, user.password);
+    if (isMatch) {
+      return res.status(200).json({ valid: true });
+    } else {
+      return res.status(200).json({ valid: false });
     }
   } catch (error) {
     return res
