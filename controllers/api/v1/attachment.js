@@ -98,7 +98,7 @@ controller.uploadFile = async (req, res) => {
       project_id: project_id,
       name: attachment_name,
       path: filePath,
-      type: file.mimetype,
+      type: path.extname(file.originalname).substring(1),
     });
 
     res.redirect(`/project/${project_id}/attachment`);
@@ -120,7 +120,8 @@ controller.deleteAttachment = async (req, res) => {
 
     fs.unlinkSync(attachment.path);
     await attachment.destroy();
-    return res.status(200).json({ message: "Attachment deleted successfully" });
+    req.flash("success", `Delete attachment ${attachment.name} successfully!`);
+    res.status(204).send();
   } catch (error) {
     return res
       .status(500)

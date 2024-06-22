@@ -43,7 +43,7 @@
                           <img src="/icons/download.svg" alt="Download"/>
                         </a>
 
-                        <img role="button" src="/icons/bin-red.svg" alt="Delete" data-bs-toggle="modal" data-bs-target="#deleteAttachmentModal"/>
+                        <img role="button" src="/icons/bin-red.svg" alt="Delete" data-bs-toggle="modal" data-bs-target="#deleteAttachmentModal" onclick="confirmDelete({{id}})"/>
                       </div>
                       <img width="100px" src="/icons/{{type}}.svg" alt="{{name}}" />
                       <div class="text-center">{{name}}</div>
@@ -143,5 +143,6 @@
 {{/section}}
 
 {{#section "scripts"}}
+<script> CSRF_TOKEN = "{{csrfToken}}"; </script>
 <script src="/scripts/management/attachment.js"></script>
 {{/section}}
