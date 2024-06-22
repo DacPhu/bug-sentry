@@ -411,7 +411,7 @@
 {{!-- Edit modal --}}
 <div class="modal fade" id="editTestRunModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog" role="document">
-        <form action="" id="editTestRunForm" onsubmit="editTestRun(event)">
+        <form action="" id="editTestRunForm">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">
@@ -517,69 +517,64 @@
 </div>
 {{!-- Add Issue modal --}}
 <div class="modal fade" id="addIssueModal" tabindex="-1" aria-labelledby="addIssueModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="addIssueModalLabel">Add Issue</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addIssueModalLabel">Add Issue</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <!-- Form for adding new issue -->
+        <form id="addIssueForm" action="/api/v1/issue" method="POST">
+          <div class="modal-body">
+            <input type="hidden" name="_csrf" value="{{csrfToken}}">
+            <div class="row">
+              <div class="col">
+                <div class="mb-3">
+                  <label for="issueTitle" class="form-label">Issue Title <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" id="issueTitle" name="name" required>
+                </div>
+                <div class="mb-3">
+                  <label for="issueStatus" class="form-label">Status <span class="text-danger">*</span></label>
+                  <select class="form-select" id="issueStatus" name="status" required>
+                    <option value="open">Open</option>
+                    <option value="in progress">In Progress</option>
+                    <option value="resolved">Resolved</option>
+                    <option value="closed">Closed</option>
+                  </select>
+                </div>
+                <div class="mb-3">
+                  <label for="issuePriority" class="form-label">Priority <span class="text-danger">*</span></label>
+                  <select class="form-select" id="issuePriority" name="priority" required>
+                    <option value="low">Low</option>
+                    <option value="medium">Medium</option>
+                    <option value="high">High</option>
+                    <option value="critical">Critical</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col">
+                <div class="mb-3">
+                  <label for="issueDescription" class="form-label">Description</label>
+                  <textarea class="form-control" id="issueDescription" name="note" rows="8"></textarea>
+                </div>
+              </div>
             </div>
-            <div class="modal-body">
-                <!-- Form for adding new issue -->
-                <form id="addIssueForm" action="/your-endpoint" method="POST">
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="col">
-                                <div class="mb-3">
-                                    <label for="issueTitle" class="form-label">Issue Title <span
-                                            class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="issueTitle" name="title" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="issueStatus" class="form-label">Status <span
-                                            class="text-danger">*</span></label>
-                                    <select class="form-select" id="issueStatus" name="status" required>
-                                        <option value="open">Open</option>
-                                        <option value="in progress">In Progress</option>
-                                        <option value="resolved">Resolved</option>
-                                        <option value="closed">Closed</option>
-                                    </select>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="issuePriority" class="form-label">Priority <span
-                                            class="text-danger">*</span></label>
-                                    <select class="form-select" id="issuePriority" name="priority" required>
-                                        <option value="low">Low</option>
-                                        <option value="medium">Medium</option>
-                                        <option value="high">High</option>
-                                        <option value="critical">Critical</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="mb-3">
-                                    <label for="issueDescription" class="form-label">Description <span
-                                            class="text-danger">*</span></label>
-                                    <textarea class="form-control" id="issueDescription" name="description" rows="8"
-                                        required></textarea>
-                                </div>
-                            </div>
-                        </div>
 
-                        <div class="text-center text-danger" id="addIssueErrorMessage"></div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal"
-                            id="closeBtnEdit">
-                            Close
-                        </button>
-                        <button type="submit" class="btn btn-primary">
-                            Save
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
+            <div class="text-center text-danger" id="addIssueErrorMessage"></div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal" id="closeBtnEdit">
+              Close
+            </button>
+            <button type="submit" class="btn btn-primary">
+              Save
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
+  </div>
 </div>
 {{#section "scripts"}}
 <script>
