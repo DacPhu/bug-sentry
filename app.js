@@ -72,14 +72,22 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(middlewares.logMiddleware);
 
-const controller = require("./controllers/api/v1/attachment");
+const controller_attachment = require("./controllers/api/v1/attachment");
 const upload = require("./middlewares/upload");
 
 app.post(
   "/api/v1/attachment/upload",
   upload.single("file"),
   csrfProtection,
-  controller.uploadFile
+  controller_attachment.uploadFile
+);
+
+const controller_user = require("./controllers/api/v1/user");
+app.put(
+  "/api/v1/user",
+  upload.single("file"),
+  csrfProtection,
+  controller_user.editUserInfo
 );
 
 app.use(csrfProtection);

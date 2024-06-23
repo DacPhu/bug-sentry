@@ -21,8 +21,7 @@ async function editPassword(e) {
 
     if (response.status === 200) {
       alert("Update password successfully !");
-      location.reload();
-      //   window.location.href = "/logout";
+      window.location.href = "/logout";
     } else {
       let responseMessage = await response.text();
       throw new Error(responseMessage);
@@ -79,6 +78,12 @@ async function checkPasswordValid(e) {
       console.error("Error checking password: ", error);
     });
   if (check == false) {
+    return false;
+  }
+
+  if (newPassword === currentPassword) {
+    e.target.querySelector("#errorMessage").innerText =
+      "New password must be different from current password!";
     return false;
   }
 

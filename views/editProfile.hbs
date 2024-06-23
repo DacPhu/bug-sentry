@@ -9,9 +9,8 @@
             <div class="container bootstrap snippets bootdey">
                 <h1 class="text-primary-color">Edit Profile</h1>
                 <hr />
-                <form action="/api/v1/user" enctype="multipart/form-data"></form>
-                    <div class="bg-white row p-5">
-                    <!-- left column -->
+                
+                <div class="bg-white row p-5">
                     <div class="col-md-3">
                         <div class="text-center">
                         <img
@@ -20,136 +19,156 @@
                             alt="avatar"
                         />
                         <h6>Upload a different photo...</h6>
-                        <input type="file" name="avatar" class="form-control" />
+                        <input type="file" name="profile_picture" class="form-control" />
                         </div>
                     </div>
 
                     <!-- edit form column -->
                     <div class="col-md-9 personal-info">
-                        <div
-                        class="alert alert-info alert-dismissible fade show"
-                        role="alert"
-                        >
-                        This is an
-                        <strong>.alert</strong>. Use this to show important messages
-                        to the user.
-                        <button
-                            type="button"
-                            class="btn-close"
-                            data-bs-dismiss="alert"
-                            aria-label="Close"
-                        ></button>
-                        </div>
-                        <h3>Personal info</h3>
-                        <form class="row g-3">
-                        <div class="col-md-6">
-                            <label for="first-name" class="form-label"><span
-                                class="text-danger"
-                            >*</span>
-                            First name:</label>
-                            <input
-                            type="text"
-                            name="first_name"
-                            class="form-control"
-                            id="first-name"
-                            value="{{user.first_name}}"
-                            />
-                        </div>
-                        <div class="col-md-6">
-                            <label for="last-name" class="form-label">Last name:</label>
-                            <input
-                            type="text"
-                            name="last_name"
-                            class="form-control"
-                            id="last-name"
-                            value="{{user.last_name}}"
-                            />
-                        </div>
-                        <div class="col-md-6">
-                            <label for="company" class="form-label">Company:</label>
-                            <input
-                            type="text"
-                            name="company"
-                            class="form-control"
-                            id="company"
-                            value=""
-                            />
-                        </div>
-                        <div class="col-md-6">
-                            <label for="email" class="form-label">
-                            <span class="text-danger">*</span>
-                            Email:</label>
-                            <input
-                            type="email"
-                            name="email"
-                            class="form-control"
-                            id="email"
-                            value="{{user.email}}"
-                            />
-                        </div>
-                        <div class="col-md-6">
-                            <label for="birthday" class="form-label">Birthday:</label>
-                            <input type="date" name="birth_date" class="form-control" id="birthday" {{user.date_of_birth}}/>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="address" class="form-label">Address:</label>
-                            <input type="text" name="address" class="form-control" id="address" value="{{user.address}}"/>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="role" class="form-label">
-                            <span class="text-danger">*</span>
-                            Role:</label>
-                            <input
-                            type="text"
-                            class="form-control"
-                            id="role"
-                            value="Project Manager"
-                            disabled
-                            />
-                        </div>
-                        <div class="col-md-6">
-                            <label for="time-zone" class="form-label">Time Zone:</label>
-                            <select class="form-select" id="time-zone">
-                            <option value="Hawaii">(GMT-10:00) Hawaii</option>
-                            <option value="Alaska">(GMT-09:00) Alaska</option>
-                            <option value="Pacific Time (US & Canada)">
-                                (GMT-08:00) Pacific Time (US & Canada)
-                            </option>
-                            <option value="Arizona">(GMT-07:00) Arizona</option>
-                            <option value="Mountain Time (US & Canada)">
-                                (GMT-07:00) Mountain Time (US & Canada)
-                            </option>
-                            <option value="Central Time (US & Canada)" selected>
-                                (GMT-06:00) Central Time (US & Canada)
-                            </option>
-                            <option value="Eastern Time (US & Canada)">
-                                (GMT-05:00) Eastern Time (US & Canada)
-                            </option>
-                            <option value="Indiana (East)">
-                                (GMT-05:00) Indiana (East)
-                            </option>
-                            </select>
-                        </div>
-                        <div class="col-md-6 d-flex justify-content-center pt-5">
+                        <form action="/api/v1/user" enctype="multipart/form-data" id="editProfileForm" onsubmit="editProfile(event)">
+                            <input type="hidden" name="_csrf" value="{{csrfToken}}">
                             <div
-                            class="ps-3 pe-3 ms-4 d-flex btn save-btn"
-                            id="save-profile"
+                            class="alert alert-info alert-dismissible fade show"
+                            role="alert"
                             >
-                            Save
+                            This is an
+                            <strong>.alert</strong>. Use this to show important messages
+                            to the user.
+                            <button
+                                type="button"
+                                class="btn-close"
+                                data-bs-dismiss="alert"
+                                aria-label="Close"
+                            ></button>
                             </div>
-                            <div
-                            class="closePopup btn text-center ps-3 pe-3 ms-4 cancel-btn"
-                            >
-                            Cancel
+                            <h3>Personal info</h3>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="first-name" class="form-label"><span
+                                        class="text-danger"
+                                    >*</span>
+                                    First name:</label>
+                                    <input
+                                    type="text"
+                                    name="first_name"
+                                    class="form-control"
+                                    id="first-name"
+                                    value="{{user.first_name}}"
+                                    />
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="last-name" class="form-label">Last name:</label>
+                                    <input
+                                    type="text"
+                                    name="last_name"
+                                    class="form-control"
+                                    id="last-name"
+                                    value="{{user.last_name}}"
+                                    />
+                                </div>
                             </div>
-                        </div>
+                            
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="phone" class="form-label">Phone number:</label>
+                                    <input
+                                    type="text"
+                                    name="phone_number"
+                                    class="form-control"
+                                    id="phone_number"
+                                    value="{{user.phone_number}}"
+                                    />
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="email" class="form-label">
+                                    <span class="text-danger">*</span>
+                                    Email:</label>
+                                    <input
+                                    type="email"
+                                    name="email"
+                                    class="form-control"
+                                    id="email"
+                                    value="{{user.email}}"
+                                    disabled="true"
+                                    />
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="birthday" class="form-label">Birthday:</label>
+                                    <input type="date" name="date_of_birth" class="form-control" id="date_of_birth" value="{{formatDate user.date_of_birth "YYYY-MM-DD"}}"/>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="address" class="form-label">Address:</label>
+                                    <input type="text" name="address" class="form-control" id="address" value="{{user.address}}"/>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="role" class="form-label">
+                                    <span class="text-danger">*</span>
+                                    Role:</label>
+                                    <input
+                                    type="text"
+                                    class="form-control"
+                                    id="role"
+                                    value="Project Manager"
+                                    disabled
+                                    />
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="time-zone" class="form-label">Time Zone:</label>
+                                    <select class="form-select" id="time-zone">
+                                    <option value="Hawaii">(GMT-10:00) Hawaii</option>
+                                    <option value="Alaska">(GMT-09:00) Alaska</option>
+                                    <option value="Pacific Time (US & Canada)">
+                                        (GMT-08:00) Pacific Time (US & Canada)
+                                    </option>
+                                    <option value="Arizona">(GMT-07:00) Arizona</option>
+                                    <option value="Mountain Time (US & Canada)">
+                                        (GMT-07:00) Mountain Time (US & Canada)
+                                    </option>
+                                    <option value="Central Time (US & Canada)" selected>
+                                        (GMT-06:00) Central Time (US & Canada)
+                                    </option>
+                                    <option value="Eastern Time (US & Canada)">
+                                        (GMT-05:00) Eastern Time (US & Canada)
+                                    </option>
+                                    <option value="Indiana (East)">
+                                        (GMT-05:00) Indiana (East)
+                                    </option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="text-center text-danger badge" id="errorMessage"></div>
+                            <div class="col-md-12 d-flex justify-content-center pt-5">
+                                <button
+                                class="ps-3 pe-3 ms-4 d-flex btn save-btn"
+                                id="save-profile"
+                                type="submit"
+                                >
+                                Save
+                                </button>
+                                <div
+                                class="closePopup btn text-center ps-3 pe-3 ms-4 cancel-btn"
+                                >
+                                <a href="/profile" class="text-white" style="text-decoration: none;">Cancel</a>                           
+                                </div>
+                            </div>
                         </form>
                     </div>
-                    </div>
-                </form>
+                </div>
             </div>
             <hr />
         </div>
     </div>
     </div>
 </main>
+
+{{#section "scripts"}}
+    <script> const CSRF_TOKEN = "{{csrf_token}}" </script>
+    <script src="/scripts/management/profile.js"></script>
+{{/section}}

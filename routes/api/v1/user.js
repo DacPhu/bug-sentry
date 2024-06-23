@@ -9,7 +9,7 @@ router.get("/all", controller.getAllUsers);
 
 router.post("/check-password", controller.checkPassword);
 
-router.put("/edit-profile", controller.editUserInfo);
+// router.put("/", controller.editUserInfo);
 router.put("/edit-password", controller.editUserPassword);
 
 module.exports = router;
