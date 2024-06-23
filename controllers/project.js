@@ -6,9 +6,10 @@ const models = require("../models");
 
 controller.showAll = async (req, res) => {
   try {
-    console.log(req.session);
+    const projectIDs = Object.keys(req.session.projects)
+
     const projectsWithCounts = await models.Project.findAll({
-      where: { project_manager_id: req.session.userId },
+      where: { id: projectIDs},
       attributes: [
         "id",
         "name",
