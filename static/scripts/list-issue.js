@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const currentPageDisplay = document.getElementById("current-page");
   const sortTypeDropdown = document.getElementById('dropdownMenuType');
   const sortOrderDropdown = document.getElementById('dropdownIsAsc');
-  const itemsPerPage = 8;
+  const itemsPerPage = 5;
   let currentPage = 1;
   let filteredIssues = issueItems;
 

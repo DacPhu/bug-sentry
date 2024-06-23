@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const nextPageBtn = document.getElementById("next-page");
   const currentPageDisplay = document.getElementById("current-page");
 
-  const itemsPerPage = 3;
+  const itemsPerPage = 5;
 
   let releaseId = "All"
   let currentPage = 1;

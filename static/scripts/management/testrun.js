@@ -58,10 +58,10 @@ async function editTestRun(e) {
   }
 }
 function confirmDelete(id) {
-  $("#deleteTestRunModal").data("testrun_id", id);
+  $("#deleteIssueModal").data("testrun_id", id);
 }
 async function deleteConfirmed() {
-  const testrun_id = $("#deleteTestRunModal").data("testrun_id");
+  const testrun_id = $("#deleteIssueModal").data("testrun_id");
   console.log(testrun_id, CSRF_TOKEN)
   try {
     let res = await fetch(`/api/v1/testrun/${testrun_id}`, {
