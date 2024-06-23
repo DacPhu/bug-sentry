@@ -8,6 +8,6 @@ router.get("/", controller.getReleases);
 router.get("/all", controller.getAllReleases);
 router.post("/", controller.addRelease);
 router.put("/", controller.editRelease);
-router.delete("/", controller.deleteRelease);
+router.delete("/:id", controller.deleteRelease);
 
 module.exports = router;

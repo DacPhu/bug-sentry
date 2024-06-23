@@ -87,18 +87,16 @@ controller.getAllReleases = async (req, res) => {
 };
 
 controller.addRelease = async (req, res) => {
-  const {
-    project_id,
-    name,
-    start_date,
-    end_date,
-    description,
-    created_by,
-    created_at,
-  } = req.body;
+  const project_id = parseInt(req.session.projectId);
+  const name = req.body.name;
+  const start_date = req.body.startDate;
+  const end_date = req.body.endDate;
+  const description = req.body.description;
+  const created_by = req.session.memberId;
+  const created_at = currentTimestamp;
 
-  if (!project_id || !name || !created_by || !created_at) {
-    return res.status(400).message({ error: "Missing some fields" });
+  if (!name) {
+    return res.status(400).json({ message: "Missing some fields" });
   }
 
   try {
@@ -112,60 +110,49 @@ controller.addRelease = async (req, res) => {
       created_at,
     });
 
-    res.redirect("/:${project_id}/release");
+    res.redirect(`/project/${project_id}/release`);
   } catch (error) {
     console.error("Error adding release:", error);
     res.send("Can not add release!");
-    console.error(error);
   }
 };
 
 controller.editRelease = async (req, res) => {
-  const {
-    id,
-    project_id,
-    name,
-    start_date,
-    end_date,
-    description,
-    created_by,
-    created_at,
-  } = req.body;
+  const id = req.params.id;
+  const name = req.body.name;
+  const start_date = req.body.startDate;
+  const end_date = req.body.endDate;
+  const description = req.body.description;
 
   try {
-    const result = await models.Release.update(
-      {
-        project_id,
-        name,
-        start_date,
-        end_date,
-        description,
-        created_by,
-        created_at,
-      },
-      {
-        where: { id },
-      }
-    );
+    const release = await models.Release.findByPk(id);
 
-    if (result[0] > 0) {
-      res.status(200).send("Release updated successfully");
-    } else {
-      res.status(404).send("Release not found");
-    }
+    release.name = name;
+    release.start_date = start_date;
+    release.end_date = end_date;
+    release.description = description;
+
+    await release.save();
+    return res.status(200).send("Release updated successfully");
   } catch (error) {
-    res.status(401).send("Cannot update release!");
     console.error(error);
+    return res.status(401).send("Cannot update release!");
   }
 };
 
 controller.deleteRelease = async (req, res) => {
   try {
-    await models.Release.destroy({ where: { id: parseInt(req.params.id) } });
-    res.send("Release deleted!");
+    const release = await models.Release.findByPk(req.params.id);
+    if (!release) {
+      return res.status(404).send("Release not found");
+    }
+    await release.destroy();
+    req.flash("success", `Delete release ${release.name} successfully!`);
+    res.status(200).send("Release deleted successfully");
   } catch (error) {
-    res.status(401).send("Can not delete release!");
-    console.error(error);
+    return res
+      .status(500)
+      .json({ message: "Internal server error", error: error.message });
   }
 };
 

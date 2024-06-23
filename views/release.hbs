@@ -108,8 +108,8 @@
                             <hr />
                             <div class="d-flex justify-content-end">
                                 <div>
-                                <i class="bi bi-pencil-square"></i>
-                                <i class="bi bi-trash text-danger" data-id="{{id}}"></i>
+                                    <i role="button" class="bi bi-pencil-square" data-bs-toggle="modal" data-bs-target="#editReleaseModal" onclick="showEditReleaseModal(this)" data-id="{{id}}" data-name="{{name}}" data-start-date="{{startDate}}" data-end-date="{{endDate}}"></i>
+                                    <i role="button" class="bi bi-trash text-danger" data-bs-toggle="modal" data-bs-target="#deleteReleaseModal" onclick="confirmDelete({{id}})"></i>
                                 </div>
                             </div>
                             </div>
@@ -233,8 +233,8 @@
                             <hr />
                             <div class="d-flex justify-content-end">
                                 <div>
-                                <i class="bi bi-pencil-square"></i>
-                                <i class="bi bi-trash text-danger" data-id="{{id}}"></i>
+                                    <i role="button" class="bi bi-pencil-square" data-bs-toggle="modal" data-bs-target="#editReleaseModal" onclick="showEditReleaseModal(this)" data-id="{{id}}" data-name="{{name}}" data-start-date="{{startDate}}" data-end-date="{{endDate}}"></i>
+                                    <i role="button" class="bi bi-trash text-danger" data-bs-toggle="modal" data-bs-target="#deleteReleaseModal" onclick="confirmDelete({{id}})"></i>
                                 </div>
                             </div>
                             </div>
@@ -351,14 +351,13 @@
                                 <p>Start date: {{formatDate start_date "MMM DD YYYY"}}</p>
                                 <p>End date: {{formatDate end_date "MMM DD YYYY"}}</p>
                                 </div>
-                                {{!-- <div class="col-md-4"></div> --}}
                             </div>
 
                             <hr />
                             <div class="d-flex justify-content-end">
                                 <div>
                                     <i role="button" class="bi bi-pencil-square" data-bs-toggle="modal" data-bs-target="#editReleaseModal" onclick="showEditReleaseModal(this)" data-id="{{id}}" data-name="{{name}}" data-start-date="{{startDate}}" data-end-date="{{endDate}}"></i>
-                                    <i role="button" class="bi bi-trash text-danger" data-bs-toggle="modal" data-bs-target="#deleteReleaseModal"></i>
+                                    <i role="button" class="bi bi-trash text-danger" data-bs-toggle="modal" data-bs-target="#deleteReleaseModal" onclick="confirmDelete({{id}})"></i>
                                 </div>
                             </div>
                             </div>
@@ -394,10 +393,10 @@
     <!-- place footer here -->
 </footer>
 
- {{!-- Modal  --}}
+ {{!-- Add Modal  --}}
 <div class="modal fade" id="addReleaseModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog" role="document">
-    <form action="/release" id="addReleaseForm" method="POST">
+    <form action="/api/v1/release" id="addReleaseForm" method="POST">
         <div class="modal-content">
         <div class="modal-header">
             <h5 class="modal-title" id="releaseModalTitle">
@@ -406,24 +405,32 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
+            <input type="hidden" name="_csrf" value="{{csrfToken}}">
+       <input type="hidden" id="projectId" name="projectId" value="{{projectId}}">
             <div class="row g-2">
-            <div class="col mb-6">
-                <label for="name" class="form-label">Name</label>
-                <input type="text" id="name" name="name" class="form-control" placeholder="John"
-                required data-autofocus />
-            </div>
+                <div class="col mb-6">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" id="name" name="name" class="form-control" placeholder="John"
+                    required data-autofocus />
+                </div>
             </div>
             <div class="row g-2">
-            <div class="col mb-3">
-                <label for="startDate" class="form-label">Start Date</label>
-                <input type="date" id="startDate" name="startDate" class="form-control"/>
+                <div class="col mb-3">
+                    <label for="startDate" class="form-label">Start Date</label>
+                    <input type="date" id="startDate" name="startDate" class="form-control"/>
+                </div>
+                <div class="col mb-3">
+                    <label for="endDate" class="form-label">End Date</label>
+                    <input type="date" id="endDate" name="endDate" class="form-control"/>
+                </div>
             </div>
-            <div class="col mb-3">
-                <label for="endDate" class="form-label">End Date</label>
-                <input type="date" id="endDate" name="endDate" class="form-control"/>
+            <div class="row g-2">
+                <div class="col mb-3">
+                    <label for="description" class="form-label">Description</label>
+                    <textarea id="description" name="description" class="form-control" rows="3"></textarea>
+                </div>
             </div>
-            </div>
-            <div class="text-center badge bg-label-danger" id="errorMessage"></div>
+            <div class="text-center badge text-danger" id="errorMessage"></div>
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal" id="closeBtn">
@@ -439,7 +446,6 @@
 </div>
 
 {{!-- Modal Edit --}}
-
 <div class="modal fade" id="editReleaseModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <form action="" id="editReleaseForm" onsubmit="editRelease(event)">
@@ -451,6 +457,8 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
+            <input type="hidden" name="_csrf" value="{{csrfToken}}">
+            <input type="hidden" id="projectId" name="projectId" value="{{projectId}}">
             <div class="row g-2">
               <div class="col mb-6">
                 <label for="nameEdit" class="form-label">First Name</label>
@@ -467,6 +475,12 @@
                 <label for="endDateEdit" class="form-label">End Date</label>
                 <input type="date" id="endDateEdit" name="endDate" class="form-control"/>
               </div>
+            </div>
+            <div class="row g-2">
+                <div class="col mb-3">
+                    <label for="description" class="form-label">Description</label>
+                    <textarea id="description" name="description" class="form-control" rows="3"></textarea>
+                </div>
             </div>
             <div class="text-center badge bg-label-danger" id="errorMessage"></div>
           </div>
@@ -497,7 +511,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-                <button type="button" class="btn btn-danger" onclick="deleteUser()">Yes</button>
+                <button type="button" class="btn btn-danger" onclick="deleteConfirmed()">Yes</button>
             </div>
         </div>
     </div>
@@ -515,10 +529,13 @@
   </div>
 </div>
 
+{{#section "scripts"}}
+<script> const CSRF_TOKEN = "{{csrfToken}}";</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 <script src="/scripts/sort.js"></script>
 <script src="/scripts/list-release.js"></script>
 <script src="/scripts/management/release.js"></script>
-
+{{/section}}
 
 
 {{#section "head"}}

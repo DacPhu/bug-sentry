@@ -68,7 +68,6 @@ controller.addModule = async (req, res) => {
   const { name, projectId } = req.body;
 
   const createdBy = req.session.memberId;
-  console.log("PROJECT", projectId);
 
   if (!projectId || !name || !createdBy) {
     return res.status(400).json({ message: "Missing some fields" });
@@ -89,22 +88,19 @@ controller.addModule = async (req, res) => {
 };
 
 controller.editModule = async (req, res) => {
-  const { name, projectId } = req.body;
+  const { name } = req.body;
 
   const id = req.params.id;
-  const createdBy = req.session.userId;
-
-  if (!name) return res.status(404).json({ message: "Missing some fixed!" });
 
   try {
     const module = await models.Module.findByPk(id);
 
     module.name = name;
     await module.save();
-    res.status(200).send("Module updated successfully");
+    return res.status(200).send("Module updated successfully");
   } catch (error) {
-    res.status(401).send("Cannot update module!");
     console.error(error);
+    return res.status(401).send("Cannot update module!");
   }
 };
 
