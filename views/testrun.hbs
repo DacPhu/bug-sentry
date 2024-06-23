@@ -49,7 +49,7 @@
                 <div class="container-fluid bg-light mt-4 py-2">
                     <div class="align-items-center d-flex">
                         <div class="d-inline-block">
-                            <h5 class="ms-4 my-3">Show 3 Entries</h5>
+                            <h5 class="ms-4 my-3">Show 5 Entries</h5>
                         </div>
                         <div class="d-inline-block ms-auto" style="min-width: 500px">
                             <div class="input-group rounded">
@@ -91,7 +91,7 @@
                                 </option>
                                 <option value="failed" {{#if (equalsStr status 'failed' )}}selected{{/if}}>failed
                                 </option>
-                                <option value="success" {{#if (equalsStr status 'success' )}}selected{{/if}}>success
+                                <option value="passed" {{#if (equalsStr status 'passed' )}}selected{{/if}}>passed
                                 </option>
                                 <option value="retest" {{#if (equalsStr status 'retest' )}}selected{{/if}}>retest
                                 </option>

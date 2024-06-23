@@ -17,7 +17,6 @@ function showEditIssueModal(btn) {
   document.querySelector("#statusEdit").value = btn.dataset.status;
 }
 function showViewIssueModal(btn) {
-  console.log("HHHHH")
   document.querySelector("#viewIssueId").value = btn.dataset.id;
   document.querySelector("#viewIssueTitle").value = btn.dataset.name;
   document.querySelector("#viewIssueStatus").value = btn.dataset.status;
@@ -32,7 +31,7 @@ $('#editDescription').on('click', function() {
 });
 $('#editIssueForm').on('submit', async function(e) {
   e.preventDefault();
-  console.log("HIHIHI")
+
   const formData = new FormData(document.querySelector("#editIssueForm"));
   let data = Object.fromEntries(formData.entries());
   const csrfToken = data._csrf
@@ -57,26 +56,29 @@ $('#editIssueForm').on('submit', async function(e) {
 
 
 });
-
-
-async function deleteUser(id) {
+function confirmDelete(id) {
+  console.log(id)
+  $("#deleteIssueModal").data("issue_id", id);
+}
+async function deleteConfirmed(id) {
+ 
+  const issue_id = $("#deleteIssueModal").data("issue_id");
+  console.log(issue_id)
   try {
-    let res = await fetch(`/issue/${id}`, {
+    let res = await fetch(`/api/v1/issue/${issue_id}`, {
       method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRF-Token": CSRF_TOKEN,
+      },
     });
-
-    if (res.status == 200) {
+    if (res.status == 204) {
       location.reload();
     } else {
       let resText = await res.text();
-      throw Error(resText);
+      throw new Error(resText);
     }
   } catch (error) {
-    let toast = new bootstrap.Toast(document.querySelector(".toast"), {});
-    let toastBody = document.querySelector(".toast .toast-body");
-    toastBody.innerHTML = "Can not delete issue!";
-    toastBody.classList.add("text-danger");
-    toast.show();
     console.log(error);
   }
 }

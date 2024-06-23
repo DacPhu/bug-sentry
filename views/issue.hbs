@@ -36,7 +36,7 @@
       <div class="container-fluid bg-light mt-4 py-2">
 
         <div class="align-items-center d-flex">
-          <h5 class="ms-4 my-3">Show 8 issues</h5>
+          <h5 class="ms-4 my-3">Show 5 issues</h5>
 
           <div class="ms-auto" style="min-width: 50%">
             <div class="input-group rounded">
@@ -95,24 +95,34 @@
       </div>
       <div class="container-fluid bg-light py-3">
         {{#each issues}}
-        <div class="row issue-item" data-name="{{name}}">
+        <div class="row issue-item d-flex align-items-center" data-name="{{name}}">
           <div class="id-atribute col-md-1 text-color-1">{{id}}</div>
           <div class="col-md-2 text-color-1">{{name}}</div>
           <div class="col-md-2 text-color-1">{{Creator.User.first_name}} {{Creator.User.last_name}}</div>
-          <div class="col-md-2 text-color-1">{{status}}</div>
+          <div class="col-md-2 text-color-1">
+            <select class="form-select" data-id="{{id}}" onchange="updateStatus(this)" style="width: 150px;">
+              <option value="open" {{#if (equalsStr status 'open' )}}selected{{/if}}>open
+              </option>
+              <option value="in progress" {{#if (equalsStr status 'in progress' )}}selected{{/if}}>in progress
+              </option>
+              <option value="passed" {{#if (equalsStr status 'passed' )}}selected{{/if}}>passed
+              </option>
+              <option value="closed" {{#if (equalsStr status 'closed' )}}selected{{/if}}>closed
+              </option>
+            </select>
+          </div>
           <div class="priority-atribute col-md-1 text-color-1">{{priority}}</div>
           <div class="col-md-2 text-color-1">{{formatDate created_at "MMM DD YYYY MM:hh"}}</div>
           <div class="col text-color-1 d-flex">
-            <i role="button" class="bi bi-pencil me-3" data-bs-toggle="modal" data-bs-target="#editIssueModal"
-              onclick="showEditIssueModal(this)" data-id="{{id}}" data-name="{{name}}"
-              data-created-by="{{Creator.User.first_name}} {{Creator.User.last_name}}" data-status="{{status}}"></i>
-            <i role="button" class="bi bi-trash text-danger me-3" data-bs-toggle="modal"
-              data-bs-target="#deleteIssueModal"></i>
-            <i role="button" class="bi bi-eye" data-bs-toggle="modal" data-bs-target="#viewIssueModal"
-              onclick="showViewIssueModal(this)" data-id="{{id}}" data-name="{{name}}" data-priority="{{priority}}" data-description="{{note}}" data-
-              data-created-by="{{Creator.User.first_name}} {{Creator.User.last_name}}" data-status="{{status}}" ></i>
+            <i role="button" class="bi bi-eye me-3" data-bs-toggle="modal" data-bs-target="#viewIssueModal"
+              onclick="showViewIssueModal(this)" data-id="{{id}}" data-name="{{name}}" data-priority="{{priority}}"
+              data-description="{{note}}" data- data-created-by="{{Creator.User.first_name}} {{Creator.User.last_name}}"
+              data-status="{{status}}"></i>
+            <i role="button" class="bi bi-trash text-danger" data-bs-toggle="modal"
+              data-bs-target="#deleteIssueModal" onclick="confirmDelete({{id}})"></i>
+
           </div>
-          <hr />
+          <hr class="mt-3" />
         </div>
         {{/each}}
 
@@ -161,8 +171,8 @@
                   <label for="issueStatus" class="form-label">Status <span class="text-danger">*</span></label>
                   <select class="form-select" id="issueStatus" name="status" required>
                     <option value="open">Open</option>
-                    <option value="in progress">In Progress</option>
-                    <option value="resolved">Resolved</option>
+                    <option value="in progress">In progress</option>
+                    <option value="passed">Passed</option>
                     <option value="closed">Closed</option>
                   </select>
                 </div>
@@ -175,7 +185,7 @@
                     <option value="critical">Critical</option>
                   </select>
                 </div>
-                
+
               </div>
               <div class="col">
                 <div class="mb-3">
@@ -221,13 +231,13 @@
                 </div>
                 <div class="mb-3">
                   <label for="issueTitle" class="form-label">Status </label>
-                  <input type="text" class="form-control" id="viewIssueStatus"name="status" disabled>
+                  <input type="text" class="form-control" id="viewIssueStatus" name="status" disabled>
                 </div>
                 <div class="mb-3">
                   <label for="issueTitle" class="form-label">Priority </label>
                   <input type="text" class="form-control" id="viewIssuePriority" name="priority" disabled>
                 </div>
-                
+
               </div>
               <div class="col">
                 <div class="mb-3">
@@ -237,7 +247,7 @@
                 </div>
               </div>
             </div>
-            
+
             <div class="text-center text-danger" id="addIssueErrorMessage"></div>
           </div>
           <div class="modal-footer d-none">
@@ -311,12 +321,41 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-        <button type="button" class="btn btn-danger" onclick="deleteIssue()">Yes</button>
+        <button type="button" class="btn btn-danger" onclick="deleteConfirmed()">Yes</button>
       </div>
     </div>
   </div>
 </div>
 {{#section "scripts"}}
+<script>
+  const CSRF_TOKEN = "{{csrfToken}}";
+  async function updateStatus(selectElement) {
+    const newStatus = selectElement.value;
+    const issueId = selectElement.dataset.id;
+    console.log(newStatus, issueId)
+    await fetch(`/api/v1/issue/${issueId}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRF-Token": CSRF_TOKEN,
+      },
+      body: JSON.stringify({
+        status: newStatus,
+      }),
+    })
+      .then(res => {
+        if (!res.ok) {
+          throw new Error("Failed to update issue status");
+        }
+        console.log("Issue updated successfully");
+        location.reload();
+      })
+      .catch(error => {
+        console.error("Error updating issue:", error);
+      });
+  }
+  
+</script>
 <script src="/scripts/list-issue.js"></script>
 <script src="/scripts/management/issue.js"></script>
 {{/section}}

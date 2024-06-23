@@ -2,6 +2,15 @@
 
 const controller = {};
 const models = require("../../../models");
+const bcrypt = require("bcryptjs");
+const fs = require("fs");
+const path = require("path");
+
+const uploadDir = path.join(__dirname, "../../../private/avatars/uploads");
+
+if (!fs.existsSync(uploadDir)) {
+  fs.mkdirSync(uploadDir, { recursive: true });
+}
 
 controller.getUsers = async (req, res) => {
   const email = req.query.email;
@@ -52,7 +61,6 @@ controller.getAllUsers = async (req, res) => {
       return res.status(404).json({ message: "No users found" });
     }
 
-    // Return the users array as a JSON response
     return res.status(200).json({
       users: users.map((user) => ({
         id: user.id,
@@ -68,40 +76,92 @@ controller.getAllUsers = async (req, res) => {
   }
 };
 
-controller.editUser = async (req, res) => {
+controller.editUserInfo = async (req, res) => {
   try {
-    const file_avatar = req.avatar;
+    const file_avatar = req.profile_picture;
     const first_name = req.body.first_name;
     const last_name = req.body.last_name;
     const address = req.body.address;
-    const phone = req.body.phone;
+    const phone_number = req.body.phone_number;
     const birth_date = req.body.birth_date;
+    const userId = req.session.userId;
 
-    const uploadDir = path.join(__dirname, "../../../private/avatar/uploads");
+    console.log("EDIT PROFILE", req.body);
+
+    const uploadDir = path.join(__dirname, "../../../private/avatars/uploads");
 
     if (!fs.existsSync(uploadDir)) {
       fs.mkdirSync(uploadDir);
     }
 
-    const filePath = path.join(uploadDir, `${req.params.id}_avatar`);
-    fs.writeFileSync(filePath, file_avatar.buffer);
+    let filePath = null;
+    if (file_avatar) {
+      filePath = path.join(uploadDir, file_avatar.originalname);
+      fs.writeFileSync(filePath, file_avatar.buffer);
+    }
+
     const user = await models.User.update(
       {
         first_name,
         last_name,
         address,
-        phone,
+        phone_number,
         birth_date,
-        avatar: filePath,
+        profile_picture: filePath,
       },
       {
-        where: { id: req.params.id },
+        where: { id: userId },
       }
     );
     if (user[0] === 0) {
       return res.status(404).json({ message: "User not found" });
+    }
+    return res.status(200).json({ message: "User profile updated!" });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ message: "Internal server error", error: error.message });
+  }
+};
+
+controller.editUserPassword = async (req, res) => {
+  try {
+    const newPassword = req.body["new-password"];
+    const userId = req.session.userId;
+
+    console.log(req.body.newPassword);
+
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+    const user = await models.User.update(
+      {
+        password: hashedPassword,
+      },
+      {
+        where: { id: userId },
+      }
+    );
+
+    if (user[0] === 0) {
+      return res.status(404).json({ message: "User not found" });
+    }
+    return res.status(200).json({ message: "Password updated" });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ message: "Internal server error", error: error.message });
+  }
+};
+
+controller.checkPassword = async (req, res) => {
+  const currentPassword = req.body.currentPassword;
+  const userId = req.session.userId;
+  try {
+    const user = await models.User.findByPk(userId);
+    const isMatch = await bcrypt.compare(currentPassword, user.password);
+    if (isMatch) {
+      return res.status(200).json({ valid: true });
     } else {
-      return res.redirect(`/profile/edit-profile`);
+      return res.status(200).json({ valid: false });
     }
   } catch (error) {
     return res
