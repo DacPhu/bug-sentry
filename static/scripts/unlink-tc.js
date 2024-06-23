@@ -20,7 +20,16 @@ function confirmDelete(id) {
       success: function (data) {
         $.notify("Testcase unlinked successfully", "success");
         setTimeout(() => {
-          window.location.reload();
+          // window.location.reload();
+
+          if (window.location.href.includes("link-page=true")) {
+            window.location.reload();
+        }else  if (window.location.href.includes("?")) {
+            window.location.href = window.location.href + "&link-page=true";
+        }
+        else {
+            window.location.href = window.location.href + "?link-page=true";
+        }
 
         }, 1000);
       },
