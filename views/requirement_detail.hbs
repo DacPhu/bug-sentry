@@ -156,9 +156,9 @@
                     <!-- pagination -->
                    <!-- pagination -->
                   {{#if (greaterThan totalPages 1)}}
-                  <div class="row mt-5 align-content-center px-3">
+                  <div class="row mt-5 align-content-center px-3 justify-content-between">
                     <div class="col"></div>
-                    <div class="col d-flex align-items-center">
+                    <div class="col d-flex align-items-center justify-content-end">
 
                       {{#if (notEquals page 1)}}
                       <button class="border-0 rounded-3 p-2 text-muted ms-auto">
@@ -167,6 +167,7 @@
                         </a>
                       </button>
                       {{/if}}
+                      
                       <div class="bg-main-color rounded-circle d-flex justify-content-center align-items-center mx-3"
                         style="width: 30px; height: 30px">
                         <h1 class="mb-0 text-light" style="font-size: 1.2rem">{{page}}</h1>
