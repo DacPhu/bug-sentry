@@ -32,7 +32,7 @@ $('#editDescription').on('click', function() {
 });
 $('#editIssueForm').on('submit', async function(e) {
   e.preventDefault();
-  console.log("HIHIHI")
+
   const formData = new FormData(document.querySelector("#editIssueForm"));
   let data = Object.fromEntries(formData.entries());
   const csrfToken = data._csrf

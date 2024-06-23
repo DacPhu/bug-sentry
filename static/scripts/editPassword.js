@@ -2,11 +2,13 @@ async function editPassword(e) {
   e.preventDefault();
   const formData = new FormData(document.getElementById("editPasswordForm"));
   let data = Object.fromEntries(formData.entries());
-  let valid = await checkPasswordValid();
-  console.log(data);
+  let valid = await checkPasswordValid(e);
   if (valid == false) {
+    console.log("Password is not valid !");
     return;
   }
+  console.log("Password is valid !");
+
   try {
     let response = await fetch("/api/v1/user/edit-password", {
       method: "PUT",
@@ -20,36 +22,40 @@ async function editPassword(e) {
     if (response.status === 200) {
       alert("Update password successfully !");
       location.reload();
+      //   window.location.href = "/logout";
     } else {
       let responseMessage = await response.text();
       throw new Error(responseMessage);
     }
   } catch (error) {
     e.target.querySelector("#errorMessage").innerText =
-      "Can not update user information !";
-    console.error("Error updating user information: ", error);
+      "Can not update user password !";
+    console.error("Error updating user password: ", error);
   }
 }
 
-async function checkPasswordValid() {
+async function checkPasswordValid(e) {
   let currentPassword = document.getElementById("current-password").value;
   let newPassword = document.getElementById("new-password").value;
   let confirmNewPassword = document.getElementById(
     "confirm-new-password"
   ).value;
-  let errorMessage = document.getElementById("errorMessage");
 
   if (!currentPassword || !newPassword || !confirmNewPassword) {
-    errorMessage.innerText = "Please fill all fields!";
+    e.target.querySelector("#errorMessage").innerText =
+      "Please fill all fields!";
     return false;
   }
 
-  if (newPassword.length < 8) {
-    errorMessage.innerText = "Password must be at least 8 characters!";
+  if (newPassword.length < 8 || currentPassword.length < 8) {
+    e.target.querySelector("#errorMessage").innerText =
+      "Password must be at least 8 characters!";
     return false;
   }
 
-  fetch("/api/v1/user/check-password", {
+  let check = false;
+
+  await fetch("/api/v1/user/check-password", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -61,21 +67,27 @@ async function checkPasswordValid() {
     .then((data) => {
       if (data.valid) {
         errorMessage.innerText = "";
+        check = true;
       } else {
-        errorMessage.innerText = "Incorrect password!";
-        return false;
+        e.target.querySelector("#errorMessage").innerText =
+          "Incorrect password!";
       }
     })
     .catch((error) => {
-      errorMessage.innerText = "Error checking password!";
+      e.target.querySelector("#errorMessage").innerText =
+        "Error checking password!";
       console.error("Error checking password: ", error);
     });
+  if (check == false) {
+    return false;
+  }
 
   if (newPassword !== confirmNewPassword) {
-    errorMessage.innerText = "Password and Confirm Password must be the same !";
+    e.target.querySelector("#errorMessage").innerText =
+      "Password and Confirm Password must be the same !";
     return false;
   } else {
-    errorMessage.innerText = "";
+    e.target.querySelector("#errorMessage").innerText = "";
     return true;
   }
 }

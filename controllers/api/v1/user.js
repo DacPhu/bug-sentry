@@ -113,8 +113,10 @@ controller.editUserInfo = async (req, res) => {
 
 controller.editUserPassword = async (req, res) => {
   try {
-    const newPassword = req.body.new_password;
-    const userId = req.body.id;
+    const newPassword = req.body["new-password"];
+    const userId = req.session.userId;
+
+    console.log(req.body.newPassword);
 
     const hashedPassword = await bcrypt.hash(newPassword, 10);
     const user = await models.User.update(
@@ -125,11 +127,11 @@ controller.editUserPassword = async (req, res) => {
         where: { id: userId },
       }
     );
+
     if (user[0] === 0) {
       return res.status(404).json({ message: "User not found" });
-    } else {
-      return res.redirect(`/profile/edit-password`);
     }
+    return res.status(200).json({ message: "Password updated" });
   } catch (error) {
     return res
       .status(500)

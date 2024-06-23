@@ -75,7 +75,6 @@ app.use(middlewares.logMiddleware);
 const controller = require("./controllers/api/v1/attachment");
 const upload = require("./middlewares/upload");
 
-
 app.post(
   "/api/v1/attachment/upload",
   upload.single("file"),
@@ -117,6 +116,7 @@ app.use("/api/v1/board", require("./routes/api/v1/board"));
 app.use("/api/v1/requirement", require("./routes/api/v1/requirement"));
 app.use("/api/v1/attachment", require("./routes/api/v1/attachment"));
 app.use("/api/v1/member", require("./routes/api/v1/member"));
+app.use("/api/v1/user", require("./routes/api/v1/user"));
 
 // PAGE
 app.use("/dashboard", require("./routes/dashboard"));
