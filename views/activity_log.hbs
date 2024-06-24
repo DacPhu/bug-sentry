@@ -14,43 +14,42 @@
                             <div class="dropdown">
                                 <button class="btn btn-secondary dropdown-toggle p-1 mx-3 w-75" type="button"
                                     id="dropdownMenu1" data-bs-toggle="dropdown" aria-expanded="false"
-                                    style="min-width: 100px">
-                                    All user
+                                    style="min-width: 100px" data-filter="user">
+                                    All users
                                 </button>
                                 <ul class="dropdown-menu w-75" aria-labelledby="dropdownMenu1"
-                                    style="position: absolute">
+                                    style="position: absolute; max-height: 200px; overflow-y: auto;">
                                     <li>
                                         <button class="dropdown-item" type="button">
-                                            Phan Le Dac Phu
+                                            All users
                                         </button>
                                     </li>
+                                    {{#each members}}
                                     <li>
                                         <button class="dropdown-item" type="button">
-                                            Nguyen Ngoc Thien An
+                                            {{User.first_name}} {{User.last_name}}
                                         </button>
                                     </li>
-                                    <li>
-                                        <button class="dropdown-item" type="button">
-                                            Do Khai Hung
-                                        </button>
-                                    </li>
+                                    {{/each}}
                                 </ul>
                             </div>
                         </div>
                     </div>
                     <div class="col d-flex align-items-center">
-                        <h5 class="ms-4 my-3">Activity</h5>
+                        <h5 class="ms-4 my-3">Action</h5>
                         <div class="ms-2 flex-grow-1">
                             <div class="dropdown">
                                 <button class="btn btn-secondary dropdown-toggle p-1 mx-3 w-75" type="button"
                                     id="dropdownMenu1" data-bs-toggle="dropdown" aria-expanded="false"
-                                    style="min-width: 100px">
-                                    All activity
+                                    style="min-width: 100px" data-filter="action">
+                                    All actions
                                 </button>
                                 <ul class="dropdown-menu w-75" aria-labelledby="dropdownMenu1"
                                     style="position: absolute">
                                     <li>
-                                        <button class="dropdown-item" type="button"></button>
+                                        <button class="dropdown-item" type="button">
+                                            All actions
+                                        </button>
                                     </li>
                                     <li>
                                         <button class="dropdown-item" type="button">
@@ -77,11 +76,16 @@
                             <div class="dropdown">
                                 <button class="btn btn-secondary dropdown-toggle p-1 mx-3 w-75" type="button"
                                     id="dropdownMenu1" data-bs-toggle="dropdown" aria-expanded="false"
-                                    style="min-width: 100px">
-                                    All role
+                                    style="min-width: 100px" data-filter="role">
+                                    All roles
                                 </button>
                                 <ul class="dropdown-menu w-75" aria-labelledby="dropdownMenu1"
                                     style="position: absolute">
+                                    <li>
+                                        <button class="dropdown-item" type="button">
+                                            All roles
+                                        </button>
+                                    </li>
                                     <li>
                                         <button class="dropdown-item" type="button">
                                             Tester
@@ -105,27 +109,7 @@
             </div>
             <div class="container-fluid bg-light py-2">
                 <div class="align-items-center d-flex">
-                    <h5 class="ms-4 my-3">Show</h5>
-                    <div class="ms-2">
-                        <div class="dropdown">
-                            <button class="btn btn-secondary dropdown-toggle p-1" type="button" id="dropdownMenu1"
-                                data-bs-toggle="dropdown" aria-expanded="false" style="min-width: 100px">
-                                5
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                <li>
-                                    <button class="dropdown-item" type="button">5</button>
-                                </li>
-                                <li>
-                                    <button class="dropdown-item" type="button">15</button>
-                                </li>
-                                <li>
-                                    <button class="dropdown-item" type="button">20</button>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <h5 class="ms-4 my-3">entries</h5>
+                    <h5 class="ms-4 my-3">Show 10 entries</h5>
                     <div class="ms-auto" style="min-width: 50%">
                         <div class="input-group rounded">
                             <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
@@ -139,9 +123,9 @@
             </div>
             <div class="container-fluid bg-color1 py-3">
                 <div class="row">
-                    <div class="col-md-4 fs-5 text-color-1">Name</div>
+                    <div class="col-md-2 fs-5 text-color-1">Name</div>
                     {{!-- <div class="col-md-1 fs-5 text-color-1">title</div> --}}
-                    <div class="col-md-2 fs-5 text-color-1">Activity</div>
+                    <div class="col-md-4 fs-5 text-color-1">Activity</div>
                     <div class="col-md-2 fs-5 text-color-1">Action</div>
                     <div class="col-md-2 fs-5 text-color-1">Role</div>
                     <div class="col-md-2 fs-5 text-color-1">Date</div>
@@ -149,9 +133,11 @@
             </div>
             <div class="container-fluid bg-light py-3">
                 {{#each activities}}
-                <div class="row flex-wrap activity-item" data-name="{{Actor.User.first_name}} {{Actor.User.last_name}}">
-                    <div class="col-md-4 text-color-1">{{Actor.User.first_name}} {{Actor.User.last_name}}</div>
-                    <div class="col-md-2 text-color-1">{{title_name}}</div>
+                <div class="row flex-wrap activity-item" data-name="{{title_name}}" 
+                data-user-name="{{Actor.User.first_name}} {{Actor.User.last_name}}" 
+                data-action="{{action}}" data-role="{{Actor.User.Role.name}}">
+                    <div class="col-md-2 text-color-1">{{Actor.User.first_name}} {{Actor.User.last_name}}</div>
+                    <div class="col-md-4 text-color-1">{{title_name}}</div>
                     <div class="col-md-2 text-color-1">{{action}}</div>
                     <div class="col-md-2 text-color-1">{{Actor.User.Role.name}}</div>
                     <div class="col-md-2 text-color-1">{{formatDate created_at "MMM DD YYYY HH:mm"}}</div>
