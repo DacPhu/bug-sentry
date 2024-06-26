@@ -79,9 +79,11 @@ controller.getTestRuns = async (req, res) => {
     }
 };
   
-controller.getAllTestRuns = async (req, res) => {
+controller.getAllTestRunsInProject = async (req, res) => {
     try {
-        const testRuns = await models.TestRun.findAll();
+        const testRuns = await models.TestRun.findAll({
+            where : {id: req.params.id} 
+        });
 
         if (!testRuns || testRuns.length === 0) {
         return res.status(404).json({ message: "No test runs found" });
