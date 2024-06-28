@@ -12,10 +12,27 @@
             <div class="d-flex flex-row justify-content-between">
               <!-- header of main  -->
               <h6 class="text-left fs-4">Requirements</h6>
-              <div id="add-req" class="d-flex btn custom-bold-btn">
-                <div class="me-2 p-1">Add Requirement</div>
-                <img src="/icons/add.svg" alt="" />
+
+
+              <div class="d-flex align-items-center">
+                <div id="import-req" class="text-decoration-none text-black" data-bs-target="#importRequirementModal" data-bs-toggle="modal">
+                  <img class="me-2 ms-4 pointer-cursor" src="/icons/import.svg" alt="" />
+                  Import
+                </div>
+                <a href="./requirement/export" class="text-decoration-none text-black">
+                  <img class="me-2 ms-4 pointer-cursor" src="/icons/export.svg" alt="" />
+                  Export
+                </a>
+                <div id="add-req" class="d-flex ms-3 btn custom-bold-btn">
+                  <div class="me-2 p-1">Add Requirement</div>
+                  <img src="/icons/add.svg" alt="" />
+
+
+                </div>
               </div>
+
+
+
             </div>
             <hr />
 
@@ -82,7 +99,8 @@
 
                           <span class="font-weight-semibold d-flex align-items-center">
                             {{sortType}}
-                            <a href="?module={{module}}&moduleName={{moduleName}}&size={{size}}&page={{page}}&sortField={{sortField}}&sortType={{#if (equalsStr sortType "asc")}}desc{{else}}asc{{/if}}">
+                            <a href="?module={{module}}&moduleName={{moduleName}}&size={{size}}&page={{page}}&sortField={{sortField}}&sortType={{#if (equalsStr sortType "
+                              asc")}}desc{{else}}asc{{/if}}">
                               <img src="/icons/lucide_sort-{{sortType}}.svg" alt="" />
                             </a>
                           </span>
@@ -112,7 +130,8 @@
                             <a href="./requirement/{{this.id}}">
                               <img src="/icons/mdi_eye-outline.svg" alt="" />
                             </a>
-                            <img src="/icons/edit.svg" alt=""  onclick="editRequirement({{this.id}}, '{{description}}', '{{url}}', '{{name}}', '{{module_id}}')" />
+                            <img src="/icons/edit.svg" alt=""
+                              onclick="editRequirement({{this.id}}, '{{description}}', '{{url}}', '{{name}}', '{{module_id}}')" />
 
                             <img src="/icons/bin-red.svg" alt="" onclick="confirmDelete({{this.id}})" />
                           </div>
@@ -257,15 +276,16 @@
 
 
 
-<div id="editReqPopup"  class=" vh-100 position-absolute overlay top-0 bottom-0 start-0 end-0" style="display: none" >
-  <div style="max-width: none;" class=" d-flex justify-content-center align-items-center w-100 position-absolute top-0 bottom-0 start-0 end-0">
+<div id="editReqPopup" class=" vh-100 position-absolute overlay top-0 bottom-0 start-0 end-0" style="display: none">
+  <div style="max-width: none;"
+    class=" d-flex justify-content-center align-items-center w-100 position-absolute top-0 bottom-0 start-0 end-0">
     <!-- main content -->
     <div class="w-75 shadow bg-white">
       <div class="m-4 mt-2 bg-white semi-rounded">
         <div class="container p-4 position-relative">
           <img class="closePopup position-absolute top-0 end-0 pointer-cursor" width="30px"
             src="/icons/clarity_remove-line.svg" alt="" />
-          <h6  class="text-left fs-4">Edit Requirement</h6>
+          <h6 class="text-left fs-4">Edit Requirement</h6>
           <form id="requirementForm" action="./requirement/edit" method="post">
             <div class="d-flex flex-column justify-content-between align-items-center">
               <div id="actions-add-requirement" class="d-flex mb-3">
@@ -276,14 +296,14 @@
               <div id="action-load-requirement" style="display: none;" class="spinner-border mb-3" role="status">
                 <span class="visually-hidden">Loading...</span>
               </div>
-              <span  class="fs-6 font-weight-semibold"> Module </span>
+              <span class="fs-6 font-weight-semibold"> Module </span>
               <div class="input-group mb-3 w-50">
-                <input id="module-name" type="text" class="form-control" placeholder="Requirement name" aria-label="Requirement name"
-                  disabled="true" />
+                <input id="module-name" type="text" class="form-control" placeholder="Requirement name"
+                  aria-label="Requirement name" disabled="true" />
               </div>
 
-              <input name="id" type="text" class="form-control" hidden="true" placeholder="Requirement name" aria-label="Requirement name"
-                  />
+              <input name="id" type="text" class="form-control" hidden="true" placeholder="Requirement name"
+                aria-label="Requirement name" />
               <span class="fs-6 font-weight-semibold">Requirement Name <span class="text-danger">*</span></span>
               <div class="input-group mb-3 w-50">
                 <input type="text" class="form-control" placeholder="Requirement name" aria-label="Requirement name"
@@ -312,10 +332,79 @@
   </div>
 </div>
 
+ {{!-- import requirements  --}}
+ <div class="modal fade" id="importRequirementModal" aria-hidden="true" tabindex="-1" style="--bs-modal-width: 800px">
+  <div class="d-flex justify-content-center align-items-center w-100 position-absolute top-0 bottom-0 start-0 end-0">
+    <!-- main content -->
+    <div class="modal-dialog" style="width: 800px;">
+        <form action="./requirement/import" method="POST" enctype="multipart/form-data">
+          <div class="modal-content">
+            <div class="container p-4 position-relative ">
+              <img class="closePopup position-absolute top-0 end-0 pointer-cursor" width="30px"
+                src="/icons/clarity_remove-line.svg" alt="" data-bs-dismiss="modal"/>
+              <h6 class="text-left fs-4">Upload Requirement</h6>
+              <span>The imported file should be formatted as follows:</span>
+    <table class="table table-sm table-bordered mt-3">
+      <thead>
+        <tr>
+          <th>ID (Optional)</th>
+          <th>Name</th>
+          <th>Description</th>
+          <th>URL</th>
+          <th>Module Name</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Requirement Name</td>
+          <td>Requirement Description</td>
+          <td>http://example.com</td>
+          <td>Prodder</td>
+        </tr>
+        
+      </tbody>
+    </table>
+
+              <div class="modal-body">
+                <input type="hidden" name="_csrf" value="{{csrfToken}}">
+                <div class="d-flex flex-column justify-content-between align-items-center">
+                
+                <span class="fs-6 font-weight-semibold">
+                  File
+                  <span class="text-danger">*</span></span>
+                <div class="input-group mb-3 w-50">
+                  <input type="file" name="file" class="form-control" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" aria-label="Attachment file" />
+                </div> 
+
+                <div class="d-flex mb-3 modal-footer">
+                  <button class="ps-3 pe-3 ms-4 d-flex btn save-btn" type="submit">Save</button>
+                  <button type="button" class="closePopup btn text-center ps-3 pe-3 ms-4 cancel-btn" data-bs-dismiss="modal" id="closeBtnEdit">
+                    Cancel
+                  </button>
+                </div>
+              </div>
+              </div>
+              
+            </div>
+          </div>
+        </form>
+    </div>
+    <hr />
+  </div>
+</div>
+
+
 
 <!-- Bootstrap JavaScript Libraries -->
 {{#section "scripts"}}
 <script>
+  document
+  .querySelector("#importRequirementModal")
+  .addEventListener("shown.bs.modal", () => {
+    document.querySelector("#name").focus();
+  });
+
   const CSRF_TOKEN = "{{csrfToken}}";
 </script>
 <script>
@@ -367,25 +456,25 @@
 
 
   function confirmDelete(id) {
-    
+
     $("#deleteConfirmationModal").modal("show");
     $("#deleteConfirmationModal").data("requirement_id", id);
   }
 
-    function editRequirement(id,description, url, name, module) {
+  function editRequirement(id, description, url, name, module) {
 
     $("#editReqPopup").fadeIn(200);
     $("#editReqPopup").data("requirement_id", id);
     moduleName = modules.find((m) => m.id == module).name;
 
     $("#editReqPopup").data("requirement_module", moduleName);
-    $("#editReqPopup #module-name").val("Module " +moduleName);
+    $("#editReqPopup #module-name").val("Module " + moduleName);
     $("#editReqPopup [name=name]").val(name);
     $("#editReqPopup  [name=url]").val(url);
     $("#editReqPopup  [name=description]").val(description);
     $("#editReqPopup  [name=id]").val(id);
 
-    
+
 
   }
 

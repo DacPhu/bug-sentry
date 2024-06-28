@@ -18,6 +18,7 @@ const {
 
 const helpers = require("./helpers");
 const middlewares = require("./middlewares");
+const configUploadRoutes = require("./routes/upload");
 require("dotenv").config();
 
 mongoose
@@ -72,29 +73,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(middlewares.logMiddleware);
 
-const controller_attachment = require("./controllers/api/v1/attachment");
-const upload = require("./middlewares/upload");
 
-app.post(
-  "/api/v1/attachment/upload",
-  upload.single("file"),
-  csrfProtection,
-  controller_attachment.uploadFile
-);
-
-const controller_user = require("./controllers/api/v1/user");
-app.put(
-  "/api/v1/user",
-  upload.single("file"),
-  csrfProtection,
-  controller_user.editUserInfo
-);
-
-app.use(csrfProtection);
-app.use((req, res, next) => {
-  res.locals.csrfToken = req.csrfToken();
-  next();
-});
 
 app.set("view engine", "hbs");
 app.use(flash());
@@ -103,6 +82,19 @@ app.use((req, res, next) => {
   res.locals.success_msg = req.flash("success") ?? "";
   next();
 });
+
+
+
+// config upload routes
+configUploadRoutes(csrfProtection, app);
+
+
+app.use(csrfProtection);
+app.use((req, res, next) => {
+  res.locals.csrfToken = req.csrfToken();
+  next();
+});
+
 
 // Routes
 app.use("/", require("./routes/home"));
