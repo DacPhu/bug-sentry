@@ -48,10 +48,11 @@
                                 <div class="row">
                                     <div class="col-auto p-2 text-center">
                                         <h4>Release status</h4>
-                                        
+
                                         <div class="text-center">
                                             <canvas id="releaseChart" style="w-75 h-auto"></canvas>
-                                            {{!-- <img src="/images/chart.png" alt="" class="img-fluid w-75 h-auto"> --}}
+                                            {{!-- <img src="/images/chart.png" alt="" class="img-fluid w-75 h-auto">
+                                            --}}
                                         </div>
                                     </div>
                                     <div class="col pt-5">
@@ -96,17 +97,18 @@
                                     </div>
                                     <div class="release-list-container mt-3">
                                         {{#each formatReleases}}
-                                            {{#if (lessThan @index 5)}}  
-                                            <div class="container d-flex px-0">
-                                                <p class="d-inline"> {{name}} </p>
-                                                <i class="pt-1 bi bi-eye d-inline-block ms-auto"></i>
-                                            </div>
-                                            {{/if}}
+                                        {{#if (lessThan @index 5)}}
+                                        <div class="container d-flex px-0">
+                                            <p class="d-inline"> {{name}} </p>
+                                            <i class="pt-1 bi bi-eye d-inline-block ms-auto"></i>
+                                        </div>
+                                        {{/if}}
                                         {{/each}}
                                     </div>
-                                    <a class="text-center text-info mt-auto fs-4 text-decoration-none" href="release"> View more</a>
+                                    <a class="text-center text-info mt-auto fs-4 text-decoration-none" href="release">
+                                        View more</a>
                                 </div>
-                                
+
 
                             </div>
                             <div class="col p-0 ms-3">
@@ -122,17 +124,18 @@
 
                                     <div class="release-list-container mt-3">
                                         {{#each formatTestCases}}
-                                            {{#if (lessThan @index 5)}} 
-                                            <div class="container d-flex px-0 mb-2">
-                                                <p class="d-inline"> {{name}} </p>
-                                                <i class="pt-1 bi bi-eye d-inline-block ms-auto"></i>
-                                            </div>
-                                            {{/if}}
+                                        {{#if (lessThan @index 5)}}
+                                        <div class="container d-flex px-0 mb-2">
+                                            <p class="d-inline"> {{name}} </p>
+                                            <i class="pt-1 bi bi-eye d-inline-block ms-auto"></i>
+                                        </div>
+                                        {{/if}}
                                         {{/each}}
                                     </div>
-                                    <a class="text-center text-info mt-auto fs-4 text-decoration-none" href="testcase"> View more</a>
+                                    <a class="text-center text-info mt-auto fs-4 text-decoration-none" href="testcase">
+                                        View more</a>
                                 </div>
-                                
+
 
                             </div>
                             <div class="col p-0 ms-3">
@@ -147,17 +150,18 @@
                                     </div>
                                     <div class="release-list-container mt-3">
                                         {{#each formatTestRuns}}
-                                            {{#if (lessThan @index 5)}} 
-                                            <div class="container d-flex px-0 mb-2">
-                                                <p class="d-inline"> {{name}} </p>
-                                                <i class="pt-1 bi bi-eye d-inline-block ms-auto"></i>
-                                            </div>
-                                            {{/if}}
+                                        {{#if (lessThan @index 5)}}
+                                        <div class="container d-flex px-0 mb-2">
+                                            <p class="d-inline"> {{name}} </p>
+                                            <i class="pt-1 bi bi-eye d-inline-block ms-auto"></i>
+                                        </div>
+                                        {{/if}}
                                         {{/each}}
                                     </div>
-                                    <a class="text-center text-info mt-auto fs-4 text-decoration-none" href="testrun"> View more</a>
+                                    <a class="text-center text-info mt-auto fs-4 text-decoration-none" href="testrun">
+                                        View more</a>
                                 </div>
-                                
+
 
                             </div>
                             <div class="col p-0 mx-3">
@@ -172,16 +176,17 @@
                                     </div>
                                     <div class="release-list-container mt-3">
                                         {{#each formatIssues}}
-                                            {{#if (lessThan @index 5)}} 
-                                            <div class="container d-flex px-0 mb-2">
-                                                <p class="d-inline"> {{name}} </p>
-                                                <i class="pt-1 bi bi-eye d-inline-block ms-auto"></i>
-                                            </div>
-                                            {{/if}}
+                                        {{#if (lessThan @index 5)}}
+                                        <div class="container d-flex px-0 mb-2">
+                                            <p class="d-inline"> {{name}} </p>
+                                            <i class="pt-1 bi bi-eye d-inline-block ms-auto"></i>
+                                        </div>
+                                        {{/if}}
                                         {{/each}}
 
                                     </div>
-                                    <a class="text-center text-info mt-auto fs-4 text-decoration-none" href="issues">View more</a>
+                                    <a class="text-center text-info mt-auto fs-4 text-decoration-none"
+                                        href="issues">View more</a>
 
                                 </div>
                             </div>
@@ -194,7 +199,8 @@
                     <div class="col-md-4 bg-light">
                         <div class="mt-2 d-flex">
                             <h4 class="d-inline"> Activity</h4>
-                            <a class="text-info d-inline ms-auto fs-4 text-decoration-none" href="activity-log"> View more</a>
+                            <a class="text-info d-inline ms-auto fs-4 text-decoration-none" href="activity-log"> View
+                                more</a>
                         </div>
                         <div class="container mt-3 px-0">
                             <h5> 4/1/2024</h5>
@@ -248,34 +254,34 @@
 {{#section "scripts"}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 <script>
-const xValues = ["Untested", "Passed", "Retest", "Failed"];
-const yValues = [{{counts}}];
-const barColors = ["blue", "green", "yellow", "red"];
+    const xValues = ["Untested", "Passed", "Retested", "Failed"];
+    const yValues = [{{ counts }}];
+    const barColors = ["blue", "green", "yellow", "red"];
 
-const testrunCountItems = document.getElementsByClassName("testrunCountItem")
-yValues.forEach((value, index) => {
-    testrunCountItems[index].innerText = value.toString();
-});
+    const testrunCountItems = document.getElementsByClassName("testrunCountItem")
+    yValues.forEach((value, index) => {
+        testrunCountItems[index].innerText = value.toString();
+    });
 
-new Chart("releaseChart", {
-  type: "doughnut",
-  data: {
-    labels: xValues,
-    datasets: [{
-      backgroundColor: barColors,
-      data: yValues
+    new Chart("releaseChart", {
+        type: "doughnut",
+        data: {
+            labels: xValues,
+            datasets: [{
+                backgroundColor: barColors,
+                data: yValues
 
-    }]
-  },
-  options: {
-    title: {
-      display: false,
-    },
-    legend: {
-      display: false 
-    }
-  }
-});
+            }]
+        },
+        options: {
+            title: {
+                display: false,
+            },
+            legend: {
+                display: false
+            }
+        }
+    });
 </script>
 {{/section}}
 

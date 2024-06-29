@@ -104,7 +104,7 @@ controller.showOverview = async (req, res) => {
       case "passed":
         counts[1]++;
         break;
-      case "retest":
+      case "retested":
         counts[2]++;
         break;
       case "failed":

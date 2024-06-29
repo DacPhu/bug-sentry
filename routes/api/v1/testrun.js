@@ -8,7 +8,7 @@ const controller = require("../../../controllers/api/v1/testrun");
 router.post("/", controller.addTestRun);
 
 router.get("/", controller.getTestRuns);
-router.get("/all", controller.getAllTestRuns);
+router.get("/:id", controller.getAllTestRunsInProject);
 router.put("/:id", controller.editTestRun);
 
 router.delete("/:id", controller.deleteTestRun);

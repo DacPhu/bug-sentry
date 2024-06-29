@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
+  var dropdownItems = document.querySelectorAll('.dropdown-menu .dropdown-item');
   const searchInput = document.getElementById("searchActivity");
   const activityItems = Array.from(document.querySelectorAll(".activity-item"));
 
@@ -7,23 +8,43 @@ document.addEventListener("DOMContentLoaded", function () {
   const nextPageBtn = document.getElementById("next-page");
   const currentPageDisplay = document.getElementById("current-page");
 
-  const itemsPerPage = 3;
+  const itemsPerPage = 10;
   let currentPage = 1;
   let filteredActivities = activityItems;
 
   function updateDisplay() {
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
-    console.log(startIndex, endIndex);
+    const selectedUser = document.querySelector('.dropdown-toggle[data-filter="user"]').textContent.trim().toLowerCase();
+    const selectedAction = document.querySelector('.dropdown-toggle[data-filter="action"]').textContent.trim().toLowerCase();
+    const selectedRole = document.querySelector('.dropdown-toggle[data-filter="role"]').textContent.trim().toLowerCase();
+    const searchQuery = searchInput.value.toLowerCase();
+    console.log(selectedUser, selectedAction, selectedRole, searchQuery)
+    filteredActivities = activityItems.filter((item) => {
+      const activityName = item.dataset.name.toLowerCase();
+      const username = item.dataset.userName.toLowerCase();
+      const role = item.dataset.role.toLowerCase();
+      const action = item.dataset.action.toLowerCase();
+      
+      
+      return (
+        (selectedUser === "all users" || username === selectedUser) &&
+        (selectedAction === "all actions" || action === selectedAction) &&
+        (selectedRole === "all roles" || role === selectedRole) &&
+        activityName.includes(searchQuery)
+      );
+    });
+    let id = 0;
     activityItems.forEach((item, index) => {
-      if (
-        filteredActivities.includes(item) &&
-        index >= startIndex &&
-        index < endIndex
-      ) {
-        item.style.display = "";
+      if (filteredActivities.includes(item)) {
+        if (id >= startIndex && id < endIndex) {
+          item.classList.remove('d-none'); // Xóa lớp để hiển thị
+        } else {
+          item.classList.add('d-none'); // Xóa lớp để hiển thị
+        }
+        id++; 
       } else {
-        item.style.display = "none";
+        item.classList.add('d-none'); // Xóa lớp để hiển thị
       }
     });
 
@@ -36,11 +57,15 @@ document.addEventListener("DOMContentLoaded", function () {
     nextPageBtn.disabled = endIndex >= filteredActivities.length;
   }
 
+  function handleDropdownChange(event) {
+    var selectedText = event.target.textContent.trim();
+    var dropdownToggle = event.target.closest('.dropdown').querySelector('.dropdown-toggle');
+    dropdownToggle.textContent = selectedText;
+    currentPage = 1;
+    updateDisplay();
+  }
+
   searchInput.addEventListener("input", function () {
-    const searchQuery = searchInput.value.toLowerCase();
-    filteredActivities = activityItems.filter((item) =>
-      item.getAttribute("data-name").toLowerCase().includes(searchQuery)
-    );
     currentPage = 1;
     updateDisplay();
   });
@@ -58,6 +83,10 @@ document.addEventListener("DOMContentLoaded", function () {
       currentPage++;
       updateDisplay();
     }
+  });
+
+  dropdownItems.forEach(function (item) {
+    item.addEventListener('click', handleDropdownChange);
   });
 
   updateDisplay();

@@ -19,6 +19,14 @@ controller.addTestRun = async (req, res) => {
             tester_id: assignedTo, 
             created_by: createdBy,
         });
+        models.Activity.create({
+            project_id: projectId,
+            user_id: req.session.userId,
+            title_name: `Create testrun ${title}`,
+            member_id: req.session.memberId,
+            action: 'create',
+            time : new Date()
+        });
 
         console.log('Test Run created:', newTestRun.toJSON());
         res.redirect(`/project/${projectId}/testrun`)
@@ -71,9 +79,11 @@ controller.getTestRuns = async (req, res) => {
     }
 };
   
-controller.getAllTestRuns = async (req, res) => {
+controller.getAllTestRunsInProject = async (req, res) => {
     try {
-        const testRuns = await models.TestRun.findAll();
+        const testRuns = await models.TestRun.findAll({
+            where : {id: req.params.id} 
+        });
 
         if (!testRuns || testRuns.length === 0) {
         return res.status(404).json({ message: "No test runs found" });
@@ -100,6 +110,16 @@ controller.editTestRun = async(req, res) => {
         if (testCase !== undefined) testRun.test_case_id = testCase;
         if (release !== undefined) testRun.release_id = release;
         if (status !== undefined) testRun.status = status;
+        if (status !== undefined) {
+            models.Activity.create({
+                project_id: testRun.project_id,
+                user_id: req.session.userId,
+                title_name: `Change testrun ${testRun.name} status to ${status}`,
+                member_id: req.session.memberId,
+                action: 'edit',
+                time : new Date()
+            });
+        }
         
         await testRun.save();
         console.log('Test Run updated:', testRun.toJSON());
@@ -118,6 +138,15 @@ controller.deleteTestRun = async(req, res) => {
         if (!testRun) {
             return res.status(404).send("Test run not found");
         }
+        models.Activity.create({
+            project_id: testRun.project_id,
+            user_id: req.session.userId,
+            title_name: `Delete testrun ${testRun.name}`,
+            member_id: req.session.memberId,
+            action: 'delete',
+            time : new Date()
+        });
+
         await testRun.destroy();
         req.flash("success", `Delete test run ${testRun.name} successfully!`);
         res.status(204).send();

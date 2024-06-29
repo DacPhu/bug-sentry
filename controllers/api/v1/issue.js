@@ -82,6 +82,14 @@ controller.addIssue = async (req, res) => {
       note,
       member_id
     });
+    models.Activity.create({
+      project_id: project_id,
+      user_id: req.session.userId,
+      title_name: `Create issue ${name}`,
+      member_id: req.session.memberId,
+      action: 'create',
+      time : new Date()
+    });
     console.log('Test Run created:', newIssue.toJSON());
     res.redirect(`/project/${project_id}/issue`)
   } catch (error) {
@@ -104,6 +112,17 @@ controller.editIssue = async (req, res) => {
     if (status !== undefined) issue.status = status;
     if (priority !== undefined) issue.priority = priority;
     if (note !== undefined) issue.note = note;
+    if (status !== undefined) {
+      models.Activity.create({
+        project_id: issue.project_id,
+        user_id: req.session.userId,
+        title_name: `Change issue ${issue.name} status to ${status}`,
+        member_id: req.session.memberId,
+        action: 'edit',
+        time : new Date()
+      });
+    }
+    
     await issue.save();
     console.log('Issue updated:', issue.toJSON());
     return res.status(200).json(issue);
@@ -121,6 +140,14 @@ controller.deleteIssue = async(req, res) => {
       if (!issue) {
           return res.status(404).send("Issue not found");
       }
+      models.Activity.create({
+        project_id: issue.project_id,
+        user_id: req.session.userId,
+        title_name: `Delete issue ${issue.name}`,
+        member_id: req.session.memberId,
+        action: 'delete',
+        time : new Date()
+      });
       await issue.destroy();
       req.flash("success", `Delete Issue ${issue.name} successfully!`);
       res.status(204).send();

@@ -19,7 +19,7 @@ controller.showAll = async (req, res) => {
           include: [
             {
               model: models.User,
-              attributes: ["first_name", "last_name"], // Exclude attributes from User, since you only need username
+              attributes: ["first_name", "last_name"], 
               required: false,
               include: [{ model: models.Role }],
             },
@@ -28,10 +28,24 @@ controller.showAll = async (req, res) => {
         },
       ],
     });
+    const members = await models.Member.findAll({
+      where: {
+        project_id: projectId,
+      },
+      include: [
+        {
+          model: models.User,
+          attributes: ["first_name", "last_name"], 
+          required: false,
+          include: [{ model: models.Role }],
+        },
+      ],
+    })
     res.render("activity_log", {
       layout: "main_layout",
       activities,
       role: req.session.role,
+      members,
     });
   } catch (error) {
     console.error("Error fetching activity logs:", error);
