@@ -7,6 +7,7 @@ module.exports = (sequelize, DataTypes) => {
       User.belongsTo(models.Role, { foreignKey: "role_id" });
       User.hasMany(models.Project, { foreignKey: "project_manager_id" });
       User.hasMany(models.Member, { foreignKey: "user_id" });
+      User.hasMany(models.Notification, { foreignKey: "user_id" });
     }
   }
 

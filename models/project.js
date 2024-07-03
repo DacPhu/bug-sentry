@@ -10,6 +10,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      
       Project.belongsTo(models.User, {
         foreignKey: "project_manager_id",
         as: "projectManager",
@@ -19,6 +20,7 @@ module.exports = (sequelize, DataTypes) => {
       Project.hasMany(models.TestCase, { foreignKey: "project_id" });
       Project.hasMany(models.TestRun, { foreignKey: "project_id" });
       Project.hasMany(models.Issue, { foreignKey: "project_id" });
+      Project.hasMany(models.Member, { foreignKey: "project_id" });
     }
   }
 
