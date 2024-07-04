@@ -38,6 +38,15 @@ document.addEventListener("DOMContentLoaded", function () {
     currentPageDisplay.innerText = currentPage;
     prevPageBtn.disabled = currentPage === 1;
     nextPageBtn.disabled = endIndex >= filteredTestRuns.length;
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const releaseIdFromUrl = urlParams.get("release_id");
+    if (releaseIdFromUrl) {
+      const selectedReleaseName = document.querySelector(
+        `.dropdown-item[data-id="${releaseIdFromUrl}"]`
+      ).textContent;
+      document.getElementById("dropdownMenu2").textContent = selectedReleaseName;
+    }
   }
 
   searchInput.addEventListener("input", function () {
@@ -45,11 +54,6 @@ document.addEventListener("DOMContentLoaded", function () {
     filteredTestRuns = testRunItems.filter((item) =>
       item.dataset.name.toLowerCase().includes(searchQuery)
     );
-    const release = document.getElementById('dropdownMenu2').textContent;
-    if (releaseId != "All")
-      filteredTestRuns = filteredTestRuns.filter((item) =>
-        item.dataset.release == releaseId
-      )
     currentPage = 1;
     updateDisplay();
   });
@@ -70,20 +74,14 @@ document.addEventListener("DOMContentLoaded", function () {
   });
   document.querySelectorAll('.dropdown-item').forEach(item => {
     item.addEventListener('click', function () {
-      let toggleButton = document.getElementById('dropdownMenu2');
-      toggleButton.textContent = this.textContent;
-      releaseId = this.dataset.id
-      const searchQuery = searchInput.value.toLowerCase();
-      filteredTestRuns = testRunItems.filter((item) =>
-        item.dataset.name.toLowerCase().includes(searchQuery)
-      );
-      const release = document.getElementById('dropdownMenu2').textContent;
-      if (releaseId != "All")
-        filteredTestRuns = filteredTestRuns.filter((item) =>
-          item.dataset.release == releaseId
-        )
-      currentPage = 1;
-      updateDisplay();
+      let releaseId = this.dataset.id;
+      let currentUrl = window.location.href;
+
+      // Tạo URL mới với release_id như một query parameter
+      let newUrl = currentUrl.split('?')[0] + `?release_id=${releaseId}`;
+
+      // Thực hiện redirect tới URL mới
+      window.location.href = newUrl;
     });
   });
 
