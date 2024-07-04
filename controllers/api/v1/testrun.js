@@ -2,13 +2,13 @@
 
 const controller = {};
 const models = require("../../../models");
+const notificationController = require('./notification');
 
 controller.addTestRun = async (req, res) => {
 
     const { projectId, title, assignedTo, testCase, release } = req.body;
     // console.log(req.session.projects[projectId].memberId)
     const createdBy = req.session.projects[projectId].memberId
-    console.log(projectId, createdBy, title, assignedTo, testCase, release)
     try {
         const newTestRun = await models.TestRun.create({
             project_id: projectId,
@@ -27,8 +27,23 @@ controller.addTestRun = async (req, res) => {
             action: 'create',
             time : new Date()
         });
-
+        
         console.log('Test Run created:', newTestRun.toJSON());
+
+        const notificationData = {
+            name: `New Test Run: ${title}`,
+            user_id: createdBy,
+            project_id: projectId,
+            content: `a new test run titled "${title}".`
+        };
+
+        const reqForNotification = { body: notificationData, io: req.io };
+        const resForNotification = {
+            status: (statusCode) => ({
+                json: (data) => console.log('Notification response:', statusCode, data)
+            })
+        };
+        await notificationController.sendNotification(reqForNotification, resForNotification);
         res.redirect(`/project/${projectId}/testrun`)
     } catch (error) {
         return res
@@ -100,7 +115,6 @@ controller.getAllTestRunsInProject = async (req, res) => {
 };
 controller.editTestRun = async(req, res) => {
     const { projectId, title, assignedTo, testCase, release, status } = req.body;
-    console.log(projectId, title, assignedTo, testCase, release, status)
     const id = req.params.id
     try {
         const testRun = await models.TestRun.findByPk(id);

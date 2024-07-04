@@ -1,38 +1,44 @@
+<style>
+  .notification-icon {
+    position: relative;
+    display: inline-block;
+    margin-right: 20px;
+    /* Adjust as needed */
+  }
+
+  .notification-icon .badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    padding: 5px 8px;
+    border-radius: 50%;
+    background-color: red;
+    color: white;
+    font-size: 10px;
+  }
+  .container-notification-item {
+    width: 400px;
+  }
+
+  
+</style>
 <nav class="navbar navbar-expand-sm navbar-light bg-white">
   <div class="container-fluid">
     <a href="/">
-      <img
-        src="/images/BugSentryLogo.png"
-        alt="Logo"
-        height="50px"
-        class="ps-5"
-      />
+      <img src="/images/BugSentryLogo.png" alt="Logo" height="50px" class="ps-5" />
     </a>
     <a class="navbar-brand px-2" href="/">
       <h2>Bug Sentry</h2>
     </a>
-    <button
-      class="navbar-toggler d-lg-none"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#collapsibleNavId"
-      aria-controls="collapsibleNavId"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
+    <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavId"
+      aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="collapsibleNavId">
       <ul class="navbar-nav ms-auto mt-lg-0">
         <li class="nav-item dropdown">
-          <a
-            class="nav-link dropdown-toggle"
-            href="#"
-            id="dropdownLanguageId"
-            data-bs-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
-          >
+          <a class="nav-link dropdown-toggle" href="#" id="dropdownLanguageId" data-bs-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
             <i class="bi bi-globe-americas fs-4 align-middle"></i>
             Language</a>
           <div class="dropdown-menu" aria-labelledby="dropdownLanguageId">
@@ -41,14 +47,8 @@
           </div>
         </li>
         <li class="nav-item dropdown">
-          <a
-            class="nav-link dropdown-toggle"
-            href="#"
-            id="dropdownContactId"
-            data-bs-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
-          >
+          <a class="nav-link dropdown-toggle" href="#" id="dropdownContactId" data-bs-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
             <i class="bi bi-envelope fs-4 align-middle"></i>
             Contact</a>
           <div class="dropdown-menu" aria-labelledby="dropdownContactId">
@@ -57,14 +57,8 @@
           </div>
         </li>
         <li class="nav-item dropdown">
-          <a
-            class="nav-link dropdown-toggle"
-            href="#"
-            id="dropdownHelpCenterId"
-            data-bs-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
-          >
+          <a class="nav-link dropdown-toggle" href="#" id="dropdownHelpCenterId" data-bs-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
             <i class="bi bi-question-circle fs-4 align-middle"></i>
             Help Center
           </a>
@@ -73,15 +67,10 @@
             <a class="dropdown-item" href="#">Privacy</a>
           </div>
         </li>
+
         <li class="nav-item dropdown">
-          <a
-            class="nav-link dropdown-toggle"
-            href="#"
-            id="dropdownAccountId"
-            data-bs-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
-          >
+          <a class="nav-link dropdown-toggle" href="#" id="dropdownAccountId" data-bs-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
             <i class="bi bi-person-circle fs-4 align-middle"></i>
             Account</a>
           <div class="dropdown-menu" aria-labelledby="dropdownAccountId">
@@ -90,7 +79,24 @@
             <a class="dropdown-item" href="/logout">Log out</a>
           </div>
         </li>
+        <li class="nav-item d-flex align-items-center ">
+          <div class="notification-icon dropdown">
+            <i class="fas fa-bell fa-2x" id="dropdownNotification" data-bs-toggle="dropdown" aria-haspopup="true"
+              aria-expanded="false"></i>
+            <span id="notificationCount" class="badge"></span>
+            <div id="notificationList" class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownNotification" style="overflow-y: auto; max-height: 400px;">
+              
+
+            </div>
+          </div>
+
+        </li>
       </ul>
     </div>
   </div>
 </nav>
+<script>
+  const user_id = {{ userId }}
+  const projectIDs = [{{projectIDs}}]
+  console.log(projectIDs)
+</script>

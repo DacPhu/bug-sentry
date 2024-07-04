@@ -7,6 +7,7 @@ const sequelize = require("sequelize");
 controller.showAll = async (req, res) => {
   try {
     const projectId = req.params.id;
+    const release_id = req.query.release_id;
     const releases = await models.Release.findAll({
       where: {project_id: projectId},
     })
@@ -20,10 +21,8 @@ controller.showAll = async (req, res) => {
     const test_cases = await models.TestCase.findAll({
       where: {project_id: projectId},
     })
-    const test_runs = await models.TestRun.findAll({
-      where: {
-        project_id: projectId,
-      },
+    let test_run_query = {
+      where: { project_id: projectId },
       include: [
         {
           model: models.Member,
@@ -31,7 +30,7 @@ controller.showAll = async (req, res) => {
           include: [
             {
               model: models.User,
-              attributes: ["first_name", "last_name"], 
+              attributes: ["first_name", "last_name"],
               required: false,
             },
           ],
@@ -43,7 +42,7 @@ controller.showAll = async (req, res) => {
           include: [
             {
               model: models.User,
-              attributes: ["first_name", "last_name"], // Exclude attributes from User, since you only need username
+              attributes: ["first_name", "last_name"],
               required: false,
             },
           ],
@@ -58,8 +57,13 @@ controller.showAll = async (req, res) => {
           required: false,
         },
       ],
-    });
-    console.log(members);
+      order: [['created_at', 'DESC']],
+    };
+    if (release_id && release_id !== "All") {
+      test_run_query.where.release_id = release_id;
+    }
+
+    const test_runs = await models.TestRun.findAll(test_run_query);
 
     res.render("testrun", {
       layout: "main_layout",

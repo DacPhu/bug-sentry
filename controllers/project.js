@@ -59,7 +59,7 @@ controller.showAll = async (req, res) => {
       group: ["Project.id", "Project.name", "Project.created_at"],
     });
 
-    console.log(projectsWithCounts);
+    
 
     // format the result
     const listProjects = projectsWithCounts.map((project) => ({
@@ -70,7 +70,7 @@ controller.showAll = async (req, res) => {
       testrunCount: project.get("testrunCount"),
       issueCount: project.get("issueCount"), // Added issueCount
     }));
-    console.log(listProjects);
+    
 
     res.render("project", { listProjects });
   } catch (error) {
@@ -114,7 +114,7 @@ controller.showOverview = async (req, res) => {
         break;
     }
   });
-  console.log(counts);
+
 
   const members = await models.Member.findAll({
     where: { project_id: id },

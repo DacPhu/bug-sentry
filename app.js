@@ -1,6 +1,12 @@
 const express = require("express");
+const socketIo = require("socket.io");
+const http = require("http");
+
 const app = express();
+const server = http.createServer(app);
+const io = socketIo(server);
 const port = 4000;
+
 const expressHandleBars = require("express-handlebars");
 const formatDate = require("./helpers/time");
 const session = require("express-session");
@@ -14,6 +20,7 @@ const {
   errorHandler,
   authMiddleware,
   logMiddleware,
+  socketMiddleware,
 } = require("./middlewares");
 
 const helpers = require("./helpers");
@@ -92,6 +99,8 @@ configUploadRoutes(csrfProtection, app);
 app.use(csrfProtection);
 app.use((req, res, next) => {
   res.locals.csrfToken = req.csrfToken();
+  res.locals.userId = req.session.userId;
+  res.locals.projectIDs = req.session.projects ? Object.keys(req.session.projects) : [];
   next();
 });
 
@@ -102,6 +111,7 @@ app.use("/", require("./routes/auth"));
 
 app.use(authMiddleware.require_login);
 app.use(authMiddleware.injectRole);
+app.use(socketMiddleware(io));
 
 // API
 app.use("/api/v1/release", require("./routes/api/v1/release"));
@@ -117,6 +127,7 @@ app.use("/api/v1/requirement", require("./routes/api/v1/requirement"));
 app.use("/api/v1/attachment", require("./routes/api/v1/attachment"));
 app.use("/api/v1/member", require("./routes/api/v1/member"));
 app.use("/api/v1/user", require("./routes/api/v1/user"));
+app.use("/api/v1/notification", require("./routes/api/v1/notification"));
 
 // PAGE
 app.use("/dashboard", require("./routes/dashboard"));
@@ -129,6 +140,20 @@ app.use(errorHandler.notFoundHandler);
 app.use(errorHandler.csrfErrorHandler);
 app.use(errorHandler.generalErrorHandler);
 
-app.listen(port, () =>
+// socket.io
+io.on('connection', (socket) => {
+  console.log('a user connected');
+
+  socket.on('joinProject', (projectId) => {
+    socket.join(projectId);
+    console.log(`User joined project ${projectId}`);
+  });
+
+  socket.on('disconnect', () => {
+    console.log('user disconnected');
+  });
+});
+
+server.listen(port, () =>
   console.log(`Example app listening on port ${port}! http://localhost:${port}`)
 );

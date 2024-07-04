@@ -6,23 +6,27 @@ const models = require("../models");
 const currentTimestamp = new Date();
 
 controller.showAll = async (req, res) => {
+  const projectId = req.params.id;
   const type = req.query.type | "open";
 
   try {
     const whereClauseOpen = {
       [models.Sequelize.Op.and]: [
+        { project_id: projectId },
         { start_date: { [models.Sequelize.Op.lt]: `%${currentTimestamp}%` } },
         { end_date: { [models.Sequelize.Op.gt]: `%${currentTimestamp}%` } },
       ],
     };
     const whereClauseCompleted = {
       [models.Sequelize.Op.and]: [
+        { project_id: projectId },
         { start_date: { [models.Sequelize.Op.lt]: `%${currentTimestamp}%` } },
         { end_date: { [models.Sequelize.Op.lt]: `%${currentTimestamp}%` } },
       ],
     };
     const whereClauseUpcoming = {
       [models.Sequelize.Op.and]: [
+        { project_id: projectId },
         { start_date: { [models.Sequelize.Op.gt]: `%${currentTimestamp}%` } },
         { end_date: { [models.Sequelize.Op.gt]: `%${currentTimestamp}%` } },
       ],

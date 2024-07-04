@@ -1,3 +1,14 @@
+<style>
+  .truncate {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    max-width: 100%;
+    word-wrap: break-word;
+    text-overflow: ellipsis;
+  }
+</style>
 <link rel="stylesheet" href="/styles/issues.module.css" />
 
 <!-- Page hiện tại -->
@@ -96,9 +107,9 @@
       <div class="container-fluid bg-light py-3">
         {{#each issues}}
         <div class="row issue-item d-flex align-items-center" data-name="{{name}}">
-          <div class="id-atribute col-md-1 text-color-1">{{id}}</div>
-          <div class="col-md-2 text-color-1">{{name}}</div>
-          <div class="col-md-2 text-color-1">{{Creator.User.first_name}} {{Creator.User.last_name}}</div>
+          <div class="id-atribute col-md-1 text-color-1 truncate">{{id}}</div>
+          <div class="col-md-2 text-color-1 truncate">{{name}}</div>
+          <div class="col-md-2 text-color-1 truncate">{{Creator.User.first_name}} {{Creator.User.last_name}}</div>
           <div class="col-md-2 text-color-1">
             <select class="form-select" data-id="{{id}}" onchange="updateStatus(this)" style="width: 150px;">
               <option value="open" {{#if (equalsStr status 'open' )}}selected{{/if}}>open
@@ -111,15 +122,15 @@
               </option>
             </select>
           </div>
-          <div class="priority-atribute col-md-1 text-color-1">{{priority}}</div>
-          <div class="col-md-2 text-color-1">{{formatDate created_at "MMM DD YYYY MM:hh"}}</div>
+          <div class="priority-atribute col-md-1 text-color-1 truncate">{{priority}}</div>
+          <div class="col-md-2 text-color-1 truncate">{{formatDate created_at "MMM DD YYYY MM:hh"}}</div>
           <div class="col text-color-1 d-flex">
             <i role="button" class="bi bi-eye me-3" data-bs-toggle="modal" data-bs-target="#viewIssueModal"
               onclick="showViewIssueModal(this)" data-id="{{id}}" data-name="{{name}}" data-priority="{{priority}}"
               data-description="{{note}}" data- data-created-by="{{Creator.User.first_name}} {{Creator.User.last_name}}"
               data-status="{{status}}"></i>
-            <i role="button" class="bi bi-trash text-danger" data-bs-toggle="modal"
-              data-bs-target="#deleteIssueModal" onclick="confirmDelete({{id}})"></i>
+            <i role="button" class="bi bi-trash text-danger" data-bs-toggle="modal" data-bs-target="#deleteIssueModal"
+              onclick="confirmDelete({{id}})"></i>
 
           </div>
           <hr class="mt-3" />
@@ -354,7 +365,7 @@
         console.error("Error updating issue:", error);
       });
   }
-  
+
 </script>
 <script src="/scripts/list-issue.js"></script>
 <script src="/scripts/management/issue.js"></script>
