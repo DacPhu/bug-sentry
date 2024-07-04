@@ -104,13 +104,14 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(socketMiddleware(io));
+
 // Routes
 app.use("/", require("./routes/home"));
 app.use("/", require("./routes/auth"));
 
 app.use(authMiddleware.require_login);
 app.use(authMiddleware.injectRole);
+app.use(socketMiddleware(io));
 
 // API
 app.use("/api/v1/release", require("./routes/api/v1/release"));
@@ -140,23 +141,18 @@ app.use(errorHandler.csrfErrorHandler);
 app.use(errorHandler.generalErrorHandler);
 
 // socket.io
-// io.on('connection', (socket) => {
-//   console.log('a user connected');
+io.on('connection', (socket) => {
+  console.log('a user connected');
 
-//   socket.on('joinProject', (projectId) => {
-//     socket.join(projectId);
-//     console.log(`User joined project ${projectId}`);
-//   });
+  socket.on('joinProject', (projectId) => {
+    socket.join(projectId);
+    console.log(`User joined project ${projectId}`);
+  });
 
-
-//   socket.on('newNotification', (notification) => {
-//     io.to(notification.project_id).emit('notification', notification);
-//   });
-
-//   socket.on('disconnect', () => {
-//     console.log('user disconnected');
-//   });
-// });
+  socket.on('disconnect', () => {
+    console.log('user disconnected');
+  });
+});
 
 server.listen(port, () =>
   console.log(`Example app listening on port ${port}! http://localhost:${port}`)

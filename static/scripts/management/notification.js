@@ -53,7 +53,8 @@ $(document).ready(function () {
     }
     fetchNotifications();
 
-    socket.on('notification', function (notification) {
+    socket.on('notification',  (notification) => {
+        console.log(notification)
         fetchNotifications();
     });
     

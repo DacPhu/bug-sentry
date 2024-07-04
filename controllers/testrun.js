@@ -58,8 +58,8 @@ controller.showAll = async (req, res) => {
           required: false,
         },
       ],
+      order: [['created_at', 'DESC']]
     });
-    console.log(members);
 
     res.render("testrun", {
       layout: "main_layout",

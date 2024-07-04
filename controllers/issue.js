@@ -26,6 +26,7 @@ controller.showAll = async (req, res) => {
           required: false,
         },
       ],
+      sortBy: ["created_at", "DESC"]
     });
     
     issues = issues.sort((a, b) => {

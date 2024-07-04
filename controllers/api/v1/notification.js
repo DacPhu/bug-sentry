@@ -18,10 +18,7 @@ controller.sendNotification = async (req, res) => {
             project_id,
             content,
         });
-
-        // Emit notification to the user via Socket.io
-        req.io.emit('newNotification', notification);
-
+        req.io.to(notification.project_id).emit('notification', notification);
         res.status(201).json(notification);
     } catch (error) {
         console.error(error);
@@ -49,7 +46,8 @@ controller.receiveNotification = async (req, res) => {
                 model: models.User,
                 attributes: ["first_name", "last_name", "profile_picture"],
                 required: true,
-            }]
+            }],
+            order: [['time', 'DESC']]
         });
         res.status(200).json(notifications);
     } catch (error) {
