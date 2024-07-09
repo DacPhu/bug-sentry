@@ -11,12 +11,14 @@ document
   });
 
 function showEditTestRunModal(btn) {
-  console.log(btn.dataset.assignedTo)
   document.querySelector("#createdByEdit").value = btn.dataset.createdBy;
   document.querySelector("#titleEdit").value = btn.dataset.title;
   document.querySelector("#assignedToEdit").textContent = btn.dataset.assignedTo ;
+  document.querySelector("#assignedToEdit").value = btn.dataset.idAssignedTo ;
   document.querySelector("#testCaseEdit").textContent = btn.dataset.testCase;
+  document.querySelector("#testCaseEdit").value = btn.dataset.idTestCase;
   document.querySelector("#releaseEdit").textContent = btn.dataset.release;
+  document.querySelector("#releaseEdit").value = btn.dataset.idRelease;
   // document.querySelector("#assignedToEdit").value = btn.dataset.assignedTo;
   // document.querySelector("#testCaseEdit").value = btn.dataset.testCase;
 }
@@ -25,7 +27,7 @@ function showAddIssueModal(btn) {
   document.querySelector("#titleRun").value = btn.dataset.title;
   document.querySelector("#assignedToRun").textContent = btn.dataset.assignedTo ;
   document.querySelector("#testCaseRun").textContent = btn.dataset.testCase;
-  document.querySelector("#releaseRun").textContentgit = btn.dataset.release;
+  document.querySelector("#releaseRun").textContent = btn.dataset.release;
 }
 
 async function editTestRun(e) {
