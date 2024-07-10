@@ -436,7 +436,7 @@
                 </div>
                 <div class="modal-body">
                     <input type="hidden" name="_csrf" value="{{csrfToken}}">
-                    <input type="hidden" id="projectId" name="projectId" value="{{projectId}}">
+                    <input type="hidden" name="testrunId" id="idEdit" />
                     <div class="row g-2">
                         <div class="col mb-6">
                             <label for="createdBy" class="form-label">Created By</label>
@@ -635,8 +635,8 @@
 <script src="/scripts/list-test-run.js"></script>
 <script src="/scripts/auto-slice-test-run.js"></script>
 <script src="/scripts/management/testrun.js"></script>
-{{/section}}
 
+{{/section}}
 
 {{#section "head"}}
 <title>Test run</title>
