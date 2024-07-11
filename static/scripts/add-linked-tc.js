@@ -110,7 +110,10 @@ const eventHandler = {
 
 const API = {
     addLinkedTestcases: async (testcases) => {
-        const url = window.location.href;
+        var url = window.location.href;
+        if (url.includes("?")) {
+            url = url.split("?")[0];
+        }
         console.log(testcases);
         fetch(url + '/linked/api', {
             method: 'POST',
@@ -150,7 +153,10 @@ const API = {
         const sortType = $("#sortType span").text().toLowerCase().trim();
         const page = $("#page").text().trim();
         const url = window.location.href;
-        const requirmentID = url.split("/").pop();
+        var requirmentID = url.split("/").pop();
+        if (requirmentID.includes("?")) {
+            requirmentID = requirmentID.split("?")[0];
+        }
         console.log(requirmentID);
         console.log(url.split("/"));
         console.log(sortField, sortType, page);
