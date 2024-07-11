@@ -155,7 +155,7 @@
 
                       {{#if (notEquals page 1)}}
                       <button class="border-0 rounded-3 p-2 text-muted ms-auto">
-                        <a href="?module={{module}}&moduleName={{moduleName}}&size={{size}}&page={{dec page }}">
+                        <a href="?module={{module}}&moduleName={{moduleName}}&size={{size}}&page={{dec page }}&requirementName={{requirementName}}&sortField={{sortField}}&sortType={{sortType}}">
                           <i class="bi bi-chevron-double-left"></i>
                         </a>
                       </button>
@@ -166,7 +166,7 @@
                       </div>
                       {{#if (lessThan page totalPages)}}
                       <button class="border-0 rounded-3 p-2 text-muted me-3">
-                        <a href="?module={{module}}&moduleName={{moduleName}}&size={{size}}&page={{inc page}}">
+                        <a href="?module={{module}}&moduleName={{moduleName}}&size={{size}}&page={{inc page}}&requirementName={{requirementName}}&sortField={{sortField}}&sortType={{sortType}}">
                           <i class="bi bi-chevron-double-right"></i>
                         </a>
                       </button>
