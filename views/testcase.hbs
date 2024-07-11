@@ -369,10 +369,17 @@
 <script>
   const dataStr = `{{{testcasesJson}}}`;
   const totalPages = `{{{totalPages}}}`;
-  const testCases = JSON.parse(dataStr);
+  
+  const testCases = JSON.parse(escapeSpecialCharacters(dataStr));
   const CSRF_TOKEN = "{{{csrfToken}}}";
   const chosenModuleName = "{{{chosenModuleName}}}";
-
+function escapeSpecialCharacters(str) {
+  return str
+    .replace(/\\/g, '\\\\')  // Escape backslashes
+    .replace(/\n/g, '\\n')   // Escape newlines
+    .replace(/\r/g, '\\r')   // Escape carriage returns
+    .replace(/\t/g, '\\t');  // Escape tabs
+}
 console.log(testCases, chosenModuleName)
 </script>
 <script>

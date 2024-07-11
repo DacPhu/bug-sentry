@@ -181,7 +181,7 @@ controller.getTestCasesAPI = async (req, res) => {
       console.log(testcases);
       for (const testCase of testcases.rows) {
           // const steps = JSON.parse(testCase.steps);
-          testCase.steps = JSON.parse(testCase.steps);
+          testCase.steps = testCase.steps;
           testCase.step_count = testCase.steps.length;
       }
       

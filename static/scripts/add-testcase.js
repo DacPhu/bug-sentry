@@ -1,3 +1,4 @@
+
 (function (fn) {
   "use strict";
   fn(window.jQuery, window, document);
@@ -90,7 +91,9 @@
         $.notify("Please add at least one step", "warn");
         return;
       }
-
+      console.log(steps);
+      console.log(JSON.stringify(steps))
+      console.log(JSON.parse(JSON.stringify(steps)))
       const payload = {
         module_id: module,
         title: testCaseName,
