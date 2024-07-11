@@ -5,7 +5,8 @@ const { inc } = require("../helpers");
 const models = require("../models");
 const { raw } = require("express");
 const controller = {};
-
+const validator = require("validator");
+const { isSafeString } = require("../utils/validator");
 controller.showAll = async (req, res) => {
   try {
     // Extract project_id from request parameters
@@ -249,15 +250,22 @@ controller.createTestCase = async (req, res) => {
       throw new Error('Module not found in the project.');
     }
 
+
+    if (!isSafeString(title) || !isSafeString(description) || !isSafeString(steps) || !isSafeString(type) || !isSafeString(priority)){
+      req.flash("error", "Invalid input");
+      return res.status(400).send("Invalid input");
+    }
+
+
     // Create the test case
     const testCase = await models.TestCase.create({
       project_id: projectId,
       module_id: module_id,
       title: title,
       description: description,
-      steps: steps,
-      type: type,
-      priority: priority,
+      steps:  steps,
+      type:  type,
+      priority:  priority,
       tester_id: tester_id,
       created_at: new Date(), // Assuming default value handling by Sequelize if set
     });

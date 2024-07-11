@@ -115,9 +115,11 @@
           }, 1000);
         },
         error: function (error) {
-          error = error.responseJSON;
           console.log(error);
-          $.notify("Error creating requirement: "+ error.title, "error");
+
+          error = error.responseText;
+          console.log(error);
+          $.notify("Error creating requirement: Bad Input", "error");
         },
       });
 
