@@ -59,7 +59,7 @@ module.exports.login = async (req, res) => {
     });
 
     if (!user) {
-      req.flash("error", "Email or Password isn't correct!"); // Flash error message
+      req.flash("error", "Email or Password is not correct!"); // Flash error message
       return res.redirect(`/login`);
     }
 
@@ -67,7 +67,7 @@ module.exports.login = async (req, res) => {
     console.log(hashedPassword);
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
-      req.flash("error", "Email or Password isn't correct!");
+      req.flash("error", "Email or Password is not correct!");
       return res.redirect(`/login`);
     }
 

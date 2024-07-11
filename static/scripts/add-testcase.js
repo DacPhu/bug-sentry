@@ -1,3 +1,4 @@
+
 (function (fn) {
   "use strict";
   fn(window.jQuery, window, document);
@@ -90,7 +91,9 @@
         $.notify("Please add at least one step", "warn");
         return;
       }
-
+      console.log(steps);
+      console.log(JSON.stringify(steps))
+      console.log(JSON.parse(JSON.stringify(steps)))
       const payload = {
         module_id: module,
         title: testCaseName,
@@ -112,9 +115,11 @@
           }, 1000);
         },
         error: function (error) {
-          error = error.responseJSON;
           console.log(error);
-          $.notify("Error creating requirement: "+ error.title, "error");
+
+          error = error.responseText;
+          console.log(error);
+          $.notify("Error creating requirement: Bad Input", "error");
         },
       });
 
