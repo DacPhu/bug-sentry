@@ -217,6 +217,10 @@ controller.editRequirement = async (req, res) => {
     const name = req.body.name;
     const description = req.body.description ?? '';
     const url = req.body.url ?? '';
+    if (name.trim() === '') {
+      req.flash("error", "Name is required");
+      return res.redirect(`/project/${projectId}/requirement`);
+    }
     const requirement = await models.Requirement.findOne({
       where: {
         id: id,
