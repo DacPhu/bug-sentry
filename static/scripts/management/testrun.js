@@ -11,12 +11,15 @@ document
   });
 
 function showEditTestRunModal(btn) {
-  console.log(btn.dataset.assignedTo)
+  document.querySelector("#idEdit").value = btn.dataset.id;
   document.querySelector("#createdByEdit").value = btn.dataset.createdBy;
   document.querySelector("#titleEdit").value = btn.dataset.title;
   document.querySelector("#assignedToEdit").textContent = btn.dataset.assignedTo ;
+  document.querySelector("#assignedToEdit").value = btn.dataset.idAssignedTo ;
   document.querySelector("#testCaseEdit").textContent = btn.dataset.testCase;
+  document.querySelector("#testCaseEdit").value = btn.dataset.idTestCase;
   document.querySelector("#releaseEdit").textContent = btn.dataset.release;
+  document.querySelector("#releaseEdit").value = btn.dataset.idRelease;
   // document.querySelector("#assignedToEdit").value = btn.dataset.assignedTo;
   // document.querySelector("#testCaseEdit").value = btn.dataset.testCase;
 }
@@ -25,17 +28,17 @@ function showAddIssueModal(btn) {
   document.querySelector("#titleRun").value = btn.dataset.title;
   document.querySelector("#assignedToRun").textContent = btn.dataset.assignedTo ;
   document.querySelector("#testCaseRun").textContent = btn.dataset.testCase;
-  document.querySelector("#releaseRun").textContentgit = btn.dataset.release;
+  document.querySelector("#releaseRun").textContent = btn.dataset.release;
 }
-
-async function editTestRun(e) {
-  e.preventDefault();
+document.querySelector("#editTestRunForm").addEventListener("submit", async function(e) {
+  e.preventDefault(); 
+  console.log(document.querySelector("#idEdit").value)
   const formData = new FormData(document.querySelector("#editTestRunForm"));
   let data = Object.fromEntries(formData.entries());
+  console.log(data)
   const csrfToken = data._csrf
-  const id = data.id;
-  delete data._csrf, data.id;
-  console.log(data, csrfToken, id)
+  const id = data.testrunId;
+  delete data._csrf, data.testrunId;
   try {
     let res = await fetch(`/api/v1/testrun/${id}`, {
       method: "PUT",
@@ -56,7 +59,7 @@ async function editTestRun(e) {
       "Can not update test run information";
     console.log(error);
   }
-}
+});
 function confirmDelete(id) {
   $("#deleteTestRunModal").data("testrun_id", id);
 }

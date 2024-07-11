@@ -42,7 +42,7 @@ controller.showAll = async (req, res) => {
           include: [
             {
               model: models.User,
-              attributes: ["first_name", "last_name"],
+              attributes: ["first_name", "last_name", "id"],
               required: false,
             },
           ],

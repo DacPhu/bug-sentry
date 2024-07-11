@@ -115,6 +115,7 @@ controller.getAllTestRunsInProject = async (req, res) => {
 };
 controller.editTestRun = async(req, res) => {
     const { projectId, title, assignedTo, testCase, release, status } = req.body;
+    console.log(projectId, title, assignedTo, testCase, release, status)
     const id = req.params.id
     try {
         const testRun = await models.TestRun.findByPk(id);
