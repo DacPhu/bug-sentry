@@ -16,6 +16,7 @@ module.exports.signup = async (req, res) => {
       role_id: role,
       email,
       password: hashedPassword,
+      profile_picture: 'https://www.gravatar.com/avatar/?d=mp',
     });
     req.flash("success", "Create account successfully !"); // Flash success message
     res.redirect(`/login`);
