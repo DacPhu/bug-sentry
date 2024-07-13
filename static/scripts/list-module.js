@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
     let entriesText;
-    const finalIndex = Math.min(finalIndex, filteredModules.length);
+    const finalIndex = Math.min(endIndex, filteredModules.length);
     if (finalIndex === 0) {
       entriesText = 'There are no entries';
     } else {

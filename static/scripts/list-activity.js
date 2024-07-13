@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     let entriesText;
-    const finalIndex = Math.min(finalIndex, filteredActivities.length);
+    const finalIndex = Math.min(endIndex, filteredActivities.length);
     if (endIndex === 0) {
       entriesText = 'There are no entries';
     } else {

@@ -24,7 +24,7 @@ function updateDisplay() {
     }
     });
     let entriesText;
-    const finalIndex = Math.min(finalIndex, filteredProjects.length);
+    const finalIndex = Math.min(endIndex, filteredProjects.length);
     if (finalIndex === 0) {
       entriesText = 'There are no entries';
     } else {

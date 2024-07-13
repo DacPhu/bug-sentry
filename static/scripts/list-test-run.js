@@ -31,10 +31,14 @@ document.addEventListener("DOMContentLoaded", function () {
         item.classList.add('d-none'); // Thêm lớp để ẩn
       }
     });
-    paginationInfo.innerText = `Showing ${startIndex + 1} to ${Math.min(
-      endIndex,
-      filteredTestRuns.length
-    )} of ${filteredTestRuns.length} entries`;
+    let entriesText;
+    const finalIndex = Math.min(endIndex, filteredTestRuns.length);
+    if (finalIndex === 0) {
+      entriesText = 'There are no entries';
+    } else {
+      entriesText = `Showing ${startIndex + 1} to ${finalIndex} of ${filteredTestRuns.length} entries`;
+    }
+    paginationInfo.innerText = entriesText;
     currentPageDisplay.innerText = currentPage;
     prevPageBtn.disabled = currentPage === 1;
     nextPageBtn.disabled = endIndex >= filteredTestRuns.length;
