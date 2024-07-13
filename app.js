@@ -100,7 +100,8 @@ app.use(csrfProtection);
 app.use((req, res, next) => {
   res.locals.csrfToken = req.csrfToken();
   res.locals.userId = req.session.userId;
-  res.locals.projectIDs = req.session.projects ? Object.keys(req.session.projects) : [];
+  res.locals.projects = (req.session.projects) ? req.session.projects: {}
+  res.locals.projectId = req.session.projectId
   next();
 });
 
@@ -141,16 +142,46 @@ app.use(errorHandler.csrfErrorHandler);
 app.use(errorHandler.generalErrorHandler);
 
 // socket.io
+let projectActiveUser = {};
+
 io.on('connection', (socket) => {
   console.log('a user connected');
 
-  socket.on('joinProject', (projectId) => {
+  socket.on('joinProject', (projectId, memberId) => {
     socket.join(projectId);
-    console.log(`User joined project ${projectId}`);
+    console.log(`Member ${memberId} joined project ${projectId}`);
+
+    if (!projectActiveUser[projectId]) {
+      projectActiveUser[projectId] = {};
+    }
+    projectActiveUser[projectId][socket.id] = memberId;
+    console.log(`Active members in project ${projectId}:`, projectActiveUser[projectId]);
+
+    io.to(projectId).emit('activeUsers');
   });
 
   socket.on('disconnect', () => {
     console.log('user disconnected');
+
+    Object.keys(projectActiveUser).forEach(projectId => {
+      if (projectActiveUser[projectId][socket.id]) {
+        delete projectActiveUser[projectId][socket.id];
+        console.log(`Active users in project ${projectId} after disconnect:`, Object.values(projectActiveUser[projectId]));
+        io.to(projectId).emit('activeUsers');
+      }
+    });
+  });
+
+  socket.on('setUserId', (userId) => {
+    socket.userId = userId;
+  });
+  socket.on('getActiveUsers', (projectId) => {
+    if (projectActiveUser[projectId]) {
+      const activeUsers = Object.values(projectActiveUser[projectId]);
+      socket.emit('activeUsersResponse', { projectId, activeUsers });
+    } else {
+      socket.emit('activeUsersResponse', { projectId, activeUsers: [] });
+    }
   });
 });
 
