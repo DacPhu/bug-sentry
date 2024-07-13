@@ -110,7 +110,7 @@ controller.uploadFile = async (req, res) => {
       project_id: project_id,
       name: attachment_name,
       path: relativeFilePath,
-      type: path.extname(file.originalname).substring(1),
+      type: path.extname(file.originalname).substring(1) | "unknown",
     });
 
     // Redirect to the attachments page
