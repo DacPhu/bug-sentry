@@ -80,8 +80,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(middlewares.logMiddleware);
 
-
-
 app.set("view engine", "hbs");
 app.use(flash());
 app.use((req, res, next) => {
@@ -90,21 +88,17 @@ app.use((req, res, next) => {
   next();
 });
 
-
-
 // config upload routes
 configUploadRoutes(csrfProtection, app);
-
 
 app.use(csrfProtection);
 app.use((req, res, next) => {
   res.locals.csrfToken = req.csrfToken();
   res.locals.userId = req.session.userId;
-  res.locals.projects = (req.session.projects) ? req.session.projects: {}
-  res.locals.projectId = req.session.projectId
+  res.locals.projects = req.session.projects ? req.session.projects : {};
+  res.locals.projectId = req.session.projectId;
   next();
 });
-
 
 // Routes
 app.use("/", require("./routes/home"));
@@ -137,6 +131,9 @@ app.use("/role", require("./routes/api/v1/role"));
 app.use("/board", require("./routes/board"));
 app.use("/profile", require("./routes/profile"));
 
+// DOWNLOAD
+app.use("/download", require("./routes/download"));
+
 app.use(errorHandler.notFoundHandler);
 app.use(errorHandler.csrfErrorHandler);
 app.use(errorHandler.generalErrorHandler);
@@ -144,10 +141,10 @@ app.use(errorHandler.generalErrorHandler);
 // socket.io
 let projectActiveUser = {};
 
-io.on('connection', (socket) => {
-  console.log('a user connected');
+io.on("connection", (socket) => {
+  console.log("a user connected");
 
-  socket.on('joinProject', (projectId, memberId) => {
+  socket.on("joinProject", (projectId, memberId) => {
     socket.join(projectId);
     console.log(`Member ${memberId} joined project ${projectId}`);
 
@@ -155,32 +152,38 @@ io.on('connection', (socket) => {
       projectActiveUser[projectId] = {};
     }
     projectActiveUser[projectId][socket.id] = memberId;
-    console.log(`Active members in project ${projectId}:`, projectActiveUser[projectId]);
+    console.log(
+      `Active members in project ${projectId}:`,
+      projectActiveUser[projectId]
+    );
 
-    io.to(projectId).emit('activeUsers');
+    io.to(projectId).emit("activeUsers");
   });
 
-  socket.on('disconnect', () => {
-    console.log('user disconnected');
+  socket.on("disconnect", () => {
+    console.log("user disconnected");
 
-    Object.keys(projectActiveUser).forEach(projectId => {
+    Object.keys(projectActiveUser).forEach((projectId) => {
       if (projectActiveUser[projectId][socket.id]) {
         delete projectActiveUser[projectId][socket.id];
-        console.log(`Active users in project ${projectId} after disconnect:`, Object.values(projectActiveUser[projectId]));
-        io.to(projectId).emit('activeUsers');
+        console.log(
+          `Active users in project ${projectId} after disconnect:`,
+          Object.values(projectActiveUser[projectId])
+        );
+        io.to(projectId).emit("activeUsers");
       }
     });
   });
 
-  socket.on('setUserId', (userId) => {
+  socket.on("setUserId", (userId) => {
     socket.userId = userId;
   });
-  socket.on('getActiveUsers', (projectId) => {
+  socket.on("getActiveUsers", (projectId) => {
     if (projectActiveUser[projectId]) {
       const activeUsers = Object.values(projectActiveUser[projectId]);
-      socket.emit('activeUsersResponse', { projectId, activeUsers });
+      socket.emit("activeUsersResponse", { projectId, activeUsers });
     } else {
-      socket.emit('activeUsersResponse', { projectId, activeUsers: [] });
+      socket.emit("activeUsersResponse", { projectId, activeUsers: [] });
     }
   });
 });

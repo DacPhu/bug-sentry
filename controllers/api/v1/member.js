@@ -46,6 +46,8 @@ controller.addUserToProject = async (req, res) => {
       role_id: roleId,
       active: true,
     });
+
+    console.log(req.body)
     return res.status(201).json(member);
   } catch (error) {
     return res

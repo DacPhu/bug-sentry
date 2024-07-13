@@ -113,6 +113,7 @@
                         <select
                             class="form-select w-100 mb-3 mt-2"
                             aria-label="Default select example"
+                            id="status"
                         >
                             <option value="1" selected>Active</option>
                             <option value="2">Inactive</option>
@@ -164,10 +165,7 @@
                         </div>
                     </div>
                     <div class="d-flex m-3 justify-content-center">
-                        <form action="/api/v1/{{projectId}}/member" method="POST">
-
-                            <button class="ps-3 pe-3 ms-4 d-flex btn save-btn" type="submit">Save</button>
-                        </form>
+                        <div class="ps-3 pe-3 ms-4 d-flex btn save-btn" onclick="addUserToProject()">Save</div>
                         <div
                         class="closePopup btn text-center ps-3 pe-3 ms-4 cancel-btn"
                         >
@@ -193,6 +191,7 @@
 ></script>
 <script src="/scripts/sort.js"></script>
 <script src="/scripts/add-user.js"></script>
+<script> const CSRF_TOKEN = "{{csrfToken}}"; </script>
 <script>
     async function checkUserInfo() {
         const emailInput = document.getElementById('email-input');

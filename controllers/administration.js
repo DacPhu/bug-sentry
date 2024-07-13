@@ -28,7 +28,7 @@ controller.showAll = async (req, res) => {
       full_name: `${item.User.first_name} ${item.User.last_name}`,
       email: item.User.email,
       role: item.Role.name,
-      status: item.active ? "active" : "inactive",
+      status: item.active == true ? "active" : "inactive",
     }));
     // Render trang administration với dữ liệu members
     res.render("administration", {
@@ -77,34 +77,6 @@ controller.getUserRole = async (req, res) => {
       },
       role: role.name,
     });
-  }
-};
-
-controller.addUserToProject = async (req, res) => {
-  const { userId, projectId, roleId } = req.body;
-
-  try {
-    const users = await models.User.findAll({
-      where: whereClause,
-      attributes: ["id", "username", "role_id"],
-      order: [["createdAt", "DESC"]],
-      limit: limit,
-      offset: offset,
-    });
-
-    await models.Member.create({
-      firstName,
-      lastName,
-      username,
-      mobile,
-      isAdmin: isAdmin ? true : false,
-    });
-
-    res.redirect("/users");
-  } catch (error) {
-    console.error("Error adding user:", error);
-    res.send("Can not add user!");
-    console.error(error);
   }
 };
 

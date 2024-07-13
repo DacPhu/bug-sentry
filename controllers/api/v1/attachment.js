@@ -78,8 +78,6 @@ controller.uploadFile = async (req, res) => {
     const attachment_name = req.body.name;
     const project_id = req.session.projectId;
 
-    console.log("SESSION", req.session);
-
     if (!file) {
       return res.status(400).json({ message: "No file uploaded" });
     }
@@ -112,7 +110,7 @@ controller.uploadFile = async (req, res) => {
       project_id: project_id,
       name: attachment_name,
       path: relativeFilePath,
-      type: path.extname(file.originalname).substring(1),
+      type: path.extname(file.originalname).substring(1) | "unknown",
     });
 
     // Redirect to the attachments page
