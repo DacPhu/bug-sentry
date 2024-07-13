@@ -98,7 +98,7 @@
 <script>
   const user_id = {{userId}}
   const projects = JSON.parse('{{{JSON projects}}}');
-  const socket = io('http://localhost:4000');
+  const socket = io(window.location.origin);
   Object.keys(projects).forEach(projectId => {
     const project = projects[projectId];
     socket.emit('joinProject', projectId, project.memberId);
