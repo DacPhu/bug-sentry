@@ -101,7 +101,6 @@
   const socket = io('http://localhost:4000');
   Object.keys(projects).forEach(projectId => {
     const project = projects[projectId];
-    console.log(projectId, project.memberId);
     socket.emit('joinProject', projectId, project.memberId);
   });
   // Join vào các dự án mà user đang tham gia

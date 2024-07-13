@@ -60,7 +60,7 @@
               <div class="me-2 p-1">
                 <a href="add-user" style="text-decoration: none" class="text-light">
                   Add User
-                  </a>
+                </a>
               </div>
               <img src="/icons/add.svg" alt="" />
             </div>
@@ -128,7 +128,7 @@
       </div>
       <div class="container-fluid bg-light py-3">
         {{#each members}}
-        <div class="row p-3 member-item" data-member-id="{{id}}"data-name="{{full_name}}" data-role="{{role}}" data-status="">
+        <div class="row p-3 member-item" data-member-id="{{id}}" data-name="{{full_name}}" data-role="{{role}}" data-status="">
           <div class="col text-color-1">{{full_name}}</div>
           <div class="col text-color-1">
             {{email}}
@@ -174,7 +174,6 @@
   });
   socket.on('activeUsersResponse', (data) => {
     const { projectId, activeUsers } = data;
-    console.log('Active users in project:', activeUsers);
 
     const totalMembers = {{members.length}}; 
     const activeCount = activeUsers.length;

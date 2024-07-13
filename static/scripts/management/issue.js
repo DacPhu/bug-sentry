@@ -29,6 +29,39 @@ $('#editDescription').on('click', function() {
   $('#viewIssueDescription').prop('required', true);
   $('.modal-footer').removeClass('d-none');
 });
+$('#editStatus').on('click', function () {
+  $('#viewIssueStatus').prop('disabled', false);
+  $('#viewIssueStatus').prop('required', true);
+  $('.modal-footer').removeClass('d-none');
+});
+$('#editPriority').on('click', function () {
+  $('#viewIssuePriority').prop('disabled', false);
+  $('#viewIssuePriority').prop('required', true);
+  $('.modal-footer').removeClass('d-none');
+});
+$('#editTitle').on('click', function () {
+  $('#viewIssueTitle').prop('disabled', false);
+  $('#viewIssueTitle').prop('required', true);
+  $('.modal-footer').removeClass('d-none');
+});
+$('#viewIssueModal').on('hide.bs.modal', function () {
+
+  $('#viewIssueTitle').prop('disabled', true);
+  $('#viewIssueTitle').prop('required', false);
+  
+  $('#viewIssueStatus').prop('disabled', true);
+  $('#viewIssueStatus').prop('required', false);
+  
+  $('#viewIssuePriority').prop('disabled', true);
+  $('#viewIssuePriority').prop('required', false);
+  
+  $('#viewIssueDescription').prop('disabled', true);
+  $('#viewIssueDescription').prop('required', false);
+
+  
+  $('.modal-footer').addClass('d-none');
+  
+});
 $('#editIssueForm').on('submit', async function(e) {
   e.preventDefault();
 
