@@ -90,16 +90,16 @@
 
                           <div class="dropdown-menu" aria-labelledby="dropdownLanguageId">
                             <a class="dropdown-item"
-                              href="?module={{module}}&moduleName={{moduleName}}&size={{size}}&page={{page}}&sortField=id&sortType={{sortType}}">Requirement
+                              href="?module={{module}}&moduleName={{moduleName}}&size={{size}}&page={{page}}&sortField=id&sortType={{sortType}}&requirementName={{requirementName}}">Requirement
                               Code</a>
                             <a class="dropdown-item"
-                              href="?module={{module}}&moduleName={{moduleName}}&size={{size}}&page={{page}}&sortField=name&sortType={{sortType}}">Title</a>
+                              href="?module={{module}}&moduleName={{moduleName}}&size={{size}}&page={{page}}&sortField=name&sortType={{sortType}}&requirementName={{requirementName}}">Title</a>
                           </div>
 
 
                           <span class="font-weight-semibold d-flex align-items-center">
                             {{sortType}}
-                            <a href="?module={{module}}&moduleName={{moduleName}}&size={{size}}&page={{page}}&sortField={{sortField}}&sortType={{#if (equalsStr sortType "
+                            <a href="?module={{module}}&moduleName={{moduleName}}&size={{size}}&page={{page}}&requirementName={{requirementName}}&sortField={{sortField}}&sortType={{#if (equalsStr sortType "
                               asc")}}desc{{else}}asc{{/if}}">
                               <img src="/icons/lucide_sort-{{sortType}}.svg" alt="" />
                             </a>
@@ -124,7 +124,7 @@
                       {{#each requirements.rows}}
                       <tr>
                         <th scope="row">{{this.id}}</th>
-                        <td>{{this.name}}</td>
+                        <td style="max-width: 200px" class="text-truncate">{{{this.name}}}</td>
                         <td class="ps-0">
                           <div class="d-flex pointer-cursor p-2 pt-0 pb-0 justify-content-between">
                             <a href="./requirement/{{this.id}}">
@@ -155,7 +155,7 @@
 
                       {{#if (notEquals page 1)}}
                       <button class="border-0 rounded-3 p-2 text-muted ms-auto">
-                        <a href="?module={{module}}&moduleName={{moduleName}}&size={{size}}&page={{dec page }}">
+                        <a href="?module={{module}}&moduleName={{moduleName}}&size={{size}}&page={{dec page }}&requirementName={{requirementName}}&sortField={{sortField}}&sortType={{sortType}}">
                           <i class="bi bi-chevron-double-left"></i>
                         </a>
                       </button>
@@ -166,7 +166,7 @@
                       </div>
                       {{#if (lessThan page totalPages)}}
                       <button class="border-0 rounded-3 p-2 text-muted me-3">
-                        <a href="?module={{module}}&moduleName={{moduleName}}&size={{size}}&page={{inc page}}">
+                        <a href="?module={{module}}&moduleName={{moduleName}}&size={{size}}&page={{inc page}}&requirementName={{requirementName}}&sortField={{sortField}}&sortType={{sortType}}">
                           <i class="bi bi-chevron-double-right"></i>
                         </a>
                       </button>
@@ -436,25 +436,26 @@
 
       $('#search-requirement').on('keypress', function (event) {
         if (event.key === 'Enter') {
-          const query = $(this).val();
-          const newUrl = new URL(window.location.href);
-          newUrl.searchParams.set('requirementName', query);
-          newUrl.searchParams.set('size', '');
-          newUrl.searchParams.set('page', 1);
-
-
-          window.location.href = newUrl.href;
+          handleSearch();
         }
       });
-
-
-
-
+      $("#search-addon").click(function () {
+        handleSearch();
+      });
 
     });
   });
 
 
+  function handleSearch() {
+    const query = $("#search-requirement").val();
+    const newUrl = new URL(window.location.href);
+    newUrl.searchParams.set('requirementName', query);
+    newUrl.searchParams.set('size', '');
+    newUrl.searchParams.set('page', 1);
+
+    window.location.href = newUrl.href;
+  }
   function confirmDelete(id) {
 
     $("#deleteConfirmationModal").modal("show");

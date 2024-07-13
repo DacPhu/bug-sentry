@@ -3,7 +3,8 @@
 const controller = {};
 const { create } = require("connect-mongo");
 const models = require("../../../models");
-
+const validator = require("validator");
+const { isSafeString } = require("../../../utils/validator");
 controller.getModules = async (req, res) => {
   const name = req.query.keyword | "";
   const projectId = req.query.projectId | 0;
@@ -70,8 +71,15 @@ controller.addModule = async (req, res) => {
   const createdBy = req.session.memberId;
 
   if (!projectId || !name || !createdBy) {
-    return res.status(400).json({ message: "Missing some fields" });
+    req.flash("error", "Missing some fields.");
+    return res.redirect(`/project/${projectId}/module`);
   }
+
+  if (!isSafeString(name)) {
+    req.flash("error", "Invalid characters in module name");
+    return res.redirect(`/project/${projectId}/module`);
+  }
+
 
   try {
     await models.Module.create({

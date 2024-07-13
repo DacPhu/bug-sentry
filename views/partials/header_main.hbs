@@ -16,11 +16,10 @@
     color: white;
     font-size: 10px;
   }
+
   .container-notification-item {
     width: 400px;
   }
-
-  
 </style>
 <nav class="navbar navbar-expand-sm navbar-light bg-white">
   <div class="container-fluid">
@@ -84,8 +83,9 @@
             <i class="fas fa-bell fa-2x" id="dropdownNotification" data-bs-toggle="dropdown" aria-haspopup="true"
               aria-expanded="false"></i>
             <span id="notificationCount" class="badge"></span>
-            <div id="notificationList" class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownNotification" style="overflow-y: auto; max-height: 400px;">
-              
+            <div id="notificationList" class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownNotification"
+              style="overflow-y: auto; max-height: 400px;">
+
 
             </div>
           </div>
@@ -96,7 +96,14 @@
   </div>
 </nav>
 <script>
-  const user_id = {{ userId }}
-  const projectIDs = [{{projectIDs}}]
-  console.log(projectIDs)
+  const user_id = {{userId}}
+  const projects = JSON.parse('{{{JSON projects}}}');
+  const socket = io('http://localhost:4000');
+  Object.keys(projects).forEach(projectId => {
+    const project = projects[projectId];
+    console.log(projectId, project.memberId);
+    socket.emit('joinProject', projectId, project.memberId);
+  });
+  // Join vào các dự án mà user đang tham gia
+  
 </script>

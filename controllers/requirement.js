@@ -4,6 +4,7 @@ const controller = {};
 const { inc } = require("../helpers");
 const models = require("../models");
 const { paginate } = require("../utils/pagination");
+const { isSafeString } = require("../utils/validator");
 controller.showAll = async (req, res) => {
   try {
     // Extract project_id from request parameters
@@ -180,6 +181,10 @@ controller.createRequirement = async (req, res) => {
     const description = req.body.description ?? '';
     const url = req.body.url ?? '';
     console.log(req.session);
+    if (!isSafeString(name) || !isSafeString(description) || !isSafeString(url)) {
+      req.flash("error", "Invalid input");
+      return res.redirect(`/project/${projectId}/requirement`);
+    }
     const requirement = await models.Requirement.create({
       project_id: projectId,
       module_id: module_id,
@@ -217,6 +222,10 @@ controller.editRequirement = async (req, res) => {
     const name = req.body.name;
     const description = req.body.description ?? '';
     const url = req.body.url ?? '';
+    if (name.trim() === '') {
+      req.flash("error", "Name is required");
+      return res.redirect(`/project/${projectId}/requirement`);
+    }
     const requirement = await models.Requirement.findOne({
       where: {
         id: id,
