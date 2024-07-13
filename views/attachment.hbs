@@ -67,7 +67,7 @@
   <div class="d-flex justify-content-center align-items-center w-100 position-absolute top-0 bottom-0 start-0 end-0">
     <!-- main content -->
     <div class="modal-dialog">
-        <form action="/api/v1/attachment/upload" method="POST" enctype="multipart/form-data">
+        <form action="/api/v1/attachment/upload" id="addAttachmentForm" method="POST" enctype="multipart/form-data">
           <div class="modal-content">
             <div class="container p-4 position-relative ">
               <img class="closePopup position-absolute top-0 end-0 pointer-cursor" width="30px"
@@ -80,13 +80,13 @@
                   Attachment Name
                   <span class="text-danger">*</span></span>
                 <div class="input-group mb-3 w-50">
-                  <input id="name" name="name" type="text" class="form-control" placeholder="Requirement name" aria-label="Attachment name" />
+                  <input id="name" name="name" type="text" class="form-control" placeholder="Requirement name" aria-label="Attachment name" required/>
                 </div>
                 <span class="fs-6 font-weight-semibold">
                   File
                   <span class="text-danger">*</span></span>
                 <div class="input-group mb-3 w-50">
-                  <input type="file" name="file" class="form-control" aria-label="Attachment file" />
+                  <input type="file" name="file" class="form-control" aria-label="Attachment file" required/>
                 </div> 
 
                 <div class="d-flex mb-3 modal-footer">
@@ -144,5 +144,18 @@
 
 {{#section "scripts"}}
 <script> CSRF_TOKEN = "{{csrfToken}}"; </script>
+
+<script>
+  document.getElementById('addAttachmentForm').addEventListener('submit', function(event) {
+    const name = document.getElementById('name').value.trim();
+    const file = document.getElementById('file').files.length;
+    console.log("NNNNAAAAMMMMEEEE", name)
+
+    if (!name || !file) {
+      event.preventDefault();
+      alert('Please fill out all required fields.');
+    }
+  });
+</script>
 <script src="/scripts/management/attachment.js"></script>
 {{/section}}
