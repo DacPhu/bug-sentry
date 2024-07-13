@@ -123,6 +123,7 @@ controller.editRelease = async (req, res) => {
   const start_date = req.body.startDate;
   const end_date = req.body.endDate;
   const description = req.body.description;
+  console.log(id, name, start_date, end_date, description)
 
   try {
     const release = await models.Release.findByPk(id);

@@ -1,229 +1,231 @@
-<main class="bg-grey">
-  <div class="container-fluid">
-    <div class="row">
-      <!-- Side bar -->
-      {{> sidebar_main}}
+  <main class="bg-grey">
+    <div class="container-fluid">
+      <div class="row">
+        <!-- Side bar -->
+        {{> sidebar_main}}
 
-      <div class="bg-grey col-md-11">
-        <div class="row">
-          <div class="col-md-6 px-5 py-3"><h1>Project</h1></div>
-          <div class="col-md-6"></div>
-        </div>
-        <div class="row mb-2">
-          <div class="col-md-6">
-            <div class="px-4 my-3">
-              <input
-                type="text"
-                class="form-control"
-                name=""
-                id="searchProject"
-                aria-describedby="helpId"
-                placeholder="Search by project name"
-              />
-            </div>
+        <div class="bg-grey col-md-11">
+          <div class="row">
+            <div class="col-md-6 px-5 py-3"><h1>Project</h1></div>
+            <div class="col-md-6"></div>
           </div>
-          <div class="col-md-6 d-flex justify-content-end">
-            {{!-- <div class="align-content-center">
-              <div class="btn-group sort-btn">
-                <button
-                  class="btn btn-primary"
-                  type="button"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                  id="dropdownSort"
-                  data-bs-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                  style="background-color: #034f75"
-                >
-                  Sort
-                </button>
-                <button
-                  class="btn btn-primary"
-                  data-sort="none"
-                  style="background-color: #034f75"
-                >
-                  <i class="fa fa-sort"></i>
-                </button>
-                <ul class="dropdown-menu p-2" aria-labelledby="dropdownSort">
-                  <li>
-                    <a
-                      href="#"
-                      tabindex="-1"
-                      data-type="alpha"
-                      style="text-decoration: none"
-                    >Name</a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      tabindex="-1"
-                      data-type="numeric"
-                      style="text-decoration: none"
-                    >Date</a>
-                  </li>
-                </ul>
+          <div class="row mb-2">
+            <div class="col-md-6">
+              <div class="px-4 my-3">
+                <input
+                  type="text"
+                  class="form-control"
+                  name=""
+                  id="searchProject"
+                  aria-describedby="helpId"
+                  placeholder="Search by project name"
+                />
               </div>
-            </div> --}}
-            {{#if (equals role "project manager")}}
-            <div class="mx-4 my-3 d-flex btn custom-bold-btn">
-              <div class="me-2 p-1" id="add-project" data-bs-toggle="modal" data-bs-target="#addProjectModal">Add project</div>
-              <img src="/icons/add.svg" alt="" />
             </div>
-            {{/if}}
+            <div class="col-md-6 d-flex justify-content-end">
+              {{!-- <div class="align-content-center">
+                <div class="btn-group sort-btn">
+                  <button
+                    class="btn btn-primary"
+                    type="button"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                    id="dropdownSort"
+                    data-bs-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                    style="background-color: #034f75"
+                  >
+                    Sort
+                  </button>
+                  <button
+                    class="btn btn-primary"
+                    data-sort="none"
+                    style="background-color: #034f75"
+                  >
+                    <i class="fa fa-sort"></i>
+                  </button>
+                  <ul class="dropdown-menu p-2" aria-labelledby="dropdownSort">
+                    <li>
+                      <a
+                        href="#"
+                        tabindex="-1"
+                        data-type="alpha"
+                        style="text-decoration: none"
+                      >Name</a>
+                    </li>
+                    <li>
+                      <a
+                        href="#"
+                        tabindex="-1"
+                        data-type="numeric"
+                        style="text-decoration: none"
+                      >Date</a>
+                    </li>
+                  </ul>
+                </div>
+              </div> --}}
+              {{#if (equals role "project manager")}}
+              <div class="mx-4 my-3 d-flex btn custom-bold-btn">
+                <div class="me-2 p-1" id="add-project" data-bs-toggle="modal" data-bs-target="#addProjectModal">Add project</div>
+                <img src="/icons/add.svg" alt="" />
+              </div>
+              {{/if}}
+            </div>
           </div>
-        </div>
-        <div class="container bg-white">
-          <div class="row px-5 pt-5">
-            {{#each listProjects}}
-            <div class="col-lg-3 col-md-4 col-sm-6 mb-3 project-item" data-name="{{name}}">
-              <a href="project/{{id}}/overview">
-                <div class="bg-white">
-                  <div class="card">
-                    <div class="card-body">
-                      <div class="d-flex justify-content-between text-dark">
-                        <div class="d-flex">
-                          <img src="/icons/project-list.svg" />
-                          <div class="p-2">
-                            <h4 class="card-title">{{name}}</h4>
-                            <p style="font-size: 0.75rem">
-                              {{formatDate created_at "MMM D YYYY HH:mm"}}
-                            </p>
+          <div class="container bg-white">
+            <div class="row px-5 pt-5">
+              {{#each listProjects}}
+              <div class="col-lg-3 col-md-4 col-sm-6 mb-3 project-item" data-name="{{name}}">
+                <a href="project/{{id}}/overview">
+                  <div class="bg-white">
+                    <div class="card">
+                      <div class="card-body">
+                        <div class="d-flex justify-content-between text-dark">
+                          <div class="d-flex">
+                            <img src="/icons/project-list.svg" />
+                            <div class="p-2">
+                              <h4 class="card-title">{{name}}</h4>
+                              <p style="font-size: 0.75rem">
+                                {{formatDate created_at "MMM D YYYY"}}
+                              </p>
+                            </div>
+                          </div>
+
+                          <div>
+                            <i class="bi bi-pencil-square me-1"></i>
+                            <i class="bi bi-trash"></i>
                           </div>
                         </div>
-
-                        <div>
-                          <i class="bi bi-pencil-square"></i>
-                          <i class="bi bi-trash"></i>
+                        <hr class="text-dark" />
+                        <div class="row text-dark">
+                          <div class="col" style="font-size: 0.8rem">
+                            Test Cases
+                            <br />
+                            {{testcaseCount}}
+                          </div>
+                          <div class="col" style="font-size: 0.8rem">
+                            Test Runs
+                            <br />
+                            {{testrunCount}}
+                          </div>
+                          <div class="col" style="font-size: 0.8rem">
+                            Issues
+                            <br />
+                            {{issueCount}}
+                          </div>
                         </div>
-                      </div>
-                      <hr class="text-dark" />
-                      <div class="row text-dark">
-                        <div class="col" style="font-size: 0.8rem">
-                          Test Cases
-                          <br />
-                          {{testcaseCount}}
+                    
+                        <hr class="text-dark" />
+                        <div class="d-flex justify-content-end">
+                          {{#if (equals ../role "project manager")}}
+                          <div class="btn custom-bold-btn">
+                            <a href="/project/{{id}}/add-user"><i
+                                class="bi bi-person-plus text-light"
+                              ></i>
+                            </a>
+                          </div>
+                          {{/if}}
+                      
                         </div>
-                        <div class="col" style="font-size: 0.8rem">
-                          Test Runs
-                          <br />
-                          {{testrunCount}}
-                        </div>
-                        <div class="col" style="font-size: 0.8rem">
-                          Issues
-                          <br />
-                          {{issueCount}}
-                        </div>
-                      </div>
-                      <hr class="text-dark" />
-                      <div class="d-flex justify-content-end">
-                        {{#if (equals role "project manager")}}
-                        <div class="btn custom-bold-btn">
-                          <a href="/project/{{id}}/add-user"><i
-                              class="bi bi-person-plus text-light"
-                            ></i>
-                          </a>
-                        </div>
-                        {{/if}}
                       </div>
                     </div>
                   </div>
-                </div>
-              </a>
-            </div>
-            {{/each}}
-            
-          </div>
-          <div class="row mt-5 align-content-center px-3 pb-4">
-            <div class="col">
-              <h4 id="pagination-info">Showing 1 to 6 of 6 entries</h4>
-            </div>
-            <div class="col d-flex align-items-center">
-              <button class="border-0 rounded-3 p-2 text-muted ms-auto" id="prev-page">
-                <i class="bi bi-chevron-double-left"></i>
-              </button>
-              <div
-                class="bg-main-color rounded-circle d-flex justify-content-center align-items-center mx-3"
-                style="width: 40px; height: 40px"
-              >
-                <h1 class="mb-0 text-light" style="font-size: 1.5rem" id="current-page">1</h1>
+                </a>
               </div>
-              <button class="border-0 rounded-3 p-2 text-muted me-3" id="next-page">
-                <i class="bi bi-chevron-double-right"></i>
-              </button>
+              {{/each}}
+              
+            </div>
+            <div class="row mt-5 align-content-center px-3 pb-4">
+              <div class="col">
+                <h4 id="pagination-info">Showing 1 to 6 of 6 entries</h4>
+              </div>
+              <div class="col d-flex align-items-center">
+                <button class="border-0 rounded-3 p-2 text-muted ms-auto" id="prev-page">
+                  <i class="bi bi-chevron-double-left"></i>
+                </button>
+                <div
+                  class="bg-main-color rounded-circle d-flex justify-content-center align-items-center mx-3"
+                  style="width: 40px; height: 40px"
+                >
+                  <h1 class="mb-0 text-light" style="font-size: 1.5rem" id="current-page">1</h1>
+                </div>
+                <button class="border-0 rounded-3 p-2 text-muted me-3" id="next-page">
+                  <i class="bi bi-chevron-double-right"></i>
+                </button>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+  </main>
+  <footer>
+    <!-- place footer here -->
+  </footer>
+  <!-- Bootstrap JavaScript Libraries -->
+
+  {{!-- Add Project  --}}
+  <div
+    class="modal fade"
+    id="addProjectModal"
+    aria-hidden="true"
+    tabindex="-1"
+  >
+    <div class="modal-dialog">
+      <form action="/api/v1/project" id="addProjectForm" method="POST">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="projectNameModalLabel">
+              Enter Project Name
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <input type="hidden" name="_csrf" value="{{csrfToken}}">
+            <input
+              type="text"
+              id="name"
+              name="name"
+              class="form-control"
+              placeholder="Project Name"
+            />
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button
+              type="submit"
+              class="btn btn-primary"
+            >
+              Create
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
   </div>
-</main>
-<footer>
-  <!-- place footer here -->
-</footer>
-<!-- Bootstrap JavaScript Libraries -->
 
-{{!-- Add Project  --}}
-<div
-  class="modal fade"
-  id="addProjectModal"
-  aria-hidden="true"
-  tabindex="-1"
->
-  <div class="modal-dialog">
-    <form action="/api/v1/project" id="addProjectForm" method="POST">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="projectNameModalLabel">
-            Enter Project Name
-          </h5>
-          <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="modal"
-            aria-label="Close"
-          ></button>
-        </div>
-        <div class="modal-body">
-          <input type="hidden" name="_csrf" value="{{csrfToken}}">
-          <input
-            type="text"
-            id="name"
-            name="name"
-            class="form-control"
-            placeholder="Project Name"
-          />
-        </div>
-        <div class="modal-footer">
-          <button
-            type="button"
-            class="btn btn-secondary"
-            data-bs-dismiss="modal"
-          >
-            Close
-          </button>
-          <button
-            type="submit"
-            class="btn btn-primary"
-          >
-            Create
-          </button>
-        </div>
-      </div>
-    </form>
-  </div>
-</div>
+  <script src="/scripts/list-project.js"></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+    crossorigin="anonymous"
+  ></script>
 
-<script src="/scripts/list-project.js"></script>
-<script
-  src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-  integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-  crossorigin="anonymous"
-></script>
-
-<script src="/scripts/sort.js"></script>
+  <script src="/scripts/sort.js"></script>
 
 
-{{#section "head"}}
-<title>Project list</title>
-{{/section}}
+  {{#section "head"}}
+  <title>Project list</title>
+  {{/section}}
