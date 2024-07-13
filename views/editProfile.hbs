@@ -47,13 +47,15 @@
                                     <label for="first-name" class="form-label"><span
                                         class="text-danger"
                                     >*</span>
-                                    First name:</label>
+                                    First name :</label>
                                     <input
                                     type="text"
                                     name="first_name"
                                     class="form-control"
                                     id="first-name"
                                     value="{{user.first_name}}"
+                                    pattern="[A-Za-z\s]+"
+                                    title="First name should only contain letters and spaces"
                                     required
                                     />
                                 </div>
@@ -68,6 +70,8 @@
                                     class="form-control"
                                     id="last-name"
                                     value="{{user.last_name}}"
+                                    pattern="[A-Za-z\s]+"
+                                    title="First name should only contain letters and spaces"
                                     required
                                     />
                                 </div>
@@ -77,7 +81,7 @@
                                 <div class="col-md-6">
                                     <label for="phone" class="form-label">Phone number:</label>
                                     <input
-                                    type="text"
+                                    type="number"
                                     name="phone_number"
                                     class="form-control"
                                     id="phone_number"
