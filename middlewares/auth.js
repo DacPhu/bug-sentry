@@ -16,7 +16,6 @@ module.exports.require_pm = (req, res, next) => {
 };
 
 module.exports.require_tester = (req, res, next) => {
-  console.log("HERE", req.session.role);
   if (
     req.session.role !== ROLES.PM_ROLE &&
     req.session.role !== ROLES.TESTER_ROLE
@@ -27,6 +26,8 @@ module.exports.require_tester = (req, res, next) => {
 };
 
 module.exports.be_in_project = (req, res, next) => {
+  console.log(req.params)
+  console.log(req.session.projects)
   const projectId = req.params.id;
   if (!req.session.projects[projectId]) {
     return res.status(403).send("You are not authorized to access this page");

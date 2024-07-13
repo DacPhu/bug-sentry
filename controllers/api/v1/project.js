@@ -65,22 +65,39 @@ controller.getAllProjects = async (req, res) => {
 };
 
 controller.addProject = async (req, res) => {
-  const { name, project_manager_id } = req.body;
+  const { name } = req.body;
+
+  const project_manager_id = req.session.userId;
 
   if (!project_manager_id || !name) {
-    return res.status(400).message({ error: "Missing some fields" });
+    return res.status(400).json({ message: "Missing some fields" });
   }
 
   try {
     const currentTimestamp = Date.now();
-    await models.Project.create({
+
+    const project = await models.Project.create({
       name,
       created_at: currentTimestamp,
       project_manager_id: project_manager_id,
       number_of_members: 1,
     });
 
-    res.redirect("/project/:${project_id}/release");
+    const project_id = project.id;
+
+    const member = await models.Member.create({
+      project_id: project_id,
+      user_id: project_manager_id,
+      role_id: 1,
+      active: true,
+    });
+
+    req.session.projects[member.project_id] = {
+      memberId: member.id,
+      role: member.role_id,
+    };
+
+    res.redirect(`/project/${project_id}/overview`);
   } catch (error) {
     console.error("Error adding project:", error);
     res.send("Can not add project!");

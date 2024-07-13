@@ -83,24 +83,39 @@ controller.uploadFile = async (req, res) => {
     if (!file) {
       return res.status(400).json({ message: "No file uploaded" });
     }
+
+    // Define the upload directory
     const uploadDir = path.join(
       __dirname,
       "../../../private/attachment/uploads"
     );
 
+    // Ensure the upload directory exists
     if (!fs.existsSync(uploadDir)) {
       fs.mkdirSync(uploadDir);
     }
+
+    // Define the file path
     const filePath = path.join(uploadDir, file.originalname);
+
+    // Write the file to the upload directory
     fs.writeFileSync(filePath, file.buffer);
 
+    // Calculate the relative path to be stored in the database
+    const relativeFilePath = path.relative(
+      path.join(__dirname, "../../../private"),
+      filePath
+    );
+
+    // Create the attachment record in the database with the relative path
     const attachment = await models.Attachment.create({
       project_id: project_id,
       name: attachment_name,
-      path: filePath,
+      path: relativeFilePath,
       type: path.extname(file.originalname).substring(1),
     });
 
+    // Redirect to the attachments page
     res.redirect(`/project/${project_id}/attachment`);
   } catch (error) {
     return res
