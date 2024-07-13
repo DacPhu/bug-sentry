@@ -43,12 +43,10 @@ document.addEventListener('DOMContentLoaded', function () {
   searchInput.addEventListener('input', function () {
     const searchQuery = searchInput.value.toLowerCase();
     filteredMembers = memberItems.filter(item => item.getAttribute('data-name').toLowerCase().includes(searchQuery));
-    if (userType != "All role")
+    if (userType != "All roles")
       filteredMembers = filteredMembers.filter(item => item.getAttribute('data-role').toLowerCase() == userType.toLowerCase());
-    console.log(filteredMembers)
     if (userStatus != "All status")
       filteredMembers = filteredMembers.filter(item => item.getAttribute('data-status').toLowerCase() == userStatus.toLowerCase());
-    console.log(filteredMembers)
     currentPage = 1;
     updateDisplay();
   });
@@ -77,22 +75,18 @@ document.addEventListener('DOMContentLoaded', function () {
       if (toggleButton.getAttribute("id") == "dropdownUserType") {
         this.textContent = userType
         userType = selectedText
-        console.log(userType, userStatus)
       }
       else {
         this.textContent = userStatus
         userStatus = selectedText
-        console.log(userType, userStatus)
       }
 
       const searchQuery = searchInput.value.toLowerCase();
       filteredMembers = memberItems.filter(item => item.getAttribute('data-name').toLowerCase().includes(searchQuery));
       if (userType != "All roles")
         filteredMembers = filteredMembers.filter(item => item.getAttribute('data-role').toLowerCase() == userType.toLowerCase());
-      console.log(filteredMembers)
       if (userStatus != "All status")
         filteredMembers = filteredMembers.filter(item => item.getAttribute('data-status').toLowerCase() == userStatus.toLowerCase());
-      console.log(filteredMembers)
       currentPage = 1;
       updateDisplay();
     });

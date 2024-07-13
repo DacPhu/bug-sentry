@@ -238,15 +238,28 @@
               <div class="col">
                 <div class="mb-3">
                   <label for="issueTitle" class="form-label">Issue Title </label>
+                  <i role="button" class="bi bi-pencil" id="editTitle" style="cursor: pointer;"></i>
                   <input type="text" class="form-control" id="viewIssueTitle" name="title" disabled>
                 </div>
                 <div class="mb-3">
                   <label for="issueTitle" class="form-label">Status </label>
-                  <input type="text" class="form-control" id="viewIssueStatus" name="status" disabled>
+                  <i role="button" class="bi bi-pencil" id="editStatus" style="cursor: pointer;"></i>
+                  <select class="form-select" id="viewIssueStatus" name="status" disabled>
+                    <option value="open">open</option>
+                    <option value="in progress">in progress</option>
+                    <option value="passed">passed</option>
+                    <option value="closed">closed</option>
+                  </select>
                 </div>
                 <div class="mb-3">
                   <label for="issueTitle" class="form-label">Priority </label>
-                  <input type="text" class="form-control" id="viewIssuePriority" name="priority" disabled>
+                  <i role="button" class="bi bi-pencil" id="editPriority" style="cursor: pointer;"></i>
+                  <select class="form-select" id="viewIssuePriority" name="priority" disabled>
+                    <option value="low">Low</option>
+                    <option value="medium">Medium</option>
+                    <option value="high">High</option>
+                    <option value="critical">Critical</option>
+                  </select>
                 </div>
 
               </div>

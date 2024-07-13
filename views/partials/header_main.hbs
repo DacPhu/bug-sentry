@@ -98,10 +98,9 @@
 <script>
   const user_id = {{userId}}
   const projects = JSON.parse('{{{JSON projects}}}');
-  const socket = io('http://localhost:4000');
+  const socket = io(window.location.origin);
   Object.keys(projects).forEach(projectId => {
     const project = projects[projectId];
-    console.log(projectId, project.memberId);
     socket.emit('joinProject', projectId, project.memberId);
   });
   // Join vào các dự án mà user đang tham gia

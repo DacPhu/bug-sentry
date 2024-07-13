@@ -69,43 +69,45 @@ document.addEventListener("DOMContentLoaded", function () {
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
     console.log(startIndex, endIndex);
-
+    let idOpen = 0
     releaseOpenItems.forEach((item, index) => {
-      if (
-        filteredOpenReleases.includes(item) &&
-        index >= startIndex &&
-        index < endIndex
-      ) {
-        item.style.display = "";
+      if (filteredOpenReleases.includes(item)) {
+        if (idOpen >= startIndex && idOpen < endIndex) {
+          item.classList.remove('d-none'); // Xóa lớp để hiển thị
+        } else {
+          item.classList.add('d-none'); // Xóa lớp để hiển thị
+        }
+        idOpen++; 
       } else {
-        item.style.display = "none";
+        item.classList.add('d-none'); // Xóa lớp để hiển thị
       }
     });
-
+    let idCompleted = 0;
     releaseCompletedItems.forEach((item, index) => {
-      if (
-        filteredCompletedReleases.includes(item) &&
-        index >= startIndex &&
-        index < endIndex
-      ) {
-        item.style.display = "";
+      if (filteredCompletedReleases.includes(item)) {
+        if (idCompleted >= startIndex && idCompleted < endIndex) {
+          item.classList.remove('d-none'); // Xóa lớp để hiển thị
+        } else {
+          item.classList.add('d-none'); // Xóa lớp để hiển thị
+        }
+        idCompleted++; 
       } else {
-        item.style.display = "none";
+        item.classList.add('d-none'); // Xóa lớp để hiển thị
       }
     });
-
+    let idUpcoming = 0;
     releaseUpcomingItems.forEach((item, index) => {
-      if (
-        filteredUpcomingReleases.includes(item) &&
-        index >= startIndex &&
-        index < endIndex
-      ) {
-        item.style.display = "";
+      if (filteredUpcomingReleases.includes(item)) {
+        if (idUpcoming >= startIndex && idUpcoming < endIndex) {
+          item.classList.remove('d-none'); // Xóa lớp để hiển thị
+        } else {
+          item.classList.add('d-none'); // Xóa lớp để hiển thị
+        }
+        idUpcoming++; 
       } else {
-        item.style.display = "none";
+        item.classList.add('d-none'); // Xóa lớp để hiển thị
       }
     });
-
     paginationInfoOpen.innerText = `Showing ${startIndex + 1} to ${Math.min(
       endIndex,
       filteredOpenReleases.length
@@ -136,38 +138,35 @@ document.addEventListener("DOMContentLoaded", function () {
 
   searchOpenInput.addEventListener("input", function () {
     const value = searchOpenInput.value;
-    if (value) {
-      const searchQuery = value.toLowerCase();
-      filteredOpenReleases = releaseOpenItems.filter((item) =>
-        item.getAttribute("data-name").toLowerCase().includes(searchQuery)
-      );
-      currentPage = 1;
-      updateDisplay();
-    }
+    const searchQuery = value.toLowerCase();
+    filteredOpenReleases = releaseOpenItems.filter((item) =>
+      item.getAttribute("data-name").toLowerCase().includes(searchQuery)
+    );
+    currentPage = 1;
+    updateDisplay();
   });
 
   searchUpcomingInput.addEventListener("input", function () {
     const value = searchUpcomingInput.value;
-    if (value) {
-      const searchQuery = value.toLowerCase();
-      filteredUpcomingReleases = releaseUpcomingItems.filter((item) =>
-        item.getAttribute("data-name").toLowerCase().includes(searchQuery)
-      );
-      currentPage = 1;
-      updateDisplay();
-    }
+    const searchQuery = value.toLowerCase();
+    filteredUpcomingReleases = releaseUpcomingItems.filter((item) =>
+      item.getAttribute("data-name").toLowerCase().includes(searchQuery)
+    );
+    currentPage = 1;
+    updateDisplay();
   });
 
   searchCompletedInput.addEventListener("input", function () {
     const value = searchCompletedInput.value;
-    if (value) {
-      const searchQuery = value.toLowerCase();
-      filteredCompletedReleases = releaseCompletedItems.filter((item) =>
-        item.getAttribute("data-name").toLowerCase().includes(searchQuery)
-      );
-      currentPage = 1;
-      updateDisplay();
-    }
+
+     
+    const searchQuery = value.toLowerCase();
+    filteredCompletedReleases = releaseCompletedItems.filter((item) =>
+      item.getAttribute("data-name").toLowerCase().includes(searchQuery)
+    );
+    currentPage = 1;
+    
+    updateDisplay();
   });
 
   prevPageBtnOpen.addEventListener("click", function () {

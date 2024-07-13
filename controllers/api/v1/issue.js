@@ -68,7 +68,7 @@ controller.addIssue = async (req, res) => {
   const project_id = parseInt(req.session.project_id);
   const member_id = req.session.projects[project_id].memberId
   console.log(name, project_id, status, priority, note, member_id)
-  if (!project_id || !name || !status || !priority || !note) {
+  if (!project_id || !name || !status || !priority ) {
     return res.status(400).message({ error: "Missing some fields" });
   }
 

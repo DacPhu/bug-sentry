@@ -54,16 +54,21 @@
                                     class="form-control"
                                     id="first-name"
                                     value="{{user.first_name}}"
+                                    required
                                     />
                                 </div>
                                 <div class="col-md-6">
-                                    <label for="last-name" class="form-label">Last name:</label>
+                                    <label for="last-name" class="form-label"><span
+                                        class="text-danger"
+                                    >*</span> Last name:</label>
+                                    
                                     <input
                                     type="text"
                                     name="last_name"
                                     class="form-control"
                                     id="last-name"
                                     value="{{user.last_name}}"
+                                    required
                                     />
                                 </div>
                             </div>
@@ -108,7 +113,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <label for="role" class="form-label">
-                                    <span class="text-danger">*</span>
+                               
                                     Role:</label>
                                     <input
                                     type="text"

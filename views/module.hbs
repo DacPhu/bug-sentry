@@ -16,8 +16,9 @@
             <div
               id="add-module"
               class="mx-4 my-3 d-flex btn custom-bold-btn"
+              data-bs-toggle="modal" data-bs-target="#addModuleModal"
             >
-              <div class="me-2 p-1" data-bs-toggle="modal" data-bs-target="#addModuleModal">Add Module</div>
+              <div class="me-2 p-1" >Add Module</div>
               <img src="/icons/add.svg" alt="" />
             </div>
           </div>
@@ -104,6 +105,7 @@
             name="name"
             class="form-control"
             placeholder="Module Name"
+            required
           />
         </div>
         <div class="modal-footer">
