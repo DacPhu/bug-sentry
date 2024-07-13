@@ -22,6 +22,7 @@ controller.showAll = async (req, res) => {
       ],
     });
     const formatMembers = members.map((item) => ({
+      id: item.id,
       first_name: item.User.first_name,
       last_name: item.User.last_name,
       full_name: `${item.User.first_name} ${item.User.last_name}`,

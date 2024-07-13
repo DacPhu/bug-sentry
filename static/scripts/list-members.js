@@ -22,13 +22,13 @@ document.addEventListener('DOMContentLoaded', function () {
     memberItems.forEach((item, index) => {
       if (filteredMembers.includes(item)) {
         if (id >= startIndex && id < endIndex) {
-          item.classList.remove('d-none'); // Xóa lớp để hiển thị
+          item.classList.remove('d-none');
         } else {
-          item.classList.add('d-none'); // Xóa lớp để hiển thị
+          item.classList.add('d-none');
         }
-        id++; 
+        id++;
       } else {
-        item.classList.add('d-none'); // Xóa lớp để hiển thị
+        item.classList.add('d-none');
       }
     });
     paginationInfo.innerText = `Showing ${startIndex + 1} to ${Math.min(
@@ -87,7 +87,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
       const searchQuery = searchInput.value.toLowerCase();
       filteredMembers = memberItems.filter(item => item.getAttribute('data-name').toLowerCase().includes(searchQuery));
-      if (userType != "All role")
+      if (userType != "All roles")
         filteredMembers = filteredMembers.filter(item => item.getAttribute('data-role').toLowerCase() == userType.toLowerCase());
       console.log(filteredMembers)
       if (userStatus != "All status")

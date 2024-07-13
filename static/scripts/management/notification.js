@@ -1,13 +1,7 @@
 $(document).ready(function () {
     const notificationCountElem = $("#notificationCount");
     const notificationListElem = $("#notificationList");
-    const socket = io('http://localhost:4000');
-
-    // Join vào các dự án mà user đang tham gia
-    console.log(projectIDs)
-    projectIDs.forEach(projectId => {
-        socket.emit('joinProject', projectId);
-    });
+    
     function fetchNotifications() {
         $.ajax({
             url: "/api/v1/notification",
@@ -20,7 +14,7 @@ $(document).ready(function () {
                    
                     $.each(data, function (index, notification) {
                         const fullNameSender = notification.User.first_name + ' ' + notification.User.last_name
-                        console.log(notification)
+                
                         
                         if (notification.project_id && notification.User.profile_picture) {
                             const notificationItemHTML = `
