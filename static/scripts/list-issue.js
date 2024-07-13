@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
     let entriesText;
-    const finalIndex = Math.min(finalIndex, filteredIssues.length);
+    const finalIndex = Math.min(endIndex, filteredIssues.length);
     if (finalIndex === 0) {
       entriesText = 'There are no entries';
     } else {

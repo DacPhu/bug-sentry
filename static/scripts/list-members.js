@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
     let entriesText;
-    const finalIndex = Math.min(finalIndex, filteredMembers.length);
+    const finalIndex = Math.min(endIndex, filteredMembers.length);
     if (finalIndex === 0) {
       entriesText = 'There are no entries';
     } else {
