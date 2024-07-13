@@ -32,25 +32,11 @@ function showEditReleaseModal(btn) {
 
 async function editRelease(e) {
   e.preventDefault();
-  const startDate = document.getElementById("editStartDate");
-  const endDate = document.getElementById("editEndDate");
-  const errorMessage = document.getElementById("editErrorMessage");
-  const startDateValue = new Date(startDate.value);
-  const endDateValue = new Date(endDate.value);
-
-  if (startDateValue >= endDateValue) {
-      e.preventDefault(); 
-      errorMessage.textContent = "Ngày bắt đầu phải nhỏ hơn ngày kết thúc.";
-      return
-  } else {
-      errorMessage.textContent = ""; 
-  }
   const formData = new FormData(document.querySelector("#editReleaseForm"));
   let data = Object.fromEntries(formData.entries());
-  const release_id = data.id
-  console.log(release_id)
+
   try {
-    let res = await fetch(`/api/v1/release/${release_id}`, {
+    let res = await fetch("/api/v1/release", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
