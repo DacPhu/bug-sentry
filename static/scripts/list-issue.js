@@ -30,11 +30,14 @@ document.addEventListener("DOMContentLoaded", function () {
         item.classList.add('d-none'); // Xóa lớp để hiển thị
       }
     });
-    
-    paginationInfo.innerText = `Showing ${startIndex + 1} to ${Math.min(
-      endIndex,
-      filteredIssues.length
-    )} of ${filteredIssues.length} entries`;
+    let entriesText;
+    const finalIndex = Math.min(finalIndex, filteredIssues.length);
+    if (finalIndex === 0) {
+      entriesText = 'There are no entries';
+    } else {
+      entriesText = `Showing ${startIndex + 1} to ${finalIndex} of ${filteredIssues.length} entries`;
+    }
+    paginationInfo.innerText = entriesText;
     currentPageDisplay.innerText = currentPage;
     prevPageBtn.disabled = currentPage === 1;
     nextPageBtn.disabled = endIndex >= filteredIssues.length;

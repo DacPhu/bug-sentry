@@ -23,8 +23,14 @@ function updateDisplay() {
         item.style.display = 'none';
     }
     });
-    
-    paginationInfo.innerText = `Showing ${startIndex + 1} to ${Math.min(endIndex, filteredProjects.length)} of ${filteredProjects.length} entries`;
+    let entriesText;
+    const finalIndex = Math.min(finalIndex, filteredProjects.length);
+    if (finalIndex === 0) {
+      entriesText = 'There are no entries';
+    } else {
+      entriesText = `Showing ${startIndex + 1} to ${finalIndex} of ${filteredProjects.length} entries`;
+    }
+    paginationInfo.innerText = entriesText;
     currentPageDisplay.innerText = currentPage;
     prevPageBtn.disabled = currentPage === 1;
     nextPageBtn.disabled = endIndex >= filteredProjects.length;

@@ -77,7 +77,7 @@ document.addEventListener("DOMContentLoaded", function () {
         } else {
           item.classList.add('d-none'); // Xóa lớp để hiển thị
         }
-        idOpen++; 
+        idOpen++;
       } else {
         item.classList.add('d-none'); // Xóa lớp để hiển thị
       }
@@ -90,7 +90,7 @@ document.addEventListener("DOMContentLoaded", function () {
         } else {
           item.classList.add('d-none'); // Xóa lớp để hiển thị
         }
-        idCompleted++; 
+        idCompleted++;
       } else {
         item.classList.add('d-none'); // Xóa lớp để hiển thị
       }
@@ -103,24 +103,41 @@ document.addEventListener("DOMContentLoaded", function () {
         } else {
           item.classList.add('d-none'); // Xóa lớp để hiển thị
         }
-        idUpcoming++; 
+        idUpcoming++;
       } else {
         item.classList.add('d-none'); // Xóa lớp để hiển thị
       }
     });
-    paginationInfoOpen.innerText = `Showing ${startIndex + 1} to ${Math.min(
-      endIndex,
-      filteredOpenReleases.length
-    )} of ${filteredOpenReleases.length} entries`;
-    paginationInfoCompleted.innerText = `Showing ${
-      startIndex + 1
-    } to ${Math.min(endIndex, filteredCompletedReleases.length)} of ${
-      filteredCompletedReleases.length
-    } entries`;
-    paginationInfoUpcoming.innerText = `Showing ${startIndex + 1} to ${Math.min(
-      endIndex,
-      filteredUpcomingReleases.length
-    )} of ${filteredUpcomingReleases.length} entries`;
+
+    
+    let openText;
+    const openEndIndex = Math.min(endIndex, filteredOpenReleases.length);
+    if (openEndIndex === 0) {
+      openText = 'There are no entries';
+    } else {
+      openText = `Showing ${startIndex + 1} to ${openEndIndex} of ${filteredOpenReleases.length} entries`;
+    }
+    paginationInfoOpen.innerText = openText;
+
+
+    let completedText;
+    const completedEndIndex = Math.min(endIndex, filteredCompletedReleases.length);
+    if (completedEndIndex === 0) {
+      completedText = 'There are no entries';
+    } else {
+      completedText = `Showing ${startIndex + 1} to ${completedEndIndex} of ${filteredCompletedReleases.length} entries`;
+    }
+    paginationInfoCompleted.innerText = completedText;
+
+   
+    let upcomingText;
+    const upcomingEndIndex = Math.min(endIndex, filteredUpcomingReleases.length);
+    if (upcomingEndIndex === 0) {
+      upcomingText = 'There are no entries';
+    } else {
+      upcomingText = `Showing ${startIndex + 1} to ${upcomingEndIndex} of ${filteredUpcomingReleases.length} entries`;
+    }
+    paginationInfoUpcoming.innerText = upcomingText;
 
     currentPageDisplayOpen.innerText = currentPage;
     prevPageBtnOpen.disabled = currentPage === 1;
@@ -159,13 +176,13 @@ document.addEventListener("DOMContentLoaded", function () {
   searchCompletedInput.addEventListener("input", function () {
     const value = searchCompletedInput.value;
 
-     
+
     const searchQuery = value.toLowerCase();
     filteredCompletedReleases = releaseCompletedItems.filter((item) =>
       item.getAttribute("data-name").toLowerCase().includes(searchQuery)
     );
     currentPage = 1;
-    
+
     updateDisplay();
   });
 

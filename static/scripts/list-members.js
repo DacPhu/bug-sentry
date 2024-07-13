@@ -31,11 +31,14 @@ document.addEventListener('DOMContentLoaded', function () {
         item.classList.add('d-none');
       }
     });
-    paginationInfo.innerText = `Showing ${startIndex + 1} to ${Math.min(
-      endIndex,
-      filteredMembers.length
-    )} of ${filteredMembers.length} entries`;
-    currentPageDisplay.innerText = currentPage;
+    let entriesText;
+    const finalIndex = Math.min(finalIndex, filteredMembers.length);
+    if (finalIndex === 0) {
+      entriesText = 'There are no entries';
+    } else {
+      entriesText = `Showing ${startIndex + 1} to ${finalIndex} of ${filteredMembers.length} entries`;
+    }
+    paginationInfo.innerText = entriesText;
     prevPageBtn.disabled = currentPage === 1;
     nextPageBtn.disabled = endIndex >= filteredMembers.length;
   }

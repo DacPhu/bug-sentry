@@ -48,10 +48,15 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
 
-    paginationInfo.innerText = `Showing ${startIndex + 1} to ${Math.min(
-      endIndex,
-      filteredActivities.length
-    )} of ${filteredActivities.length} entries`;
+    let entriesText;
+    const finalIndex = Math.min(finalIndex, filteredActivities.length);
+    if (endIndex === 0) {
+      entriesText = 'There are no entries';
+    } else {
+      entriesText = `Showing ${startIndex + 1} to ${finalIndex} of ${filteredActivities.length} entries`;
+    }
+    
+    paginationInfo.innerText = entriesText;
     currentPageDisplay.innerText = currentPage;
     prevPageBtn.disabled = currentPage === 1;
     nextPageBtn.disabled = endIndex >= filteredActivities.length;

@@ -1,3 +1,8 @@
+<style>
+    .no-link {
+    cursor: pointer;
+    }
+</style>
 <main class="bg-grey">
     <div class="container-fluid">
         <div class="row">
@@ -68,7 +73,7 @@
                     <div class="row px-5 pt-3" id="release-container">
                         {{#each releasesOpen}}
                         <div class="col-lg-3 col-md-4 col-sm-6 mb-3 release-open-item" data-name="{{name}}">
-                            <a href="testrun?release_id={{id}}" class="text-decoration-none">
+                            
                                 <div class="bg-white">
                                     <div class="card bg-info">
                                         <div class="card-body">
@@ -92,12 +97,12 @@
                                             <hr />
                                             <div class="d-flex justify-content-end">
                                                 <div>
-                                                    <i role="button" class="bi bi-pencil-square" data-bs-toggle="modal"
+                                                    <i role="button" class="bi bi-pencil-square no-link" data-bs-toggle="modal"
                                                         data-bs-target="#editReleaseModal"
                                                         onclick="showEditReleaseModal(this)" data-id="{{id}}"
                                                         data-name="{{name}}" data-start-date="{{startDate}}"
                                                         data-end-date="{{endDate}}"></i>
-                                                    <i role="button" class="bi bi-trash text-danger"
+                                                    <i role="button" class="bi bi-trash text-danger no-link"
                                                         data-bs-toggle="modal" data-bs-target="#deleteReleaseModal"
                                                         onclick="confirmDelete({{id}})"></i>
                                                 </div>
@@ -105,7 +110,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </a>
+                            
                         </div>
                         {{/each}}
                     </div>
@@ -180,7 +185,7 @@
                     <div class="row px-5 pt-3" id="release-container">
                         {{#each releasesUpcoming}}
                         <div class="col-lg-3 col-md-4 col-sm-6 mb-3 release-upcoming-item" data-name="{{name}}">
-                            <a href="testrun?release_id={{id}}" class="text-decoration-none">
+                            
                                 <div class="bg-white">
                                     <div class="card bg-warning">
                                         <div class="card-body">
@@ -204,12 +209,12 @@
                                             <hr />
                                             <div class="d-flex justify-content-end">
                                                 <div>
-                                                    <i role="button" class="bi bi-pencil-square" data-bs-toggle="modal"
+                                                    <i role="button" class="bi bi-pencil-square no-link" data-bs-toggle="modal"
                                                         data-bs-target="#editReleaseModal"
                                                         onclick="showEditReleaseModal(this)" data-id="{{id}}"
                                                         data-name="{{name}}" data-start-date="{{startDate}}"
                                                         data-end-date="{{endDate}}"></i>
-                                                    <i role="button" class="bi bi-trash text-danger"
+                                                    <i role="button" class="bi bi-trash text-danger no-link"
                                                         data-bs-toggle="modal" data-bs-target="#deleteReleaseModal"
                                                         onclick="confirmDelete({{id}})"></i>
                                                 </div>
@@ -217,7 +222,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </a>
+                         
                         </div>
                         {{/each}}
                     </div>
@@ -292,7 +297,7 @@
                     <div class="row px-5 pt-3">
                         {{#each releasesCompleted}}
                         <div class="col-lg-3 col-md-4 col-sm-6 mb-3 release-completed-item" data-name="{{name}}">
-                            <a href="testrun?release_id={{id}}" class="text-decoration-none">
+                      
                                 <div class="bg-white">
                                     <div class="card bg-success">
                                         <div class="card-body">
@@ -315,12 +320,12 @@
                                             <hr />
                                             <div class="d-flex justify-content-end">
                                                 <div>
-                                                    <i role="button" class="bi bi-pencil-square" data-bs-toggle="modal"
+                                                    <i role="button" class="bi bi-pencil-square no-link" data-bs-toggle="modal"
                                                         data-bs-target="#editReleaseModal"
                                                         onclick="showEditReleaseModal(this)" data-id="{{id}}"
                                                         data-name="{{name}}" data-start-date="{{startDate}}"
                                                         data-end-date="{{endDate}}"></i>
-                                                    <i role="button" class="bi bi-trash text-danger"
+                                                    <i role="button" class="bi bi-trash text-danger no-link"
                                                         data-bs-toggle="modal" data-bs-target="#deleteReleaseModal"
                                                         onclick="confirmDelete({{id}})"></i>
                                                 </div>
@@ -328,7 +333,6 @@
                                         </div>
                                     </div>
                                 </div>
-                            </a>
                         </div>
                         {{/each}}
                     </div>
@@ -381,11 +385,11 @@
                     <div class="row g-2">
                         <div class="col mb-3">
                             <label for="startDate" class="form-label">Start Date</label>
-                            <input type="date" id="startDate" name="startDate" class="form-control" />
+                            <input type="date" id="addStartDate" name="startDate" class="form-control" />
                         </div>
                         <div class="col mb-3">
                             <label for="endDate" class="form-label">End Date</label>
-                            <input type="date" id="endDate" name="endDate" class="form-control" />
+                            <input type="date" id="addEndDate" name="endDate" class="form-control" />
                         </div>
                     </div>
                     <div class="row g-2">
@@ -394,7 +398,7 @@
                             <textarea id="description" name="description" class="form-control" rows="3"></textarea>
                         </div>
                     </div>
-                    <div class="text-center badge text-danger" id="errorMessage"></div>
+                    <div class="text-center badge text-danger" id="addErrorMessage"></div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal" id="closeBtn">
@@ -425,7 +429,7 @@
                     <input type="hidden" id="projectId" name="projectId" value="{{projectId}}">
                     <div class="row g-2">
                         <div class="col mb-6">
-                            <label for="nameEdit" class="form-label">First Name</label>
+                            <label for="nameEdit" class="form-label">Name</label>
                             <input type="text" id="nameEdit" name="name" class="form-control" placeholder="John"
                                 required />
                         </div>
@@ -433,11 +437,11 @@
                     <div class="row g-2">
                         <div class="col mb-3">
                             <label for="startDate" class="form-label">Start Date</label>
-                            <input type="date" id="startDateEdit" name="startDate" class="form-control" />
+                            <input type="date" id="editStartDate" name="startDate" class="form-control" />
                         </div>
                         <div class="col mb-3">
                             <label for="endDateEdit" class="form-label">End Date</label>
-                            <input type="date" id="endDateEdit" name="endDate" class="form-control" />
+                            <input type="date" id="editEndDate" name="endDate" class="form-control" />
                         </div>
                     </div>
                     <div class="row g-2">
@@ -446,7 +450,7 @@
                             <textarea id="description" name="description" class="form-control" rows="3"></textarea>
                         </div>
                     </div>
-                    <div class="text-center badge bg-label-danger" id="errorMessage"></div>
+                    <div class="text-center badge text-danger" id="editErrorMessage"></div>
                 </div>
                 <div class="modal-footer">
                     <input type="hidden" name="id" id="id" value="" />
@@ -478,6 +482,10 @@
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
                 <button type="button" class="btn btn-danger" onclick="deleteConfirmed()">Yes</button>
             </div>
+            <!-- Success message -->
+            <div class="alert alert-success d-none" id="deleteSuccessMessage" role="alert">
+                Delete successful
+            </div>
         </div>
     </div>
 </div>
@@ -496,6 +504,31 @@
 
 {{#section "scripts"}}
 <script> const CSRF_TOKEN = "{{csrfToken}}";</script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const formAdd = document.getElementById("addReleaseForm");
+        const formEdit = document.getElementById("editReleaseForm");
+        
+        
+        
+        formAdd.addEventListener("submit", function(event) {
+            const startDate = document.getElementById("addStartDate");
+            const endDate = document.getElementById("addEndDate");
+            const errorMessage = document.getElementById("addErrorMessage");
+            const startDateValue = new Date(startDate.value);
+            const endDateValue = new Date(endDate.value);
+
+            if (startDateValue >= endDateValue) {
+                event.preventDefault(); 
+                errorMessage.textContent = "Ngày bắt đầu phải nhỏ hơn ngày kết thúc.";
+            } else {
+                errorMessage.textContent = ""; 
+            }
+        });
+        
+    });
+</script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 <script src="/scripts/sort.js"></script>
 <script src="/scripts/list-release.js"></script>
