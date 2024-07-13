@@ -56,7 +56,7 @@ controller.getAllModules = async (req, res) => {
     }
 
     return res.status(200).json({
-      issues: issues,
+      modules: modules,
     });
   } catch (error) {
     return res

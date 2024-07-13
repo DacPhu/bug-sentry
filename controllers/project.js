@@ -1,15 +1,16 @@
 "use strict";
 
 const controller = {};
-const { where } = require("sequelize");
 const models = require("../models");
 
 controller.showAll = async (req, res) => {
   try {
-    const projectIDs = Object.keys(req.session.projects)
-
+    const projectIDs = Object.keys(req.session.projects);
+    console.log("ID", projectIDs);
     const projectsWithCounts = await models.Project.findAll({
-      where: { id: projectIDs},
+      where: {
+        id: projectIDs
+      },
       attributes: [
         "id",
         "name",
@@ -43,24 +44,19 @@ controller.showAll = async (req, res) => {
         {
           model: models.TestCase,
           attributes: [],
-          required: true,
         },
         {
           model: models.TestRun,
           attributes: [],
-          required: true,
         },
         {
           model: models.Issue,
           attributes: [],
-          required: true,
         },
       ],
       group: ["Project.id", "Project.name", "Project.created_at"],
     });
-
-    
-
+    console.log("PROJECT WITH COUNT", projectsWithCounts);
     // format the result
     const listProjects = projectsWithCounts.map((project) => ({
       id: project.id,
@@ -70,7 +66,6 @@ controller.showAll = async (req, res) => {
       testrunCount: project.get("testrunCount"),
       issueCount: project.get("issueCount"), // Added issueCount
     }));
-    
 
     res.render("project", { listProjects });
   } catch (error) {
@@ -114,7 +109,6 @@ controller.showOverview = async (req, res) => {
         break;
     }
   });
-
 
   const members = await models.Member.findAll({
     where: { project_id: id },
