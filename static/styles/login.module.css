@@ -12,13 +12,13 @@ body {
   width: 80%;
   background: #ffffff;
   border-radius: 10px;
-  overflow: hidden;
+  /* overflow: hidden; */
   display: flex;
   flex: 1 1 100%;
   align-items: stretch;
   justify-content: space-between;
   box-shadow: 0 0 20px 6px #090b6f85;
-  height: 95vh;
+  /* height: 95vh; */
 }
 
 .intro {

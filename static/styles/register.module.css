@@ -11,13 +11,13 @@ body {
   width: 80%;
   background: #ffffff;
   border-radius: 10px;
-  overflow: hidden;
+  /* overflow: hidden; */
   display: flex;
   flex: 1 1 100%;
   align-items: stretch;
   justify-content: space-between;
   box-shadow: 0 0 20px 6px #090b6f85;
-  height: 97vh;
+  /* height: 97vh; */
 }
 
 .loginform_container {
@@ -139,7 +139,7 @@ input[type="number"]::-webkit-outer-spin-button {
 @media screen and (min-width: 600px) {
   .box-form {
     width: 70%;
-    height: 90%;
+    /* height: 95%; */
   }
 
   .signup_instruct {
@@ -149,7 +149,7 @@ input[type="number"]::-webkit-outer-spin-button {
 @media screen and (min-width: 870px) {
   .box-form {
     width: 40%;
-    height: 90%;
+    /* height: 95%; */
   }
 
   .signup_instruct {
