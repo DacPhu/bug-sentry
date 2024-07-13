@@ -56,9 +56,8 @@
                   <!-- action bar -->
                   <div class="d-flex align-items-center">
                     <div class="d-flex flex-fill ms-4 align-items-center">
-                      <input value="{{testcaseName}}" id="search-requirement" type="search"
-                        class="form-control rounded" placeholder="Search test cases by title" aria-label="Search"
-                        aria-describedby="search-addon" />
+                      <input value="{{testcaseName}}" id="search-requirement" type="search" class="form-control rounded"
+                        placeholder="Search test cases by title" aria-label="Search" aria-describedby="search-addon" />
                       <span id="search-addon">
                         <i class="fas fa-search"></i>
                       </span>
@@ -88,20 +87,22 @@
 
                           <div class="dropdown-menu" aria-labelledby="dropdownLanguageId">
                             <a class="dropdown-item"
-                              href="?module={{module}}&moduleName={{moduleName}}&size={{size}}&page={{page}}&sortField=id&sortType={{sortType}}">TestCase
+                              href="?module={{module}}&testcaseName={{testcaseName}}&moduleName={{moduleName}}&size={{size}}&page={{page}}&sortField=id&sortType={{sortType}}">TestCase
                               Code</a>
                             <a class="dropdown-item"
-                              href="?module={{module}}&moduleName={{moduleName}}&size={{size}}&page={{page}}&sortField=title&sortType={{sortType}}">Title</a>
+                              href="?module={{module}}&testcaseName={{testcaseName}}&moduleName={{moduleName}}&size={{size}}&page={{page}}&sortField=title&sortType={{sortType}}">Title</a>
                             <a class="dropdown-item"
-                              href="?module={{module}}&moduleName={{moduleName}}&size={{size}}&page={{page}}&sortField=created_at&sortType={{sortType}}">Created At
-                              </a>
+                              href="?module={{module}}&testcaseName={{testcaseName}}&moduleName={{moduleName}}&size={{size}}&page={{page}}&sortField=created_at&sortType={{sortType}}">Created
+                              At
+                            </a>
 
                           </div>
 
 
                           <span class="font-weight-semibold d-flex align-items-center">
                             {{sortType}}
-                            <a href="?module={{module}}&moduleName={{moduleName}}&size={{size}}&page={{page}}&sortField={{sortField}}&sortType={{#if (equalsStr sortType "asc")}}desc{{else}}asc{{/if}}">
+                            <a href="?module={{module}}&testcaseName={{testcaseName}}&moduleName={{moduleName}}&size={{size}}&page={{page}}&sortField={{sortField}}&sortType={{#if (equalsStr sortType "
+                              asc")}}desc{{else}}asc{{/if}}">
                               <img src="/icons/lucide_sort-{{sortType}}.svg" alt="" />
                             </a>
                           </span>
@@ -117,7 +118,7 @@
                     <thead>
                       <tr class="semi-rounded blur-green-theme">
                         <th scope="col">Case Code</th>
-                        <th scope="col">Title</th>
+                        <th style="max-width: 200px" class="text-truncate" scope="col">Title</th>
                         <th scope="col">Steps</th>
                         <th scope="col">Created By</th>
 
@@ -143,9 +144,9 @@
                         </td>
                         <td class="ps-0">
                           <div class="d-flex pointer-cursor p-2 pt-0 pb-0 justify-content-end">
-                            
+
                             <img src="/icons/mdi_eye-outline.svg" alt="" onclick="onClickViewTCDetail({{this.id}})" />
-                            <img class="ml-2" src="/icons/bin-red.svg" alt=""  onclick="confirmDelete({{this.id}})"/>
+                            <img class="ml-2" src="/icons/bin-red.svg" alt="" onclick="confirmDelete({{this.id}})" />
                           </div>
                         </td>
                       </tr>
@@ -162,36 +163,38 @@
                   <!-- pagination -->
 
                   {{#if (greaterThan totalPages 1)}}
-                   <div class="row mt-5 align-content-center px-3">
+                  <div class="row mt-5 align-content-center px-3">
                     <div class="col"></div>
                     <div class="col d-flex align-items-center">
 
-                     
+
                       <button class="border-0 rounded-3 p-2 text-muted ms-auto">
-                         {{#if (notEquals page 1)}}
-                        <a href="?module={{module}}&moduleName={{moduleName}}&size={{size}}&page={{dec page }}">
+                        {{#if (notEquals page 1)}}
+                        <a
+                          href="?module={{module}}&testcaseName={{testcaseName}}&moduleName={{moduleName}}&size={{size}}&sortField={{sortField}}&sortType={{sortType}}&page={{dec page }}">
                           <i class="bi bi-chevron-double-left"></i>
                         </a>
-                      {{/if}}
+                        {{/if}}
 
                       </button>
                       <div class="bg-main-color rounded-circle d-flex justify-content-center align-items-center mx-3"
                         style="width: 30px; height: 30px">
                         <h1 class="mb-0 text-light" style="font-size: 1.2rem">{{page}}</h1>
                       </div>
-                     
+
                       <button class="border-0 rounded-3 p-2 text-muted me-3">
-                         {{#if (lessThan page totalPages)}}
-                        <a href="?module={{module}}&moduleName={{moduleName}}&size={{size}}&page={{inc page}}">
+                        {{#if (lessThan page totalPages)}}
+                        <a
+                          href="?module={{module}}&testcaseName={{testcaseName}}&moduleName={{moduleName}}&size={{size}}&sortField={{sortField}}&sortType={{sortType}}&page={{inc page}}">
                           <i class="bi bi-chevron-double-right"></i>
                         </a>
-                      {{/if}}
+                        {{/if}}
 
                       </button>
                     </div>
                   </div>
-                  
-                  
+
+
                   {{/if}}
                 </div>
               </div>
@@ -369,64 +372,77 @@
 <script>
   const dataStr = `{{{testcasesJson}}}`;
   const totalPages = `{{{totalPages}}}`;
-  const testCases = JSON.parse(dataStr);
+
+  const testCases = JSON.parse(escapeSpecialCharacters(dataStr));
   const CSRF_TOKEN = "{{{csrfToken}}}";
   const chosenModuleName = "{{{chosenModuleName}}}";
-
-console.log(testCases, chosenModuleName)
+  function escapeSpecialCharacters(str) {
+    return str
+      .replace(/\\/g, '\\\\')  // Escape backslashes
+      .replace(/\n/g, '\\n')   // Escape newlines
+      .replace(/\r/g, '\\r')   // Escape carriage returns
+      .replace(/\t/g, '\\t');  // Escape tabs
+  }
+  console.log(testCases, chosenModuleName)
 </script>
 <script>
-  (function (fn) {
-    "use strict";
-    fn(window.jQuery, window, document);
-  })(function ($, window, document) {
-    "use strict";
+    (function (fn) {
+      "use strict";
+      fn(window.jQuery, window, document);
+    })(function ($, window, document) {
+      "use strict";
 
-    $(function () {
+      $(function () {
 
-      $("#modulesContainer .col").click(function () {
-        var clickedModuleId = $(this).attr("id"); // Get clicked module's ID
+        $("#modulesContainer .col").click(function () {
+          var clickedModuleId = $(this).attr("id"); // Get clicked module's ID
 
-        // Loop through all other modules within the container
-        $("#modulesContainer .col").each(function () {
-          var currentModuleId = $(this).attr("id");
+          // Loop through all other modules within the container
+          $("#modulesContainer .col").each(function () {
+            var currentModuleId = $(this).attr("id");
 
-          // Apply styles based on clicked module
-          if (currentModuleId !== clickedModuleId) {
-            $(this)
-              .removeClass("font-weight-semibold")
-              .addClass("font-color-blur");
-          } else {
-            $(this)
-              .removeClass("font-color-blur")
-              .addClass("font-weight-semibold");
+            // Apply styles based on clicked module
+            if (currentModuleId !== clickedModuleId) {
+              $(this)
+                .removeClass("font-weight-semibold")
+                .addClass("font-color-blur");
+            } else {
+              $(this)
+                .removeClass("font-color-blur")
+                .addClass("font-weight-semibold");
+            }
+          });
+        });
+        $("#testCasePopup").hide();
+        $("#add-testcase").click(function () {
+          $("#testCasePopup").fadeIn(200);
+        });
+
+
+
+
+        $('#module-search').on('keypress', function (event) {
+          if (event.key === 'Enter') {
+            const query = $(this).val();
+            const newUrl = new URL(window.location.href);
+            newUrl.searchParams.set('moduleName', query);
+            newUrl.searchParams.set('size', '');
+            newUrl.searchParams.set('page', 1);
+
+            window.location.href = newUrl.href;
           }
         });
-      });
-      $("#testCasePopup").hide();
-      $("#add-testcase").click(function () {
-        $("#testCasePopup").fadeIn(200);
-      });
 
 
+        $('#search-requirement').on('keypress', function (event) {
+          if (event.key === 'Enter') {
+            handleSearch()
+          }
+        });
 
-
-       $('#module-search').on('keypress', function (event) {
-        if (event.key === 'Enter') {
-          const query = $(this).val();
-          const newUrl = new URL(window.location.href);
-          newUrl.searchParams.set('moduleName', query);
-          newUrl.searchParams.set('size', '');
-          newUrl.searchParams.set('page', 1);
-
-          window.location.href = newUrl.href;
-        }
-      });
-
-
-      $('#search-requirement').on('keypress', function (event) {
-        if (event.key === 'Enter') {
-          const query = $(this).val();
+        $("#search-addon").click(handleSearch);
+        function handleSearch() {
+          const query = $("#search-requirement").val();
           const newUrl = new URL(window.location.href);
           newUrl.searchParams.set('testcaseName', query);
           newUrl.searchParams.set('size', '');
@@ -437,7 +453,6 @@ console.log(testCases, chosenModuleName)
         }
       });
     });
-  });
 </script>
 
 <script src="/scripts/add-testcase.js"></script>
