@@ -6,7 +6,7 @@ const models = require("../models");
 controller.showAll = async (req, res) => {
   try {
     const projectIDs = Object.keys(req.session.projects);
-    console.log("ID", projectIDs);
+
     const projectsWithCounts = await models.Project.findAll({
       where: {
         id: projectIDs
@@ -56,7 +56,7 @@ controller.showAll = async (req, res) => {
       ],
       group: ["Project.id", "Project.name", "Project.created_at"],
     });
-    console.log("PROJECT WITH COUNT", projectsWithCounts);
+
     // format the result
     const listProjects = projectsWithCounts.map((project) => ({
       id: project.id,

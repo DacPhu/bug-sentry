@@ -39,9 +39,9 @@
                   <div class="col col-3">
                     <div class="bg-grey p-3 d-flex flex-column align-items-center gap-2 semi-rounded">
                       <div class="d-flex gap-2 justify-content-end w-100">
-                        <a href="{{path}}">
+                        <div role="button" id="downloadButton" onclick="downloadAttachment({{id}})">
                           <img src="/icons/download.svg" alt="Download"/>
-                        </a>
+                        </div>
 
                         <img role="button" src="/icons/bin-red.svg" alt="Delete" data-bs-toggle="modal" data-bs-target="#deleteAttachmentModal" onclick="confirmDelete({{id}})"/>
                       </div>

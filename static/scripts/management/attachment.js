@@ -52,3 +52,24 @@ async function deleteConfirmed() {
     console.log(error);
   }
 }
+
+async function downloadAttachment(attachment_id) {
+  try {
+    const link = document.createElement('a');
+    link.href = `/download/attachment/${attachment_id}`;
+    link.download = '';
+    
+    const headers = new Headers();
+    
+    const res = await fetch(link.href, { headers });
+
+    if (res.status === 200) {
+      link.click();
+    } else {
+      const resText = await res.text();
+      throw new Error(resText);
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
