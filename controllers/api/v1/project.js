@@ -88,7 +88,7 @@ controller.addProject = async (req, res) => {
     const member = await models.Member.create({
       project_id: project_id,
       user_id: project_manager_id,
-      role_id: 1,
+      role_id: 3,
       active: true,
     });
 
