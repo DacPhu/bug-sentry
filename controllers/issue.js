@@ -19,10 +19,10 @@ controller.showAll = async (req, res) => {
 
     if (sortType === "priority") {
       const priorityOrder = [
-        "critical",
-        "high",
+        "low",
         "medium",
-        "low"
+        "high",
+        "critical",
       ];
       orderClause = [
         [models.sequelize.literal(`
