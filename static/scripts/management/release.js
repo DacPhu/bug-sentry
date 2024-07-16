@@ -1,3 +1,5 @@
+const flash = require("connect-flash/lib/flash");
+
 document
   .querySelector("#editReleaseModal")
   .addEventListener("shown.bs.modal", () => {
@@ -73,6 +75,7 @@ async function deleteConfirmed() {
     });
 
     if (res.status == 200) {
+      alert("Release deleted successfully!");
       location.reload();
     } else {
       let resText = await res.text();
