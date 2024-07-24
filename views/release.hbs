@@ -100,11 +100,21 @@
                                                     <i role="button" class="bi bi-pencil-square no-link" data-bs-toggle="modal"
                                                         data-bs-target="#editReleaseModal"
                                                         onclick="showEditReleaseModal(this)" data-id="{{id}}"
-                                                        data-name="{{name}}" data-start-date="{{startDate}}"
-                                                        data-end-date="{{endDate}}"></i>
+                                                        data-name="{{name}}" data-start-date="{{start_date}}"
+                                                        data-end-date="{{end_date}}" data-description="{{description}}"></i>
+
+                                                      <i role="button" class="bi bi-eye no-link" data-bs-toggle="modal"
+                                                        data-bs-target="#viewReleaseModal"
+                                                        onclick="showViewReleaseModal(this)" 
+                                                        data-name="{{name}}" data-start-date="{{start_date}}"
+                                                        data-end-date="{{end_date}}" data-description="{{description}}"></i>
+
+
                                                     <i role="button" class="bi bi-trash text-danger no-link"
                                                         data-bs-toggle="modal" data-bs-target="#deleteReleaseModal"
                                                         onclick="confirmDelete({{id}})"></i>
+
+                                                     
                                                 </div>
                                             </div>
                                         </div>
@@ -212,8 +222,17 @@
                                                     <i role="button" class="bi bi-pencil-square no-link" data-bs-toggle="modal"
                                                         data-bs-target="#editReleaseModal"
                                                         onclick="showEditReleaseModal(this)" data-id="{{id}}"
-                                                        data-name="{{name}}" data-start-date="{{startDate}}"
-                                                        data-end-date="{{endDate}}"></i>
+                                                        data-name="{{name}}" data-start-date="{{start_date}}"
+                                                        data-end-date="{{end_date}}" data-description="{{description}}"></i>
+
+
+                                                      <i role="button" class="bi bi-eye no-link" data-bs-toggle="modal"
+                                                        data-bs-target="#viewReleaseModal"
+                                                        onclick="showViewReleaseModal(this)" data-id="{{id}}"
+                                                        data-name="{{name}}" data-start-date="{{start_date}}"
+                                                        data-end-date="{{end_date}}" data-description="{{description}}"></i>
+
+
                                                     <i role="button" class="bi bi-trash text-danger no-link"
                                                         data-bs-toggle="modal" data-bs-target="#deleteReleaseModal"
                                                         onclick="confirmDelete({{id}})"></i>
@@ -323,8 +342,16 @@
                                                     <i role="button" class="bi bi-pencil-square no-link" data-bs-toggle="modal"
                                                         data-bs-target="#editReleaseModal"
                                                         onclick="showEditReleaseModal(this)" data-id="{{id}}"
-                                                        data-name="{{name}}" data-start-date="{{startDate}}"
-                                                        data-end-date="{{endDate}}"></i>
+                                                        data-name="{{name}}" data-start-date="{{start_date}}"
+                                                        data-end-date="{{end_date}}" data-description="{{description}}"></i>
+
+                                                      <i role="button" class="bi bi-eye no-link" data-bs-toggle="modal"
+                                                        data-bs-target="#viewReleaseModal"
+                                                        onclick="showViewReleaseModal(this)" data-id="{{id}}"
+                                                        data-name="{{name}}" data-start-date="{{start_date}}"
+                                                        data-end-date="{{end_date}}" data-description="{{description}}"></i>
+
+
                                                     <i role="button" class="bi bi-trash text-danger no-link"
                                                         data-bs-toggle="modal" data-bs-target="#deleteReleaseModal"
                                                         onclick="confirmDelete({{id}})"></i>
@@ -465,6 +492,62 @@
         </form>
     </div>
 </div>
+
+
+{{!-- Modal View --}}
+
+<div class="modal fade" id="viewReleaseModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <form action="#" id="editReleaseForm" onsubmit="return false;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        Detail Release
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" name="_csrf" value="{{csrfToken}}">
+                    <input type="hidden" id="projectId" name="projectId" value="{{projectId}}">
+                    <div class="row g-2">
+                        <div class="col mb-6">
+                            <label for="nameView" class="form-label">Name</label>
+                            <input readonly type="text" id="nameView" name="name" class="form-control" placeholder="John"
+                                required />
+                        </div>
+                    </div>
+                    <div class="row g-2">
+                        <div class="col mb-3">
+                            <label for="viewStartDate" class="form-label">Start Date</label>
+                            <input readonly type="date" id="viewStartDate" name="startDate" class="form-control" />
+                        </div>
+                        <div class="col mb-3">
+                            <label for="viewEndDate" class="form-label">End Date</label>
+                            <input readonly type="date" id="viewEndDate" name="endDate" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="row g-2">
+                        <div class="col mb-3">
+                            <label for="description" class="form-label">Description</label>
+                            <textarea readonly id="description" name="description" class="form-control" rows="3"></textarea>
+                        </div>
+                    </div>
+                    <div class="text-center badge text-danger" id="editErrorMessage"></div>
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" name="id" id="id" value="" />
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal" id="closeBtnEdit">
+                        Close
+                    </button>
+                  
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
 
 {{!-- Modal Delete --}}
 <div class="modal fade" id="deleteReleaseModal" tabindex="-1" aria-labelledby="deleteReleaseModalLabel"

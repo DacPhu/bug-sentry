@@ -17,6 +17,7 @@ function formatDateToInput(dateString) {
     dateString,
     "ddd MMM DD YYYY HH:mm:ss [GMT]ZZ (zz)"
   );
+
   return momentDate.isValid() ? momentDate.format("YYYY-MM-DD") : "";
 }
 
@@ -24,13 +25,35 @@ function showEditReleaseModal(btn) {
   document.querySelector("#id").value = btn.dataset.id;
   document.querySelector("#nameEdit").value = btn.dataset.name;
   console.log("DATE", btn.dataset.startDate, btn.dataset.endDate);
-  document.querySelector("#startDateEdit").value = formatDateToInput(
+  document.querySelector("#editStartDate").value = formatDateToInput(
     btn.dataset.startDate
   );
-  document.querySelector("#endDateEdit").value = formatDateToInput(
+  console.log()
+  document.querySelector("#editEndDate").value = formatDateToInput(
     btn.dataset.endDate
   );
+
+
+  document.querySelector("#editReleaseForm #description").value = btn.dataset.description;
 }
+
+
+function showViewReleaseModal(btn) {
+  document.querySelector("#nameView").value = btn.dataset.name;
+  console.log("DATE", btn.dataset.startDate, btn.dataset.endDate);
+  document.querySelector("#viewStartDate").value = formatDateToInput(
+    btn.dataset.startDate
+  );
+  console.log()
+  document.querySelector("#viewEndDate").value = formatDateToInput(
+    btn.dataset.endDate
+  );
+ 
+
+  document.querySelector("#viewReleaseModal #description").value = btn.dataset.description;
+}
+
+
 
 async function editRelease(e) {
   e.preventDefault();
