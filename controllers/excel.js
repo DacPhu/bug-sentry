@@ -91,25 +91,34 @@ controller.importRequirements = async (req, res) => {
     const worksheet = workbook.getWorksheet(1);
 
     const requirements = [];
-    worksheet.eachRow((row, rowNumber) => {
-      const module_name = row.getCell(5).value;
-      // find with like %% 
-      const module = models.Module.findOne({ where: { name: { [Sequelize.Op.like]: '%' + module_name + '%' } } });
+    for (let rowNumber = 2; rowNumber <= worksheet.rowCount; rowNumber++) {
+      const row = worksheet.getRow(rowNumber);
+      const moduleName = row.getCell(5).value;
 
+      const module = await models.Module.findOne({
+        where: {
+          name: {
+            [Sequelize.Op.like]: `%${moduleName}%`
+          }
+        }
+      });
 
-      if (rowNumber > 1) {
+      if (module) {
         const requirement = {
           project_id: projectId,
           name: row.getCell(2).value,
           description: row.getCell(3).value || '',
           url: row.getCell(4).value || '',
-          module_id: module.id, // Assuming module ID is provided
+          module_id: module.id,
           created_by: req.session.memberId,
         };
         requirements.push(requirement);
+      } else {
+        console.log(`Module not found for row ${rowNumber}`);
       }
-    });
+    }
 
+    console.log(" requirment inserted",requirements);
     await models.Requirement.bulkCreate(requirements);
 
     req.flash("success", "Imported requirements successfully!");
