@@ -510,7 +510,6 @@
         const formEdit = document.getElementById("editReleaseForm");
         
         
-        
         formAdd.addEventListener("submit", function(event) {
             const startDate = document.getElementById("addStartDate");
             const endDate = document.getElementById("addEndDate");
@@ -520,7 +519,7 @@
 
             if (startDateValue >= endDateValue) {
                 event.preventDefault(); 
-                errorMessage.textContent = "Ngày bắt đầu phải nhỏ hơn ngày kết thúc.";
+                errorMessage.textContent = "Start Data must least than End Date";
             } else {
                 errorMessage.textContent = ""; 
             }

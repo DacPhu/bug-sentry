@@ -34,11 +34,22 @@ function showEditReleaseModal(btn) {
 
 async function editRelease(e) {
   e.preventDefault();
+  const startDate = document.getElementById("editStartDate");
+  const endDate = document.getElementById("editEndDate");
+  const errorMessage = document.getElementById("editErrorMessage");
+  const startDateValue = new Date(startDate.value);
+  const endDateValue = new Date(endDate.value);
+
+  if (startDateValue >= endDateValue) {
+    errorMessage.textContent = "Start Data must least than End Date";
+    return;
+  }
+  errorMessage.textContent = "";
   const formData = new FormData(document.querySelector("#editReleaseForm"));
   let data = Object.fromEntries(formData.entries());
-
+  data.id = document.querySelector("#id").value;
   try {
-    let res = await fetch("/api/v1/release", {
+    let res = await fetch(`/api/v1/release/${data.id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
