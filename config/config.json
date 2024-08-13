@@ -1,10 +1,10 @@
 {
 
   "development": {
-    "username": "bugsentrydb_owner",
-    "password": "sAN7D1mLXRYw",
-    "database": "bugsentrydb",
-    "host": "ep-proud-waterfall-a1zvn1xi.ap-southeast-1.aws.neon.tech",
+    "username": "angaru",
+    "password": "E2BuSQld1mdfR5adHcotZ5AYxlsmM8Fn",
+    "database": "database_1dgt",
+    "host": "dpg-cqtjsv3v2p9s73dhuos0-a.oregon-postgres.render.com",
     "dialect": "postgres",
     "ssl": true,
     "dialectOptions": {
@@ -15,10 +15,10 @@
     }
   },
   "test": {
-    "username": "bugsentrydb_owner",
-    "password": "sAN7D1mLXRYw",
-    "database": "bugsentrydb",
-    "host": "ep-proud-waterfall-a1zvn1xi.ap-southeast-1.aws.neon.tech",
+    "username": "angaru",
+    "password": "E2BuSQld1mdfR5adHcotZ5AYxlsmM8Fn",
+    "database": "database_1dgt",
+    "host": "dpg-cqtjsv3v2p9s73dhuos0-a.oregon-postgres.render.com",
     "dialect": "postgres",
     "ssl": true,
     "dialectOptions": {
@@ -29,10 +29,10 @@
     }
   },
   "production": {
-    "username": "bugsentrydb_owner",
-    "password": "sAN7D1mLXRYw",
-    "database": "bugsentrydb",
-    "host": "ep-proud-waterfall-a1zvn1xi.ap-southeast-1.aws.neon.tech",
+    "username": "angaru",
+    "password": "E2BuSQld1mdfR5adHcotZ5AYxlsmM8Fn",
+    "database": "database_1dgt",
+    "host": "dpg-cqtjsv3v2p9s73dhuos0-a.oregon-postgres.render.com",
     "dialect": "postgres",
     "ssl": true,
     "dialectOptions": {
